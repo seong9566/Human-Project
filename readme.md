@@ -1,6 +1,13 @@
 # Getting Started
+```MariaDB 사용자 생성 및 권한 부여 / 데이터베이스 생성 
+CREATE USER 'jobsmatch'@'%' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON *.* TO 'jobsmatch'@'%';
+CREATE database jobs;
 
-### 테이블생성 
+```
+
+
+``` 테이블생성 
 use database jobs;
 
 CREATE TABLE users (
@@ -77,8 +84,8 @@ CREATE TABLE company_board (
 );
 
 
-CREATE TABLE subscirbe (
-  subcirbe_id integer PRIMARY KEY,
+CREATE TABLE subscribe (
+  subscribe_id integer PRIMARY KEY,
   company_id integer,
   personal_id integer,
   createdAt timestamp
@@ -108,4 +115,22 @@ CREATE TABLE Apply (
   createdAt timestamp
 );
 
-###
+```
+``` 관계 설정
+ALTER TABLE users ADD FOREIGN KEY (personal_id) REFERENCES personal(personal_id);
+ALTER TABLE personal_detail ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
+ALTER TABLE users ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE resumes ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
+ALTER TABLE company_detail ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE likes ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE likes ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
+ALTER TABLE company_board ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE personal_board ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
+ALTER TABLE subscribe ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE subscribe ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
+ALTER TABLE personal ADD FOREIGN KEY (personal_category) REFERENCES category (category_id);
+ALTER TABLE company ADD FOREIGN KEY (company_category) REFERENCES category (category_id);
+ALTER TABLE Apply ADD FOREIGN KEY (resumes_id) REFERENCES resumes (resumes_id);
+ALTER TABLE Apply ADD FOREIGN KEY (company_board_id) REFERENCES company_board (company_board_id);
+
+```
