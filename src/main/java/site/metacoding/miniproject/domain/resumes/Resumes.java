@@ -10,7 +10,8 @@ import lombok.Setter;
 public class Resumes {
 	private Integer resumesId;
 	private Integer personalId;
-	private String picture;
-	private String introduce;
+	private String resumesTitle;
+	private String resumesPicture;
+	private String resumesIntroduce;
 	private Timestamp createdAt;
 }

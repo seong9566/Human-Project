@@ -8,8 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Apply {
-	private Integer ApplyId;
-	private Integer companyBoardId;
+	private Integer applyId;
+	private Integer companyJobPostiongBoardId;
 	private Integer resumesId;
+	private Integer alarmId;
 	private Timestamp createdAt;
 }

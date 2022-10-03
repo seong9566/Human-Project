@@ -5,8 +5,8 @@ import java.util.List;
 public interface SubscribeDao {
 	public void insert(Subscribe subscribe);
 	public List<Subscribe> findAll();
-	public Subscribe findById(Integer id);
+	public Subscribe findById(Integer subscribeId);
 	public void update(Subscribe subscribe);
-	public void deleteById(Integer id);
+	public void deleteById(Integer subscribeId);
 
 }

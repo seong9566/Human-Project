@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 public class Category {
 	private Integer categoryId;
-	private Integer frontend;
-	private Integer backend;
-	private Integer devops;
-	private String etc;
+	private Boolean frontend;
+	private Boolean backend;
+	private Boolean devops;
 	private Timestamp createdAt;
 }
