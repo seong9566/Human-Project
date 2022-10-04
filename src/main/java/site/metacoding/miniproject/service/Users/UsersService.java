@@ -1,18 +1,22 @@
 package site.metacoding.miniproject.service.Users;
 
-import org.apache.catalina.User;
+import javax.management.RuntimeErrorException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
+import site.metacoding.miniproject.domain.company.detail.CompanyDetail;
+import site.metacoding.miniproject.domain.company.detail.CompanyDetailDao;
 import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.personal.PersonalDao;
 import site.metacoding.miniproject.domain.personal.detail.PersonalDetail;
 import site.metacoding.miniproject.domain.personal.detail.PersonalDetailDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
+import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -25,6 +29,7 @@ public class UsersService {
 	private final CompanyDao companyDao;
 	private final PersonalDao personalDao;
 	private final PersonalDetailDao personalDetailDao;
+	private final CompanyDetailDao companyDetailDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {
 		String loginId = loginDto.getLoginId();
@@ -55,6 +60,22 @@ public class UsersService {
 
 		PersonalDetail personalDetail = new PersonalDetail(joinDto);
 		personalDetailDao.insert(personalDetail);
+
+		Users users = new Users(joinDto);
+		usersDao.insert(users);
+	}
+
+	@Transactional(rollbackFor = RuntimeException.class)
+	public void joinCompany(CompanyJoinDto joinDto) {
+
+		Company company = new Company(joinDto);
+		companyDao.insert(company);
+
+		Integer companyId = company.getCompanyId();
+		joinDto.setCompanyId(companyId);
+
+		CompanyDetail companyDetail = new CompanyDetail();
+		companyDetailDao.insert(companyDetail);
 
 		Users users = new Users(joinDto);
 		usersDao.insert(users);

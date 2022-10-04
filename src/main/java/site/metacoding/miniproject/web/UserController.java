@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.Users.UsersService;
+import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
@@ -48,8 +49,12 @@ public class UserController {
 	}
 
 	@PostMapping("/join/company")
-	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody String join) {
-		return null;
+	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
+		userService.joinCompany(joinDto);
+		LoginDto loginDto = new LoginDto(joinDto);
+		SignedDto<?> signedDto = userService.login(loginDto);
+		session.setAttribute("principal", signedDto);
+		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
 
 }

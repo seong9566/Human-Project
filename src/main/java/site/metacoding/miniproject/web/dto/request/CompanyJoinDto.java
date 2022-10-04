@@ -1,0 +1,18 @@
+package site.metacoding.miniproject.web.dto.request;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CompanyJoinDto {
+    private String loginId;
+    private String loginPassword;
+    private String companyName;
+    private String companyEmail;
+    private String companyPhoneNumber;
+
+    // 계정생성용
+    private Integer companyId;
+
+}
