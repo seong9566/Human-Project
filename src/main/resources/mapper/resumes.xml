@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.metacoding.miniproject.domain.resumes.ResumesDao">
+
+<select id="findAll" resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+	SELECT * from resumes
+</select>
+
+<select id="findResumesBoard"
+	resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
+	SELECT b.personal_board_title, p.personal_name, r.picture
+	FROM resumes r
+	INNER JOIN personal p
+	ON r.personal_id = p.personal_id
+	INNER JOIN personal_board b
+	ON b.personal_id = r.personal_id
+</select>
+
+</mapper>
