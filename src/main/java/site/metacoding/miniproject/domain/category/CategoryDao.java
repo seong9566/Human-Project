@@ -8,5 +8,4 @@ public interface CategoryDao {
 	public Category findById(Integer id);
 	public void update(Category category);
 	public void deleteById(Integer id);
-
 }
