@@ -12,7 +12,7 @@ public class CompanyDetail {
 	private Integer companyId;
 	private String companyEmail;
 	private Integer companyNumber;
-	private Integer companyPhoneNumber;
+	private String companyPhoneNumber;
 	private String location;
 	private Timestamp createdAt;
 }
