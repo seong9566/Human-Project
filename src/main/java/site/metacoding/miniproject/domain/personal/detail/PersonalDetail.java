@@ -10,9 +10,7 @@ import lombok.Setter;
 public class PersonalDetail {
 	private Integer personalDetailId;
 	private Integer personalId;
-	private Integer personalNumber;
 	private String personalEmail;
-	private Integer personalPhoneNumber;
-	private String location;
+	private String personalPhoneNumber;
 	private Timestamp createdAt;
 }

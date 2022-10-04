@@ -1,4 +1,4 @@
-# Getting Started
+
 ```MariaDB 사용자 생성 및 권한 부여 / 데이터베이스 생성 
 CREATE USER 'jobsmatch'@'%' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON *.* TO 'jobsmatch'@'%';
@@ -6,10 +6,14 @@ CREATE database jobs;
 
 ```
 
+```엔티티 수정 내용
+company_board테이블 
+company_board_picture 추가
+personal_detail - location,number 삭제 
+company_detail,personal_detail : Phone_number - integer -> varchar로 수정
+```
 
 ``` 테이블생성 
-
-
 CREATE TABLE users (
   users_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   login_id varchar(20),
@@ -36,10 +40,8 @@ CREATE TABLE personal (
 CREATE TABLE personal_detail (
   personal_detail_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   personal_id integer,
-  personal_number integer,
   personal_email varchar(50),
-  personal_phonenumber integer,
-  location varchar(50),
+  personal_phonenumber varchar(20),
   createdAt timestamp
 );
 
@@ -48,7 +50,7 @@ CREATE TABLE company_detail (
   company_id integer,
   company_email varchar(50),
   company_number integer,
-  company_phonenumber integer,
+  company_phonenumber varchar(20),
   location varchar(50),
   createdAt timestamp
 );
@@ -78,6 +80,7 @@ CREATE TABLE company_board (
   company_board_title varchar(50),
   company_board_content longtext,
   company_board_deadline varchar(50),
+  company_board_picture longtext,
   createdAt timestamp
 );
 
@@ -121,6 +124,8 @@ CREATE TABLE apply (
   resumes_id integer,
   createdAt timestamp
 );
+
+
 
 
 
