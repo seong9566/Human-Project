@@ -1,4 +1,4 @@
-package site.metacoding.miniproject.domain.subscribe;
+package site.metacoding.miniproject.domain.like.companylike;
 
 import java.sql.Timestamp;
 
@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Subscribe {
-	private Integer subscribeId;
-	private Integer companyId;
+public class CompanyLike {
+	private Integer companyLikeId;
 	private Integer personalId;
+	private Integer companyId;
 	private Timestamp createdAt;
 }

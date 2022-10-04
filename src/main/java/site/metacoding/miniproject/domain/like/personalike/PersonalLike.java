@@ -1,4 +1,4 @@
-package site.metacoding.miniproject.domain.likes;
+package site.metacoding.miniproject.domain.like.personalike;
 
 import java.sql.Timestamp;
 
@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Likes {
-	private Integer likeId;
-	private Integer personalId;
+public class PersonalLike {
+	private Integer personalLikeId;
+	private Integer resumesId;
 	private Integer companyId;
 	private Timestamp createdAt;
 }
