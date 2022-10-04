@@ -8,8 +8,6 @@ CREATE database jobs;
 
 
 ``` 테이블생성 
-use database jobs;
-
 
 
 CREATE TABLE users (
@@ -79,6 +77,7 @@ CREATE TABLE company_board (
   company_id integer,
   company_board_title varchar(50),
   company_board_content longtext,
+  company_board_deadline varchar(50),
   createdAt timestamp
 );
 
@@ -122,6 +121,8 @@ CREATE TABLE apply (
   resumes_id integer,
   createdAt timestamp
 );
+
+
 
 
 ```
