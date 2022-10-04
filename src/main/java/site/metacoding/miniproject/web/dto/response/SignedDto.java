@@ -11,9 +11,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignedDto<T> implements Serializable{
-	private static final long serialVersionUID = -242078978525600927L;
+public class SignedDto<T> implements Serializable {
 	private String loginId;
 	private String loginPassword;
 	private T Userinfo;
+
+	private static final long serialVersionUID = -242078978525600927L;
 }

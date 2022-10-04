@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Company implements Serializable{
-	private static final long serialVersionUID = 7364337982660485087L;
+@NoArgsConstructor
+public class Company implements Serializable {
 	private Integer companyId;
 	private String companyName;
 	private Integer companyCategory;
 	private Timestamp createdAt;
+
+	private static final long serialVersionUID = 7364337982660485087L;
 }
