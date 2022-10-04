@@ -70,16 +70,16 @@ CREATE TABLE resumes (
 CREATE TABLE personal_board (
   personal_board_id integer PRIMARY KEY,
   personal_id integer,
-  board_title varchar(50),
-  board_content longtext,
+  personal_board_title varchar(50),
+  personal_board_content longtext,
   createdAt timestamp
 );
 
 CREATE TABLE company_board (
   company_board_id integer PRIMARY KEY,
   company_id integer,
-  board_title varchar(50),
-  board_content longtext,
+  company_board_title varchar(50),
+  company_board_content longtext,
   createdAt timestamp
 );
 
@@ -91,8 +91,17 @@ CREATE TABLE subscribe (
   createdAt timestamp
 );
 
-CREATE TABLE likes (
-  like_id integer PRIMARY KEY,
+
+CREATE TABLE personal_like (
+  personal_like_id integer PRIMARY KEY,
+  resumes_id integer,
+  company_id integer,
+  createdAt timestamp
+);
+
+
+CREATE TABLE company_like (
+  company_like_id integer PRIMARY KEY,
   personal_id integer,
   company_id integer,
   createdAt timestamp
@@ -108,8 +117,8 @@ CREATE TABLE category (
   createdAt timestamp
 );
 
-CREATE TABLE Apply (
-  Apply_id INTEGER PRIMARY KEY,
+CREATE TABLE apply (
+  apply_id INTEGER PRIMARY KEY,
   company_board_id integer,
   resumes_id integer,
   createdAt timestamp
@@ -122,8 +131,10 @@ ALTER TABLE personal_detail ADD FOREIGN KEY (personal_id) REFERENCES personal (p
 ALTER TABLE users ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
 ALTER TABLE resumes ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
 ALTER TABLE company_detail ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
-ALTER TABLE likes ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
-ALTER TABLE likes ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
+ALTER TABLE personal_like ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE personal_like ADD FOREIGN KEY (resumes_id) REFERENCES resumes (resumes_id);
+ALTER TABLE company_like ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
+ALTER TABLE company_like ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
 ALTER TABLE company_board ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
 ALTER TABLE personal_board ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id);
 ALTER TABLE subscribe ADD FOREIGN KEY (company_id) REFERENCES company (company_id);
