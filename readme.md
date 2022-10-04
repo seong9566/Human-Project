@@ -10,8 +10,10 @@ CREATE database jobs;
 ``` 테이블생성 
 use database jobs;
 
+
+
 CREATE TABLE users (
-  users_id integer PRIMARY KEY,
+  users_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   login_id varchar(20),
   login_password varchar(50),
   personal_id integer,
@@ -19,25 +21,22 @@ CREATE TABLE users (
   createdAt timestamp
 );
 
-
 CREATE TABLE company (
-  company_id integer PRIMARY KEY,
+  company_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   company_name varchar(20),
   company_category integer,
   createdAt timestamp
 );
 
-
 CREATE TABLE personal (
-  personal_id integer PRIMARY KEY,
+  personal_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   personal_name varchar(20),
   personal_category integer,
   createdAt timestamp
 );
 
-
 CREATE TABLE personal_detail (
-  personal_detail_id integer PRIMARY KEY,
+  personal_detail_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   personal_id integer,
   personal_number integer,
   personal_email varchar(50),
@@ -46,9 +45,8 @@ CREATE TABLE personal_detail (
   createdAt timestamp
 );
 
-
 CREATE TABLE company_detail (
-  company_detail_id integer PRIMARY KEY,
+  company_detail_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   company_id integer,
   company_email varchar(50),
   company_number integer,
@@ -59,7 +57,7 @@ CREATE TABLE company_detail (
 
 
 CREATE TABLE resumes (
-  resumes_id integer PRIMARY KEY,
+  resumes_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   personal_id integer,
   picture longtext,
   introduce longtext,
@@ -68,15 +66,16 @@ CREATE TABLE resumes (
 
 
 CREATE TABLE personal_board (
-  personal_board_id integer PRIMARY KEY,
+  personal_board_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   personal_id integer,
   personal_board_title varchar(50),
   personal_board_content longtext,
   createdAt timestamp
 );
 
+
 CREATE TABLE company_board (
-  company_board_id integer PRIMARY KEY,
+  company_board_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   company_id integer,
   company_board_title varchar(50),
   company_board_content longtext,
@@ -85,7 +84,7 @@ CREATE TABLE company_board (
 
 
 CREATE TABLE subscribe (
-  subscribe_id integer PRIMARY KEY,
+  subscribe_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   company_id integer,
   personal_id integer,
   createdAt timestamp
@@ -93,7 +92,7 @@ CREATE TABLE subscribe (
 
 
 CREATE TABLE personal_like (
-  personal_like_id integer PRIMARY KEY,
+  personal_like_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   resumes_id integer,
   company_id integer,
   createdAt timestamp
@@ -101,15 +100,14 @@ CREATE TABLE personal_like (
 
 
 CREATE TABLE company_like (
-  company_like_id integer PRIMARY KEY,
+  company_like_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   personal_id integer,
   company_id integer,
   createdAt timestamp
 );
 
-
 CREATE TABLE category (
-  category_id integer PRIMARY KEY,
+  category_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   frontend tinyint,
   backend tinyint,
   devops tinyint,
@@ -117,12 +115,14 @@ CREATE TABLE category (
   createdAt timestamp
 );
 
+
 CREATE TABLE apply (
-  apply_id INTEGER PRIMARY KEY,
+  apply_id integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
   company_board_id integer,
   resumes_id integer,
   createdAt timestamp
 );
+
 
 ```
 ``` 관계 설정
