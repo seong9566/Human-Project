@@ -4,15 +4,19 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 
 @Getter
 @Setter
 public class PersonalDetail {
 	private Integer personalDetailId;
 	private Integer personalId;
-	private Integer personalNumber;
 	private String personalEmail;
-	private Integer personalPhoneNumber;
-	private String location;
+	private String personalPhoneNumber;
 	private Timestamp createdAt;
+	
+	public PersonalDetail(PersonalJoinDto joinDto) {
+		this.personalPhoneNumber =joinDto.getPersonalPhoneNumber();
+		this.personalEmail = joinDto.getPersonalEmail();
+	}
 }

@@ -3,21 +3,20 @@ package site.metacoding.miniproject.service.personal;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.miniproject.domain.users.Users;
-import site.metacoding.miniproject.domain.users.UsersDao;
-import site.metacoding.miniproject.web.dto.request.LoginDto;
+import site.metacoding.miniproject.domain.personal.Personal;
+import site.metacoding.miniproject.domain.personal.PersonalDao;
+import site.metacoding.miniproject.domain.personal.detail.PersonalDetail;
+import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 
 @Service
 @RequiredArgsConstructor
 public class PersonalService {
 	
-	private final UsersDao usersDao;
+	private final PersonalDao personalDao;
 	
-	public Users login(LoginDto loginDto) {
-		String loginId = loginDto.getLoginId();
-		String loginPassword = loginDto.getLoginPassword();
-		Users userinfo = usersDao.findByIdAndPassword(loginId, loginPassword);
+	public void personalJoin(PersonalJoinDto joinDto) {
 		
-		return userinfo;
+
 	}
+	
 }

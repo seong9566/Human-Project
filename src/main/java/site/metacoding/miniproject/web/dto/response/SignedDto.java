@@ -1,0 +1,19 @@
+package site.metacoding.miniproject.web.dto.response;
+
+import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class SignedDto<T> implements Serializable{
+	private static final long serialVersionUID = -242078978525600927L;
+	private String loginId;
+	private String loginPassword;
+	private T Userinfo;
+}
