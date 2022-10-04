@@ -12,6 +12,7 @@ public class CompanyBoard {
 	private Integer companyId;
 	private String companyBoardTitle;
 	private String companyBoardContent;
+	private String companyBoardDeadline;
 	private Timestamp createdAt;
 
 }
