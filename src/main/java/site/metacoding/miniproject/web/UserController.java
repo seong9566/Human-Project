@@ -2,6 +2,7 @@ package site.metacoding.miniproject.web;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,11 @@ public class UserController {
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+	}
+	
+	@MessageMapping("/test")
+	public @ResponseBody ResponseDto<?> testWebsocketMethod(){
+		return null;
 	}
 
 }

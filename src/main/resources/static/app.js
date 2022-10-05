@@ -7,8 +7,8 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (greeting) {
-            showGreeting(JSON.parse(greeting.body).content);
+        stompClient.subscribe('/topic/test', function (test) {
+            showTest(JSON.parse(test.body).content);
         });
     });
 }
@@ -19,6 +19,10 @@ function disconnect() {
     }
     setConnected(false);
     console.log("Disconnected");
+}
+
+function showTest(value){
+	console.log(value);
 }
 
 
