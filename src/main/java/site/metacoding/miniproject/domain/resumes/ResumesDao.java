@@ -11,6 +11,6 @@ public interface ResumesDao {
 	public void update(Resumes resumes);
 	public void deleteById(Integer id);
 	
-	// 검색 결과에 따른 이력서 목록 보기
+	// 이력서 목록 보기
 	public List<CompanyMainDto> findResumesBoard();
 }

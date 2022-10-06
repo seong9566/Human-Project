@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="site.metacoding.miniproject.domain.company.CompanyDao">
+
+	<select id="findAll"
+		resultType="site.metacoding.miniproject.domain.company.Company">
+		SELECT * FROM company
+	</select>
+
+	<select id="findCategory"
+		resultType="site.metacoding.miniproject.domain.category.Category">
+		SELECT p.personal_id, p.personal_name, c.category_id, c.frontend, c.backend,
+		c.devops
+		FROM category c
+		INNER JOIN personal p
+		ON p.personal_category = c.category_id
+		WHERE p.category_id = (select category_id from category where 
+		<choose>
+		
+		</choose> is not null)
+	
+	</select>
+
+</mapper>

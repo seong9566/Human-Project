@@ -8,5 +8,4 @@ public interface CompanyBoardDao {
 	public CompanyBoard findById(Integer id);
 	public void update(CompanyBoard companyBoard);
 	public void deleteById(Integer id);
-
 }

@@ -12,6 +12,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -22,10 +24,11 @@
 		<button type="button" class="btn btn-primary dropdown-toggle"
 			data-bs-toggle="dropdown">분야선택</button>
 		<ul class="dropdown-menu">
-			<li><a class="dropdown-item" href="/index">프론트엔드</a></li>
-			<li><a class="dropdown-item" href="#">백엔드</a></li>
-			<li><a class="dropdown-item" href="#">데브옵스</a></li>
+			<li id="frontend" value="frontend"><a class="dropdown-item">프론트엔드</a></li>
+			<li id="backend" value="backend"><a class="dropdown-item">백엔드</a></li>
+			<li id="devops" value="devops"><a class="dropdown-item">데브옵스</a></li>
 		</ul>
+
 	</div>
 
 	<div>
@@ -37,7 +40,7 @@
 					<th>지원자 사진</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="table">
 				<c:forEach var="resumesList" items="${resumesList}">
 					<tr>
 						<td>${resumesList.personalName}</td>
@@ -48,6 +51,30 @@
 			</tbody>
 		</table>
 	</div>
+
+	<script>
+	
+	$("#frontend").click(() => {
+		frontendList();
+	})
+	
+	function frontendList() {
+		
+	$.ajax("/company/frontend" , {
+		type: "GET",
+		dataType: "json",
+	}).done((res) => {
+		if(res.code == 1){
+			$("#table tr").remove();
+			res.data.forEach((o, i)=>{
+				$("#table").append("<tr><td>"+o.personalName+"</td>"
+						+"<td>"+o.personalBoardTitle+"</td>"+"<td>"+o.picture+"</td></tr>");
+			});
+		}
+	});
+	
+	</script>
+
 
 </body>
 
