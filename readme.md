@@ -37,6 +37,7 @@ CREATE TABLE company_detail (
   company_id integer,
   company_email varchar(50),
   company_phonenumber varchar(20),
+  company_picture longtext,
   company_address varchar(50),
   created_at timestamp
 )
@@ -64,7 +65,7 @@ CREATE TABLE job_posting_board (
 
 CREATE TABLE apply (
   apply_id integer AUTO_INCREMENT PRIMARY KEY,
-  company_job_posting_board_id integer,
+  job_posting_board_id integer,
   resumes_id integer,
   alarm_id integer,
   created_at timestamp
@@ -72,7 +73,7 @@ CREATE TABLE apply (
 ;
 
 CREATE TABLE subscribe (
-  subcirbe_id integer AUTO_INCREMENT PRIMARY KEY,
+  subcribe_id integer AUTO_INCREMENT PRIMARY KEY,
   company_id integer,
   personal_id integer,
   alarm_id integer,
