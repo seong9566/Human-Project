@@ -40,7 +40,7 @@ BEGIN
 DECLARE i INT DEFAULT 1;	
 WHILE i <= 50 DO	
 INSERT INTO company (company_name, company_category_id, created_at)
-VALUES(concat('companyname',i), if(i%4=0, 1, i%4),  NOW());
+VALUES(concat('companyname',i), i,  NOW());
 SET i = i + 1;
 END WHILE;
 END$$

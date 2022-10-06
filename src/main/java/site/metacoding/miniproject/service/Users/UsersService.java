@@ -1,6 +1,5 @@
 package site.metacoding.miniproject.service.Users;
 
-
 import javax.management.RuntimeErrorException;
 
 import org.springframework.stereotype.Service;
@@ -40,14 +39,17 @@ public class UsersService {
 		String loginPassword = loginDto.getLoginPassword();
 		SignedDto<?> signedDto;
 		Users userinfo = usersDao.findByIdAndPassword(loginId, loginPassword);
+		if (userinfo == null) {
+			return null;
+		}
 		if (userinfo.getPersonalId() != null) {
 			Personal personal = personalDao.findById(userinfo.getPersonalId());
 			signedDto = new SignedDto<>(userinfo.getLoginId(),
-					userinfo.getLoginPassword(), personal);
+					userinfo.getLoginPassword(), personal.getPersonalId(), null, personal);
 		} else {
 			Company company = companyDao.findById(userinfo.getCompanyId());
 			signedDto = new SignedDto<>(userinfo.getLoginId(),
-					userinfo.getLoginPassword(), company);
+					userinfo.getLoginPassword(), null, company.getCompanyId(), company);
 		}
 
 		return signedDto;
@@ -71,24 +73,23 @@ public class UsersService {
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinCompany(CompanyJoinDto joinDto) {
-		
+
 		Category category = new Category(joinDto);
 		categoryDao.insert(category);
-		
+
 		Integer categoryId = category.getCategoryId();
 		joinDto.setCategoryId(categoryId);
 		Company company = new Company(joinDto);
 		companyDao.insert(company);
-		
+
 		Integer companyId = company.getCompanyId();
 		joinDto.setCompanyId(companyId);
 
 		CompanyDetail companyDetail = new CompanyDetail();
 		companyDetailDao.insert(companyDetail);
-		
 
 		Users users = new Users(joinDto);
 		usersDao.insert(users);
-		
+
 	}
 }

@@ -2,7 +2,6 @@ package site.metacoding.miniproject.web;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,20 +23,33 @@ public class UserController {
 	private final UsersService userService;
 	private final HttpSession session;
 
-	@PostMapping("/login")
-	public @ResponseBody ResponseDto<?> loginForm(@RequestBody LoginDto loginDto) {
+	@GetMapping("/main")
+	public String mainForm() {
+		return "/company/main";
+	}
 
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		return "/company/login";
+	}
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "/company/main";
+	}
+
+	@PostMapping("/login")
+	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 		SignedDto<?> signedDto = userService.login(loginDto);
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "로그인실패", null);
-
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}
 
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		return "company/join";
+		return "users/joinForm";
 	}
 
 	@PostMapping("/join/personal")
@@ -57,10 +69,4 @@ public class UserController {
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
-	
-	@MessageMapping("/test")
-	public @ResponseBody ResponseDto<?> testWebsocketMethod(){
-		return null;
-	}
-
 }
