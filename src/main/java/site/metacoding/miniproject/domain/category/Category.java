@@ -12,6 +12,5 @@ public class Category {
 	private Boolean frontend;
 	private Boolean backend;
 	private Boolean devops;
-	private String etc;
 	private Timestamp createdAt;
 }

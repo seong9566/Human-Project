@@ -8,5 +8,4 @@ public interface PersonalLikesDao {
 	public PersonalLike findById(Integer id);
 	public void update(PersonalLike personalLike);
 	public void deleteById(Integer id);
-
 }

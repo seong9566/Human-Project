@@ -10,6 +10,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class CompanyDetail {
 	private Integer companyDetailId;
 	private Integer companyId;
@@ -23,4 +24,5 @@ public class CompanyDetail {
 		this.companyEmail = companyJoinDto.getCompanyEmail();
 		this.companyPhoneNumber = companyJoinDto.getCompanyPhoneNumber();
 	}
+	private Integer companyNumber;
 }

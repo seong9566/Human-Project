@@ -8,5 +8,4 @@ public interface ApplyDao {
 	public Apply findById(Integer id);
 	public void update(Apply apply);
 	public void deleteById(Integer id);
-
 }

@@ -1,5 +1,4 @@
 package site.metacoding.miniproject.web;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -12,3 +11,4 @@ public class ResponseDto<T> {
 	private T data;
 
 }
+

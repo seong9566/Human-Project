@@ -11,5 +11,6 @@ public class PersonalLike {
 	private Integer personalLikeId;
 	private Integer resumesId;
 	private Integer companyId;
+	private Integer alarmId;
 	private Timestamp createdAt;
 }

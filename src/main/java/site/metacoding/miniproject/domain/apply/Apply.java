@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 public class Apply {
 	private Integer applyId;
-	private Integer companyBoardId;
+	private Integer companyJobPostiongBoardId;
 	private Integer resumesId;
+	private Integer alarmId;
 	private Timestamp createdAt;
 }

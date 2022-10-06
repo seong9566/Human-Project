@@ -36,7 +36,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
 }
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
