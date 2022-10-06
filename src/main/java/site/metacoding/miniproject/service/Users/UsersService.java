@@ -1,11 +1,14 @@
 package site.metacoding.miniproject.service.Users;
 
+
 import javax.management.RuntimeErrorException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.category.Category;
+import site.metacoding.miniproject.domain.category.CategoryDao;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.company.detail.CompanyDetail;
@@ -30,6 +33,7 @@ public class UsersService {
 	private final PersonalDao personalDao;
 	private final PersonalDetailDao personalDetailDao;
 	private final CompanyDetailDao companyDetailDao;
+	private final CategoryDao categoryDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {
 		String loginId = loginDto.getLoginId();
@@ -67,17 +71,24 @@ public class UsersService {
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinCompany(CompanyJoinDto joinDto) {
-
+		
+		Category category = new Category(joinDto);
+		categoryDao.insert(category);
+		
+		Integer categoryId = category.getCategoryId();
+		joinDto.setCategoryId(categoryId);
 		Company company = new Company(joinDto);
 		companyDao.insert(company);
-
+		
 		Integer companyId = company.getCompanyId();
 		joinDto.setCompanyId(companyId);
 
 		CompanyDetail companyDetail = new CompanyDetail();
 		companyDetailDao.insert(companyDetail);
+		
 
 		Users users = new Users(joinDto);
 		usersDao.insert(users);
+		
 	}
 }

@@ -13,7 +13,7 @@
 	</select>
 
 	<insert id="insert">
-	INSERT INTO users(login_id, login_password, personal_id, company_id, createdAt)
+	INSERT INTO users(login_id, login_password, personal_id, company_id, created_at)
 	VALUES(#{loginId}, #{loginPassword}, #{personalId}, #{companyId}, NOW())
 	</insert>
 

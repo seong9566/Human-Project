@@ -7,14 +7,14 @@
 </select>
 
 	<select id="findById" resultType="site.metacoding.miniproject.domain.company.Company">
-	SELECT company_id, company_name, company_category
+	SELECT company_id, company_name, company_category_id
 	FROM company
 	WHERE company_id = #{companyId}
 </select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="companyId" keyColumn="company_id">
-	INSERT INTO company(company_name, createdAt)
-	VALUES(#{companyName}, NOW())
+	INSERT INTO company(company_name, company_category_id, created_at)
+	VALUES(#{companyName}, #{companyCategoryId}, NOW())
 </insert>
 
 
