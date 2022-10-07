@@ -10,6 +10,6 @@ import lombok.Setter;
 public class Personal {
 	private Integer personalId;
 	private String personalName;
-	private Integer personalCategory;
+	private Integer personalCategoryId;
 	private Timestamp createdAt;
 }
