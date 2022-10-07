@@ -20,7 +20,7 @@ public class PersonalController {
 	
 	// 개인정보 작성하기 - 회원가입 에 포함. 
 	
-	// 개인정보 상세보기
+	// 개인정보 상세보기 : 로그인 아이디 불러오기 추가 필요. 
 	@GetMapping("/personal/{personalId}")
 	public String personalsById(@PathVariable Integer personalId, Integer categoryId, Model model) {
 		model.addAttribute("personal", personalService.findByPersonal(personalId));
