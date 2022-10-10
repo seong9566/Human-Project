@@ -37,6 +37,9 @@ public class JobPostingBoardService {
 		
 		jobPostingBoardDao.update(jobPostingPS);
 		
-		
+	}
+	
+	public void deleteByJobPostingBoard(Integer jobPostingBoardId) {
+		jobPostingBoardDao.deleteById(jobPostingBoardId);
 	}
 }

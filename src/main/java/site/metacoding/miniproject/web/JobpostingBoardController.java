@@ -1,7 +1,9 @@
 package site.metacoding.miniproject.web;
 
+import java.net.Inet4Address;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,5 +52,11 @@ public class JobpostingBoardController {
 	public @ResponseBody ResponseDto<?> updateJobPostingBoard(@RequestBody JobPostingUpdateDto jobPostingUpdateDto,@PathVariable Integer jobPostingBoardId){
 		jobPostingBoardService.updateJobPostingBoard(jobPostingUpdateDto, jobPostingBoardId);
 		return new ResponseDto<>(1,"수정성공",null);
+	}
+	
+	@DeleteMapping("/jobpostingboard/{jobPostingBoardId}/delete")
+	public @ResponseBody ResponseDto<?> deleteByJobPostingBoard(@PathVariable Integer jobPostingBoardId){
+		jobPostingBoardService.deleteByJobPostingBoard(jobPostingBoardId);
+		return new ResponseDto<>(1,"삭제 성공",null);
 	}
 }

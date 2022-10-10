@@ -56,4 +56,9 @@
 		cd.company_id
 		WHERE job_posting_board_id = #{jobPostingBoardId};
 	</select>
+	
+	<delete id="deleteById">
+		DELETE FROM job_posting_board WHERE job_posting_board_id = #{jobPostingBoardId};
+		
+	</delete>
 </mapper>
