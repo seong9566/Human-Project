@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.miniproject.web.dto.request.JobPostingUpdateDto;
 
 @Getter
 @Setter
@@ -15,5 +16,5 @@ public class JobPostingBoard {
 	private String jobPostingBoardContent;
 	private Timestamp createdAt;
 	
-	
+
 }
