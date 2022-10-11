@@ -17,19 +17,19 @@
 		<form> 
 			<h2>내 정보 - 기업</h2>
 			<div class="mb-3 mt-3">
-				◆아이디 <input id="userId" type="text" class="form-control" placeholder="아이디를 입력해주세요." readonly>
-				<button id="btnUsernameSameCheck" class="btn btn-warning" type="button">아이디 중복체크</button>
+				◆아이디 <div>${companyInfo.loginId}</div>
 			</div>
 			<div class="mb-3">
-				◆이름 <input id="username" type="text" class="form-control" placeholder="이름을 입력해주세요" readonly>
+				◆이름 <div>${companyInfo.companyName}</div>
 			</div>
 			<div class="mb-3">
-				◆전화번호<input id="email" type="email" class="form-control" placeholder="이메일을 입력해주세요" readonly>
+				◆전화번호<div>${companyInfo.companyPhoneNumber}</div>
 			</div>
 			<div class="mb-3">
-				◆이메일<input id="phonenumber" type="text" class="form-control" placeholder="전화번호를 입력해주세요" readonly>
+				◆이메일<div>${companyInfo.companyEmail}</div>
 			</div>
 			<div class="mb-3">◆주소</div>
+			<div>${companyInfo.companyAddress}</div>
 			<input id="member_post" type="text" placeholder="우편번호" readonly onclick="findAddr()" > 
 			<button id="btnJoin" type="button" class="btn btn-primary">우편번호찾기</button><br>
 			<input id="member_addr" type="text" placeholder="주소" style="width:645px;" readonly>
@@ -37,9 +37,12 @@
 			<div class="mb-3"></div>
 			<div class="mb-3">◆관심분야</div>
 			<div>
+				<div>${companyInfo.frontend}</div>
+				<div>${companyInfo.backend}</div>
+				<div>${companyInfo.devops}</div>
 				<label><input type="checkbox" id="frontend">프런트엔드</label><br /> 
 				<label><input type="checkbox" value="backend">백엔드</label><br /> 
-				<label><input type="checkbox" value="devops">데브옴스</label><br /> 
+				<label><input type="checkbox" value="devops">데브옵스</label><br /> 
 				<label><input type="checkbox" value="etc">상관없음</label>
 			</div>
 		</form>

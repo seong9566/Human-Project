@@ -19,15 +19,14 @@
 		<div>	${jobPostingBoard.companyPicture}</div>
 		<div class="container p-5 my-4 border">${jobPostingBoard.jobPostingBoardTitle}<br/>
 				${jobPostingBoard.jobPostingBoardContent}<br/></div>
-				
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button id = "btnUpdateJobPostingBoard"type="button" class="btn btn-primary">수정하기</button>
+			<button type="button" class="btn btn-primary"><a href ="/company/jobpostingboard/${jobPostingBoard.jobPostingBoardId}/updateForm">수정하기</a></button>
 		</div>
 		</c:forEach>
 		
 		
 		<div class="d-grid gap-2 col-2 mx-auto">
-			<button id ="btnInsertJobPostingBoard" type="button" class="btn btn-primary">공고등록하러가기</button>
+			<button type="button" class="btn btn-primary"><a href="/company/jobpostingboard/insert">공고등록하러가기</a></button>
 		</div>
 	</div>
 

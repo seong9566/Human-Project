@@ -17,5 +17,23 @@
 	VALUES(#{companyName}, #{companyCategoryId}, NOW())
 </insert>
 
+<select id = "companyInfo" resultType ="site.metacoding.miniproject.web.dto.response.CompanyInfoDto">
+SELECT u.login_id,
+c.company_name,
+cd.company_phonenumber,
+cd.company_email,
+cd.company_picture,
+cd.company_address,
+ct.category_frontend,
+ct.category_backend,
+ct.category_devops
+ FROM company c
+INNER JOIN company_detail cd
+ON c.company_id = cd.company_id
+INNER JOIN users u
+ON cd.company_id = u.company_id
+INNER JOIN category ct
+ON c.company_category_id = ct.category_id;
+</select>
 
 </mapper>

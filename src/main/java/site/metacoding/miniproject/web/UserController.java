@@ -43,10 +43,7 @@ public class UserController {
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}
 
-	@GetMapping("/joinForm")
-	public String joinForm() {
-		return "users/joinForm";
-	}
+	
 
 	@PostMapping("/join/personal")
 	public @ResponseBody ResponseDto<?> joinPersonal(@RequestBody PersonalJoinDto joinDto) {
@@ -56,7 +53,12 @@ public class UserController {
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
-
+	
+	@GetMapping("/joinForm")
+	public String joinForm() {
+		return "company/join";
+	}
+	
 	@PostMapping("/join/company")
 	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
 		userService.joinCompany(joinDto);

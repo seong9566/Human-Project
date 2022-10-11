@@ -1,0 +1,62 @@
+@charset "UTF-8";
+input {
+	margin: 0 0 0 5px;
+}
+
+body {
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+}
+
+li {
+	list-style: none;
+}
+
+img {
+	width: 200px;
+	height: 200px;
+}
+
+h1 {
+	margin-left: 100px;
+}
+#fileUpload {
+	margin-right: 0;
+	margin-left: 70%;
+}
+.tool {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.left {
+	margin-bottom: 40px;
+	margin-left: 100px;
+	width: 300px;
+	float: left;
+}
+
+.right {
+	display: flex;
+	margin-top: 50px;
+	margin-right: 100px;
+	float: right;
+}
+
+.left_input {
+	padding-bottom: 10px;
+}
+
+.form {
+	margin-left: 100px;
+	margin-right: 100px;
+	float: left;
+	width: 800px;
+}
+
+.btn-update {
+	margin-right: 100px;
+	float: right;
+}

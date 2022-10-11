@@ -23,7 +23,7 @@
 <style>
 input {
 	margin: 0 0 0 5px;
-}
+} 
 
 body {
 	width: 1000px;
@@ -127,7 +127,6 @@ h1 {
 			</div>
 
 			<div id="right">
-
 				<ul class="image-preview"></ul>
 				<input id=picture type="file" class="real-upload" accept="image/*"
 					required multiple>

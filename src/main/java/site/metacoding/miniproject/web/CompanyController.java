@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
 import site.metacoding.miniproject.web.dto.request.JobPostingInsertDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingUpdateDto;
+import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 
@@ -26,7 +27,7 @@ public class CompanyController {
 	private final HttpSession session;
 	private final CompanyService companyService;
 
-	@GetMapping("/main")
+	@GetMapping("/")
 	public String mainForm() {
 		return "/company/main";
 	}
@@ -52,6 +53,14 @@ public class CompanyController {
 		return jobPostingOne;
 		
 	}
+	
+	
+	@GetMapping("/company/jobpostingboard/insert")
+	public String insertJobPostingBoardForm(Model model) {
+		//1. 회사 정보 가져오기
+		
+		return "company/companyJobPostingBoardInsert";
+	}
 	@PostMapping("/jobpostingboard/insert")
 	public @ResponseBody ResponseDto<?> insertJobPostingBoard(@RequestBody JobPostingInsertDto jobPostingInsertDto){
 		companyService.insertJobPostingBoard(jobPostingInsertDto);
@@ -69,5 +78,29 @@ public class CompanyController {
 		return new ResponseDto<>(1,"삭제 성공",null);
 	}
 
+	//채용공고 수정하기 
+	@GetMapping("/company/jobpostingboard/{jobPostingBoardId}/updateForm")
+	public String updateForm(@PathVariable Integer jobPostingBoardId) {
+		return "company/companyJobPostingBoardUpdate";
+	}
+	
 	//회사 정보 보기 
+	@GetMapping("/company/{companyId}/inform")
+	public String inform(Model model,@PathVariable Integer companyId) {
+		CompanyInfoDto companyPS =  companyService.findCompanyInfo(companyId);
+		model.addAttribute("companyInfo", companyPS);
+		System.out.println(companyPS.getLoginId());
+		System.out.println(companyPS.getCompanyAddress());
+		System.out.println(companyPS.getCompanyEmail());
+		System.out.println(companyPS.getCompanyName());
+		System.out.println(companyPS.getCompanyPhoneNumber());
+		System.out.println(companyPS.getCompanyPicture());
+		return "company/inform";
+	}
+	//회사정보 수정
+	@GetMapping("/company/inform/update")
+	public String informUpdate() {
+		return "company/update";
+	}
+	
 }
