@@ -23,10 +23,6 @@ public class UserController {
 	private final UsersService userService;
 	private final HttpSession session;
 
-	@GetMapping("/main")
-	public String mainForm() {
-		return "/company/main";
-	}
 
 	@GetMapping("/loginForm")
 	public String loginForm() {
