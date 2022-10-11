@@ -12,8 +12,8 @@
 	WHERE personal_id = #{personalId}
 </select>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="personalId" keyColumn="personal_id">
-	INSERT INTO personal (personal_name, createdAt)
-	VALUES(#{personalName}, NOW())
+	INSERT INTO personal (personal_name, personal_category_id, created_at)
+	VALUES(#{personalName},#{personalCategoryId}, NOW())
 </insert>
 
 

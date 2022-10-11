@@ -57,8 +57,12 @@ public class UsersService {
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinPersonal(PersonalJoinDto joinDto) {
-
+		
+		Category category = new Category(joinDto);
+		categoryDao.insert(category);
+		
 		Personal personal = new Personal(joinDto);
+		personal.setPersonalCategoryId(category.getCategoryId());
 		personalDao.insert(personal);
 
 		Integer personalId = personal.getPersonalId();
@@ -74,22 +78,22 @@ public class UsersService {
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinCompany(CompanyJoinDto joinDto) {
 
-		Category category = new Category(joinDto);
-		categoryDao.insert(category);
-
-		Integer categoryId = category.getCategoryId();
-		joinDto.setCategoryId(categoryId);
 		Company company = new Company(joinDto);
 		companyDao.insert(company);
 
 		Integer companyId = company.getCompanyId();
 		joinDto.setCompanyId(companyId);
 
-		CompanyDetail companyDetail = new CompanyDetail();
+		CompanyDetail companyDetail = new CompanyDetail(joinDto);
 		companyDetailDao.insert(companyDetail);
 
 		Users users = new Users(joinDto);
 		usersDao.insert(users);
 
+	}
+	
+	public Integer checkUserId(String loginId) {
+		Integer checkUser = usersDao.findByLoginId(loginId);
+		return checkUser;
 	}
 }

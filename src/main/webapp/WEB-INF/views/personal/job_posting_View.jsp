@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp"%>
+<%@ include file="../personallayout/header.jsp"%>
 
 	<div id="main">
 		<br /> <input id="resume_title" type="text" class="form-control"
-			placeholder="공고제목">
+			placeholder="구인계획서 제목을 입력해주세요." readonly>
 		<div class="tool">
 			<div class="left">
 				<br />
@@ -26,16 +26,19 @@
 		</div>
 		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
 		<div class="form">
-			<h2>모집조건 및 안내사항 작성</h2>
+			<h2>모집조건 및 안내사항</h2>
 			<div id="summernote"></div>
 		</div>
 
 		<div class="btn-update">
-			<button id="btnSave" type="button" class="btn btn-primary">작성완료</button>
+			<button id="btnGoUpdate" type="button" class="btn btn-primary">수정하러하기</button>
 		</div>
-		
+
 	</div>
-	<script src="/js/company.js"></script>
-	<script src="/js/companyInsert.js"></script>
-</body>
-</html>
+
+
+<script src="/js/writeForm.js">
+
+   </script>
+
+<%@ include file="../layout/footer.jsp"%>

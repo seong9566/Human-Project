@@ -6,21 +6,21 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
+import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class Category {
 	private Integer categoryId;
-	private Boolean frontend;
-	private Boolean backend;
-	private Boolean devops;
+	private Boolean categoryFrontend;
+	private Boolean categoryBackend;
+	private Boolean categoryDevops;
 	private Timestamp createdAt;
 	
-	public Category(CompanyJoinDto companyJoinDto) {
-		this.frontend = companyJoinDto.getFrontend();
-		this.backend = companyJoinDto.getBackend();
-		this.devops = companyJoinDto.getDevops();
+	public Category(PersonalJoinDto personalJoinDto) {
+		this.categoryFrontend = personalJoinDto.getCategoryFrontend();
+		this.categoryBackend = personalJoinDto.getCategoryBackend();
+		this.categoryDevops = personalJoinDto.getCategoryDevops();
 	}	
 }

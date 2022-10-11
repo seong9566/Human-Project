@@ -9,6 +9,7 @@ public interface UsersDao {
 	public List<Users> findAll();
 	public Users findById(Integer id);
 	public Users findByIdAndPassword(@Param("loginId") String loginId, @Param("loginPassword") String loginPassword);
+	public Integer findByLoginId(String loginId);
 	public void update(Users users);
 	public void deleteById(Integer id);
 

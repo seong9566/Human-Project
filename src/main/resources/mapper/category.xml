@@ -12,7 +12,7 @@
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="categoryId" keyColumn="category_id">
 	INSERT INTO category(category_frontend, category_backend, category_devops, created_at)
-	VALUES(#{frontend}, #{backend},#{devops}, NOW())
+	VALUES(#{categoryFrontend}, #{categoryBackend},#{categoryDevops}, NOW())
 </insert>
 
 
