@@ -1,0 +1,192 @@
+CREATE TABLE users (
+  users_id integer auto_increment PRIMARY KEY,
+  login_id varchar(20),
+  login_password varchar(50),
+  personal_id integer,
+  company_id integer,
+  created_at timestamp
+);
+
+CREATE TABLE company (
+  company_id integer PRIMARY KEY,
+  company_name varchar(20),
+  company_category_id integer,
+  created_at timestamp
+);
+
+CREATE TABLE personal (
+  personal_id integer PRIMARY KEY,
+  personal_name varchar(20),
+  personal_category_id integer,
+  created_at timestamp
+)
+;
+
+CREATE TABLE personal_detail (
+  personal_detail_id integer PRIMARY KEY,
+  personal_id integer,
+  personal_email varchar(50),
+  personal_phonenumber varchar(20),
+  created_at timestamp
+)
+;
+
+CREATE TABLE company_detail (
+  company_detail_id integer PRIMARY KEY,
+  company_id integer,
+  company_email varchar(50),
+  company_phonenumber varchar(20),
+  company_address varchar(50),
+  created_at timestamp
+)
+;
+
+CREATE TABLE resumes (
+  resumes_id integer PRIMARY KEY,
+  personal_id integer,
+  resumes_title varchar(50),
+  resumes_picture longtext,
+  resumes_introduce longtext,
+  created_at timestamp
+)
+;
+
+CREATE TABLE job_posting_board (
+  job_posting_board_id integer PRIMARY KEY,
+  company_id integer,
+  job_posting_board_title varchar(50),
+  job_posting_board_content longtext,
+  created_at timestamp
+)
+;
+
+CREATE TABLE apply (
+  apply_id integer PRIMARY KEY,
+  company_job_posting_board_id integer,
+  resumes_id integer,
+  alarm_id integer,
+  created_at timestamp
+)
+;
+
+CREATE TABLE subscirbe (
+  subcirbe_id integer PRIMARY KEY,
+  company_id integer,
+  personal_id integer,
+  alarm_id integer,
+  created_at timestamp
+)
+;
+
+CREATE TABLE personal_like (
+  personal_like_id integer PRIMARY KEY,
+  resumes_id integer,
+  company_id integer,
+  alarm_id integer,
+  created_at timestamp
+)
+;
+
+CREATE TABLE company_like (
+  company_like_id integer PRIMARY KEY,
+  personal_id integer,
+  company_id integer,
+  alarm_id integer,
+  created_at timestamp
+)
+;
+
+CREATE TABLE category (
+  category_id integer PRIMARY KEY,
+  category_frontend tinyint(1),
+  category_backend tinyint(1),
+  category_devops tinyint(1),
+  created_at timestamp
+)
+;
+
+CREATE TABLE alarm (
+  alarm_id integer PRIMARY KEY,
+  users_id integer,
+  alarm_apply_id integer,
+  alarm_incruit_id integer,
+  alarm_subscribe_id integer,
+  alarm_company_like_id integer,
+  alarm_personal_like_id integer
+)
+;
+
+ALTER TABLE users ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id)
+;
+
+ALTER TABLE personal_detail ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id)
+;
+
+ALTER TABLE users ADD FOREIGN KEY (company_id) REFERENCES company (company_id)
+;
+
+ALTER TABLE resumes ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id)
+;
+
+ALTER TABLE company_detail ADD FOREIGN KEY (company_id) REFERENCES company (company_id)
+;
+
+ALTER TABLE personal_like ADD FOREIGN KEY (company_id) REFERENCES company (company_id)
+;
+
+ALTER TABLE job_posting_board ADD FOREIGN KEY (company_id) REFERENCES company (company_id)
+;
+
+ALTER TABLE subscirbe ADD FOREIGN KEY (company_id) REFERENCES company (company_id)
+;
+
+ALTER TABLE subscirbe ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id)
+;
+
+ALTER TABLE personal ADD FOREIGN KEY (personal_category_id) REFERENCES category (category_id)
+;
+
+ALTER TABLE company ADD FOREIGN KEY (company_category_id) REFERENCES category (category_id)
+;
+
+ALTER TABLE apply ADD FOREIGN KEY (resumes_id) REFERENCES resumes (resumes_id)
+;
+
+ALTER TABLE apply ADD FOREIGN KEY (company_job_posting_board_id) REFERENCES job_posting_board (job_posting_board_id)
+;
+
+ALTER TABLE company_like ADD FOREIGN KEY (personal_id) REFERENCES personal (personal_id)
+;
+
+ALTER TABLE personal_like ADD FOREIGN KEY (resumes_id) REFERENCES resumes (resumes_id)
+;
+
+ALTER TABLE company_like ADD FOREIGN KEY (company_id) REFERENCES company (company_id)
+;
+
+ALTER TABLE company_like ADD FOREIGN KEY (alarm_id) REFERENCES alarm (alarm_id)
+;
+
+ALTER TABLE personal_like ADD FOREIGN KEY (alarm_id) REFERENCES alarm (alarm_id)
+;
+
+ALTER TABLE subscirbe ADD FOREIGN KEY (alarm_id) REFERENCES alarm (alarm_id)
+;
+
+ALTER TABLE apply ADD FOREIGN KEY (alarm_id) REFERENCES alarm (alarm_id)
+;
+
+ALTER TABLE alarm ADD FOREIGN KEY (alarm_company_like_id) REFERENCES company_like (company_like_id)
+;
+
+ALTER TABLE alarm ADD FOREIGN KEY (alarm_personal_like_id) REFERENCES personal_like (personal_like_id)
+;
+
+ALTER TABLE alarm ADD FOREIGN KEY (alarm_apply_id) REFERENCES apply (apply_id)
+;
+
+ALTER TABLE alarm ADD FOREIGN KEY (alarm_subscribe_id) REFERENCES subscirbe (subcirbe_id)
+;
+
+ALTER TABLE alarm ADD FOREIGN KEY (users_id) REFERENCES users (users_id)
+;

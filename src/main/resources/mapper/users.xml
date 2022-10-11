@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.miniproject.domain.users.UsersDao">
 
-<select id="findAll" resultType="site.metacoding.miniproject.domain.users.Users">
+	<select id="findAll" resultType="site.metacoding.miniproject.domain.users.Users">
 	SELECT * FROM users
-</select>
+	</select>
+
+	<select id="findByIdAndPassword" resultType="site.metacoding.miniproject.domain.users.Users">
+	SELECT users_id, login_id, login_password, personal_id, company_id
+	FROM users
+	WHERE login_id = #{loginId} AND login_password=#{loginPassword}
+	</select>
+
+	<insert id="insert">
+	INSERT INTO users(login_id, login_password, personal_id, company_id, created_at)
+	VALUES(#{loginId}, #{loginPassword}, #{personalId}, #{companyId}, NOW())
+	</insert>
 
 
 </mapper>
