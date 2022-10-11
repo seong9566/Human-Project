@@ -65,7 +65,7 @@
 	</form>
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
-		<button id="btnJoin" type="button" class="btn btn-primary">정보수정</button>
+		<button id="btnJoin" type="button" class="btn btn-primary"><a href="/company/${companyInfo.companyId}/inform/update"">정보수정</a></button>
 	</div>
 
 </div>

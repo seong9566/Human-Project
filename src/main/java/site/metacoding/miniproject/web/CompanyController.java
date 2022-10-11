@@ -51,5 +51,10 @@ public class CompanyController {
 		
 		return "company/companyJobPostingBoardList";
 		}
+		
+		@GetMapping("/company/{companyId}/inform/update")
+		public String informUpdate(@PathVariable Integer companyId) {
+			return "company/update";
+		}
 	
 }

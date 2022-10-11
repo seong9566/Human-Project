@@ -25,6 +25,7 @@
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyInfoDto">
 		SELECT u.login_id,
 		c.company_name,
+		c.company_id,
 		cd.company_phonenumber,
 		cd.company_email,
 		cd.company_picture,
