@@ -13,7 +13,7 @@
 	</select>
 
 	<insert id="insert">
-	INSERT INTO company_detail(company_id, company_email, company_phonenumber, company_picture, company_address, created_at)
+	INSERT INTO company_detail(company_id, company_email, company_phone_number, company_picture, company_address, created_at)
 	VALUES(#{companyId}, #{companyEmail}, #{companyPhoneNumber},#{companyPicture}, #{companyAddress}, NOW())
 	</insert>
 

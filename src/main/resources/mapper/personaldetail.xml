@@ -12,7 +12,7 @@
 	WHERE personal_detail_id = #{personalDetailId}
 </select>
 	<insert id="insert" useGeneratedKeys="true" keyProperty="personalId" keyColumn="personal_id">
-	INSERT INTO personal_detail (personal_id, personal_email, personal_phonenumber, created_at)
+	INSERT INTO personal_detail (personal_id, personal_email, personal_phone_number, created_at)
 	VALUES(#{personalId}, #{personalEmail}, #{personalPhoneNumber}, NOW())
 </insert>
 

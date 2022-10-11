@@ -9,11 +9,11 @@
 			<button id="btnUsernameSameCheck" class="btn btn-warning" type="button">아이디 중복체크</button>
 		</div>
 		<div class="mb-3">
-			◆비밀번호 <input id="password1" type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
+			◆비밀번호 <input id="password" type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
 		</div>
 		<div class="mb-3">
 			◆비밀번호 확인 <span id="span_valcheck" style="visibility: hidden; color: tomato;">-----비밀번호가 같지
-				않습니다!</span><input id="password2" type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
+				않습니다!</span><input id="passwordConfirm" type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
 		</div>
 		<button type="button" class="btn btn-primary" onclick="test()">비밀번호 확인</button>
 		<div class="mb-3"></div>
@@ -40,7 +40,7 @@
 	</form>
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
-		<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check();">작성완료</button>
+		<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check();" disabled="disabled">작성완료</button>
 	</div>
 
 </div>

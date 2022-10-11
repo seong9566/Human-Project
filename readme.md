@@ -27,7 +27,7 @@ CREATE TABLE personal_detail (
   personal_detail_id integer AUTO_INCREMENT PRIMARY KEY,
   personal_id integer,
   personal_email varchar(50),
-  personal_phonenumber varchar(20),
+  personal_phone_number varchar(20),
   created_at timestamp
 )
 ;
@@ -36,7 +36,7 @@ CREATE TABLE company_detail (
   company_detail_id integer AUTO_INCREMENT PRIMARY KEY,
   company_id integer,
   company_email varchar(50),
-  company_phonenumber varchar(20),
+  company_phone_number varchar(20),
   company_picture longtext,
   company_address varchar(50),
   created_at timestamp

@@ -87,4 +87,9 @@ public class UsersService {
 		usersDao.insert(users);
 
 	}
+	
+	public Integer checkUserId(String loginId) {
+		Integer checkUser = usersDao.findByLoginId(loginId);
+		return checkUser;
+	}
 }

@@ -14,14 +14,14 @@ import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 @NoArgsConstructor
 public class Category {
 	private Integer categoryId;
-	private Boolean frontend;
-	private Boolean backend;
-	private Boolean devops;
+	private Boolean categoryFrontend;
+	private Boolean categoryBackend;
+	private Boolean categoryDevops;
 	private Timestamp createdAt;
 	
 	public Category(PersonalJoinDto personalJoinDto) {
-		this.frontend = personalJoinDto.getFrontend();
-		this.backend = personalJoinDto.getBackend();
-		this.devops = personalJoinDto.getDevops();
+		this.categoryFrontend = personalJoinDto.getFrontend();
+		this.categoryBackend = personalJoinDto.getBackend();
+		this.categoryDevops = personalJoinDto.getDevops();
 	}	
 }

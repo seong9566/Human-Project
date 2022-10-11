@@ -1,30 +1,65 @@
+let UsernameSameCheck = {
+	loginId : null,
+	isCheck : 0
+}
+
 
 $("#btnUsernameSameCheck").click(() => {
+
+
+	if ($("#userId").val() == "") {
+		alert("아이디를 입력하여 주세요");
+		return;
+	} else {
+		let userId = $("#userId").val();
+		$.ajax("/checkId/" + userId, {
+			type: "GET",
+			dataType: "JSON",
+		}).done((res) => {
+			if (res.code == 1) {
+				alert(res.message);
+				UsernameSameCheck.loginId = $("#userId").val();
+				UsernameSameCheck.isCheck = true;
+			} else {
+				alert(res.message);
+				UsernameSameCheck.isCheck = false;
+			}
+		});
+	}
 });
-$("#pw2").keyup((event) => {
+
+$("#passwordConfirm").keyup((event) => {
 	event.preventDefault();
-	if ($("#password").val() != $("#pw2").val()) {
+	if ($("#password").val() != $("#passwordConfirm").val()) {
 		$("#span_valcheck").css("visibility", "visible");
-		$("#btnJoin").attr(`disabled`, true);
+		$("#btnSave").attr(`disabled`, true);
 	} else {
 		$("#span_valcheck").css("visibility", "hidden");
-		$("#btnJoin").removeAttr(`disabled`);
+		$("#btnSave").removeAttr(`disabled`);
 	}
 });
 
 
-$("#btnJoin").click(() => {
-	companyjoin();
+$("#btnSave").click(() => {
+	if(UsernameSameCheck == 0){
+		alert("아이디 중복 체크를 해주세요");
+		return;
+	}else if(UsernameSameCheck.loginId != $("#userId").val()){
+		alert("회원가입을 진행할 유저의 아이디가 다릅니다. 진행 할 유저의 아이디 :" + UsernameSameCheck.loginId);
+	}else{
+		companyjoin();	
+	}
 });
 
 
 // 회사 가입 버튼 클릭 시
-function companyjoin(){
-		let data = {
+function companyjoin() {
+	let data = {
 		loginId: $("#userId").val(),
 		loginPassword: $("#userId").val(),
 		companyName: $("#username").val(),
 		companyEmail: $("#email").val(),
+		companyPicture: $("previewImg").val(),
 		companyPhoneNumber: $("#phonenumber").val(),
 		companyAddress: $("#member_post").val() + "," + $("#member_addr").val() + "," + $("#detail_address").val(),
 	};
@@ -37,31 +72,11 @@ function companyjoin(){
 			"Content-Type": "application/json" // spring에게 알려주는 것 - json으로 보내겠다. mime type
 		}
 	}).done((res) => {
-		console.log(res);
+		if(res.code == 1){
+			alert(res.message);
+			location.href ="/main";
+		}
 	});
-}
-
-
-function findAddr() {
-	new daum.Postcode(
-		{
-			oncomplete: function(data) {
-
-				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-				// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-				var roadAddr = data.roadAddress; // 도로명 주소 변수
-				var jibunAddr = data.jibunAddress; // 지번 주소 변수
-				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('member_post').value = data.zonecode;
-				if (roadAddr !== '') {
-					document.getElementById("member_addr").value = roadAddr;
-				} else if (jibunAddr !== '') {
-					document.getElementById("member_addr").value = jibunAddr;
-				}
-			}
-		}).open();
-
 }
 
 
@@ -162,16 +177,4 @@ function test() {
 
 }
 
-
-//비밀번호 실시간으로 체크해서 틀리면 수정버튼 잠기고 글자 띄우는 함수
-$("#pw2").keyup((event) => {
-	event.preventDefault();
-	if ($("#password").val() != $("#pw2").val()) {
-		$("#span_valcheck").css("visibility", "visible");
-		$("#btnJoin").attr(`disabled`, true);
-	} else {
-		$("#span_valcheck").css("visibility", "hidden");
-		$("#btnJoin").removeAttr(`disabled`);
-	}
-});
 

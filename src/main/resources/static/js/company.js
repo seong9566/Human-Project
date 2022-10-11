@@ -1,3 +1,24 @@
+//사진업로드
+const fileInput = document.getElementById("fileUpload");
+const handleFiles = (e) => {
+	const selectedFile = [...fileInput.files];
+	const fileReader = new FileReader();
+	fileReader.readAsDataURL(selectedFile[0]);
+	fileReader.onload = function() {
+		document.getElementById("previewImg").src = fileReader.result;
+	};
+};
+fileInput.addEventListener("change", handleFiles);
+
+
+//체크박스 
+$('#etc').click(function() {
+	var checked = $('#etc').is(':checked');
+	if (checked)
+		$('input:checkbox').prop('checked', true);
+});
+
+
 //주소불러오기
 function findAddr() {
 	new daum.Postcode(
@@ -20,23 +41,4 @@ function findAddr() {
 		}).open();
 }
 
-//사진업로드
-const fileInput = document.getElementById("fileUpload");
-const handleFiles = (e) => {
-	const selectedFile = [...fileInput.files];
-	const fileReader = new FileReader();
-	fileReader.readAsDataURL(selectedFile[0]);
-	fileReader.onload = function() {
-		document.getElementById("previewImg").src = fileReader.result;
-	};
-};
-fileInput.addEventListener("change", handleFiles);
-
-
-//체크박스 
-$('#etc').click(function() {
-	var checked = $('#etc').is(':checked');
-	if (checked)
-		$('input:checkbox').prop('checked', true);
-});
 

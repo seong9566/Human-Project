@@ -5,6 +5,10 @@
 	<select id="findAll" resultType="site.metacoding.miniproject.domain.users.Users">
 	SELECT * FROM users
 	</select>
+	
+	<select id="findByLoginId" resultType="Integer">
+		SELECT users_id FROM users WHERE login_id = #{loginId}
+	</select>
 
 	<select id="findByIdAndPassword" resultType="site.metacoding.miniproject.domain.users.Users">
 	SELECT users_id, login_id, login_password, personal_id, company_id
