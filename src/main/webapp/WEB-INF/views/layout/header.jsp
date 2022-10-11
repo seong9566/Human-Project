@@ -70,7 +70,7 @@
 						});
 					});
 				}
-				async function connectcompany() {
+				function connectcompany() {
 					var socket = new SockJS('/company_end_point');
 					stompClient = Stomp.over(socket);
 					sessionStorage.setItem("stompClient", JSON.stringify(stompClient));

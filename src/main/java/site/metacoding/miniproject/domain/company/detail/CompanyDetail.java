@@ -16,6 +16,7 @@ public class CompanyDetail {
 	private Integer companyId;
 	private String companyEmail;
 	private String companyPhoneNumber;
+	private String companyPicture;
 	private String companyAddress;
 	private Timestamp createdAt;
 
@@ -23,7 +24,7 @@ public class CompanyDetail {
 		this.companyId = companyJoinDto.getCompanyId();
 		this.companyEmail = companyJoinDto.getCompanyEmail();
 		this.companyPhoneNumber = companyJoinDto.getCompanyPhoneNumber();
+		this.companyPicture = companyJoinDto.getCompanyPicture();
 		this.companyAddress = companyJoinDto.getCompanyAddress();
 	}
-	private Integer companyNumber;
 }

@@ -74,11 +74,6 @@ public class UsersService {
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinCompany(CompanyJoinDto joinDto) {
 
-		Category category = new Category(joinDto);
-		categoryDao.insert(category);
-
-		Integer categoryId = category.getCategoryId();
-		joinDto.setCategoryId(categoryId);
 		Company company = new Company(joinDto);
 		companyDao.insert(company);
 

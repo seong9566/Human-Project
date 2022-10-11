@@ -47,9 +47,14 @@ public class UserController {
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}
 
-	@GetMapping("/joinForm")
-	public String joinForm() {
-		return "users/joinForm";
+	@GetMapping("/company/joinForm")
+	public String CompanyJoinForm() {
+		return "company/join";
+	}
+	
+	@GetMapping("/personal/joinForm")
+	public String PersonalJoinForm() {
+		return "personal/join";
 	}
 
 	@PostMapping("/join/personal")
