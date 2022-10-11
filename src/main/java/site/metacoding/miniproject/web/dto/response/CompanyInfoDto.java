@@ -12,8 +12,8 @@ public class CompanyInfoDto {
 	private String companyEmail;
 	private String companyPicture;
 	private String companyAddress;
-	private Boolean frontend;
-	private Boolean backend;
-	private Boolean devops;
+	private Boolean categoryFrontend;
+	private Boolean categoryBackend;
+	private Boolean categoryDevops;
 	
 }

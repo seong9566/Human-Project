@@ -31,6 +31,9 @@ public class CompanyController {
 		System.out.println(companyPS.getCompanyName());
 		System.out.println(companyPS.getCompanyPhoneNumber());
 		System.out.println(companyPS.getCompanyPicture());
+		System.out.println(companyPS.getCategoryBackend());
+		System.out.println(companyPS.getCategoryFrontend());
+		System.out.println(companyPS.getCategoryDevops());
 		return "company/inform";
 	}
 	
