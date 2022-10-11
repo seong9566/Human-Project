@@ -12,5 +12,7 @@ public interface CompanyDao {
 	public void deleteById(Integer id);
 	
 	public CompanyInfoDto companyInfo(Integer companyId);
+	
+	
 
 }

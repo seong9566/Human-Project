@@ -14,7 +14,7 @@
 		cd.company_detail_id,
 		cd.company_picture,
 		cd.company_address,
-		cd.company_phonenumber,
+		cd.company_phone_number,
 		cd.company_email
 		FROM
 		job_posting_board jpb
@@ -47,7 +47,7 @@
 		cd.company_detail_id,
 		cd.company_picture,
 		cd.company_address,
-		cd.company_phonenumber,
+		cd.company_phone_number,
 		cd.company_email
 		FROM
 		job_posting_board jpb

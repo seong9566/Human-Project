@@ -26,37 +26,37 @@
 		<br> <input id="member_addr" type="text" placeholder="주소" style="width: 645px;" readonly>
 		<input type="text" placeholder="상세주소" style="width: 645px;">
 		<div class="mb-3"></div>
+		
 		<div class="mb-3">◆관심분야</div>
 		<div>
-
 			<c:choose>
 				<c:when test="${true eq companyInfo.categoryFrontend}">
-					<label><input type="checkbox" checked>프론트엔드</label>
+					<label><input type="checkbox"  checked disabled value ="프론트엔드">프론트엔드</label>
 					<br />
 				</c:when>
 				<c:otherwise>
-				<label><input type="checkbox" >프론트엔드</label>
+				<label><input type="checkbox" disabled   value ="프론트엔드">프론트엔드</label>
 					<br />
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq companyInfo.categoryBackend}">
-					<label><input type="checkbox" checked>백엔드</label>
+					<label><input type="checkbox"  checked  disabled value ="백엔드">백엔드</label>
 					<br />
 				</c:when>
 				<c:otherwise>
-				<label><input type="checkbox" >백엔드</label>
+				<label><input type="checkbox" disabled  value ="백엔드">백엔드</label>
 					<br />
 				</c:otherwise>
 			</c:choose>
 
 			<c:choose>
 				<c:when test="${true eq companyInfo.categoryDevops}">
-					<label><input type="checkbox" checked>데브옵스</label>
+					<label><input type="checkbox" checked disabled value ="데브옵스">데브옵스</label>
 					<br />
 				</c:when>
 				<c:otherwise>
-				<label><input type="checkbox" >데브옵스</label>
+				<label><input type="checkbox" disabled  value ="데브옵스">데브옵스</label>
 					<br />
 				</c:otherwise>
 			</c:choose>
@@ -65,7 +65,7 @@
 	</form>
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
-		<button id="btnJoin" type="button" class="btn btn-primary">정보수정</button>
+		<button id="btnJoin" type="button" class="btn btn-primary"><a href=/company/inform/update>정보수정</a></button>
 	</div>
 
 </div>
