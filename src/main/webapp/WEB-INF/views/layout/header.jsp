@@ -4,7 +4,7 @@
 		<html lang="en">
 
 		<head>
-			<title>기업 로그인 헤더</title>
+			<title>좋좋잡</title>
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,17 +34,15 @@
 								<c:when test="${principal.companyId != null}">
 									<li class="nav-item"><a class="nav-link" href="#">관심 이력서 보기</a></li>
 									<li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
-									<li class="nav-item"><a class="nav-link" onclick="sendmessage()">기업정보</a></li>
+									<li class="nav-item"><a class="nav-link" href="#">기업정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 									<li style="position: fixed; color: aliceblue; margin-top: 7px; right: 100px;"
 										class="nav-item">${principal.userinfo.companyName}님
 										환영합니다.</li>
 								</c:when>
 								<c:otherwise>
-									<li class="nav-item"><a class="nav-link" onclick="sendmessage()">내정보</a></li>
-									<li id="myinfo" style="display: none;" value="${principal.userinfo}"></li>
-									<li class="nav-item"><a class="nav-link" onclick="disconnect()"
-											href="/logout">로그아웃</a></li>
+									<li class="nav-item"><a class="nav-link" href="#">내정보</a></li>
+									<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 									<li class="nav-item"
 										style="position: fixed; color: aliceblue; margin-top: 7px; right: 100px;">
 										${principal.userinfo.personalName}님 환영합니다.</li>
@@ -55,11 +53,12 @@
 				</div>
 			</nav>
 			<script>
-				let stompClient = null;
+				var stompClient = null;
+				
 				function sendmessage() {
-					let stomp = JSON.parse(sessionStorage["stompClient"]);
-					stomp.send("/app/testPersonal", {}, JSON.stringify($("#myinfo").val()));
+					stompClient.send("/app/testPersonal", {}, "hello");
 				}
+				
 				function connectpersonal() {
 					var socket = new SockJS('/personal_end_point');
 					stompClient = Stomp.over(socket);
@@ -70,6 +69,7 @@
 						});
 					});
 				}
+				
 				function connectcompany() {
 					var socket = new SockJS('/company_end_point');
 					stompClient = Stomp.over(socket);
@@ -80,12 +80,10 @@
 							console.log(JSON.parse(test));
 						});
 					});
-					//stompClient.send("/app/testPersonal", {}, JSON.stringify($("#myinfo").val()));
 				}
 				function disconnect() {
-					if (sessionStorage.getItem("stompCilent") !== null) {
-						sessionStorage.getItem("stompCilent").disconnect();
-						sessionStorage.clear();
+					if (stompCilent !== null) {
+						stompClient.disconnect();
 					}
 				}
 			</script>

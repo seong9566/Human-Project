@@ -29,6 +29,9 @@ function login(login_dto) {
 	}).done((res) => {
 		if (res.code == 1) {
 			location.href = "/main";
+		}else{
+			alert(res.message);
+			return;
 		}
 	});
 }

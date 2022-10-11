@@ -1,41 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>±¸ÀÎ°ø°í ¸®½ºÆ®</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
 	<div class="container">
-		<h2>°ü½ÉÀÌ·Â¼­ </h2>
 
-		<div class="container p-5 my-4 border">ÀÌ·Â¼­1 - ÀÌ·Â¼­Á¦¸ñ,±â¼ú ½ºÆå</div>
+		<div class="container p-5 my-4 border">ì´ë ¥ì„œ1 - ì´ë ¥ì„œì œëª©,ê¸°ìˆ  ìŠ¤íŽ™</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">°ü½É ¸ñ·Ï Á¦°Å</button>
+			<button type="button" class="btn btn-primary">ê´€ì‹¬ ëª©ë¡ ì œê±°</button>
 		</div>
 		
-		<div class="container p-5 my-4 border">ÀÌ·Â¼­2 - ÀÌ·Â¼­Á¦¸ñ,±â¼ú ½ºÆå</div>
+		<div class="container p-5 my-4 border">ì´ë ¥ì„œ2 - ì´ë ¥ì„œì œëª©,ê¸°ìˆ  ìŠ¤íŽ™</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">°ü½É ¸ñ·Ï Á¦°Å</button>
+			<button type="button" class="btn btn-primary">ê´€ì‹¬ ëª©ë¡ ì œê±°</button>
 		</div>
 		
-		<div class="container p-5 my-4 border">ÀÌ·Â¼­3 - ÀÌ·Â¼­Á¦¸ñ,±â¼ú ½ºÆå</div>
+		<div class="container p-5 my-4 border">ì´ë ¥ì„œ3 - ì´ë ¥ì„œì œëª©,ê¸°ìˆ  ìŠ¤íŽ™</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">°ü½É ¸ñ·Ï Á¦°Å</button>
+			<button type="button" class="btn btn-primary">ê´€ì‹¬ ëª©ë¡ ì œê±°</button>
 		</div>
 		
-		<div class="container p-5 my-4 border">ÀÌ·Â¼­4 - ÀÌ·Â¼­Á¦¸ñ,±â¼ú ½ºÆå</div>
+		<div class="container p-5 my-4 border">ì´ë ¥ì„œ4 - ì´ë ¥ì„œì œëª©,ê¸°ìˆ  ìŠ¤íŽ™</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">°ü½É ¸ñ·Ï Á¦°Å</button>
+			<button type="button" class="btn btn-primary">ê´€ì‹¬ ëª©ë¡ ì œê±°</button>
 		</div>
 
- 
 	</div>
+<script src="/js/company.js"></script>
+<script src="/js/recommend.js"></script>
 
-</body>
-</html>
+<%@ include file="../layout/footer.jsp"%>

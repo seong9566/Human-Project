@@ -1,42 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>╠╦юн╟Ь╟М ╦╝╫╨ф╝</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
 	<div class="container">
-		<h2>╠╦юн ╟Ь╟М ╦╝╫╨ф╝</h2>
 
-		<div class="container p-5 my-4 border">х╦╩Г ╠╦юн╟Ь╟М</div>
+		<div class="container p-5 my-4 border">М ▄Л┌╛ Й╣╛Л²╦ЙЁ╣ЙЁ═</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">╪Жа╓го╠Б</button>
+			<button type="button" class="btn btn-primary">Л╥╗Л├▄М∙≤Й╦╟</button>
 		</div>
 
-		<div class="container p-5 my-4 border">х╦╩Г ╠╦юн╟Ь╟М</div>
-
+		<div class="container p-5 my-4 border">М ▄Л┌╛ Й╣╛Л²╦ЙЁ╣ЙЁ═</div>
 
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">╪Жа╓го╠Б</button>
+			<button type="button" class="btn btn-primary">Л╥╗Л├▄М∙≤Й╦╟</button>
 		</div>
 
-
-
-		<div class="container p-5 my-4 border">х╦╩Г ╠╦юн╟Ь╟М</div>
+		<div class="container p-5 my-4 border">М ▄Л┌╛ Й╣╛Л²╦ЙЁ╣ЙЁ═</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<button type="button" class="btn btn-primary">╪Жа╓го╠Б</button>
+			<button type="button" class="btn btn-primary">Л╥╗Л├▄М∙≤Й╦╟</button>
 		</div>
 
 		<div class="d-grid gap-2 col-2 mx-auto">
-			<button type="button" class="btn btn-primary">╟Ь╟М╣Н╥ого╥╞╟║╠Б</button>
+			<button type="button" class="btn btn-primary">ЙЁ╣ЙЁ═К⌠╠К║²М∙≤К÷╛Й╟─Й╦╟</button>
 		</div>
 	</div>
-
-</body>
-</html>
+	<script src="/js/personalList.js"></script>
+<%@ include file="../layout/footer.jsp"%>

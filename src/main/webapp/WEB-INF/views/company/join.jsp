@@ -15,7 +15,6 @@
 			◆비밀번호 확인 <span id="span_valcheck" style="visibility: hidden; color: tomato;">-----비밀번호가 같지
 				않습니다!</span><input id="passwordConfirm" type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
 		</div>
-		<button type="button" class="btn btn-primary" onclick="test()">비밀번호 확인</button>
 		<div class="mb-3"></div>
 		<div class="mb-3">
 			◆이름 <input id="username" type="text" class="form-control" placeholder="이름을 입력해주세요">
@@ -35,7 +34,7 @@
 		<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
 		<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
 		<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly><input
-			type="text" placeholder="상세주소" style="width: 620px;">
+			id="detail_address" type="text"  placeholder="상세주소" style="width: 620px;">
 
 	</form>
 	<div class="mb-5"></div>
@@ -45,7 +44,7 @@
 
 </div>
 <script src="/js/company.js"></script>
-<script src="/js/available.js"></script>
+<script src="/js/join.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 

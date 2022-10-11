@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>구인공고 리스트</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-</head>
-<body>
+<%@ include file="../layout/header.jsp"%>
 	<div class="container">
 		<h2>구인 공고 리스트</h2>
 
@@ -37,4 +27,4 @@
 			<button type="button" class="btn btn-primary">공고등록하러가기</button>
 		</div>
 	</div>
-<%@ include file="../personallayout/footer.jsp"%>
+<%@ include file="../layout/footer.jsp"%>

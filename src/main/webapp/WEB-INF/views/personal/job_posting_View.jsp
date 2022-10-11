@@ -41,4 +41,4 @@
 
    </script>
 
-<%@ include file="../personallayout/footer.jsp"%>
+<%@ include file="../layout/footer.jsp"%>

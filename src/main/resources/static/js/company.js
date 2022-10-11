@@ -42,3 +42,31 @@ function findAddr() {
 }
 
 
+// 회사 가입 버튼 클릭 시
+function join() {
+	let data = {
+		loginId: $("#userId").val(),
+		loginPassword: $("#password").val(),
+		companyName: $("#username").val(),
+		companyEmail: $("#email").val(),
+		companyPicture: $("previewImg").val(),
+		companyPhoneNumber: $("#phonenumber").val(),
+		companyAddress: $("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
+	};
+
+	$.ajax("/join/company", {
+		type: "POST",
+		dataType: "json",
+		data: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json"
+		}
+	}).done((res) => {
+		if(res.code == 1){
+			alert(res.message);
+			location.href ="/main";
+		}
+	});
+}
+
+

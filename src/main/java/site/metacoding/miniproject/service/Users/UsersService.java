@@ -57,8 +57,12 @@ public class UsersService {
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinPersonal(PersonalJoinDto joinDto) {
-
+		
+		Category category = new Category(joinDto);
+		categoryDao.insert(category);
+		
 		Personal personal = new Personal(joinDto);
+		personal.setPersonalCategoryId(category.getCategoryId());
 		personalDao.insert(personal);
 
 		Integer personalId = personal.getPersonalId();
@@ -80,7 +84,7 @@ public class UsersService {
 		Integer companyId = company.getCompanyId();
 		joinDto.setCompanyId(companyId);
 
-		CompanyDetail companyDetail = new CompanyDetail();
+		CompanyDetail companyDetail = new CompanyDetail(joinDto);
 		companyDetailDao.insert(companyDetail);
 
 		Users users = new Users(joinDto);

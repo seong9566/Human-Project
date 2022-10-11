@@ -24,14 +24,14 @@ public class UserController {
 	private final UsersService userService;
 	private final HttpSession session;
 
-	@GetMapping("/main")
+	@GetMapping({"/main", "/"})
 	public String mainForm() {
 		return "/company/main";
 	}
 
 	@GetMapping("/loginForm")
 	public String loginForm() {
-		return "/company/login";
+		return "/personal/login";
 	}
 
 	@GetMapping("/logout")
@@ -73,7 +73,7 @@ public class UserController {
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 		SignedDto<?> signedDto = userService.login(loginDto);
 		if (signedDto == null)
-			return new ResponseDto<>(-1, "로그인실패", null);
+			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}

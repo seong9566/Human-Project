@@ -41,7 +41,8 @@
 </div>
 
 
-<script src="js/summernote.js"> </script>
+<script src="/js/company.js"></script>
+<script src="/js/resume.js"></script>
 
 </body>
 </html>

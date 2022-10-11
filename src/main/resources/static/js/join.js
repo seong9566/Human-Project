@@ -1,40 +1,68 @@
-function test() {
-    var p1 = document.getElementById('password1').value;
-    var p2 = document.getElementById('password2').value;
-    if (p1 != p2) {
-       alert("비밀번호가 일치 하지 않습니다");
-       return false;
-    } else {
-       alert("비밀번호가 일치합니다");
-       return true;
-    }
-    
-    
- }
- 
-   $("#pw2").keyup((event) => {
-        event.preventDefault();
-        if ($("#password").val() != $("#pw2").val()) {
-           $("#span_valcheck").css("visibility", "visible");
-           $("#btnJoin").attr(`disabled`, true);
-        } else {
-           $("#span_valcheck").css("visibility", "hidden");
-           $("#btnJoin").removeAttr(`disabled`);
-        }
-     });
+let UsernameSameCheck = {
+	loginId : null,
+	isCheck : 0
+}
+
+$("#btnUsernameSameCheck").click(() => {
+	if ($("#userId").val() == "") {
+		alert("아이디를 입력하여 주세요");
+		return;
+	} else {
+		let userId = $("#userId").val();
+		$.ajax("/checkId/" + userId, {
+			type: "GET",
+			dataType: "JSON",
+		}).done((res) => {
+			if (res.code == 1) {
+				alert(res.message);
+				UsernameSameCheck.loginId = $("#userId").val();
+				UsernameSameCheck.isCheck = true;
+			} else {
+				alert(res.message);
+				UsernameSameCheck.isCheck = false;
+			}
+		});
+	}
+});
+
+$("#passwordConfirm").keyup((event) => {
+	event.preventDefault();
+	if ($("#password").val() != $("#passwordConfirm").val()) {
+		$("#span_valcheck").css("visibility", "visible");
+		$("#btnSave").attr(`disabled`, true);
+	} else {
+		$("#span_valcheck").css("visibility", "hidden");
+		$("#btnSave").removeAttr(`disabled`);
+	}
+});
 
 
-	$('#etc').click(function() {
+$("#btnSave").click(() => {
+	if(UsernameSameCheck == 0){
+		alert("아이디 중복 체크를 해주세요");
+		return;
+	}else if(UsernameSameCheck.loginId != $("#userId").val()){
+		alert("회원가입을 진행할 유저의 아이디가 다릅니다. 진행 할 유저의 아이디 :" + UsernameSameCheck.loginId);
+	}else{
+		join();	
+	}
+});
+
+	$('#etc').change(function() {
 		var checked = $('#etc').is(':checked');
 
 		if (checked)
 			$('input:checkbox').prop('checked', true);
+		else{
+			$('input:checkbox').prop('checked', false);
+		}
 	});
+	
 	   //유효성겁사
 	   function joinform_check() {
 	        //변수에 담아주기
 	        var userId = document.getElementById("userId");
-	        var password1 = document.getElementById("password1");
+	        var password = document.getElementById("password");
 	        var username = document.getElementById("username");
 	        var phonenumber = document.getElementById("phonenumber");
 	        var email = $("#email").val();     
@@ -50,18 +78,12 @@ function test() {
 	        //비밀번호
 	        var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 	        
-	        if (!pwdCheck.test(password1.value)) {
+	        if (!pwdCheck.test(password.value)) {
 	          alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
-	          password1.focus();
+	          password.focus();
 	          return false;
 	        };
 	        
-	        if (!pwdCheck.test(password2.value)) {
-	             alert("비밀번호 확인을 입력하지 않았습니다.");
-	             password2.focus();
-	             return false;
-	           };
-	       
 	        
 	        //이름 입력하지 않았을때
 	        if ((username.value) == ""){
@@ -70,9 +92,6 @@ function test() {
 	             return false;
 	         }
 	        
-	           
-	           
-	           
 	            
 	        var reg = /^[0-9]+/g; //숫자만 입력하는 정규식
 	        
@@ -101,6 +120,5 @@ function test() {
 	             return false;
 	           }
 
-	        document.join_form.submit();
 	   
 	   }

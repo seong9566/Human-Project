@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../personallayout/header.jsp"%>
+<%@ include file="../layout/header.jsp"%>
 
 <div id="main">
 	<br />
@@ -67,4 +67,4 @@
 
    </script>
 
-<%@ include file="../personallayout/footer.jsp"%>
+<%@ include file="../layout/footer.jsp"%>
