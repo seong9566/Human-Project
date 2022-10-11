@@ -24,7 +24,7 @@ public class UserController {
 	private final UsersService userService;
 	private final HttpSession session;
 
-	@GetMapping({"/main", "/"})
+	@GetMapping({ "/main", "/" })
 	public String mainForm() {
 		return "/company/main";
 	}
@@ -36,10 +36,12 @@ public class UserController {
 
 	@GetMapping("/logout")
 	public String logout() {
-		session.invalidate();
+		session.removeAttribute("principal");
+		session.removeAttribute("companyId");
+		session.removeAttribute("personalId");
 		return "/company/main";
 	}
-	
+
 	@GetMapping("/company/joinForm")
 	public String CompanyJoinForm() {
 		return "company/join";
@@ -72,9 +74,16 @@ public class UserController {
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 		SignedDto<?> signedDto = userService.login(loginDto);
+
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
+
 		session.setAttribute("principal", signedDto);
+		if (signedDto.getCompanyId() != null) {
+			session.setAttribute("companyId", signedDto.getCompanyId());
+		} else {
+			session.setAttribute("personalId", signedDto.getPersonalId());
+		}
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}
 

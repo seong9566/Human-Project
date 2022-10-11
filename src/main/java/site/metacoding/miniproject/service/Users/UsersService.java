@@ -1,7 +1,5 @@
 package site.metacoding.miniproject.service.Users;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,10 +55,10 @@ public class UsersService {
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void joinPersonal(PersonalJoinDto joinDto) {
-		
+
 		Category category = new Category(joinDto);
 		categoryDao.insert(category);
-		
+
 		Personal personal = new Personal(joinDto);
 		personal.setPersonalCategoryId(category.getCategoryId());
 		personalDao.insert(personal);
@@ -91,7 +89,7 @@ public class UsersService {
 		usersDao.insert(users);
 
 	}
-	
+
 	public Integer checkUserId(String loginId) {
 		Integer checkUser = usersDao.findByLoginId(loginId);
 		return checkUser;

@@ -54,11 +54,20 @@
 			</nav>
 			<script>
 				var stompClient = null;
-				
+				$(document).ready(() => {
+					let uid = '<%=(Integer)session.getAttribute("companyId")%>';
+					if (uid != "null") {
+						connectpersonal();
+					}
+					else if ('<%=(Integer)session.getAttribute("personalId")%>' != "null") {
+						connectcompany();
+					}
+				});
+
 				function sendmessage() {
 					stompClient.send("/app/testPersonal", {}, "hello");
 				}
-				
+
 				function connectpersonal() {
 					var socket = new SockJS('/personal_end_point');
 					stompClient = Stomp.over(socket);
@@ -69,13 +78,13 @@
 						});
 					});
 				}
-				
+
 				function connectcompany() {
 					var socket = new SockJS('/company_end_point');
 					stompClient = Stomp.over(socket);
 					sessionStorage.setItem("stompClient", JSON.stringify(stompClient));
 					stompClient.connect({}, function (frame) {
-						alert('Connected: ' + frame);
+						console.log('Connected: ' + frame);
 						stompClient.subscribe('/topic/testPersonal', function (test) {
 							console.log(JSON.parse(test));
 						});
