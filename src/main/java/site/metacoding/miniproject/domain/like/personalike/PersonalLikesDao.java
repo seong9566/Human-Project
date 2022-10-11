@@ -5,8 +5,7 @@ import java.util.List;
 public interface PersonalLikesDao {
 	public void insert(PersonalLike personalLike);
 	public List<PersonalLike> findAll();
-	public PersonalLike findById(Integer personalLikeId);
+	public PersonalLike findById(Integer id);
 	public void update(PersonalLike personalLike);
-	public void deleteById(Integer personalLikeId);
-
+	public void deleteById(Integer id);
 }
