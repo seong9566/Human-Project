@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../personallayout/header.jsp"%>
+<%@ include file="../layout/header.jsp"%>
 
 	<div id="main">
 		<br /> <input id="resume_title" type="text" class="form-control"
