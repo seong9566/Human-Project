@@ -27,6 +27,7 @@
 	<select id="companyInfo"
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyInfoDto">
 		SELECT u.login_id,
+		u.login_password,
 		c.company_name,
 		c.company_id,
 		cd.company_phone_number,
@@ -53,7 +54,7 @@
 		UPDATE company 
 		SET company_name = #{companyName},
 		 company_category_id = #{companyCategoryId}
-		WHERE company_id = #{companyId};
+		WHERE company_id = #{companyId}
 	</update>
 
 </mapper>
