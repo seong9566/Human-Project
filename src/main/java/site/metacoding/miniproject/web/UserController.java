@@ -37,7 +37,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout() {
 		session.invalidate();
-		return "/company/main";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/company/joinForm")

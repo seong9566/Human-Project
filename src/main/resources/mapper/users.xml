@@ -21,5 +21,7 @@
 	VALUES(#{loginId}, #{loginPassword}, #{personalId}, #{companyId}, NOW())
 	</insert>
 
-
+	<update id="update">
+	UPDATE users SET login_id = ${loginId}, login_password = ${loginPassword} WHERE users_id = {usersId}
+	</update>
 </mapper>

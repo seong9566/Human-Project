@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
+import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,12 +22,17 @@ public class CompanyController {
 	private final CompanyService companyService;
 	
 	//회사 정보 보기 
-	@GetMapping("/company/{companyId}/inform")
-	public String inform(Model model,@PathVariable Integer companyId) {
-		CompanyInfoDto companyPS =  companyService.findCompanyInfo(companyId);
+	@GetMapping("/company/inform")
+	public String inform(Model model) {
+		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
 		model.addAttribute("companyInfo", companyPS);
+		System.out.println("=========회사 정보 ==========");
+		System.out.println(principal.getLoginId());
+		System.out.println(principal.getLoginPassword());
+		System.out.println(principal.getCompanyId());
+		System.out.println(companyPS.getCompanyId());
 		System.out.println(companyPS.getLoginId());
-		System.out.println(companyPS.getCompanyAddress());
 		System.out.println(companyPS.getCompanyEmail());
 		System.out.println(companyPS.getCompanyName());
 		System.out.println(companyPS.getCompanyPhoneNumber());
@@ -34,8 +40,12 @@ public class CompanyController {
 		System.out.println(companyPS.getCategoryBackend());
 		System.out.println(companyPS.getCategoryFrontend());
 		System.out.println(companyPS.getCategoryDevops());
+		System.out.println("=========회사 정보 ==========");
 		return "company/inform";
 	}
+	
+	// 회사 정보 수정 
+	
 	
 		//회사의 구인 공고 리스트 보기 
 		@GetMapping("/company/{companyId}/jobpostingboardList")
@@ -48,7 +58,6 @@ public class CompanyController {
 			System.out.println(jobPostingBoardPS);
 		}
 		System.out.println("======================");
-		
 		return "company/companyJobPostingBoardList";
 		}
 		
