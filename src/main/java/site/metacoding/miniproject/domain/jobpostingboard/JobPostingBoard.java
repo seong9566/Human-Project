@@ -15,4 +15,5 @@ public class JobPostingBoard {
 	private String jobPostingBoardContent;
 	private Timestamp createdAt;
 
+
 }

@@ -7,13 +7,13 @@
 		<h2></h2>
 		<div class="mb-3 mt-3">
 			◆아이디 <input id="userId" type="text" class="form-control"
-				placeholder="아이디를 입력해주세요.">
+				placeholder="아이디를 입력해주세요." value = "${companyInfo.loginId}">
 			<button id="btnUsernameSameCheck" class="btn btn-warning"
 				type="button">아이디 중복체크</button>
 		</div>
 		<div class="mb-3">
 			◆비밀번호 <input id="password1" type="password" class="form-control"
-				placeholder="비밀번호를 입력해주세요">
+				placeholder="비밀번호를 입력해주세요"  value = "${companyInfo.loginPassword}">
 		</div>
 		<div class="mb-3">
 			◆비밀번호 확인 <span id="span_valcheck"
@@ -21,20 +21,18 @@
 				않습니다!</span><input id="password2" type="password" class="form-control"
 				placeholder="비밀번호를 입력해주세요">
 		</div>
-		<button type="button" class="btn btn-primary" onclick="test()">비밀번호
-			확인</button>
 		<div class="mb-3"></div>
 		<div class="mb-3">
 			◆이름 <input id="username" type="text" class="form-control"
-				placeholder="이름을 입력해주세요">
+				placeholder="이름을 입력해주세요" value = "${companyInfo.companyName}">
 		</div>
 		<div class="mb-3">
 			◆전화번호<input id="phonenumber" type="text" class="form-control"
-				placeholder="전화번호를 입력해주세요">
+				placeholder="전화번호를 입력해주세요"  value = "${companyInfo.companyPhoneNumber}">
 		</div>
 		<div class="mb-3">
 			◆이메일<input id="email" type="email" class="form-control"
-				placeholder="이메일을 입력해주세요">
+				placeholder="이메일을 입력해주세요" value = "${companyInfo.companyEmail}">
 		</div>
 		<div class="mb-3">◆사진</div>
 		<div class="mb-3"></div>

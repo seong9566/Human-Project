@@ -39,6 +39,7 @@ public class UserController {
 		session.removeAttribute("principal");
 		session.removeAttribute("companyId");
 		session.removeAttribute("personalId");
+
 		return "redirect:/main";
 	}
 

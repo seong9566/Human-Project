@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import site.metacoding.miniproject.web.dto.request.CompanyInformUpdateDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 
@@ -29,5 +30,10 @@ public class Users {
 		this.loginId = joinDto.getLoginId();
 		this.loginPassword = joinDto.getLoginPassword();
 		this.companyId = joinDto.getCompanyId();
+	}
+	
+	public void updateCompanyUser(CompanyInformUpdateDto companyInformUpdateDto) {
+		this.loginId = companyInformUpdateDto.getLoginId();
+		this.loginPassword= companyInformUpdateDto.getLoginPassword();
 	}
 }

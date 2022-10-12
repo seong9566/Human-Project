@@ -11,14 +11,50 @@
 	<select id="findById"
 		resultType="site.metacoding.miniproject.domain.company.Company">
 		SELECT company_id, company_name, company_category_id
-		FROM company
+		FROM
+		company
 		WHERE company_id = #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"
 		keyProperty="companyId" keyColumn="company_id">
-		INSERT INTO company(company_name, company_category_id, created_at)
-		VALUES(#{companyName}, #{companyCategoryId}, NOW())
+		INSERT INTO company(company_name,
+		company_category_id, created_at)
+		VALUES(#{companyName},
+		#{companyCategoryId}, NOW())
 	</insert>
+
+	<select id="companyInfo"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyInfoDto">
+		SELECT u.login_id,
+		u.login_password,
+		c.company_name,
+		c.company_id,
+		cd.company_phone_number,
+		cd.company_email,
+		cd.company_picture,
+		cd.company_address,
+		ct.category_frontend,
+		ct.category_backend,
+		ct.category_devops
+		FROM company c
+		LEFT OUTER JOIN company_detail cd
+		ON
+		c.company_id = cd.company_id
+		LEFT OUTER JOIN users u
+		ON cd.company_id =
+		u.company_id
+		LEFT OUTER JOIN category ct
+		ON c.company_category_id =
+		ct.category_id
+		WHERE u.company_id = #{companyId}
+	</select>
+
+	<update id="update">
+		UPDATE company 
+		SET company_name = #{companyName},
+		 company_category_id = #{companyCategoryId}
+		WHERE company_id = #{companyId}
+	</update>
 
 </mapper>

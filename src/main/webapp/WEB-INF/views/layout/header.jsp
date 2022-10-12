@@ -27,6 +27,7 @@
   animation: animatezoom 0.6s
 }
 
+<<<<<<< HEAD
 @-webkit-keyframes animatezoom {
   from {-webkit-transform: scale(0)}
   to {-webkit-transform: scale(1)}
