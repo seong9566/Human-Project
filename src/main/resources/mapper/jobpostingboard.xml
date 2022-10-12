@@ -19,8 +19,7 @@
 		FROM
 		job_posting_board jpb
 		INNER JOIN company_detail cd
-		ON jpb.company_id =
-		cd.company_id
+		ON jpb.company_id =cd.company_id
 	</select>
 
 	<insert id="insert">

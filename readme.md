@@ -11,7 +11,6 @@ CREATE TABLE users (
 CREATE TABLE company (
   company_id integer AUTO_INCREMENT PRIMARY KEY,
   company_name varchar(20),
-  company_category_id integer,
   created_at timestamp
 );
 
@@ -56,6 +55,7 @@ CREATE TABLE resumes (
 CREATE TABLE job_posting_board (
   job_posting_board_id integer AUTO_INCREMENT PRIMARY KEY,
   company_id integer,
+  job_posting_board_category_id integer,
   job_posting_board_title varchar(50),
   job_posting_board_content longtext,
   created_at timestamp

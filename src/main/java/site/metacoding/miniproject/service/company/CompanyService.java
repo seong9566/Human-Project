@@ -1,8 +1,10 @@
 package site.metacoding.miniproject.service.company;
 
+import java.beans.Transient;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
@@ -18,7 +20,6 @@ import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
 
 @Service
 @RequiredArgsConstructor
-
 public class CompanyService {
 	
 	private final JobPostingBoardDao jobPostingBoardDao;
@@ -36,6 +37,8 @@ public class CompanyService {
 		return  companyInfoPS;
 	}
 	
+	// 회사정보변경 (user, companyDetail, company)
+	@Transactional
 	public void updateCompanyInform(Integer userId,Integer companyDetailId, Integer companyId, CompanyInformUpdateDto companyInformUpdateDto) {
 		Users companyUserPS = userDao.findById(userId);
 		companyUserPS.updateCompanyUser(companyInformUpdateDto);
