@@ -9,7 +9,6 @@ public class CompanyInformUpdateDto {
 	
 	// Company업데이트
 	private String companyName;
-	private Integer companyCategoryId;
 	
 	// Detail 업데이트
 	private String companyEmail;

@@ -15,18 +15,15 @@ import site.metacoding.miniproject.web.dto.request.CompanyInformUpdateDto;
 public class Company implements Serializable {
 	private Integer companyId;
 	private String companyName;
-	private Integer companyCategoryId;
 	private Timestamp createdAt;
 
 	private static final long serialVersionUID = 7364337982660485087L;
 
 	public Company(CompanyJoinDto joinDto) {
 		this.companyName = joinDto.getCompanyName();
-		this.companyCategoryId = joinDto.getCategoryId();
 	}
-	
+
 	public void UpdateCompany(CompanyInformUpdateDto companyInformUpdateDto) {
 		this.companyName = companyInformUpdateDto.getCompanyName();
-		this.companyCategoryId = companyInformUpdateDto.getCompanyCategoryId();
 	}
 }

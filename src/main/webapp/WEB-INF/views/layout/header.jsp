@@ -57,7 +57,7 @@
 						<c:when test="${principal.companyId != null}">
 							<li class="nav-item"><a class="nav-link" href="#">관심 이력서 보기</a></li>
 							<li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">기업정보</a></li>
+							<li class="nav-item"><a class="nav-link" href="/company/inform">기업정보</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 							<li style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;"
 								class="nav-item">${principal.userinfo.companyName}님환영합니다.</li>
