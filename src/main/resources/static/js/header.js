@@ -18,7 +18,7 @@ function connectpersonal() {
 			let confirm = JSON.parse(test.body);
 			if(confirm.code == 1)
 			{
-				alert(confirm.message +" "+confirm.data);
+				iconchange(confirm.data);
 			}
 		});
 	});
@@ -34,7 +34,7 @@ function connectcompany() {
 			console.log(confirm);
 			if(confirm.code == 1)
 			{
-				alert(confirm.message +" "+confirm.data);
+				iconchange(confirm.data);
 			}
 
 		});
@@ -45,4 +45,14 @@ function disconnect() {
 	if (stompClient !== null) {
 		stompClient.disconnect();
 	}
+}
+
+function iconchange(message){
+	
+	$("#alarm").removeClass("fa-regular");
+	$("#alarm").addClass("fa-solid");
+	$("#alarm").css("color", "red");
+	$(".modal-body").empty();
+	$(".modal-body").append('<p3>'+message+'</p3>');
+	
 }

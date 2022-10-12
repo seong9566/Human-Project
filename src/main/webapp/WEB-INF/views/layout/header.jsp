@@ -7,8 +7,8 @@
 <title>좋좋잡</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,6 +20,23 @@
 	rel="stylesheet">
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<style >
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+</style>
 </head>
 
 <body>
@@ -41,21 +58,48 @@
 							<li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">기업정보</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-							<li style="position: fixed; color: aliceblue; margin-top: 7px; right: 100px;"
+							<li style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;"
 								class="nav-item">${principal.userinfo.companyName}님환영합니다.</li>
-							<li class="fa-regular fa-bell"></li>
-
+							<li class="nav-item fa-regular fa-bell nav-link"
+								style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
+								data-bs-target="#myModal" id="alarm"></li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="#">내정보</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 							<li class="nav-item"
-								style="position: fixed; color: aliceblue; margin-top: 7px; right: 100px;">
+								style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;">
 								${principal.userinfo.personalName}님 환영합니다.</li>
-							<li class="fa-regular fa-bell"></li>
+							<li class="nav-item fa-regular fa-bell nav-link"
+								style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
+								data-bs-target="#myModal" id="alarm"></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
+			</div>
+		</div>
+		<!-- The Modal -->
+		<div class="modal animate" id="myModal">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">내게 온 알람</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<h3>내게 온 알림이 없습니다.</h3>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</nav>
