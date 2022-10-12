@@ -11,4 +11,16 @@
 		#{resumesIntroduce}, NOW())
 	</insert>	
 
+	<select id="resumesById" resultType="site.metacoding.miniproject.web.dto.response.DetailResumesDto">
+		SELECT p.personal_name, d.personal_email,
+		d.personal_phone_number, r.resumes_title,
+		r.resumes_picture, r.resumes_introduce
+		FROM resumes r
+		INNER JOIN personal p
+		ON r.personal_id = p.personal_id
+		INNER JOIN personal_detail d
+		ON p.personal_id = d.personal_id
+		where resumes_id = #{resumesId}
+	</select>
+
 </mapper>

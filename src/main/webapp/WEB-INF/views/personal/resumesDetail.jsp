@@ -3,31 +3,35 @@
 <%@ include file="../layout/header.jsp"%>
 
 	<div id="main">
-		<br /> <input id="resume_title" type="text" class="form-control"
-			placeholder="이력서 제목을 입력해주세요." readonly>
+		<br /> 
+
 		<div class="tool">
 			<div class="left">
+				<h3>${detailResumesDtoPS.resumesTitle}</h3>
 				<br />
-				<h3>개인정보 입력</h3>
+				<h3>개인정보 </h3>
 				<div class="left_input">
-					<div id="userId">sopu5555</div>
 					<br />
-					<div id="userName">박동훈</div>
+					<div id="userName">${detailResumesDtoPS.personalName}</div>
 					<br />
-					<div id="phonenumber">01024102957</div>
+					<div id="phonenumber">${detailResumesDtoPS.personalPhoneNumber}</div>
 					<br />
-					<div id="email">sop55544@gmail.com</div>
+					<div id="email">${detailResumesDtoPS.personalEmail}</div>
 
 				</div>
 			</div>
 			<div class="right">
 				<img id="previewImg" />
+				<div>사진자리!</div>
+				<br />
+				<br />
+				<br />
 			</div>
 		</div>
-		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
+
 		<div class="form">
 			<h2>자기소개서 작성</h2>
-			<div id="summernote"></div>
+			<div>${detailResumesDtoPS.resumesIntroduce}</div>
 		</div>
 
 		<div class="btn-update">

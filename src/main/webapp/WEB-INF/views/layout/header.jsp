@@ -43,6 +43,7 @@
 								<c:otherwise>
 									<li class="nav-item"><a class="nav-link" href="#">내정보</a></li>
 									<li class="nav-item"><a class="nav-link" href="/personal/resumesForm">이력서쓰기</a></li>
+									<li class="nav-item"><a class="nav-link" href="/personal/resumes/{resumesId}">이력서상세보기</a></li>
 									<li class="nav-item"><a class="nav-link" href="#">내가쓴이력서목록</a></li>
 									<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 									<li class="nav-item"
