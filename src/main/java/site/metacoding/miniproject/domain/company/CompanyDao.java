@@ -2,6 +2,8 @@ package site.metacoding.miniproject.domain.company;
 
 import java.util.List;
 
+import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
+
 public interface CompanyDao {
 	public void insert(Company company);
 	public List<Company> findAll();

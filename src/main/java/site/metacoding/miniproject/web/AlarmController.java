@@ -1,30 +1,26 @@
 package site.metacoding.miniproject.web;
 
-import java.net.http.WebSocket;
-
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.socket.WebSocketSession;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.web.dto.response.ResponseDto;
 
 @Controller
 @RequiredArgsConstructor
 public class AlarmController {
 
-	@MessageMapping("/testPersonal")
-	@SendTo("/topic/personal")
-	public @ResponseBody String messageTestPersonal(WebSocketSession session) {
-		System.out.println(session.getAttributes());
-		return "hi";
+	@MessageMapping("/Personal")
+	@SendTo("/topic/Personal")
+	public @ResponseBody ResponseDto<?> messageTestPersonal(String test) {
+		return new ResponseDto<>(1, "testconfirm", test);
 	}
 
-	@MessageMapping("/testCompany")
-	@SendTo("/topic/company")
-	public @ResponseBody String messageTestCompany(WebSocketSession session) {
-		System.out.println(session.getAttributes());
-		return "hi";
+	@MessageMapping("/Company")
+	@SendTo("/topic/Company")
+	public @ResponseBody ResponseDto<?> messageTestCompany(String test) {
+		return new ResponseDto<>(1, "testconfirm", test);
 	}
 }

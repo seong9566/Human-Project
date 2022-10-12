@@ -254,7 +254,7 @@ BEGIN
 DECLARE i INT DEFAULT 1;	
 WHILE i <= 50 DO	
 INSERT INTO personal (personal_name, personal_category_id, created_at)
-VALUES(concat('companyname',i), i,  NOW());
+VALUES(concat('personalname',i), i,  NOW());
 SET i = i + 1;
 END WHILE;
 END$$

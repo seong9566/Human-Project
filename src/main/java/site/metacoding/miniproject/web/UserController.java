@@ -32,14 +32,14 @@ public class UserController {
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "/personal/login";
-	}
+	}	
 
 	@GetMapping("/logout")
 	public String logout() {
 		session.removeAttribute("principal");
 		session.removeAttribute("companyId");
 		session.removeAttribute("personalId");
-		return "/company/main";
+		return "redirect:/main";
 	}
 
 	@GetMapping("/company/joinForm")
@@ -61,7 +61,6 @@ public class UserController {
 			responseDto = new ResponseDto<>(-1, "아이디를 입력하여 주세요", null);
 			return responseDto;
 		}
-
 		Integer userCheck = userService.checkUserId(loginId);
 		if (userCheck == null) {
 			responseDto = new ResponseDto<>(1, "아이디 중복 없음 사용하셔도 좋습니다.", null);
@@ -104,4 +103,5 @@ public class UserController {
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
+	
 }
