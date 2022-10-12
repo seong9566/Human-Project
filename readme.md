@@ -254,7 +254,7 @@ BEGIN
 DECLARE i INT DEFAULT 1;	
 WHILE i <= 50 DO	
 INSERT INTO personal (personal_name, personal_category_id, created_at)
-VALUES(concat('companyname',i), i,  NOW());
+VALUES(concat('personalname',i), i,  NOW());
 SET i = i + 1;
 END WHILE;
 END$$
@@ -268,7 +268,7 @@ CREATE PROCEDURE loopInsert()
 BEGIN
 DECLARE i INT DEFAULT 1;	
 WHILE i <= 50 DO	
-INSERT INTO company_detail (company_id, company_email, company_phonenumber, company_picture, company_address, created_at)
+INSERT INTO company_detail (company_id, company_email, company_phone_number, company_picture, company_address, created_at)
 VALUES(i, CONCAT('company_email',i,'@example.com'), CONCAT('010-',i,'-0000'), CONCAT('company_picture', i), CONCAT('company_adress', i), NOW());
 SET i = i + 1;
 END WHILE;
@@ -283,7 +283,7 @@ CREATE PROCEDURE loopInsert()
 BEGIN
 DECLARE i INT DEFAULT 51;	
 WHILE i <= 100 DO	
-INSERT INTO personal_detail (personal_id, personal_email, personal_phonenumber, created_at)
+INSERT INTO personal_detail (personal_id, personal_email, personal_phone_number, created_at)
 VALUES(i, CONCAT('personal_email',i,'@example.com'), CONCAT('010-',i,'-0000'), NOW());
 SET i = i + 1;
 END WHILE;

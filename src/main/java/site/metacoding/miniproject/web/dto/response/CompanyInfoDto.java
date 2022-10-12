@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CompanyInfoDto {
+
 	private String loginId;
 	private String loginPassword;
 	private Integer companyId;
@@ -19,3 +20,4 @@ public class CompanyInfoDto {
 	private Boolean categoryDevops;
 	
 }
+
