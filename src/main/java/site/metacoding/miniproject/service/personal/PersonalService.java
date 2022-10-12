@@ -3,20 +3,26 @@ package site.metacoding.miniproject.service.personal;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.miniproject.domain.personal.Personal;
-import site.metacoding.miniproject.domain.personal.PersonalDao;
-import site.metacoding.miniproject.domain.personal.detail.PersonalDetail;
-import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
+import site.metacoding.miniproject.domain.personal.detail.PersonalDetailDao;
+import site.metacoding.miniproject.domain.resumes.Resumes;
+import site.metacoding.miniproject.domain.resumes.ResumesDao;
+import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 
 @Service
 @RequiredArgsConstructor
 public class PersonalService {
 	
-	private final PersonalDao personalDao;
-	
-	public void personalJoin(PersonalJoinDto joinDto) {
-		
+	private final ResumesDao resumesDao;
+	private final PersonalDetailDao personalDetailDao;
 
+	public void insertResumes(InsertResumesDto insertResumesDto) {
+		Resumes resumes = insertResumesDto.toEntity();
+		resumesDao.insert(resumes);
 	}
 	
+	public PersonalInfoDto personalInfoById(Integer personalId) {
+		return personalDetailDao.personalInfoById(personalId);
+	}
+
 }

@@ -17,6 +17,5 @@ public class SignedDto<T> implements Serializable {
 	private Integer personalId;
 	private Integer companyId;
 	private T Userinfo;
-
 	private static final long serialVersionUID = -242078978525600927L;
 }
