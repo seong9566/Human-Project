@@ -7,12 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.personal.PersonalService;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
@@ -46,5 +48,23 @@ public class PersonalController {
 			DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
 			model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
 			return "personal/resumesDetail";
+		}
+		
+		// 이력서 수정
+		@GetMapping("/personal/resumes/{resumesId}/update")
+		public String updateForm(@PathVariable Integer resumesId, Model model) {
+			DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
+			model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
+			return "personal/resumesUpdateForm";
+		}
+		
+		@PutMapping("/personal/resumes/{resumesId}/update")
+		public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
+//			System.out.println(updateResumesDto.getResumesTitle());
+//			System.out.println(updateResumesDto.getResumesIntroduce());
+//			System.out.println(updateResumesDto.getResumesPicture());
+			personalService.updateResumes(resumesId, updateResumesDto);			
+		
+			return new ResponseDto<>(1, "이력서수정성공", null);
 		}
 }

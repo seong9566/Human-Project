@@ -12,4 +12,7 @@ public class DetailResumesDto {
 	private String resumesTitle;
 	private String resumesPicture;
 	private String resumesIntroduce;
+	
+	// 수정 시 resumesId 얻기
+	private Integer resumesId;
 }

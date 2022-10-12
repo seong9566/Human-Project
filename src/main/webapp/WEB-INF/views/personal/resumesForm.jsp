@@ -68,6 +68,6 @@
 			}
 		});
 	}
-	</script>
+</script>
 	
 <%@ include file="../layout/footer.jsp"%>

@@ -19,8 +19,17 @@ public class Resumes {
 	private String resumesIntroduce;
 	private Timestamp createdAt;
 	
+	// 이력서 작성
 	public Resumes(Integer personalId, String resumesTitle, String resumesPicture, String resumesIntroduce) {
 		this.personalId = personalId;
+		this.resumesTitle = resumesTitle;
+		this.resumesPicture = resumesPicture;
+		this.resumesIntroduce = resumesIntroduce;
+	}
+	
+	// 이력서 수정
+	public Resumes(String resumesTitle, String resumesPicture, String resumesIntroduce) {
+		this.resumesId = resumesId;
 		this.resumesTitle = resumesTitle;
 		this.resumesPicture = resumesPicture;
 		this.resumesIntroduce = resumesIntroduce;

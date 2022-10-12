@@ -7,6 +7,7 @@ import site.metacoding.miniproject.domain.personal.detail.PersonalDetailDao;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 
@@ -30,6 +31,13 @@ public class PersonalService {
 	// 이력서 상세 보기
 	public DetailResumesDto resumesById(Integer resumesId) {
 		return resumesDao.resumesById(resumesId);
+	}
+	
+	// 이력서 수정 하기
+	public void updateResumes(Integer resumesId, UpdateResumesDto updateResumesDto) {
+		Resumes resumesPS = updateResumesDto.toEntity();
+		resumesPS.setResumesId(resumesId);
+		resumesDao.update(resumesPS);
 	}
 
 }
