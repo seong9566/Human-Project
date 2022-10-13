@@ -79,7 +79,6 @@
                      <li class="nav-item fa-regular fa-bell nav-link"
                         style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
                         data-bs-target="#myModal" id="alarm"></li>
-                     <li style="display: none;" id="userId" value="${principal.usersId}"></li> 
                   </c:otherwise>
                </c:choose>
             </ul>

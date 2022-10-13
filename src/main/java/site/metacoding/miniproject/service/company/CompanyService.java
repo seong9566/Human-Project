@@ -40,16 +40,20 @@ public class CompanyService {
 	}
 	
 	// 회사정보변경 (user, companyDetail, company)
-	@Transactional
-	public void updateCompanyInform(Integer userId,Integer companyDetailId, Integer companyId, CompanyInformUpdateDto companyInformUpdateDto) {
+	public void updateUser(Integer userId,CompanyInformUpdateDto companyInformUpdateDto) {
 		Users companyUserPS = userDao.findById(userId);
 		companyUserPS.updateCompanyUser(companyInformUpdateDto);
+		companyUserPS.setLoginPassword("@user4");
+		System.out.println(companyUserPS.getLoginPassword());
 		userDao.update(companyUserPS);
-		
+	}
+	public void updateDetail(Integer companyDetailId, CompanyInformUpdateDto companyInformUpdateDto) {
 		CompanyDetail companyDetailPS = companyDetailDao.findById(companyDetailId);
 		companyDetailPS.UpdateCompanyDetail(companyInformUpdateDto);
 		companyDetailDao.update(companyDetailPS);
-		
+	}
+	
+	public void updateCompany(Integer companyId, CompanyInformUpdateDto companyInformUpdateDto) {
 		Company companyPS = companyDao.findById(companyId);
 		companyPS.UpdateCompany(companyInformUpdateDto);
 		companyDao.update(companyPS);

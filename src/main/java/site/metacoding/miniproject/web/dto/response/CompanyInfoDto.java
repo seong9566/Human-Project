@@ -9,6 +9,7 @@ public class CompanyInfoDto {
 
 	private String loginId;
 	private String loginPassword;
+	private Integer companyDetailId;
 	private Integer companyId;
 	private String companyName;
 	private String companyPhoneNumber;

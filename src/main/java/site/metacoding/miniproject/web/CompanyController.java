@@ -8,12 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
+import site.metacoding.miniproject.web.dto.request.CompanyInformUpdateDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
+import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @Controller
@@ -49,9 +54,23 @@ public class CompanyController {
 	public String companyUpdateForm(Model model) {
 		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
 		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
+		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
+		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
 		return "company/update";
 	}
+	
+	@PutMapping("/company/inform/update")
+	public @ResponseBody ResponseDto<?> companyUpdate(@RequestBody CompanyInformUpdateDto companyInformUpdateDto){
+		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
+		companyService.updateUser(principal.getUsersId(), companyInformUpdateDto);
+		companyService.updateDetail(companyPS.getCompanyDetailId(), companyInformUpdateDto);
+		companyService.updateCompany(principal.getCompanyId(), companyInformUpdateDto);
+		return new ResponseDto<>(1,"수정완료",null);
+		
+	}
+	
 	
 	
 		//회사의 구인 공고 리스트 보기 

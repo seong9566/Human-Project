@@ -33,8 +33,7 @@
 		<div class="mb-3">◆주소</div>
 		<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
 		<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-		<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly><input
-			id="detail_address" type="text"  placeholder="상세주소" style="width: 620px;">
+		<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly><input id="detail_address" type="text"  placeholder="상세주소" style="width: 620px;">
 
 	</form>
 	<div class="mb-5"></div>
