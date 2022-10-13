@@ -3,18 +3,26 @@
 <mapper namespace="site.metacoding.miniproject.domain.personal.detail.PersonalDetailDao">
 
 	<select id="findAll" resultType="site.metacoding.miniproject.domain.personal.detail.PersonalDetail">
-	SELECT * FROM personal_detail_id
-</select>
+		SELECT * FROM personal_detail_id
+	</select>
 
 	<select id="findById" resultType="site.metacoding.miniproject.domain.personal.detail.PersonalDetail">
 	SELECT *
 	FROM personal_detail
 	WHERE personal_detail_id = #{personalDetailId}
-</select>
+	</select>
+	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="personalId" keyColumn="personal_id">
 	INSERT INTO personal_detail (personal_id, personal_email, personal_phone_number, created_at)
 	VALUES(#{personalId}, #{personalEmail}, #{personalPhoneNumber}, NOW())
-</insert>
+	</insert>
+	
+	
+<select id="personalInfoById" resultType="site.metacoding.miniproject.web.dto.response.PersonalInfoDto">
+	SELECT personal_phone_number, personal_email
+	FROM personal_detail
+	WHERE personal_id = #{personalId}	
+</select>
 
 
 </mapper>

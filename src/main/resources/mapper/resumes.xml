@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="site.metacoding.miniproject.domain.resumes.ResumesDao">
+
+	<insert id="insert">
+		INSERT INTO resumes (personal_id, resumes_title, resumes_picture,
+		resumes_introduce,
+		created_at)
+		VALUES(#{personalId}, #{resumesTitle}, #{resumesPicture},
+		#{resumesIntroduce}, NOW())
+	</insert>	
+
+	<select id="resumesById" resultType="site.metacoding.miniproject.web.dto.response.DetailResumesDto">
+		SELECT r.resumes_id, p.personal_name, d.personal_email,
+		d.personal_phone_number, r.resumes_title,
+		r.resumes_picture, r.resumes_introduce
+		FROM resumes r
+		INNER JOIN personal p
+		ON r.personal_id = p.personal_id
+		INNER JOIN personal_detail d
+		ON p.personal_id = d.personal_id
+		where resumes_id = #{resumesId}
+	</select>
+	
+	<update id="update">
+		UPDATE resumes 
+		SET resumes_title = #{resumesTitle}, resumes_picture =
+		#{resumesPicture}, resumes_introduce = #{resumesIntroduce}
+		WHERE resumes_id = #{resumesId}
+	</update>
+	
+	<select id="findAll"
+		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+		SELECT * FROM resumes
+	</select>
+
+</mapper>
