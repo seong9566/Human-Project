@@ -20,6 +20,9 @@ public class PersonalService {
 	private final ResumesDao resumesDao;
 	private final PersonalDetailDao personalDetailDao;
 
+	// 개인 정보 보기
+	
+	
 	// 이력서 작성 하기
 	public void insertResumes(InsertResumesDto insertResumesDto) {
 		Resumes resumes = insertResumesDto.toEntity();
@@ -31,8 +34,8 @@ public class PersonalService {
 	}
 	
 	// 이력서 상세 보기
-	public DetailResumesDto resumesById(Integer resumesId) {
-		return resumesDao.resumesById(resumesId);
+	public DetailResumesDto resumesById(Integer personalId) {
+		return resumesDao.resumesById(personalId);
 	}
 	
 	// 이력서 수정 하기

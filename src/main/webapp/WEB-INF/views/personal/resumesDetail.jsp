@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-	<div id="main">
-		<br /> 
+<input id="resumesId" type="hidden" value="${detailResumesDtoPS.resumesId}">
 
+	<div id="main">
+		<br />
 		<div class="tool">
 			<div class="left">
 				<h3>${detailResumesDtoPS.resumesTitle}</h3>
@@ -17,7 +18,6 @@
 					<div id="phonenumber">${detailResumesDtoPS.personalPhoneNumber}</div>
 					<br />
 					<div id="email">${detailResumesDtoPS.personalEmail}</div>
-
 				</div>
 			</div>
 			<div class="right">
@@ -35,13 +35,11 @@
 		</div>
 
 		<div class="btn-update">
-			<button id="btnGoUpdate" type="button" class="btn btn-primary">수정하러가기</button>
+			<button id="btnUpdate" type="button" class="btn btn-primary">수정하러가기</button>
 		</div>
 
 	</div>
+	
+<script src="/js/resumes.js"></script>	
 
-
-<script src="/js/writeForm.js">
-
-   </script>
 <%@ include file="../layout/footer.jsp"%>

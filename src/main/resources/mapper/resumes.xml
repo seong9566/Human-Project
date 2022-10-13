@@ -20,7 +20,7 @@
 		ON r.personal_id = p.personal_id
 		INNER JOIN personal_detail d
 		ON p.personal_id = d.personal_id
-		where resumes_id = #{resumesId}
+		where r.personal_id = #{personalId}
 	</select>
 	
 	<update id="update">
