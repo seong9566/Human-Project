@@ -2,6 +2,7 @@ package site.metacoding.miniproject.domain.resumes;
 
 import java.util.List;
 
+import site.metacoding.miniproject.web.dto.request.InsertRecommendDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 
 public interface ResumesDao {
@@ -20,4 +21,9 @@ public interface ResumesDao {
 	public List<Resumes> findAll();	
 	
 	public void deleteById(Integer resumesId);
+	
+	
+	// 좋아요 이력서 추가
+	public void insertLike(InsertRecommendDto insertRecommendDto);
+	
 }
