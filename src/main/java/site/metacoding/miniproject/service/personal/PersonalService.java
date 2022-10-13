@@ -1,5 +1,7 @@
 package site.metacoding.miniproject.service.personal;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,11 @@ public class PersonalService {
 		Resumes resumesPS = updateResumesDto.toEntity();
 		resumesPS.setResumesId(resumesId);
 		resumesDao.update(resumesPS);
+	}
+
+	// 이력서 목록 보기
+	public List<Resumes> resumesAll(){
+		return resumesDao.findAll();
 	}
 
 }

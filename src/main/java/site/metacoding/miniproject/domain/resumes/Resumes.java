@@ -29,7 +29,6 @@ public class Resumes {
 	
 	// 이력서 수정
 	public Resumes(String resumesTitle, String resumesPicture, String resumesIntroduce) {
-		this.resumesId = resumesId;
 		this.resumesTitle = resumesTitle;
 		this.resumesPicture = resumesPicture;
 		this.resumesIntroduce = resumesIntroduce;

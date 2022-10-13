@@ -29,5 +29,10 @@
 		#{resumesPicture}, resumes_introduce = #{resumesIntroduce}
 		WHERE resumes_id = #{resumesId}
 	</update>
+	
+	<select id="findAll"
+		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+		SELECT * FROM resumes
+	</select>
 
 </mapper>

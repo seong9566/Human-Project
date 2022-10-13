@@ -1,9 +1,12 @@
 package site.metacoding.miniproject.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.service.personal.PersonalService;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
@@ -66,5 +70,13 @@ public class PersonalController {
 			personalService.updateResumes(resumesId, updateResumesDto);			
 		
 			return new ResponseDto<>(1, "이력서수정성공", null);
+		}
+		
+		// 이력서 목록 보기
+		@GetMapping("/resumes")
+		public String resumesList(Model model) {
+			List<Resumes> resumesList = personalService.resumesAll();
+			model.addAttribute("resumesList", resumesList);
+			return "company/main";
 		}
 }
