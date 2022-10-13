@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao">
+
+	<select id="findJobpostingBoard"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto">
+		SELECT jpb.job_posting_board_id,
+		jpb.job_posting_board_title,
+		jpb.job_posting_board_content,
+		cd.company_id,
+		cd.company_detail_id,
+		cd.company_picture,
+		cd.company_address,
+		cd.company_phone_number,
+		cd.company_email
+		FROM
+		job_posting_board jpb
+		INNER JOIN company_detail cd
+		ON jpb.company_id =cd.company_id
+	</select>
+
+	<insert id="insert">
+		INSERT INTO job_posting_board(
+		job_posting_board_title,
+		job_posting_board_content, created_at)
+		VALUE(#{jobPostingBoardTitle},#{jobPostingBoardContent},NOW())
+	</insert>
+
+	<update id="update">
+		UPDATE job_posting_board
+		SET job_posting_board_title=#{jobPostingBoardTitle},
+		job_posting_board_content=#{jobPostingBoardContent}
+		WHERE
+		job_posting_board_id = #{jobPostingBoardId}
+	</update>
+
+	<select id="findById"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto">
+		SELECT jpb.job_posting_board_id,
+		jpb.job_posting_board_title,
+		jpb.job_posting_board_content,
+		cd.company_id,
+		cd.company_detail_id,
+		cd.company_picture,
+		cd.company_address,
+		cd.company_phone_number,
+		cd.company_email
+		FROM
+		job_posting_board jpb
+		INNER JOIN company_detail cd
+		ON jpb.company_id =
+		cd.company_id
+		WHERE job_posting_board_id = #{jobPostingBoardId};
+	</select>
+	
+	<delete id="deleteById">
+		DELETE FROM job_posting_board WHERE job_posting_board_id = #{jobPostingBoardId};
+		
+	</delete>
+</mapper>

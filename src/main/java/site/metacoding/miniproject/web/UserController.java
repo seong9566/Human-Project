@@ -24,7 +24,7 @@ public class UserController {
 	private final UsersService userService;
 	private final HttpSession session;
 
-	@GetMapping({"/main", "/"})
+	@GetMapping({ "/main", "/" })
 	public String mainForm() {
 		return "/company/main";
 	}
@@ -32,14 +32,17 @@ public class UserController {
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "/personal/login";
-	}
+	}	
 
 	@GetMapping("/logout")
 	public String logout() {
-		session.invalidate();
-		return "/company/main";
+		session.removeAttribute("principal");
+		session.removeAttribute("companyId");
+		session.removeAttribute("personalId");
+
+		return "redirect:/main";
 	}
-	
+
 	@GetMapping("/company/joinForm")
 	public String CompanyJoinForm() {
 		return "company/join";
@@ -59,7 +62,6 @@ public class UserController {
 			responseDto = new ResponseDto<>(-1, "아이디를 입력하여 주세요", null);
 			return responseDto;
 		}
-
 		Integer userCheck = userService.checkUserId(loginId);
 		if (userCheck == null) {
 			responseDto = new ResponseDto<>(1, "아이디 중복 없음 사용하셔도 좋습니다.", null);
@@ -72,9 +74,16 @@ public class UserController {
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 		SignedDto<?> signedDto = userService.login(loginDto);
+
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
+
 		session.setAttribute("principal", signedDto);
+		if (signedDto.getCompanyId() != null) {
+			session.setAttribute("companyId", signedDto.getCompanyId());
+		} else {
+			session.setAttribute("personalId", signedDto.getPersonalId());
+		}
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}
 
@@ -95,4 +104,5 @@ public class UserController {
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
+	
 }

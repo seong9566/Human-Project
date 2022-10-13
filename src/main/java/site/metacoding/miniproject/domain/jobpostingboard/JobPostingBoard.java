@@ -11,8 +11,12 @@ import lombok.Setter;
 public class JobPostingBoard {
 	private Integer jobPostingBoardId;
 	private Integer companyId;
+	private Integer jobPostingBoardCategoryId;
 	private String jobPostingBoardTitle;
 	private String jobPostingBoardContent;
+
 	private Timestamp createdAt;
+	
+
 
 }
