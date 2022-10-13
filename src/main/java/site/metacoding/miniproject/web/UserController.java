@@ -1,5 +1,6 @@
 package site.metacoding.miniproject.web;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,7 +28,6 @@ public class UserController {
 
 	private final UsersService userService;
 	private final HttpSession session;
-	private final SessionConfig sessionConfig;
 
 	@GetMapping({ "/main", "/" })
 	public String mainForm() {
@@ -82,17 +82,17 @@ public class UserController {
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 		
-		if(sessionConfig.getSessionIdCheck("principal", signedDto.getUsersId()) != null){
-			return new ResponseDto<>(-2, "중복 로그인 발견", null);
-		}
 
 		session.setAttribute("principal", signedDto);
+		if(SessionConfig.getSessionidCheck("principal", signedDto.getUsersId()) != null) {
+			return new ResponseDto<>(-2, "로그인 중복 발견", null);
+		}
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
 			session.setAttribute("personalId", signedDto.getPersonalId());
 		}
-		
+
 
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}
