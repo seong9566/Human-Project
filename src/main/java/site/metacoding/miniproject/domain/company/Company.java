@@ -15,6 +15,10 @@ import site.metacoding.miniproject.web.dto.request.CompanyInformUpdateDto;
 public class Company implements Serializable {
 	private Integer companyId;
 	private String companyName;
+	private String companyPicture;
+	private String companyEmail;
+	private String companyPhoneNumber;
+	private String companyAddress;
 	private Timestamp createdAt;
 
 	private static final long serialVersionUID = 7364337982660485087L;
