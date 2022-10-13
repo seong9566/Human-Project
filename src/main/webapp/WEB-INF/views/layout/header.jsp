@@ -20,22 +20,25 @@
 	rel="stylesheet">
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-<style >
+<style>
 /* Add Zoom Animation */
 .animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
 }
 
-<<<<<<< HEAD
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
+	from {-webkit-transform: scale(0)
+}to {
+	-webkit-transform: scale(1)
 }
 
+}
 @keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+	from {transform: scale(0)
+}to {
+	transform: scale(1)
+}
 }
 </style>
 </head>
@@ -59,21 +62,21 @@
 							<li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
 							<li class="nav-item"><a class="nav-link" href="/company/inform">기업정보</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-							<li style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;"
-								class="nav-item">${principal.userinfo.companyName}님환영합니다.</li>
+							<li style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;" class="nav-item">${principal.userinfo.companyName}님환영합니다.</li>
 							<li class="nav-item fa-regular fa-bell nav-link"
-								style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
-								data-bs-target="#myModal" id="alarm"></li>
+								style="color: white; margin-top: 5px; margin-left: 20px; cursor: pointer"
+								data-bs-toggle="modal" data-bs-target="#myModal" id="alarm"></li>
+							<li style="display: none;" id="userId" value="${principal.usersId}"></li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="#">내정보</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-							<li class="nav-item"
-								style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;">
+							<li class="nav-item" style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;">
 								${principal.userinfo.personalName}님 환영합니다.</li>
 							<li class="nav-item fa-regular fa-bell nav-link"
-								style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
-								data-bs-target="#myModal" id="alarm"></li>
+								style="color: white; margin-top: 5px; margin-left: 20px; cursor: pointer"
+								data-bs-toggle="modal" data-bs-target="#myModal" id="alarm"></li>
+							<li style="display: none;" id="userId" value="${principal.usersId}"></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

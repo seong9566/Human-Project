@@ -1,9 +1,13 @@
 package site.metacoding.miniproject.service.Users;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.alarm.Alarm;
+import site.metacoding.miniproject.domain.alarm.AlarmDao;
 import site.metacoding.miniproject.domain.category.Category;
 import site.metacoding.miniproject.domain.category.CategoryDao;
 import site.metacoding.miniproject.domain.company.Company;
@@ -31,6 +35,7 @@ public class UsersService {
 	private final PersonalDetailDao personalDetailDao;
 	private final CompanyDetailDao companyDetailDao;
 	private final CategoryDao categoryDao;
+	private final AlarmDao alarmDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {
 		String loginId = loginDto.getLoginId();
@@ -42,12 +47,12 @@ public class UsersService {
 		}
 		if (userinfo.getPersonalId() != null) {
 			Personal personal = personalDao.findById(userinfo.getPersonalId());
-			signedDto = new SignedDto<>(userinfo.getLoginId(),
-					userinfo.getLoginPassword(), personal.getPersonalId(), null, personal);
+			signedDto = new SignedDto<>(userinfo.getUsersId(), userinfo.getLoginId(), userinfo.getLoginPassword(),
+					personal.getPersonalId(), null, personal);
 		} else {
 			Company company = companyDao.findById(userinfo.getCompanyId());
-			signedDto = new SignedDto<>(userinfo.getLoginId(),
-					userinfo.getLoginPassword(), null, company.getCompanyId(), company);
+			signedDto = new SignedDto<>(userinfo.getUsersId(), userinfo.getLoginId(), userinfo.getLoginPassword(), null,
+					company.getCompanyId(), company);
 		}
 
 		return signedDto;
@@ -93,5 +98,10 @@ public class UsersService {
 	public Integer checkUserId(String loginId) {
 		Integer checkUser = usersDao.findByLoginId(loginId);
 		return checkUser;
+	}
+	
+	public List<Alarm> userAlarm(Integer usersId) {
+		List<Alarm> usersAlarm = alarmDao.findByusersId(usersId);
+		return usersAlarm;
 	}
 }

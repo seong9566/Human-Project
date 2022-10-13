@@ -8,6 +8,7 @@ import lombok.Setter;
 public class Alarm {
 	private Integer alarmId;
 	private Integer usersId;
+	private String alarmMessage;
 	private Integer alarmApplyId;
 	private Integer alarmIncruitId;
 	private Integer alarmSubscribeId;

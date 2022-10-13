@@ -1,5 +1,7 @@
 package site.metacoding.miniproject.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
@@ -103,6 +106,16 @@ public class UserController {
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+	}
+	
+	@GetMapping("/user/alarm/{usersId}")
+	public @ResponseBody ResponseDto<?> userAlarm(@PathVariable Integer usersId){
+		ResponseDto<?> responseDto = null;
+		List<Alarm>usersAlarm = userService.userAlarm(usersId);
+		if(!usersAlarm.isEmpty())
+			responseDto = new ResponseDto<>(1, "통신 성공", usersAlarm);
+		
+		return responseDto;
 	}
 	
 }

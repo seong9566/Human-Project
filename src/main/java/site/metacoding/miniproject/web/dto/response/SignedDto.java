@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignedDto<T> implements Serializable {
+	private Integer usersId;
 	private String loginId;
 	private String loginPassword;
 	private Integer personalId;
