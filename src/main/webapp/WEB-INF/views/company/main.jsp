@@ -35,30 +35,15 @@
 			<button class="btn btn-success" type="submit" id="button-addon2" style="float:right;">검색</button>
 			<input type="text"
 			placeholder="검색어 입력" aria-label="search"
-			aria-describedby="button-addon2" style="float:right;">
-			
+			aria-describedby="button-addon2" style="float:right;">			
 		
 	</div>
-	<div id="apply" class="container p-4 my-4 border">
-		<div class="lineheight" ><span>이력서1</span></div>
-		<img class="text-right" src="/image/1.jpg" id="image">
-	</div>
-		<div id="apply" class="container p-4 my-4 border">
-		<div class="lineheight" ><span>이력서2</span></div>
-		<img class="text-right" src="/image/1.jpg" id="image">
-	</div>
-		<div id="apply" class="container p-4 my-4 border">
-		<div class="lineheight" ><span>이력서3</span></div>
-		<img class="text-right" src="/image/1.jpg" id="image">
-	</div>
-		<div id="apply" class="container p-4 my-4 border">
-		<div class="lineheight" ><span>이력서4</span></div>
-		<img class="text-right" src="/image/1.jpg" id="image">
-	</div>
-		<div id="apply" class="container p-4 my-4 border">
-		<div class="lineheight" ><span>이력서5</span></div>
-		<img class="text-right" src="/image/1.jpg" id="image">
-	</div>
 	
+	<c:forEach var="resumes" items="${resumesList}">
+		<div id="apply" class="container p-4 my-4 border">
+			<a href="/personal/resumes/${resumes.resumesId}"><div class="lineheight" >${resumes.resumesTitle}</div></a>			
+		</div>
+	</c:forEach>
+
 	<script src="/js/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>
