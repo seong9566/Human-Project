@@ -12,23 +12,43 @@
 		resultType="site.metacoding.miniproject.domain.company.detail.CompanyDetail">
 		SELECT *
 		FROM company_detail
-		WHERE company_detail_id = #{companyDetailId}
+		WHERE company_detail_id =
+		#{companyDetailId}
 	</select>
 
 	<insert id="insert">
-		INSERT INTO company_detail(company_id, company_email, company_phone_number,
+		INSERT INTO company_detail(company_id, company_email,
+		company_phone_number,
 		company_picture, company_address, created_at)
-		VALUES(#{companyId}, #{companyEmail}, #{companyPhoneNumber},#{companyPicture},
+		VALUES(#{companyId}, #{companyEmail},
+		#{companyPhoneNumber},#{companyPicture},
 		#{companyAddress}, NOW())
 	</insert>
 
 	<update id="update">
-		UPDATE company_detail 
+		UPDATE company_detail
 		SET company_email = #{companyEmail},
-		company_phone_number = #{companyPhoneNumber},
+		company_phone_number =
+		#{companyPhoneNumber},
 		company_picture=#{companyPicture},
 		company_address = #{companyAddress}
-		WHERE company_detail_id = #{companyDetailId}
+		WHERE company_detail_id =
+		#{companyDetailId}
 	</update>
-
+	<select
+		id="findByAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
+		SELECT company_detail.company_id,
+		company_detail.company_detail_id,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',1),',',-1) AS
+		zip_code,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',2),',',-1) AS
+		road_name,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
+		detail_address
+		FROM company_detail
+		LEFT OUTER JOIN company
+		ON
+		company_detail.company_id = company.company_id
+		WHERE company.company_id= #{companyId}
+	</select>
 </mapper>
