@@ -65,7 +65,7 @@ public class UsersService {
 		categoryDao.insert(category);
 
 		Personal personal = new Personal(joinDto);
-		personal.setPersonalCategoryId(category.getCategoryId());
+		//personal.setPersonalCategoryId(category.getCategoryId()); //테이블 수정후 에러 수정필요
 		personalDao.insert(personal);
 
 		Integer personalId = personal.getPersonalId();
