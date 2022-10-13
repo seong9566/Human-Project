@@ -8,5 +8,5 @@ public interface AlarmDao {
 	public Alarm findById(Integer alarmId);
 	public void update(Alarm alarm);
 	public void deleteById(Integer alarmId);
-
+	public List<Alarm> findByusersId(Integer usersId);
 }

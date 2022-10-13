@@ -1,6 +1,24 @@
 
 var stompClient = null;
 
+
+$("#alarm").click(()=>{
+	let userid = $("#userId").val();
+	
+	$.ajax("/user/alarm/"+userid,{
+		type:"GET",
+		data:"JSON"
+	}).done((res)=>{
+		if(res.code == 1 && res.data != null){
+			$(".modal-body").empty();
+			res.data.forEach((object)=>{
+				$(".modal-body").append(`<p3>`+object.alarmMessage+`</p3>`);	
+			})
+			
+		}
+	});
+});
+
 function sendmessageToPersonal(data) {
 	stompClient.send("/app/Personal", {}, data);
 }
@@ -47,12 +65,11 @@ function disconnect() {
 	}
 }
 
+
 function iconchange(message){
-	
 	$("#alarm").removeClass("fa-regular");
 	$("#alarm").addClass("fa-solid");
 	$("#alarm").css("color", "red");
 	$(".modal-body").empty();
 	$(".modal-body").append('<p3>'+message+'</p3>');
-	
 }

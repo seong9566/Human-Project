@@ -20,21 +20,25 @@
    rel="stylesheet">
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-<style >
+<style>
 /* Add Zoom Animation */
 .animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
 }
 
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
+	from {-webkit-transform: scale(0)
+}to {
+	-webkit-transform: scale(1)
 }
 
+}
 @keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+	from {transform: scale(0)
+}to {
+	transform: scale(1)
+}
 }
 </style>
 </head>
@@ -75,6 +79,7 @@
                      <li class="nav-item fa-regular fa-bell nav-link"
                         style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
                         data-bs-target="#myModal" id="alarm"></li>
+                     <li style="display: none;" id="userId" value="${principal.usersId}"></li> 
                   </c:otherwise>
                </c:choose>
             </ul>
