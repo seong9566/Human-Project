@@ -67,12 +67,11 @@
                      <li class="nav-item fa-regular fa-bell nav-link"
                         style="color: white; margin-top: 5px; margin-left: 20px; cursor:pointer" data-bs-toggle="modal"
                         data-bs-target="#myModal" id="alarm"></li>
-                     <li style="display: none;" id="userId" value="${principal.usersId}"></li> 
                   </c:when>
                   <c:otherwise>
-                    <li class="nav-item"><a class="nav-link" href="#">내정보</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/personal/info">내정보</a></li>
                  	<li class="nav-item"><a class="nav-link" href="/personal/resumesForm">이력서쓰기</a></li>
-					<li class="nav-item"><a class="nav-link" href="/personal/resumes/{resumesId}">이력서상세보기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/personal/myresumes">내이력서보기</a></li>
                     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
                     <li class="nav-item"
                         style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;">

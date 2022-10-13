@@ -40,34 +40,6 @@
 
 	</div>
 	
-<script>
-	$("#btnSave").click(()=>{
-		insert();
-	});
-	
-	function insert(){
-		let data = {
-				personalId: $("#personalId").val(),
-				resumesTitle: $("#resumesTitle").val(),
-				resumesPicture: $("#resumesPicture").val(),
-				resumesIntroduce: $("#resumesIntroduce").val()
-		}
-		
-		$.ajax("/personal/resumes",{
-			type: "POST",
-			dataType: "json", 
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res)=>{
-			if(res.code == 1){
-				location.href="/main";
-			}else{
-				alert("이력서 등록에 실패하였습니다.");
-			}
-		});
-	}
-</script>
+<script src="/js/resumes.js"></script>
 	
 <%@ include file="../layout/footer.jsp"%>

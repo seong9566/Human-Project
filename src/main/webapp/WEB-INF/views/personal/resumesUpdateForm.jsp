@@ -42,36 +42,6 @@
 
 </div>
 
+<script src="/js/resumes.js"></script>
 
-<script>
-	$("#btnUpdate").click(()=>{
-		update();
-	});
-	
-	function update(){
-		let data = {
-				resumesTitle: $("#resumesTitle").val(),
-				resumesPicture: $("#resumesPicture").val(),
-				resumesIntroduce: $("#resumesIntroduce").val()
-		};
-		
-		let resumesId = $("#resumesId").val();
-		
-		$.ajax("/personal/resumes/"+ resumesId + "/update" ,{
-			type: "PUT",
-			dataType: "json", 
-			data: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res)=>{
-			if(res.code == 1){
-				alert("이력서 수정 성공 했답니다 유후");
-				location.href="/main";
-			}else{
-				alert("이력서 수정에 실패..");
-			}
-		});
-	}
-</script>
 <%@ include file="../layout/footer.jsp"%>

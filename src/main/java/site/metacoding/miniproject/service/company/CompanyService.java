@@ -1,6 +1,5 @@
 package site.metacoding.miniproject.service.company;
 
-import java.beans.Transient;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -15,6 +14,7 @@ import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyInformUpdateDto;
+import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
 
@@ -27,7 +27,9 @@ public class CompanyService {
 	private final UsersDao userDao;
 	private final CompanyDetailDao companyDetailDao;
 
-	
+	public CompanyAddressDto findByAddress(Integer companyId) {
+		return companyDetailDao.findByAddress(companyId);
+	}
 	public CompanyInfoDto findCompanyInfo(Integer companyId) {
 		return companyDao.companyInfo(companyId);
 	}

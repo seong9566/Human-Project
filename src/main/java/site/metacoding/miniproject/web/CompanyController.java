@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
+import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -26,6 +27,8 @@ public class CompanyController {
 	public String inform(Model model) {
 		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
 		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
+		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
+		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
 //		System.out.println("=========회사 정보 ==========");
 //		System.out.println(principal.getLoginId());
