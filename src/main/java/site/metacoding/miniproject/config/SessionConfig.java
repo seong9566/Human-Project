@@ -1,70 +1,59 @@
 package site.metacoding.miniproject.config;
 
-import java.util.Enumeration;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionIdListener;
+import javax.servlet.http.HttpSessionListener;
+
 import org.springframework.context.annotation.Configuration;
 
-import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.users.Users;
-import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @WebListener
-@Configuration
-@RequiredArgsConstructor
-public class SessionConfig implements HttpSessionIdListener, HttpSessionAttributeListener{
+public class SessionConfig implements HttpSessionListener, HttpSessionAttributeListener{
 	
-	private final HttpSession session;
-	
-	public synchronized Integer getSessionIdCheck(String type, Integer usersId) {
-		Integer result = null;
-//		Enumeration<String> attribute = session.getAttributeNames();
-//		while (attribute.hasMoreElements()) {
-//			SignedDto<?> userinfo = (SignedDto)session.getAttribute(type);
-//			String attr = (String) attribute.nextElement();
-//			System.out.println(session);
-//			System.out.println(attr);
-//			System.out.println(userinfo);
-//			if(userinfo != null  && userinfo.getUsersId() != null && userinfo.getUsersId().equals(usersId)) {
-//				result = userinfo.getUsersId();
-//				removeSessionForLoginOverlap(session.getAttribute(type).toString());
-//				return result;
-//			}
-//		}
-		return result;
-	}
+    private static final Map<String, HttpSession> sessions = new ConcurrentHashMap<>();
 
-	@Override
-	public void sessionIdChanged(HttpSessionEvent se, String oldSessionId) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void attributeAdded(HttpSessionBindingEvent se) {
-		// TODO Auto-generated method stub
-		HttpSessionAttributeListener.super.attributeAdded(se);
-	}
-	
-	@Override
-	public void attributeRemoved(HttpSessionBindingEvent se) {
-		// TODO Auto-generated method stub
-		HttpSessionAttributeListener.super.attributeRemoved(se);
-	}
-	
-	private void removeSessionForLoginOverlap(String sessionId) {
-		if(sessionId != null && sessionId.length() > 0) {
-			System.out.println(sessionId);
-			//sessions.get(sessionId).invalidate();
-		}
-	}
-	
+    //중복로그인 지우기
+    public synchronized static String getSessionidCheck(String type, Integer id){
+        String result = null;
+        System.out.println(sessions);
+        for( String key : sessions.keySet() ){
+            HttpSession value = sessions.get(key);
+            Users userinfo = (Users)value.getAttribute(type);
+            System.out.println(userinfo);
+//            if(value != null &&  userinfo != null && userinfo.getUsersId().equals(id) ){
+//                //System.out.println(value.getAttribute(type).toString());
+//                result =  key;
+//            	removeSessionForDoubleLogin(result);
+//            }
+        }
+        return result;
+    }
+    
+    private static void removeSessionForDoubleLogin(String userId){    	
+        System.out.println("remove userId : " + userId);
+        if(userId != null && userId.length() > 0){
+            sessions.get(userId).invalidate();
+            sessions.remove(userId);    		
+        }
+    }
 
-}
+    @Override
+    public void sessionCreated(HttpSessionEvent hse) {
+        System.out.println(hse);
+        sessions.put(hse.getSession().getId(), hse.getSession());
+    }
+
+    @Override
+    public void sessionDestroyed(HttpSessionEvent hse) {
+        if(sessions.get(hse.getSession().getId()) != null){
+            sessions.get(hse.getSession().getId()).invalidate();
+            sessions.remove(hse.getSession().getId());	
+        }
+    }
+}   
