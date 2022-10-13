@@ -1,3 +1,9 @@
+``` DB 사용자 설정
+CREATE USER 'jobsmatch'@'%' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON *.* TO 'jobsmatch'@'%';
+CREATE database jobs;
+```
+
 ``` 테이블 생성 
 CREATE TABLE users (
   users_id integer AUTO_INCREMENT PRIMARY KEY,

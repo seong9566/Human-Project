@@ -10,7 +10,7 @@ public interface ResumesDao {
 	public void insert(Resumes resumes);
 	
 	// 이력서 상세 보기	
-	public DetailResumesDto resumesById(Integer resumesId);
+	public DetailResumesDto resumesById(Integer personalId);
 	
 	// 이력서 수정
 	public Resumes findById(Integer resumesId);
