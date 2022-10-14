@@ -19,6 +19,7 @@ import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonalformDto;
 
 @Service
 @RequiredArgsConstructor
@@ -76,4 +77,12 @@ public class PersonalService {
 	public List<Resumes> resumesAll(){
 		return resumesDao.findAll();
 	}
+	
+	//개인 정보에 보기  
+	public PersonalformDto personalformById(Integer personalId) {
+		return personalDao.personalformById(personalId);
+	}
+	
+
+	
 }

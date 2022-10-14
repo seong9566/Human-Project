@@ -14,27 +14,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.service.personal.PersonalService;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonalformDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @RequiredArgsConstructor
 @Controller
 public class PersonalController {
-	
+
 	private final HttpSession session;
 	private final PersonalService personalService;
 
 	// 이력서 작성 하기
 	@GetMapping("/personal/resumesForm")
-	public String resumesForm(Model model) {				
-		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
-		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());			
+	public String resumesForm(Model model) {
+		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());
 		model.addAttribute("personalInfoPS", personalInfoPS);
 		return "personal/resumesForm";
 	}
@@ -44,25 +46,25 @@ public class PersonalController {
 		personalService.insertResumes(insertResumesDto);
 		return new ResponseDto<>(1, "이력서 등록 성공", null);
 	}
-	
+
 	// 내가 작성한 이력서 목록 보기
 	@GetMapping("/personal/myresumesList")
 	public String myresumesList(Model model) {
-		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
+		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 		List<Resumes> resumesList = personalService.myresumesAll(principal.getPersonalId());
 		model.addAttribute("resumesList", resumesList);
 		return "personal/myresumesList";
 	}
-	
+
 	// 이력서 상세 보기
 	@GetMapping("/personal/myresumes")
-	public String resumesById(Model model) {		
-		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
+	public String resumesById(Model model) {
+		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 		DetailResumesDto detailResumesDtoPS = personalService.resumesById(principal.getPersonalId());
 		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
 		return "personal/resumesDetail";
 	}
-	
+
 	// 이력서 수정
 	@GetMapping("/personal/resumes/{resumesId}/update")
 	public String updateForm(@PathVariable Integer resumesId, Model model) {
@@ -70,17 +72,18 @@ public class PersonalController {
 		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
 		return "personal/resumesUpdateForm";
 	}
-	
+
 	@PutMapping("/personal/resumes/{resumesId}/update")
-	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
+	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId,
+			@RequestBody UpdateResumesDto updateResumesDto) {
 //			System.out.println(updateResumesDto.getResumesTitle());
 //			System.out.println(updateResumesDto.getResumesIntroduce());
 //			System.out.println(updateResumesDto.getResumesPicture());
-		personalService.updateResumes(resumesId, updateResumesDto);			
-	
+		personalService.updateResumes(resumesId, updateResumesDto);
+
 		return new ResponseDto<>(1, "이력서수정성공", null);
 	}
-	
+
 	// 전체 이력서 목록 보기
 	@GetMapping("/resumes")
 	public String resumesList(Model model) {
@@ -88,4 +91,21 @@ public class PersonalController {
 		model.addAttribute("resumesList", resumesList);
 		return "company/main";
 	}
+
+	// 내정보 보기
+	@GetMapping("/personal/form")
+	public String form(Model model) {
+		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+		PersonalformDto personalformPS = personalService.personalformById(principal.getPersonalId());
+		model.addAttribute("personalform", personalformPS);;
+		return "personal/info";
+	}
+	
+
+
+	@GetMapping("/personal/update")
+	public String update() {
+		return "personal/update";
+	}
+
 }

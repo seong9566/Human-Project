@@ -3,6 +3,8 @@ package site.metacoding.miniproject.domain.personal;
 import java.util.List;
 
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonalformDto;
+
 
 public interface PersonalDao {
 	public void insert(Personal personal);
@@ -13,5 +15,7 @@ public interface PersonalDao {
 	
 	// 이력서 작성 폼에 개인정보 불러오기
 	public PersonalInfoDto personalInfoById(Integer personalId);
-
+	
+	// 회원가입할때 작성한 개인정보 불러오기
+	public PersonalformDto personalformById(Integer personalId);
 }
