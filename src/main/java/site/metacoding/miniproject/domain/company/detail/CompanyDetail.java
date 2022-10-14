@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import site.metacoding.miniproject.web.dto.request.CompanyInformUpdateDto;
+import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 
 @Getter
@@ -29,7 +29,7 @@ public class CompanyDetail { // 모두 수정후 삭제 해야함.
 		this.companyAddress = companyJoinDto.getCompanyAddress();
 	}
 	
-	public void UpdateCompanyDetail(CompanyInformUpdateDto companyInformUpdateDto) {
+	public void UpdateCompanyDetail(CompanyUpdateDto companyInformUpdateDto) {
 		this.companyEmail = companyInformUpdateDto.getCompanyEmail();
 		this.companyPhoneNumber = companyInformUpdateDto.getCompanyPhoneNumber();
 		this.companyPicture = companyInformUpdateDto.getCompanyPicture();
