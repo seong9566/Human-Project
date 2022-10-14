@@ -4,30 +4,61 @@
 	namespace="site.metacoding.miniproject.domain.resumes.ResumesDao">
 
 	<insert id="insert">
-		INSERT INTO resumes (personal_id, career_id, portfolio_id, resumes_title, resumes_picture,
-		resumes_introduce, resumes_category_id, resumes_place, created_at)
-		VALUES(#{personalId}, #{careerId}, #{portfolioId}, #{resumesTitle}, #{resumesPicture},
+		INSERT INTO resumes (personal_id, career_id,
+		portfolio_id, resumes_title, resumes_picture,
+		resumes_introduce,
+		resumes_category_id, resumes_place, created_at)
+		VALUES(#{personalId},
+		#{careerId}, #{portfolioId}, #{resumesTitle}, #{resumesPicture},
 		#{resumesIntroduce}, #{resumesCategoryId}, #{resumesPlace}, NOW())
-	</insert>	
-	
+	</insert>
+
 	<select id="findMyresumesAll"
 		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
 		SELECT * FROM resumes
 		WHERE personal_id = #{personalId}
 	</select>
-	
+
+	<select id="resumesById"
+		resultType="site.metacoding.miniproject.web.dto.response.DetailResumesDto">
+		SELECT p.personal_name, p.personal_email,
+		p.personal_education, p.personal_phone_number, p.personal_address,
+		r.resumes_id, r.resumes_title, r.resumes_picture, r.resumes_introduce,
+		r.resumes_place, r.resumes_category_id,
+		r.career_id, r.portfolio_id,
+		c.one_year_less, c.two_year_over, c.three_year_over, c.five_year_over,
+		ct.category_frontend, ct.category_backend, ct.category_devops,
+		pf.portfolio_source, pf.portfolio_file
+		FROM resumes r
+		INNER JOIN
+		personal p
+		ON r.personal_id = p.personal_id
+		INNER JOIN career c
+		ON
+		r.career_id = c.career_id
+		INNER JOIN category ct
+		ON
+		r.resumes_category_id = ct.category_id
+		INNER JOIN portfolio pf
+		ON
+		r.portfolio_id = pf.portfolio_id
+		where r.resumes_id = #{resumesId}
+	</select>
+
 	<update id="update">
-		UPDATE resumes 
-		SET resumes_title = #{resumesTitle}, resumes_picture =
-		#{resumesPicture}, resumes_introduce = #{resumesIntroduce}
+		UPDATE resumes
+		SET resumes_title = #{resumesTitle},
+		resumes_picture =#{resumesPicture}, 
+		resumes_introduce = #{resumesIntroduce},
+		resumes_place = #{resumesPlace}
 		WHERE resumes_id = #{resumesId}
 	</update>
-	
+
 	<select id="findAll"
 		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
 		SELECT * FROM resumes
 	</select>
-	
-	
+
+
 
 </mapper>

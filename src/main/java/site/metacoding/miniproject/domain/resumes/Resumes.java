@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,9 +34,11 @@ public class Resumes {
 	}
 	
 	// 이력서 수정
-	public Resumes(String resumesTitle, String resumesPicture, String resumesIntroduce) {
-		this.resumesTitle = resumesTitle;
-		this.resumesPicture = resumesPicture;
-		this.resumesIntroduce = resumesIntroduce;
+	public Resumes (int resumesId,UpdateResumesDto updateResumesDto) {
+		this.resumesId = resumesId;
+		this.resumesTitle = updateResumesDto.getResumesTitle();
+		this.resumesPicture = updateResumesDto.getResumesPicture();
+		this.resumesIntroduce = updateResumesDto.getResumesIntroduce();
+		this.resumesPlace = updateResumesDto.getResumesPlace();
 	}
 }

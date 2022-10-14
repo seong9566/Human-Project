@@ -7,4 +7,10 @@
 	VALUES(#{portfolioSource}, #{portfolioFile}, NOW())
 </insert>
 
+<update id="update">
+	UPDATE portfolio 
+	SET portfolio_source = #{portfolioSource},
+	portfolio_file =#{portfolioFile}
+	WHERE portfolio_id = #{portfolioId}
+</update>
 </mapper>

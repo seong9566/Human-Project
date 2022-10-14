@@ -52,8 +52,7 @@
 			
 		<div class="mb-3">◆포트폴리오</div>	
 		<input id="portfolioFile" type="text" class="form-control"
-			placeholder="포트폴리오 파일 들어가는 자리 - 파일업로드 필요. "/>		
-		
+			placeholder="포트폴리오 파일 들어가는 자리 - 파일업로드 필요. "/>			
 		</div>
 
 		<div class="form">

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 
 @Getter
 @Setter
@@ -25,4 +26,10 @@ public class Category {
 		this.categoryDevops = insertResumesDto.getCategoryDevops();
 	}
 	
+	// 이력서 수정
+	public Category(UpdateResumesDto updateResumesDto) {
+		this.categoryFrontend = updateResumesDto.getCategoryFrontend();
+		this.categoryBackend = updateResumesDto.getCategoryBackend();
+		this.categoryDevops = updateResumesDto.getCategoryDevops();
+	}
 }

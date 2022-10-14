@@ -46,6 +46,8 @@ public class PersonalController {
 		return new ResponseDto<>(1, "이력서 등록 성공", null);
 	}
 	
+	
+	
 	// 내가 작성한 이력서 목록 보기
 	@GetMapping("/personal/myresumesList")
 	public String myresumesList(Model model) {
@@ -56,29 +58,33 @@ public class PersonalController {
 	}
 	
 	// 이력서 상세 보기
-	@GetMapping("/personal/myresumes")
-	public String resumesById(Model model) {		
-		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
-		DetailResumesDto detailResumesDtoPS = personalService.resumesById(principal.getPersonalId());
+	@GetMapping("/personal/resumes/{resumesId}")
+	public String resumesById(@PathVariable Integer resumesId, Model model) {			
+		DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
 		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
 		return "personal/resumesDetail";
 	}
 	
+	
+	//"/personal/resumes/update"+ resumesId
 	// 이력서 수정
-	@GetMapping("/personal/resumes/{resumesId}/update")
+	@GetMapping("/personal/resumes/update/{resumesId}")
 	public String updateForm(@PathVariable Integer resumesId, Model model) {
 		DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
 		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
 		return "personal/resumesUpdateForm";
 	}
 	
-	@PutMapping("/personal/resumes/{resumesId}/update")
+	@PutMapping("/personal/resumes/update/{resumesId}")
 	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
-//			System.out.println(updateResumesDto.getResumesTitle());
-//			System.out.println(updateResumesDto.getResumesIntroduce());
-//			System.out.println(updateResumesDto.getResumesPicture());
+//		System.out.println(updateResumesDto.getResumesTitle());
+//		System.out.println(updateResumesDto.getResumesIntroduce());
+//		System.out.println(updateResumesDto.getResumesPicture());
+//		System.out.println(updateResumesDto.getResumesPlace());
+//		System.out.println(updateResumesDto.getOneYearLess());
+//		System.out.println(updateResumesDto.getCategoryFrontend());
+//		System.out.println(updateResumesDto.getPortfolioSource());		
 		personalService.updateResumes(resumesId, updateResumesDto);			
-	
 		return new ResponseDto<>(1, "이력서수정성공", null);
 	}
 	
