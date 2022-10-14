@@ -30,7 +30,7 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-	@Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
+	//@Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
 	private String uploadUrl;
 	private final UsersService userService;
 	private final HttpSession session;

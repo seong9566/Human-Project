@@ -15,7 +15,7 @@ public class PersonalLike {
 	private Integer companyId;
 	private Integer alarmId;
 	private Timestamp createdAt;
-
+	
 	public PersonalLike(Integer resumesId, Integer companyId) {
 		this.resumesId = resumesId;
 		this.companyId = companyId;
