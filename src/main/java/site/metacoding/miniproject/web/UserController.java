@@ -1,9 +1,15 @@
 package site.metacoding.miniproject.web;
 
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
+import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
@@ -27,7 +34,6 @@ public class UserController {
 
 	private final UsersService userService;
 	private final HttpSession session;
-	private final SessionConfig sessionConfig;
 
 	@GetMapping({ "/main", "/" })
 	public String mainForm() {
@@ -37,10 +43,11 @@ public class UserController {
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "/personal/login";
-	}	
+	}
 
 	@GetMapping("/logout")
 	public String logout() {
+		SessionConfig.logout(session.getId());
 		session.removeAttribute("principal");
 		session.removeAttribute("companyId");
 		session.removeAttribute("personalId");
@@ -77,24 +84,24 @@ public class UserController {
 
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
-		
 		SignedDto<?> signedDto = userService.login(loginDto);
+
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
-		
-		if(sessionConfig.getSessionIdCheck("principal", signedDto.getUsersId()) != null){
-			return new ResponseDto<>(-2, "중복 로그인 발견", null);
+
+		if (SessionConfig.getSessionidCheck(signedDto.getUsersId()) != null) {
+			return new ResponseDto<>(-2, "중복 로그인 확인됨", null);
 		}
 
 		session.setAttribute("principal", signedDto);
+		SessionConfig.login(session.getId(), signedDto.getUsersId());
+
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
 			session.setAttribute("personalId", signedDto.getPersonalId());
 		}
-		
-
-		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
+		return new ResponseDto<>(1, "로그인완료", null);
 	}
 
 	@PostMapping("/join/personal")
@@ -114,15 +121,15 @@ public class UserController {
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
-	
+
 	@GetMapping("/user/alarm/{usersId}")
-	public @ResponseBody ResponseDto<?> userAlarm(@PathVariable Integer usersId){
+	public @ResponseBody ResponseDto<?> userAlarm(@PathVariable Integer usersId) {
 		ResponseDto<?> responseDto = null;
-		List<Alarm>usersAlarm = userService.userAlarm(usersId);
-		if(!usersAlarm.isEmpty())
+		List<Alarm> usersAlarm = userService.userAlarm(usersId);
+		if (!usersAlarm.isEmpty())
 			responseDto = new ResponseDto<>(1, "통신 성공", usersAlarm);
-		
+
 		return responseDto;
 	}
-	
+
 }

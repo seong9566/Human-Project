@@ -14,9 +14,13 @@ import lombok.Setter;
 public class Resumes {
 	private Integer resumesId;
 	private Integer personalId;
+	private Integer careerId;
+	private Integer portfolioId;
 	private String resumesTitle;
 	private String resumesPicture;
 	private String resumesIntroduce;
+	private String resumesCategoryId;
+	private String resumesPlace;
 	private Timestamp createdAt;
 	
 	// 이력서 작성
