@@ -10,6 +10,7 @@
 	SELECT *
 	FROM personal
 	WHERE personal_id = #{personalId}
+
 	</select>
 	
 	<insert id="insert" useGeneratedKeys="true" keyProperty="personalId" keyColumn="personal_id">

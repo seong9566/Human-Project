@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 
 @Getter
@@ -18,4 +19,5 @@ public class Portfolio {
 		this.portfolioSource = insertResumesDto.getPortfolidSource();
 		this.portfolioFile = insertResumesDto.getPortfolioFile();
 	}
+  
 }

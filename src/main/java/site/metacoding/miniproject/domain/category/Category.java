@@ -17,12 +17,12 @@ public class Category {
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	private Timestamp createdAt;
-	
+
 	// 이력서 작성
 	public Category(InsertResumesDto insertResumesDto) {
 		this.categoryFrontend = insertResumesDto.getCategoryFrontend();
 		this.categoryBackend = insertResumesDto.getCategoryBackend();
 		this.categoryDevops = insertResumesDto.getCategoryDevops();
-	}
-	
+	}	
+
 }

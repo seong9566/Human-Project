@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 
 @Getter
@@ -23,4 +24,5 @@ public class Career {
 		  this.threeYearOver = insertResumesDto.getThreeYearOver();
 		  this.fiveYearOver = insertResumesDto.getFiveYearOver();
 	  }
+
 }
