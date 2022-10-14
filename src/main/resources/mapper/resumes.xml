@@ -15,18 +15,6 @@
 		SELECT * FROM resumes
 		WHERE personal_id = #{personalId}
 	</select>
-
-	<select id="resumesById" resultType="site.metacoding.miniproject.web.dto.response.DetailResumesDto">
-		SELECT r.resumes_id, p.personal_name, d.personal_email,
-		d.personal_phone_number, r.resumes_title,
-		r.resumes_picture, r.resumes_introduce
-		FROM resumes r
-		INNER JOIN personal p
-		ON r.personal_id = p.personal_id
-		INNER JOIN personal_detail d
-		ON p.personal_id = d.personal_id
-		where r.personal_id = #{personalId}
-	</select>
 	
 	<update id="update">
 		UPDATE resumes 

@@ -1,5 +1,5 @@
 //package site.metacoding.miniproject.service.company;
-//
+//	
 //import java.util.List;
 //
 //import org.springframework.stereotype.Service;
@@ -8,8 +8,6 @@
 //import lombok.RequiredArgsConstructor;
 //import site.metacoding.miniproject.domain.company.Company;
 //import site.metacoding.miniproject.domain.company.CompanyDao;
-//import site.metacoding.miniproject.domain.company.detail.CompanyDetail;
-//import site.metacoding.miniproject.domain.company.detail.CompanyDetailDao;
 //import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
 //import site.metacoding.miniproject.domain.users.Users;
 //import site.metacoding.miniproject.domain.users.UsersDao;
@@ -25,11 +23,10 @@
 //	private final JobPostingBoardDao jobPostingBoardDao;
 //	private final CompanyDao companyDao;
 //	private final UsersDao userDao;
-//	private final CompanyDetailDao companyDetailDao;
 //
-//	public CompanyAddressDto findByAddress(Integer companyId) {
-//		return companyDetailDao.findByAddress(companyId);
-//	}
+////	public CompanyAddressDto findByAddress(Integer companyId) {
+////		return companyDetailDao.findByAddress(companyId);
+////	}
 //	public CompanyInfoDto findCompanyInfo(Integer companyId) {
 //		return companyDao.companyInfo(companyId);
 //	}
@@ -59,4 +56,4 @@
 //	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
 //		return jobPostingBoardDao.findJobpostingBoard();
 //	}
-//}
+//}	

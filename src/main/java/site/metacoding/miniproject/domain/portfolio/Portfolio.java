@@ -15,7 +15,7 @@ public class Portfolio {
 	private Timestamp createdAt;
 	
 	public Portfolio(InsertResumesDto insertResumesDto) {
-		this.portfolioSource = insertResumesDto.getPortfolidSource();
+		this.portfolioSource = insertResumesDto.getPortfolioSource();
 		this.portfolioFile = insertResumesDto.getPortfolioFile();
 	}
 }

@@ -41,7 +41,8 @@ public class PersonalController {
 
 	@PostMapping("/personal/resumes")
 	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
-		personalService.insertResumes(insertResumesDto);
+		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
+		personalService.insertResumes(principal.getPersonalId(), insertResumesDto);
 		return new ResponseDto<>(1, "이력서 등록 성공", null);
 	}
 	

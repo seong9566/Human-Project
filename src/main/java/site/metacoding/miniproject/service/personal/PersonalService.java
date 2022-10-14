@@ -10,6 +10,7 @@ import site.metacoding.miniproject.domain.career.Career;
 import site.metacoding.miniproject.domain.career.CareerDao;
 import site.metacoding.miniproject.domain.category.Category;
 import site.metacoding.miniproject.domain.category.CategoryDao;
+import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.personal.PersonalDao;
 import site.metacoding.miniproject.domain.portfolio.Portfolio;
 import site.metacoding.miniproject.domain.portfolio.PortfolioDao;
@@ -29,10 +30,10 @@ public class PersonalService {
 	private final CategoryDao categoryDao;
 	private final PortfolioDao portfolioDao;
 	private final CareerDao careerDao;
-
+	
 	// 이력서 작성 하기
 	@Transactional(rollbackFor = RuntimeException.class)
-	public void insertResumes(InsertResumesDto insertResumesDto) {
+	public void insertResumes(Integer personalId, InsertResumesDto insertResumesDto) {
 		
 		Category category = new Category(insertResumesDto);
 		categoryDao.insert(category);
@@ -41,9 +42,13 @@ public class PersonalService {
 		portfolioDao.insert(portfolio);
 		
 		Career career = new Career(insertResumesDto);
-		careerDao.insert(career);
+		careerDao.insert(career);		
 		
+		
+				
 		Resumes resumes = new Resumes(insertResumesDto);
+		resumes.setPersonalId(personalId);
+		System.out.println(personalId);
 		resumes.setCareerId(career.getCareerId());
 		resumes.setPortfolioId(portfolio.getPortfolioId());
 		resumes.setResumesCategoryId(category.getCategoryId());

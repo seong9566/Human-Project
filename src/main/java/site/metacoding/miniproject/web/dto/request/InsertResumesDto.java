@@ -10,16 +10,17 @@ public class InsertResumesDto {
 	private Boolean twoYearOver;
 	private Boolean threeYearOver;
 	private Boolean fiveYearOver;
-	private String portfolidSource;
+	private String portfolioSource;
 	private String portfolioFile;
 	private String resumesTitle;
 	private String resumesPicture;
 	private String resumesIntroduce;
+	private String resumesPlace;
 	private Boolean categoryFrontend;
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
-	private String resumesPlace;
 	
+	private Integer personalId;
 	private Integer CareerId;
 	private Integer PortfolioId;
 	private Integer resumesCategoryId;
