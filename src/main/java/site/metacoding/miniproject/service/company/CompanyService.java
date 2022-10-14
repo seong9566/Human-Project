@@ -8,14 +8,20 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
+import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
+import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.CompanyUserUpdateDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
+import site.metacoding.miniproject.web.dto.request.LoginDto;
+import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
+import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +51,21 @@ public class CompanyService {
 		companyDao.update(companyPS);
 
 	}
+	
+	@Transactional(rollbackFor = RuntimeException.class)
+	public void insertJobPostingBoard(Integer companyId, JobPostingBoardInsertDto insertDto) {
+		JobPostingBoard jobPostingBoard = new JobPostingBoard(insertDto);
+		jobPostingBoardDao.insert(jobPostingBoard);
+		
+		Integer companyId = jobPostingBoard.getCompanyId();
+		Integer jobPostingBoardCategoryId = jobPostingBoard.getJobPostingBoardCategoryId();
+		Integer jobPostingBoardCareerId = jobPostingBoard.getJobPostingBoardCareerId();
+		insertDto.setCompanyId(companyId);
+		insertDto.setJobPostingBoardCategoryId(jobPostingBoardCategoryId);
+		insertDto.setJobPostingBoardCareerId(jobPostingBoardCareerId);
+
+	}
+	
 	//채용공고 리스트 
 	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
 		return jobPostingBoardDao.findJobpostingBoard();
