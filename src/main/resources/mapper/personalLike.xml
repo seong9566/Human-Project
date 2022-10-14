@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.metacoding.miniproject.domain.like.personalike.PersonalLikesDao">
+
+	<insert id="insert">
+		INSERT INTO personal_like(resumes_id,company_id,created_at)
+		VALUES(#{resumesId},#{companyId},NOW())
+	</insert>
+
+	<delete id="deleteById">
+		DELETE FROM personal_like WHERE resumes_id =#{resumesId} and company_id =#{companyId};
+	</delete>
+
+	<select id="findAll" resultType="site.metacoding.miniproject.web.dto.request.PersonalLikeDto">
+		SELECT p.resumes_id, r.resumes_title as resumesTitle
+		FROM personal_like p
+		INNER
+		JOIN resumes r
+		ON p.resumes_id = r.resumes_id
+	</select>
+
+
+</mapper>
