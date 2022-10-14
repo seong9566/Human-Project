@@ -5,16 +5,15 @@
 
 	<select id="findAll"
 		resultType="site.metacoding.miniproject.domain.company.Company">
-		SELECT * FROM users
+		SELECT * FROM company
 	</select>
 
 	<select id="findById"
 		resultType="site.metacoding.miniproject.domain.company.Company">
-		SELECT company_id, company_name
+		SELECT *
 		FROM
 		company
-		WHERE company_id
-		= #{companyId}
+		WHERE company_id = #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"
@@ -28,27 +27,40 @@
 
 	<select id="companyInfo"
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyInfoDto">
-		SELECT u.login_id,
+		SELECT 
+		u.users_id,
+		u.login_id,
 		u.login_password,
 		c.company_name,
 		c.company_id,
-		cd.company_phone_number,
-		cd.company_email,
-		cd.company_picture,
-		cd.company_address
+		c.company_phone_number,
+		c.company_email,
+		c.company_picture,
+		c.company_address
 		FROM company c
-		LEFT OUTER JOIN
-		company_detail cd
-		ON c.company_id = cd.company_id
-		LEFT OUTER JOIN users
-		u
-		ON cd.company_id = u.company_id
-		WHERE u.company_id = #{companyId}
+		LEFT OUTER JOIN users u
+		ON c.company_id = u.company_id
+		WHERE c.company_id =#{companyId}
 	</select>
-
+	<select id="findByAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
+		SELECT company_id,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',1),',',-1) AS
+		zonecode,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',2),',',-1) AS
+		road_jibunAddr,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
+		detail_address
+		FROM company
+		WHERE company_id = #{companyId};
+	</select>
+	
 	<update id="update">
 		UPDATE company
-		SET company_name = #{companyName}
+		SET company_name = #{companyName},
+		company_picture = #{companyPicture},
+		company_email = #{companyEmail},
+		company_phone_number =#{companyPhoneNumber},
+		company_address = #{companyAddress}
 		WHERE company_id = #{companyId}
 	</update>
 

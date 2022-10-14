@@ -30,14 +30,14 @@ public class PersonalController {
 	private final HttpSession session;
 	private final PersonalService personalService;
 
-	// 이력서 작성 하기
-	@GetMapping("/personal/resumesForm")
-	public String resumesForm(Model model) {				
-		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
-		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());			
-		model.addAttribute("personalInfoPS", personalInfoPS);
-		return "personal/resumesForm";
-	}
+//	// 이력서 작성 하기
+//	@GetMapping("/personal/resumesForm")
+//	public String resumesForm(Model model) {				
+//		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
+//		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());			
+//		model.addAttribute("personalInfoPS", personalInfoPS);
+//		return "personal/resumesForm";
+//	}
 
 	@PostMapping("/personal/resumes")
 	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {

@@ -6,16 +6,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CompanyInfoDto {
-
+	private Integer usersId;
+	private Integer companyId;
 	private String loginId;
 	private String loginPassword;
-	private Integer companyId;
 	private String companyName;
 	private String companyPhoneNumber;
 	private String companyEmail;
 	private String companyPicture;
 	private String companyAddress;
-
-	
 }
 
