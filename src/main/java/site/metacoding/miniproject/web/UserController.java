@@ -1,9 +1,9 @@
 package site.metacoding.miniproject.web;
 
-import java.util.Enumeration;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
-import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
@@ -35,6 +34,9 @@ public class UserController {
 
 	@GetMapping("/loginForm")
 	public String loginForm() {
+		if(session.getAttribute("principal") != null) {
+			return "redirect:/main";
+		}
 		return "/personal/login";
 	}
 
@@ -116,13 +118,19 @@ public class UserController {
 	}
 
 	@GetMapping("/user/alarm/{usersId}")
-	public @ResponseBody ResponseDto<?> userAlarm(@PathVariable Integer usersId) {
+	public @ResponseBody ResponseDto<?> refreshUserAlarm(@PathVariable Integer usersId) {
 		ResponseDto<?> responseDto = null;
 		List<Alarm> usersAlarm = userService.userAlarm(usersId);
 		if (!usersAlarm.isEmpty())
 			responseDto = new ResponseDto<>(1, "통신 성공", usersAlarm);
 
 		return responseDto;
+	}
+	
+	@DeleteMapping("/user/alarm/{alarmId}")
+	public @ResponseBody ResponseDto<?> deleteUserAlarm(@PathVariable Integer alarmId){
+		userService.deleteAlarm(alarmId);
+		return new ResponseDto<>(1, "삭제 성공", null);
 	}
 
 }

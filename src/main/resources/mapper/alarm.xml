@@ -12,6 +12,7 @@
 		resultType="site.metacoding.miniproject.domain.alarm.Alarm">
 
 	</select>
+	
 	<select id="findByusersId" resultType="site.metacoding.miniproject.domain.alarm.Alarm">
 		SELECT * FROM alarm WHERE users_id = #{usersId}
 	</select>
@@ -20,6 +21,9 @@
 	<insert id="insert" useGeneratedKeys="true">
 
 	</insert>
+	<delete id="deleteById">
+		DELETE FROM alarm WHERE alarm_id = #{alarmId}
+	</delete>
 
 
 </mapper>
