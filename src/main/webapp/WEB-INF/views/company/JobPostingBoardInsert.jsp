@@ -3,8 +3,9 @@
 <%@ include file="../layout/header.jsp"%>
 
 	<div id="main">
+	<h2>구인 공고 작성 페이지</h2>
 		<br /> <input id="resume_title" type="text" class="form-control"
-			placeholder="공고제목">
+			placeholder="">
 		<div class="tool">
 			<div class="left">
 				<br />
