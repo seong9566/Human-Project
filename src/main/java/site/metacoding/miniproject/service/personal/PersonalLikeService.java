@@ -32,8 +32,9 @@ public class PersonalLikeService {
 		PersonalLike personalLike = new PersonalLike(resumesId, companyId);
 		personalLikesDao.insert(personalLike);
 
-		map.put(AlarmEnum.AlarmType.ALARMAPPLYID, personalLike.getPersonalLikeId());
-		alarmDao.insert(null);
+		// map.put(AlarmEnum.ALARMPERSONALLIKEID.toString(),
+		// personalLike.getPersonalLikeId());
+		// alarmDao.insert(null);
 	}
 
 	@Transactional(rollbackFor = RuntimeException.class)

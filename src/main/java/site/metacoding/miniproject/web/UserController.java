@@ -24,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.service.Users.UsersService;
+import site.metacoding.miniproject.utill.AlarmEnum;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
@@ -97,7 +98,9 @@ public class UserController {
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
 		SignedDto<?> signedDto = userService.login(loginDto);
-
+		for (AlarmEnum num : AlarmEnum.values()) {
+			System.out.println(num.key());
+		}
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 
