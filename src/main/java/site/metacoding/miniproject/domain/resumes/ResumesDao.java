@@ -9,6 +9,9 @@ public interface ResumesDao {
 	// 이력서 작성 하기
 	public void insert(Resumes resumes);
 	
+	// 내가 작성한 이력서 목록 보기
+	public List<Resumes> findMyresumesAll(Integer personalId);	
+	
 	// 이력서 상세 보기	
 	public DetailResumesDto resumesById(Integer personalId);
 	

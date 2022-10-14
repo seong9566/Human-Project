@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
+import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 
 @Getter
 @Setter
@@ -17,5 +17,12 @@ public class Category {
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	private Timestamp createdAt;
+	
+	// 이력서 작성
+	public Category(InsertResumesDto insertResumesDto) {
+		this.categoryFrontend = insertResumesDto.getCategoryFrontend();
+		this.categoryBackend = insertResumesDto.getCategoryBackend();
+		this.categoryDevops = insertResumesDto.getCategoryDevops();
+	}
 	
 }

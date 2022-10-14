@@ -4,12 +4,17 @@
 	namespace="site.metacoding.miniproject.domain.resumes.ResumesDao">
 
 	<insert id="insert">
-		INSERT INTO resumes (personal_id, resumes_title, resumes_picture,
-		resumes_introduce,
-		created_at)
-		VALUES(#{personalId}, #{resumesTitle}, #{resumesPicture},
-		#{resumesIntroduce}, NOW())
+		INSERT INTO resumes (personal_id, career_id, portfolio_id, resumes_title, resumes_picture,
+		resumes_introduce, resumes_category_id, resumes_place, created_at)
+		VALUES(#{personalId}, #{careerId}, #{portfolioId}, #{resumesTitle}, #{resumesPicture},
+		#{resumesIntroduce}, #{resumesCategoryId}, #{resumesPlace}, NOW())
 	</insert>	
+	
+	<select id="findMyresumesAll"
+		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+		SELECT * FROM resumes
+		WHERE personal_id = #{personalId}
+	</select>
 
 	<select id="resumesById" resultType="site.metacoding.miniproject.web.dto.response.DetailResumesDto">
 		SELECT r.resumes_id, p.personal_name, d.personal_email,
@@ -34,5 +39,7 @@
 		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
 		SELECT * FROM resumes
 	</select>
+	
+	
 
 </mapper>

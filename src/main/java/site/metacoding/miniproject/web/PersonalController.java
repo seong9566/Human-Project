@@ -45,6 +45,15 @@ public class PersonalController {
 		return new ResponseDto<>(1, "이력서 등록 성공", null);
 	}
 	
+	// 내가 작성한 이력서 목록 보기
+	@GetMapping("/personal/myresumesList")
+	public String myresumesList(Model model) {
+		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
+		List<Resumes> resumesList = personalService.myresumesAll(principal.getPersonalId());
+		model.addAttribute("resumesList", resumesList);
+		return "personal/myresumesList";
+	}
+	
 	// 이력서 상세 보기
 	@GetMapping("/personal/myresumes")
 	public String resumesById(Model model) {		
@@ -72,7 +81,7 @@ public class PersonalController {
 		return new ResponseDto<>(1, "이력서수정성공", null);
 	}
 	
-	// 이력서 목록 보기
+	// 전체 이력서 목록 보기
 	@GetMapping("/resumes")
 	public String resumesList(Model model) {
 		List<Resumes> resumesList = personalService.resumesAll();

@@ -8,6 +8,8 @@ function insert(){
 			personalId: $("#personalId").val(),
 			resumesTitle: $("#resumesTitle").val(),
 			resumesPicture: $("#resumesPicture").val(),
+			career: $("#career").val(),
+			portfolio: $("#portfolio").val(),
 			resumesIntroduce: $("#resumesIntroduce").val()
 	}
 	
@@ -20,9 +22,10 @@ function insert(){
 		}
 	}).done((res)=>{
 		if(res.code == 1){
+			alert("이력서 등록 성공");
 			location.href="/main";
 		}else{
-			alert("이력서 등록에 실패하였습니다.");
+			alert("이력서 등록 실패");
 		}
 	});
 }
