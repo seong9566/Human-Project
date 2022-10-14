@@ -56,6 +56,10 @@ public class CompanyService {
 		companyPS.UpdateCompany(companyInformUpdateDto);
 		companyDao.update(companyPS);
 	}
+	public void updateUser(Integer usersId, CompanyInformUpdateDto companyInformUpdateDto) {
+		
+	}
+	
 	
 	//채용공고 리스트 
 	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {

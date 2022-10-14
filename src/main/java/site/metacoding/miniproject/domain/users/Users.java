@@ -32,8 +32,7 @@ public class Users {
 		this.companyId = joinDto.getCompanyId();
 	}
 	
-	public void updateCompanyUser(CompanyInformUpdateDto companyInformUpdateDto) {
-		this.loginId = companyInformUpdateDto.getLoginId();
+	public void updateUser(CompanyInformUpdateDto companyInformUpdateDto) {
 		this.loginPassword= companyInformUpdateDto.getLoginPassword();
 	}
 }
