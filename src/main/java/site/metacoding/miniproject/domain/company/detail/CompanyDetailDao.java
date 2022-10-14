@@ -15,5 +15,5 @@ public interface CompanyDetailDao {
 
 	public Integer insert(CompanyDetail companyDetail);
 	
-	public CompanyAddressDto findByAddress(Integer companyId);
+
 }

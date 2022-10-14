@@ -2,6 +2,7 @@ package site.metacoding.miniproject.domain.company;
 
 import java.util.List;
 
+import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 
 public interface CompanyDao {
@@ -12,6 +13,7 @@ public interface CompanyDao {
 	public void deleteById(Integer id);
 	
 	public CompanyInfoDto companyInfo(Integer companyId);
+	public CompanyAddressDto findByAddress(Integer companyId);
 	
 	
 

@@ -30,20 +30,10 @@ public class CompanyController {
 		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
 		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
-//		System.out.println("=========회사 정보 ==========");
-//		System.out.println(principal.getLoginId());
-//		System.out.println(principal.getLoginPassword());
-//		System.out.println(principal.getCompanyId());
-//		System.out.println(companyPS.getCompanyId());
-//		System.out.println(companyPS.getLoginId());
-//		System.out.println(companyPS.getCompanyEmail());
-//		System.out.println(companyPS.getCompanyName());
-//		System.out.println(companyPS.getCompanyPhoneNumber());
-//		System.out.println(companyPS.getCompanyPicture());
-//		System.out.println("=========회사 정보 ==========");
 		return "company/inform";
 	}
 	
+	// 테이블 변경으로 인한 수정 필요함 
 	// 회사 정보 수정폼
 	@GetMapping("/company/inform/update")
 	public String companyUpdateForm(Model model) {

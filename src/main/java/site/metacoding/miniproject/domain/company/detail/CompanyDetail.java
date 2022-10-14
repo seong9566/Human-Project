@@ -11,8 +11,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 @Getter
 @Setter
 @NoArgsConstructor
-
-public class CompanyDetail {
+public class CompanyDetail { // 모두 수정후 삭제 해야함.
 	private Integer companyDetailId;
 	private Integer companyId;
 	private String companyEmail;
@@ -21,6 +20,7 @@ public class CompanyDetail {
 	private String companyAddress;
 	private Timestamp createdAt;
 
+	// 업데이트, 조인 하는 생성자는 개인이 수정 
 	public CompanyDetail(CompanyJoinDto companyJoinDto) {
 		this.companyId = companyJoinDto.getCompanyId();
 		this.companyEmail = companyJoinDto.getCompanyEmail();

@@ -28,11 +28,13 @@ public class CompanyService {
 	private final CompanyDetailDao companyDetailDao;
 
 	public CompanyAddressDto findByAddress(Integer companyId) {
-		return companyDetailDao.findByAddress(companyId);
+		return companyDao.findByAddress(companyId);
 	}
 	public CompanyInfoDto findCompanyInfo(Integer companyId) {
 		return companyDao.companyInfo(companyId);
 	}
+	
+	// 수정===> 수정 필요함 
 	// 회사 정보 수정 화면 데이터 가져오기 
 	public CompanyInfoDto updateFormData(Integer companyId) {
 		CompanyInfoDto companyInfoPS = companyDao.companyInfo(companyId);

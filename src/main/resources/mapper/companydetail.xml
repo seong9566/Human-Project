@@ -35,20 +35,4 @@
 		WHERE company_detail_id =
 		#{companyDetailId}
 	</update>
-	<select
-		id="findByAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
-		SELECT company_detail.company_id,
-		company_detail.company_detail_id,
-		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',1),',',-1) AS
-		zip_code,
-		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',2),',',-1) AS
-		road_name,
-		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
-		detail_address
-		FROM company_detail
-		LEFT OUTER JOIN company
-		ON
-		company_detail.company_id = company.company_id
-		WHERE company.company_id= #{companyId}
-	</select>
 </mapper>
