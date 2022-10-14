@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="site.metacoding.miniproject.domain.resumes.ResumesDao">
+<mapper namespace="site.metacoding.miniproject.domain.resumes.ResumesDao">
 
 	<insert id="insert">
 		INSERT INTO resumes (personal_id, career_id, portfolio_id, resumes_title, resumes_picture,
 		resumes_introduce, resumes_category_id, resumes_place, created_at)
-		VALUES(#{personalId}, #{careerId}, #{portfolioId}, #{resumesTitle}, #{resumesPicture},
+		VALUES(#{personalId}, #{careerId}, #{portfolioId},
+		#{resumesTitle}, #{resumesPicture},
 		#{resumesIntroduce}, #{resumesCategoryId}, #{resumesPlace}, NOW())
-	</insert>	
-	
-	<select id="findMyresumesAll"
-		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+	</insert>
+
+	<select id="findMyresumesAll" resultType="site.metacoding.miniproject.domain.resumes.Resumes">
 		SELECT * FROM resumes
 		WHERE personal_id = #{personalId}
 	</select>
@@ -22,24 +21,28 @@
 		r.resumes_picture, r.resumes_introduce
 		FROM resumes r
 		INNER JOIN personal p
-		ON r.personal_id = p.personal_id
+		ON
+		r.personal_id = p.personal_id
 		INNER JOIN personal_detail d
 		ON p.personal_id = d.personal_id
-		where r.personal_id = #{personalId}
+		where r.personal_id =
+		#{personalId}
 	</select>
-	
+
 	<update id="update">
-		UPDATE resumes 
+		UPDATE resumes
 		SET resumes_title = #{resumesTitle}, resumes_picture =
 		#{resumesPicture}, resumes_introduce = #{resumesIntroduce}
-		WHERE resumes_id = #{resumesId}
+		WHERE
+		resumes_id = #{resumesId}
 	</update>
-	
-	<select id="findAll"
-		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+
+	<select id="findAll" resultType="site.metacoding.miniproject.domain.resumes.Resumes">
 		SELECT * FROM resumes
 	</select>
+
 	
-	
+
+
 
 </mapper>

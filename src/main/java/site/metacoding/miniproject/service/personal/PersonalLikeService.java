@@ -14,6 +14,7 @@ import site.metacoding.miniproject.web.dto.request.PersonalLikeDto;
 @RequiredArgsConstructor
 @Service
 public class PersonalLikeService {
+
 	private final PersonalLikesDao personalLikesDao;
 	private final ResumesDao resumesDao;
 
