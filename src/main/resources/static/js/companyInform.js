@@ -9,17 +9,6 @@ const handleFiles = (e) => {
 	};
 };
 
-fileInput.addEventListener("change", handleFiles);
-
-
-//체크박스 
-$('#etc').click(function() {
-	var checked = $('#etc').is(':checked');
-	if (checked)
-		$('input:checkbox').prop('checked', true);
-});
-
-
 //주소불러오기
 function findAddr() {
 	new daum.Postcode(
@@ -32,44 +21,43 @@ function findAddr() {
 				var roadAddr = data.roadAddress; // 도로명 주소 변수
 				var jibunAddr = data.jibunAddress; // 지번 주소 변수
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('post').value = data.zonecode;
+				document.getElementById('zoneCode').value = data.zonecode;
 				if (roadAddr !== '') {
-					document.getElementById("addr").value = roadAddr;
+					document.getElementById("roadJibunAddr").value = roadAddr;
 				} else if (jibunAddr !== '') {
-					document.getElementById("addr").value = jibunAddr;
+					document.getElementById("roadJibunAddr").value = jibunAddr;
 				}
 			}
 		}).open();
 }
 
+$("#btnUpdate").click(() => {
+	update();	
+});
 
-// 회사 가입 버튼 클릭 시
-function join() {
-
+//업데이트 버튼 클릭시 
+function update() {
 	let data = {
-		loginId: $("#userId").val(),
 		loginPassword: $("#password").val(),
-		companyName: $("#username").val(),
-		companyEmail: $("#email").val(),
+		companyName: $("#companyName").val(),
+		companyEmail: $("#companyEmail").val(),
 		companyPicture : $("#fileUpload").val(),
-		companyPhoneNumber: $("#phonenumber").val(),
-		companyAddress: $("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
+		companyPhoneNumber: $("#companyPhoneNumber").val(),
+		companyAddress: $("#zoneCode").val() + "," + $("#roadJibunAddr").val() + "," + $("#detailAddress").val()
 	};
-
-	console.log(data);
-	$.ajax("/join/company", {
-		type: "POST",
+	$.ajax("/company/inform/update", {
+		type: "PUT",
 		dataType: "json",
 		data: JSON.stringify(data),
 		headers: {
-			"Content-Type": "application/json"
+			"Content-Type": "application/json; charset=utf-8"
 		}
 	}).done((res) => {
-		if(res.code == 1){
-			alert(res.message);
-			location.href ="/main";
+		if (res.code == 1) {
+			alert("회원 수정 완료");
+			location.href="/company/inform";
+		} else {
+			alert("업데이트에 실패하였습니다");
 		}
 	});
 }
-
-

@@ -14,4 +14,5 @@ public class Alarm {
 	private Integer alarmSubscribeId;
 	private Integer alarmCompanyLikeId;
 	private Integer alarmPersonalLikeId;
+	private Boolean alarmCheck;
 }
