@@ -40,8 +40,7 @@ public class CompanyController {
 		return "company/inform";
 	}
 	
-	// 테이블 변경으로 인한 수정 필요함 
-	// 회사 정보 수정폼
+	// 회사 정보
 	@GetMapping("/company/inform/update")
 	public String companyUpdateForm(Model model) {
 		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
@@ -51,7 +50,6 @@ public class CompanyController {
 		model.addAttribute("companyInfo", companyPS);
 		return "company/update";
 	}
-	
 	@PutMapping("/company/inform/update")
 	public @ResponseBody ResponseDto<?> companyUpdate(@RequestBody CompanyUpdateDto companyUpdateDto){
 		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
