@@ -39,6 +39,8 @@ public class CompanyController {
 	public String companyUpdateForm(Model model) {
 		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
 		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
+		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
+		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
 		return "company/update";
 	}

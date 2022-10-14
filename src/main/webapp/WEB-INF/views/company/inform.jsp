@@ -39,9 +39,7 @@
 </form>
 <div class="mb-5"></div>
 <div class="d-grid gap-1 col-2 mx-auto">
-	<button id=btnUpdate type="button" class="btn btn-primary">
-		<a href=/company/inform/update>정보수정</a>
-	</button>
+	<button id=btnUpdateForm type="button" class="btn btn-primary">수정하러 가기 </button>
 </div>
 
 </div>

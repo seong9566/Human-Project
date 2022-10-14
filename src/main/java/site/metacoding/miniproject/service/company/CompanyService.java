@@ -25,7 +25,6 @@ public class CompanyService {
 	private final JobPostingBoardDao jobPostingBoardDao;
 	private final CompanyDao companyDao;
 	private final UsersDao userDao;
-	private final CompanyDetailDao companyDetailDao;
 
 	public CompanyAddressDto findByAddress(Integer companyId) {
 		return companyDao.findByAddress(companyId);
@@ -33,8 +32,6 @@ public class CompanyService {
 	public CompanyInfoDto findCompanyInfo(Integer companyId) {
 		return companyDao.companyInfo(companyId);
 	}
-	
-	// 수정===> 수정 필요함 
 	// 회사 정보 수정 화면 데이터 가져오기 
 	public CompanyInfoDto updateFormData(Integer companyId) {
 		CompanyInfoDto companyInfoPS = companyDao.companyInfo(companyId);
@@ -42,24 +39,20 @@ public class CompanyService {
 	}
 	
 	// 회사정보변경 (user, companyDetail, company)
-	@Transactional
-	public void updateCompanyInform(Integer userId,Integer companyDetailId, Integer companyId, CompanyInformUpdateDto companyInformUpdateDto) {
-		Users companyUserPS = userDao.findById(userId);
-		companyUserPS.updateCompanyUser(companyInformUpdateDto);
-		userDao.update(companyUserPS);
-		
-		CompanyDetail companyDetailPS = companyDetailDao.findById(companyDetailId);
-		companyDetailPS.UpdateCompanyDetail(companyInformUpdateDto);
-		companyDetailDao.update(companyDetailPS);
-		
-		Company companyPS = companyDao.findById(companyId);
-		companyPS.UpdateCompany(companyInformUpdateDto);
-		companyDao.update(companyPS);
-	}
-	public void updateUser(Integer usersId, CompanyInformUpdateDto companyInformUpdateDto) {
-		
-	}
-	
+//	@Transactional
+//	public void updateCompanyInform(Integer userId,Integer companyDetailId, Integer companyId, CompanyInformUpdateDto companyInformUpdateDto) {
+//		Users companyUserPS = userDao.findById(userId);
+//		companyUserPS.updateCompanyUser(companyInformUpdateDto);
+//		userDao.update(companyUserPS);
+//		
+//		CompanyDetail companyDetailPS = companyDetailDao.findById(companyDetailId);
+//		companyDetailPS.UpdateCompanyDetail(companyInformUpdateDto);
+//		companyDetailDao.update(companyDetailPS);
+//		
+//		Company companyPS = companyDao.findById(companyId);
+//		companyPS.UpdateCompany(companyInformUpdateDto);
+//		companyDao.update(companyPS);
+//	}
 	
 	//채용공고 리스트 
 	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
