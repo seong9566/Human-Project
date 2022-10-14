@@ -8,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
-import site.metacoding.miniproject.domain.company.detail.CompanyDetail;
-import site.metacoding.miniproject.domain.company.detail.CompanyDetailDao;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
@@ -25,10 +23,10 @@ public class CompanyService {
 	private final JobPostingBoardDao jobPostingBoardDao;
 	private final CompanyDao companyDao;
 	private final UsersDao userDao;
-	private final CompanyDetailDao companyDetailDao;
 
 	public CompanyAddressDto findByAddress(Integer companyId) {
-		return companyDetailDao.findByAddress(companyId);
+//		return companyDetailDao.findByAddress(companyId);
+		return null;
 	}
 	public CompanyInfoDto findCompanyInfo(Integer companyId) {
 		return companyDao.companyInfo(companyId);
@@ -46,9 +44,9 @@ public class CompanyService {
 		companyUserPS.updateCompanyUser(companyInformUpdateDto);
 		userDao.update(companyUserPS);
 		
-		CompanyDetail companyDetailPS = companyDetailDao.findById(companyDetailId);
-		companyDetailPS.UpdateCompanyDetail(companyInformUpdateDto);
-		companyDetailDao.update(companyDetailPS);
+//		CompanyDetail companyDetailPS = companyDetailDao.findById(companyDetailId);
+//		companyDetailPS.UpdateCompanyDetail(companyInformUpdateDto);
+//		companyDetailDao.update(companyDetailPS);
 		
 		Company companyPS = companyDao.findById(companyId);
 		companyPS.UpdateCompany(companyInformUpdateDto);

@@ -1,15 +1,7 @@
 package site.metacoding.miniproject.web;
 
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
-import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
