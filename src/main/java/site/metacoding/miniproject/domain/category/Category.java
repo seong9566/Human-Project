@@ -18,9 +18,4 @@ public class Category {
 	private Boolean categoryDevops;
 	private Timestamp createdAt;
 	
-	public Category(PersonalJoinDto personalJoinDto) {
-		this.categoryFrontend = personalJoinDto.getCategoryFrontend();
-		this.categoryBackend = personalJoinDto.getCategoryBackend();
-		this.categoryDevops = personalJoinDto.getCategoryDevops();
-	}	
 }

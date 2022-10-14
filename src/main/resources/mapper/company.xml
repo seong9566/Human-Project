@@ -13,13 +13,17 @@
 		SELECT company_id, company_name
 		FROM
 		company
-		WHERE company_id = #{companyId}
+		WHERE company_id
+		= #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"
 		keyProperty="companyId" keyColumn="company_id">
-		INSERT INTO company(company_name, created_at)
-		VALUES(#{companyName}, NOW())
+		INSERT INTO company(company_name,
+		company_picture, company_email, company_phone_number, company_address,
+		created_at)
+		VALUES(#{companyName}, #{companyPicture}, #{companyEmail},
+		#{companyPhoneNumber}, #{companyAddress}, NOW())
 	</insert>
 
 	<select id="companyInfo"
@@ -33,15 +37,17 @@
 		cd.company_picture,
 		cd.company_address
 		FROM company c
-		LEFT OUTER JOIN company_detail cd
+		LEFT OUTER JOIN
+		company_detail cd
 		ON c.company_id = cd.company_id
-		LEFT OUTER JOIN users u
+		LEFT OUTER JOIN users
+		u
 		ON cd.company_id = u.company_id
 		WHERE u.company_id = #{companyId}
 	</select>
 
 	<update id="update">
-		UPDATE company 
+		UPDATE company
 		SET company_name = #{companyName}
 		WHERE company_id = #{companyId}
 	</update>
