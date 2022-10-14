@@ -13,13 +13,17 @@
 		SELECT company_id, company_name
 		FROM
 		company
-		WHERE company_id = #{companyId}
+		WHERE company_id
+		= #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"
 		keyProperty="companyId" keyColumn="company_id">
-		INSERT INTO company(company_name, created_at)
-		VALUES(#{companyName}, NOW())
+		INSERT INTO company(company_name,
+		company_picture, company_email, company_phone_number, company_address,
+		created_at)
+		VALUES(#{companyName}, #{companyPicture}, #{companyEmail},
+		#{companyPhoneNumber}, #{companyAddress}, NOW())
 	</insert>
 
 	<select id="companyInfo"
@@ -48,8 +52,8 @@
 		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
 		detail_address
 		FROM company;
-	
 	</select>
+	
 	<update id="update">
 		UPDATE company
 		SET company_name = #{companyName},

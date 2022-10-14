@@ -25,6 +25,10 @@ public class Company implements Serializable {
 
 	public Company(CompanyJoinDto joinDto) {
 		this.companyName = joinDto.getCompanyName();
+		this.companyEmail = joinDto.getCompanyEmail();
+		this.companyPicture = joinDto.getCompanyPicture();
+		this.companyAddress = joinDto.getCompanyAddress();
+		this.companyPhoneNumber = joinDto.getCompanyPhoneNumber();
 	}
 	
 	public void updateCompany(CompanyUpdateDto companyInformUpdateDto) {

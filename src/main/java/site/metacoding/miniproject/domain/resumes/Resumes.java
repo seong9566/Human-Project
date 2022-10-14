@@ -20,6 +20,7 @@ public class Resumes {
 	private String resumesPicture;
 	private String resumesIntroduce;
 	private String resumesCategoryId;
+	private String resumesPlace;
 	private Timestamp createdAt;
 	
 	// 이력서 작성

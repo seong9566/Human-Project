@@ -18,7 +18,6 @@ import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 public class PersonalService {
 	
 	private final ResumesDao resumesDao;
-	private final PersonalDetailDao personalDetailDao;
 
 	// 개인 정보 보기
 	
@@ -27,10 +26,6 @@ public class PersonalService {
 	public void insertResumes(InsertResumesDto insertResumesDto) {
 		Resumes resumes = insertResumesDto.toEntity();
 		resumesDao.insert(resumes);
-	}
-	
-	public PersonalInfoDto personalInfoById(Integer personalId) {
-		return personalDetailDao.personalInfoById(personalId);
 	}
 	
 	// 이력서 상세 보기

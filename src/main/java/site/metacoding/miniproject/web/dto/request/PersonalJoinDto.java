@@ -11,9 +11,9 @@ public class PersonalJoinDto {
 	private String personalName;
 	private String personalEmail;
 	private String personalPhoneNumber;
-    private Boolean categoryFrontend;
-    private Boolean categoryBackend;
-    private Boolean categoryDevops;
+	private String personalEducation;
+	private String personalAddress;
+	
 
 	// Users계정 생성용
 	private Integer personalId;
