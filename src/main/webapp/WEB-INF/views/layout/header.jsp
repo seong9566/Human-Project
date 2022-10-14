@@ -58,7 +58,7 @@
                      <li class="nav-item"><a class="nav-link" href="/loginForm">로그인/회원가입</a></li>
                   </c:when>
                   <c:when test="${principal.companyId != null}">
-                     <li class="nav-item"><a class="nav-link" href="#">관심 이력서 보기</a></li>
+                     <li class="nav-item"><a class="nav-link" href="/recommend">관심 이력서 보기</a></li>
                      <li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
                      <li class="nav-item"><a class="nav-link" href="/company/inform">기업정보</a></li>
                      <li class="nav-item"><a class="nav-link" href="/logout" onclick="disconnect()">로그아웃</a></li>

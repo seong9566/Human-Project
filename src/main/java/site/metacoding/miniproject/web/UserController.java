@@ -33,12 +33,11 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-	@Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
+	// @Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
 	private String uploadUrl;
 	private final UsersService userService;
 	private final HttpSession session;
-	
-	
+
 	@GetMapping({ "/main", "/" })
 	public String mainForm() {
 		return "/company/main";
@@ -46,7 +45,7 @@ public class UserController {
 
 	@GetMapping("/loginForm")
 	public String loginForm() {
-		if(session.getAttribute("principal") != null) {
+		if (session.getAttribute("principal") != null) {
 			return "redirect:/main";
 		}
 		return "/personal/login";
@@ -70,7 +69,7 @@ public class UserController {
 	public String PersonalJoinForm() {
 		return "personal/join";
 	}
-	
+
 	@GetMapping("/company/companyinform")
 	public String companyInform() {
 		return "personal/companyinform";
@@ -96,6 +95,7 @@ public class UserController {
 
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
+
 		SignedDto<?> signedDto = userService.login(loginDto);
 
 		if (signedDto == null)
@@ -107,7 +107,6 @@ public class UserController {
 
 		session.setAttribute("principal", signedDto);
 		SessionConfig.login(session.getId(), signedDto.getUsersId());
-
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
@@ -122,10 +121,8 @@ public class UserController {
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
-		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+		return new ResponseDto<>(1, "계정생성완료", null);
 	}
-
-
 
 	@PostMapping("/join/company")
 	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
@@ -133,22 +130,22 @@ public class UserController {
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
-	
-//		//파일업로드
-//		String fileName = file.getOriginalFilename();
-//		String filePath = uploadUrl + fileName;
-//		// 파일 경로 담은 객체 생성 
-//		File dest = new File(filePath);
-//		try {
-//			Files.copy(file.getInputStream(), dest.toPath());
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("=========경로 ==============");
-//		System.out.println(dest);
-//		System.out.println("=======================");
-		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+
+		// //파일업로드
+		// String fileName = file.getOriginalFilename();
+		// String filePath = uploadUrl + fileName;
+		// // 파일 경로 담은 객체 생성
+		// File dest = new File(filePath);
+		// try {
+		// Files.copy(file.getInputStream(), dest.toPath());
+		// }
+		// catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// System.out.println("=========경로 ==============");
+		// System.out.println(dest);
+		// System.out.println("=======================");
+		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 
 	@GetMapping("/user/alarm/{usersId}")
@@ -160,9 +157,9 @@ public class UserController {
 
 		return responseDto;
 	}
-	
+
 	@DeleteMapping("/user/alarm/{alarmId}")
-	public @ResponseBody ResponseDto<?> deleteUserAlarm(@PathVariable Integer alarmId){
+	public @ResponseBody ResponseDto<?> deleteUserAlarm(@PathVariable Integer alarmId) {
 		userService.deleteAlarm(alarmId);
 		return new ResponseDto<>(1, "삭제 성공", null);
 	}
