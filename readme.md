@@ -30,6 +30,7 @@ CREATE TABLE personal (
   personal_email varchar(50),
   personal_education varchar(10),
   personal_phone_number varchar(20),
+  personal_address varchar(50),
   created_at timestamp
 );
 
