@@ -29,4 +29,12 @@ public class Personal implements Serializable {
 		this.personalPhoneNumber = joinDto.getPersonalPhoneNumber();
 		this.personalAddress = joinDto.getPersonalAddress();
 	}
+	
+	
+	// 개인정보 수정
+	public Personal(String personalName,String personalEmail,String personalPhoneNumber) {
+		this.personalName = personalName;
+		this.personalEmail = personalEmail;
+		this.personalPhoneNumber = personalPhoneNumber;	
+	}
 }

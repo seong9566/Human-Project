@@ -27,10 +27,21 @@
 	</select>
 
 	<select id="personalformById" resultType="site.metacoding.miniproject.web.dto.response.PersonalformDto">
-		SELECT personal_name, personal_email, personal_phone_number
-		from personal
+		SELECT *
+		from
+		personal
 		WHERE personal_id = #{personalId}
 	</select>
+
+
+	<update id="update">
+		UPDATE personal
+		SET personal_name = #{personalName},
+		personal_email = #{personalEmail},
+		personal_phone_number = #{personalPhoneNumber},
+		WHERE personal_id = #{personalId}
+	</update>
+
 
 
 </mapper>

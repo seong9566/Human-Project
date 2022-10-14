@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.service.personal.PersonalService;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
@@ -41,6 +40,7 @@ public class PersonalController {
 		return "personal/resumesForm";
 	}
 
+	
 	@PostMapping("/personal/resumes")
 	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
 		personalService.insertResumes(insertResumesDto);
@@ -65,6 +65,7 @@ public class PersonalController {
 		return "personal/resumesDetail";
 	}
 
+	
 	// 이력서 수정
 	@GetMapping("/personal/resumes/{resumesId}/update")
 	public String updateForm(@PathVariable Integer resumesId, Model model) {
@@ -93,19 +94,26 @@ public class PersonalController {
 	}
 
 	// 내정보 보기
-	@GetMapping("/personal/form")
-	public String form(Model model) {
+	@GetMapping("/personal/{personalId}/form")
+	public String form(@PathVariable Integer personalId, Model model) {
 		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 		PersonalformDto personalformPS = personalService.personalformById(principal.getPersonalId());
 		model.addAttribute("personalform", personalformPS);;
 		return "personal/info";
 	}
 	
+	
 
-
-	@GetMapping("/personal/update")
-	public String update() {
+	
+	
+	// 내정보 수정
+	@GetMapping("/personal/{personalId}/update")
+	public String update(@PathVariable Integer personalId,Model model) {
+		PersonalformDto personalformPS = personalService.personalformById(personalId);
+		model.addAttribute("personalform", personalformPS);
 		return "personal/update";
 	}
 
+	
+	
 }

@@ -10,15 +10,18 @@ import site.metacoding.miniproject.domain.career.Career;
 import site.metacoding.miniproject.domain.career.CareerDao;
 import site.metacoding.miniproject.domain.category.Category;
 import site.metacoding.miniproject.domain.category.CategoryDao;
+import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.personal.PersonalDao;
 import site.metacoding.miniproject.domain.portfolio.Portfolio;
 import site.metacoding.miniproject.domain.portfolio.PortfolioDao;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.UpdatePersonalDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonalUpdateFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonalformDto;
 
 @Service
@@ -78,11 +81,24 @@ public class PersonalService {
 		return resumesDao.findAll();
 	}
 	
-	//개인 정보에 보기  
+	//개인 정보 보기  
 	public PersonalformDto personalformById(Integer personalId) {
-		return personalDao.personalformById(personalId);
+		return personalDao.personalformById(personalId);		
 	}
 	
+	
+	
+	// 개인 정보 수정
+	public void updatePersonal(Integer personalId, UpdatePersonalDto updatePersonalDto) {
+		Personal personalPS = updatePersonalDto.toEnity();
+		personalPS.setPersonalId(personalId);
+		personalDao.update(personalPS);
+	}
+	
+	// 개인 정보 수정 보기
+	public PersonalUpdateFormDto updateFormById(Integer personalId) {
+		return personalDao.personalUpdateById(personalId);
+	}
 
 	
 }
