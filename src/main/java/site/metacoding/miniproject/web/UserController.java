@@ -70,6 +70,11 @@ public class UserController {
 	public String PersonalJoinForm() {
 		return "personal/join";
 	}
+	
+	@GetMapping("/company/companyinform")
+	public String companyInform() {
+		return "personal/companyinform";
+	}
 
 	@GetMapping("/checkId/{loginId}")
 	public @ResponseBody ResponseDto<?> userIdSameCheck(@PathVariable String loginId) {
