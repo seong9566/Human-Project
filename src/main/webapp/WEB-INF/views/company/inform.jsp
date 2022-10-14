@@ -12,7 +12,7 @@
 		
 		<div class="mb-3 mt-3">
 			◆회사명
-			<input id="companyName" type="text" value="${companyInfo.companyName}" readonly>
+			<input id="companyName" type="text" value="${companyInfo.companyName}" readonly >
 		</div>
 		
 		<div class="mb-3 mt-3">
@@ -29,20 +29,20 @@
 			◆회사 사진 
 			<input id="companyPicture" type="text" value="${companyInfo. companyPicture}" readonly>
 		</div>
-		
+
 		<div class="mb-3">◆주소</div>
 		<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
 		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 645px;" readonly>
 		<input type="detailAddress" value="${address.detailAddress }" style="width: 645px;" readonly>
 		<div class="mb-3"></div>
+		</form>
 </div>
-</form>
+
 <div class="mb-5"></div>
 <div class="d-grid gap-1 col-2 mx-auto">
 	<button id=btnUpdateForm type="button" class="btn btn-primary">수정하러 가기 </button>
 </div>
 
-</div>
 <script>
 //수정 폼 이동 
 $("#btnUpdateForm").click(()=>{

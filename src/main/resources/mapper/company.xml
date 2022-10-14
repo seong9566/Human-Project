@@ -5,16 +5,15 @@
 
 	<select id="findAll"
 		resultType="site.metacoding.miniproject.domain.company.Company">
-		SELECT * FROM users
+		SELECT * FROM company
 	</select>
 
 	<select id="findById"
 		resultType="site.metacoding.miniproject.domain.company.Company">
-		SELECT company_id, company_name
+		SELECT *
 		FROM
 		company
-		WHERE company_id
-		= #{companyId}
+		WHERE company_id = #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"
@@ -58,10 +57,10 @@
 	<update id="update">
 		UPDATE company
 		SET company_name = #{companyName},
-		company_picture = #{companyPircure},
+		company_picture = #{companyPicture},
 		company_email = #{companyEmail},
 		company_phone_number =#{companyPhoneNumber},
-		company_address = #{companyAddress},
+		company_address = #{companyAddress}
 		WHERE company_id = #{companyId}
 	</update>
 

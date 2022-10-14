@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -117,26 +117,26 @@ public class UserController {
 
 
 	@PostMapping("/join/company")
-	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto,@RequestPart MultipartFile file) {
+	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
 		userService.joinCompany(joinDto);
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
 	
-		//파일업로드
-		String fileName = file.getOriginalFilename();
-		String filePath = uploadUrl + fileName;
-		// 파일 경로 담은 객체 생성 
-		File dest = new File(filePath);
-		try {
-			Files.copy(file.getInputStream(), dest.toPath());
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println("=========경로 ==============");
-		System.out.println(dest);
-		System.out.println("=======================");
+//		//파일업로드
+//		String fileName = file.getOriginalFilename();
+//		String filePath = uploadUrl + fileName;
+//		// 파일 경로 담은 객체 생성 
+//		File dest = new File(filePath);
+//		try {
+//			Files.copy(file.getInputStream(), dest.toPath());
+//		}
+//		catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("=========경로 ==============");
+//		System.out.println(dest);
+//		System.out.println("=======================");
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
 

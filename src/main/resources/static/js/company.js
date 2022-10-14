@@ -1,5 +1,4 @@
 //사진업로드
-let fileLoad = ""; // 파일 경로 
 const fileInput = document.getElementById("fileUpload");
 const handleFiles = (e) => {
 	const selectedFile = [...fileInput.files];
@@ -7,7 +6,6 @@ const handleFiles = (e) => {
 	fileReader.readAsDataURL(selectedFile[0]);
 	fileReader.onload = function() {
 		document.getElementById("previewImg").src = fileReader.result;
-		fileLoad = document.getElementById("fileUpload").value;
 	};
 };
 
@@ -47,23 +45,22 @@ function findAddr() {
 
 // 회사 가입 버튼 클릭 시
 function join() {
-	
-	companyPicture: fileLoad;
+
 	let data = {
 		loginId: $("#userId").val(),
 		loginPassword: $("#password").val(),
 		companyName: $("#username").val(),
 		companyEmail: $("#email").val(),
+		companyPicture : $("#fileUpload").val(),
 		companyPhoneNumber: $("#phonenumber").val(),
 		companyAddress: $("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
 	};
-	console.log(data);
 
+	console.log(data);
 	$.ajax("/join/company", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data),
-		enctype: 'multipart/form-data',
 		headers: {
 			"Content-Type": "application/json"
 		}
@@ -73,8 +70,6 @@ function join() {
 			location.href ="/main";
 		}
 	});
-	
-	
 }
 
 

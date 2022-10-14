@@ -10,9 +10,10 @@ public class CompanyUserUpdateDto {
 	//Users 업데이트
 	private String loginPassword;
 	
-	public Users toEntity() {
-		Users users = new Users();
-		users.setLoginPassword(loginPassword);
-		return users;
-	}
+	private String companyName;
+	private String companyPicture;
+	private String companyEmail;
+	private String companyPhoneNumber;
+	private String companyAddress;
+	
 }

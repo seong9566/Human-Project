@@ -13,14 +13,6 @@ public class CompanyUpdateDto {
 	private String companyEmail;
 	private String companyPhoneNumber;
 	private String companyAddress;
-
-	public Company toEntity() {
-		Company company = new Company();
-		company.setCompanyName(companyName);
-		company.setCompanyPicture(companyPicture);
-		company.setCompanyEmail(companyEmail);
-		company.setCompanyPhoneNumber(companyPhoneNumber);
-		company.setCompanyAddress(companyAddress);
-		return company;
-	}
+	//Users 업데이트
+	private String loginPassword;
 }

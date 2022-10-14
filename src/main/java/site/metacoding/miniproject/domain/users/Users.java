@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
+import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 
 @Getter
@@ -29,6 +30,10 @@ public class Users {
 		this.loginId = joinDto.getLoginId();
 		this.loginPassword = joinDto.getLoginPassword();
 		this.companyId = joinDto.getCompanyId();
+	}
+	
+	public void update(CompanyUpdateDto companyUpdateDto) {
+		this.loginPassword=companyUpdateDto.getLoginPassword();
 	}
 	
 }
