@@ -2,7 +2,7 @@
 
 <%@ include file="../layout/header.jsp"%>
 <div class="container">
-	<form>
+	<form >
 		<h2></h2>
 		<div class="mb-3 mt-3">
 			◆아이디 <input id="userId" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
@@ -25,18 +25,20 @@
 		<div class="mb-3">
 			◆이메일<input id="email" type="email" class="form-control" placeholder="이메일을 입력해주세요">
 		</div>
+		
 		<div class="mb-3">◆사진</div>
 		<div class="mb-3"></div>
-		<img id="previewImg" style="height: 250px;" /><br /> <input type="file" id="fileUpload"
-			accept='image/*' style="margin-left: 0;" />
-
+		<img id="previewImg" style="height: 250px;" /><br />
+		 <input type="file" id="fileUpload" accept='/*' style="margin-left: 0;"/>
+		
+		
 		<div class="mb-3">◆주소</div>
 		<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
 		<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-		<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly><input
-			id="detail_address" type="text"  placeholder="상세주소" style="width: 620px;">
+		<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
+		<input id="detail_address" type="text"  placeholder="상세주소" style="width: 620px;">
 
-	</form>
+	</form >
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
 		<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check();" disabled="disabled">작성완료</button>
