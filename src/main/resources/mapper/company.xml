@@ -51,8 +51,12 @@
 	
 	</select>
 	<update id="update">
-		UPDATE company 
-		SET company_name = #{companyName}
+		UPDATE company
+		SET company_name = #{companyName},
+		company_picture = #{companyPircure},
+		company_email = #{companyEmail},
+		company_phone_number =#{companyPhoneNumber},
+		company_address = #{companyAddress},
 		WHERE company_id = #{companyId}
 	</update>
 

@@ -45,7 +45,12 @@
 </div>
 
 </div>
-
+<script>
+//수정 폼 이동 
+$("#btnUpdateForm").click(()=>{
+   location.href="/company/inform/update";
+});
+</script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
