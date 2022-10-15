@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="site.metacoding.miniproject.domain.users.UsersDao">
+<mapper namespace="site.metacoding.miniproject.domain.users.UsersDao">
 
-	<select id="findAll"
-		resultType="site.metacoding.miniproject.domain.users.Users">
+	<select id="findAll" resultType="site.metacoding.miniproject.domain.users.Users">
 		SELECT * FROM users
 	</select>
-	<select id="findById"
-		resultType="site.metacoding.miniproject.domain.users.Users">
+
+	<select id="findById" resultType="site.metacoding.miniproject.domain.users.Users">
 		SELECT * FROM users WHERE users_id = #{usersId}
+	</select>
+
+	<select id="findByResumesId" resultType="site.metacoding.miniproject.domain.users.Users">
+		SELECT u.users_id
+		FROM users u
+		WHERE u.personal_id = (SELECT r.personal_id 
+		FROM resumes r 
+		WHERE r.resumes_id = #{resumesId});
 	</select>
 
 	<select id="findByLoginId" resultType="Integer">
@@ -17,8 +23,7 @@
 		WHERE login_id = #{loginId}
 	</select>
 
-	<select id="findByIdAndPassword"
-		resultType="site.metacoding.miniproject.domain.users.Users">
+	<select id="findByIdAndPassword" resultType="site.metacoding.miniproject.domain.users.Users">
 		SELECT users_id, login_id, login_password, personal_id, company_id
 		FROM users
 		WHERE login_id = #{loginId} AND login_password=#{loginPassword}

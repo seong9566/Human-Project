@@ -10,31 +10,42 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.domain.alarm.AlarmDao;
+import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLikesDao;
+import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;
+import site.metacoding.miniproject.domain.users.Users;
+import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.utill.AlarmEnum;
 import site.metacoding.miniproject.web.dto.request.InsertRecommendDto;
 import site.metacoding.miniproject.web.dto.request.PersonalLikeDto;
+import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @RequiredArgsConstructor
 @Service
 public class PersonalLikeService {
+	private final UsersDao usersDao;
 	private final PersonalLikesDao personalLikesDao;
 	private final ResumesDao resumesDao;
 	private final AlarmDao alarmDao;
 
 	@Transactional(rollbackFor = RuntimeException.class)
-	public void 좋아요(Integer resumesId, Integer companyId) {
+	public void 좋아요(Integer resumesId, SignedDto<?> signedDto) {
 
-		HashMap<String, Integer> map = new HashMap<>();
+		HashMap<String, Integer> personallike = new HashMap<>();
+		Company companyinfo = (Company) signedDto.getUserinfo();
 
-		PersonalLike personalLike = new PersonalLike(resumesId, companyId);
+		PersonalLike personalLike = new PersonalLike(resumesId, signedDto.getCompanyId());
 		personalLikesDao.insert(personalLike);
 
-		// map.put(AlarmEnum.ALARMPERSONALLIKEID.toString(),
-		// personalLike.getPersonalLikeId());
-		// alarmDao.insert(null);
+		personallike.put(AlarmEnum.ALARMPERSONALLIKEID.key(), personalLike.getPersonalLikeId());
+
+		Users users = usersDao.findByResumesId(resumesId);
+		Alarm alarm = new Alarm(users.getUsersId(), personallike, companyinfo.getCompanyName());
+
+		alarmDao.insert(alarm);
+
 	}
 
 	@Transactional(rollbackFor = RuntimeException.class)

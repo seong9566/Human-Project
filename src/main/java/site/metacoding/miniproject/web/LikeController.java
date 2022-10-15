@@ -31,9 +31,9 @@ public class LikeController {
 	public @ResponseBody ResponseDto<?> insertLike(@PathVariable Integer resumesId) {
 		// Company company = (Company) session.getAttribute("principal");
 
-		SignedDto<?> signedDto = (SignedDto) session.getAttribute("principal");
+		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
 
-		personalLikeService.좋아요(resumesId, signedDto.getCompanyId());
+		personalLikeService.좋아요(resumesId, signedDto);
 		return new ResponseDto<>(1, "좋아요성공", null);
 
 	}
@@ -47,14 +47,14 @@ public class LikeController {
 	@DeleteMapping("/personalLike/{resumesId}/likes")
 	public @ResponseBody ResponseDto<?> deleteLike(@PathVariable Integer resumesId) {
 
-		SignedDto<?> signedDto = (SignedDto) session.getAttribute("principal");
+		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
 		personalLikeService.좋아요취소(resumesId, signedDto.getCompanyId());
 		return new ResponseDto<>(1, "좋아요취소", null);
 	}
 
 	@GetMapping("/resume/{resumesId}")
 	public String resume(@PathVariable Integer resumesId, Model model) {
-		SignedDto<?> signedDto = (SignedDto) session.getAttribute("principal");
+		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
 		PersonalLike personalLike = personalLikeService.좋아요확인(resumesId, signedDto.getCompanyId());
 		model.addAttribute("personalLike", personalLike);
 		return "/company/resume";
@@ -66,6 +66,5 @@ public class LikeController {
 		model.addAttribute("personalLikeList", personalLikeDto);
 		return "/company/recommend";
 	}
-
 
 }
