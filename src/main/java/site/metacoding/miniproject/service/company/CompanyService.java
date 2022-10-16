@@ -74,9 +74,6 @@ public class CompanyService {
 		jobPostingBoard.setJobPostingBoardCategoryId(category.getCategoryId());
 		jobPostingBoard.setJobPostingBoardCareerId(career.getCareerId());
 		jobPostingBoardDao.insert(jobPostingBoard);
-		System.out.println("==========Service=============");
-		System.out.println(jobPostingBoard.getJobPostingBoardSalary());
-		System.out.println("=============Service==========");
 	}
 	
 	//채용공고 리스트 

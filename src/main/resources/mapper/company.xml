@@ -54,6 +54,7 @@
 		WHERE company_id = #{companyId}
 	</select>
 	
+	
 	<update id="update">
 		UPDATE company
 		SET company_name = #{companyName},

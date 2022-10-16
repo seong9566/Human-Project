@@ -26,28 +26,23 @@
 			◆이메일<input id="email" type="email" class="form-control" placeholder="이메일을 입력해주세요">
 		</div>
 
-		<div class="mb-3">
-			◆사진
-			<div class="form-group">
-				<input type="file" id="fileUpload" accept="image/*" onchange="setThumbnail(event)">
-				<div id="imageContainer"></div>
-			</div>
+		<div class="mb-3">◆사진</div>
+		<div class="mb-3"></div>
+		<img id="previewImg" style="height: 250px;" /><br />
+		 <input type="file" id="fileUpload" accept='image/*' style="margin-left: 0;"/>
+
 	</form>
-	<div class="mb-3">◆주소</div>
-	<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
-	<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-	<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly> <input
-		id="detail_address" type="text" placeholder="상세주소" style="width: 620px;">
+		<div class="mb-3">◆주소</div>
+		<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
+		<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
+		<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
+		<input id="detail_address" type="text"  placeholder="상세주소" style="width: 620px;">
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
-		<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check();"
-			disabled="disabled">작성완료</button>
+		<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check();" disabled="disabled">작성완료</button>
 	</div>
 
 </div>
-<script>
-	
-</script>
 <script src="/js/company.js"></script>
 <script src="/js/join.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

@@ -77,9 +77,6 @@ public class CompanyController {
 	public @ResponseBody ResponseDto<?> insertJobPostingBoard(@RequestBody JobPostingBoardInsertDto insertDto){
 		SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 		companyService.insertJobPostingBoard(principal.getCompanyId(), insertDto);
-		System.out.println("==========Controller==========");
-		System.out.println(insertDto.getJobPostingBoardSalary());
-		System.out.println("==========Controller==========");
 		return new ResponseDto<>(1,"등록 성공",null);
 		
 	}
