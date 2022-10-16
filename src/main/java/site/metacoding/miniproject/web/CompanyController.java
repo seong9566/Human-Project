@@ -37,7 +37,7 @@ public class CompanyController {
 	//회사 정보 보기 
 	@GetMapping("/company/inform")
 	public String inform(Model model) {
-		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
 		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
 		model.addAttribute("address", addressPS);
@@ -45,28 +45,27 @@ public class CompanyController {
 		return "company/inform";
 	}
 	
-	// 회사 정보 업데이트 폼 
+	// 회사 정보 업데이트
 	@GetMapping("/company/inform/update")
 	public String companyUpdateForm(Model model) {
-		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
 		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
 		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
 		return "company/update";
 	}
-	//회사 정보 업데이트 
 	@PutMapping("/company/inform/update")
 	public @ResponseBody ResponseDto<?> companyUpdate(@RequestBody CompanyUpdateDto companyUpdateDto){
-		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 		companyService.updateCompany(principal.getUsersId(),principal.getCompanyId(), companyUpdateDto);
 		return new ResponseDto<>(1,"수정 성공",null);
 	}
 	
-	// 채용 공고 작성폼으로 이동
+	// 채용 공고 작성
 	@GetMapping("/company/insertForm")
 		public String insertjobPostingBoard(Model model) {
-		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 		CompanyInfoDto companyPS =  companyService.findCompanyInfo(principal.getCompanyId());
 		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
 		model.addAttribute("address", addressPS);
@@ -74,10 +73,13 @@ public class CompanyController {
 		model.addAttribute("principal", principal);
 			return "company/jobPostingBoardInsert";
 		}
-	
 	@PostMapping("/company/jobPostingBoard/insert")
 	public @ResponseBody ResponseDto<?> insertJobPostingBoard(@RequestBody JobPostingBoardInsertDto insertDto){
-		companyService.insertJobPostingBoard(insertDto);
+		SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
+		companyService.insertJobPostingBoard(principal.getCompanyId(), insertDto);
+		System.out.println("==========Controller==========");
+		System.out.println(insertDto.getJobPostingBoardSalary());
+		System.out.println("==========Controller==========");
 		return new ResponseDto<>(1,"등록 성공",null);
 		
 	}
@@ -96,9 +98,5 @@ public class CompanyController {
 		return "company/companyJobPostingBoardList";
 		}
 		
-		@GetMapping("/company/{companyId}/inform/update")
-		public String informUpdate(@PathVariable Integer companyId) {
-			return "company/update";
-		}
-	
+
 }

@@ -11,7 +11,7 @@ import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 @Setter
 public class JobPostingBoardInsertDto {
 	private Integer companyId;
-	private Integer jobPostingSalary;
+	private Integer jobPostingBoardSalary;
 	private String jobPostingBoardTitle;
 	private String jobPostingBoardContent;
 	private String jobPostingBoardPlace;

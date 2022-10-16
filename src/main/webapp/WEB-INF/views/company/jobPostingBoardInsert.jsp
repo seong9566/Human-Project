@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<input id="companyId" type="text" value="${principal.companyId}" hidden>
-<div id="main">
+
+<div>
+	<input id="companyId" type="hidden" value="${principal.companyId}">
 	<h2>구인 공고 작성 페이지</h2>
 	<br /> <input id="jobPostingBoardTitle" type="text" class="form-control"
 		placeholder="채용공고 제목을 작성해 주세요 ">
@@ -14,7 +15,7 @@
 
 				<img id="previewImg" />
 			</div>
-			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br /> <input
+			<input type="file" id="fileUpload" accept='image/*' /> <br /> <br /> <input
 				id="companyPicture" type="text" class="form-control" placeholder="회사 사진 " />
 
 			<div class="left_input">
@@ -28,40 +29,45 @@
 				<div id="adress">부산 북구 화명3동 코오롱 하늘채 110동 504호</div>
 			</div>
 		</div>
-			<h2>모집조건 및 안내사항 작성</h2>
+		<h2>모집조건 및 안내사항 작성</h2>
+
 		<div class="left_input">
-			<div class="mb-3">◆최소 경력 사항</div>
-
-			<div>
-				<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label><input
-					type="checkbox" value="twoYearOver">twoYearOver</label><br /> <label><input
-					type="checkbox" value="threeYearOver">threeYearOver</label><br /> <label><input
-					type="checkbox" value="fiveYearOver">fiveYearOver</label>
+			<div class="mb-3">
+				◆최소 경력 사항
+				<div>
+					<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label><input
+						type="checkbox" value="twoYearOver">twoYearOver</label><br /> <label><input
+						type="checkbox" value="threeYearOver">threeYearOver</label><br /> <label><input
+						type="checkbox" value="fiveYearOver">fiveYearOver</label><br />
+				</div>
 			</div>
 
-			<div class="mb-3">◆관심분야</div>
-			<div>
-				<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> <label><input
-					type="checkbox" value="categoryBackend">backend</label><br /> <label><input
-					type="checkbox" value="categoryDevops">devops</label><br /> <label><input id="etc"
-					type="checkbox" value="etc">etc</label>
+			<div class="mb-3">
+				◆관심분야
+				<div>
+					<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> <label><input
+						type="checkbox" value="categoryBackend">backend</label><br /> <label><input
+						type="checkbox" value="categoryDevops">devops</label><br />
+				</div>
 			</div>
 
-			<br /> <input id="jobPostingSalary" type="text" class="form-control" placeholder="연봉을 작성해 주세요">
-			<br /> <br /> <input id="jobPostingBoardPlace" type="text" class="form-control"
-				placeholder="근무지를 작성해 주세요"> <br /> <br /> <input id="jobPostingBoardDeadline"
-				type="text" class="form-control" placeholder="채용공고 마감일을 작성해 주세요"> <br /> <br /> <input
-				id="jobPostingBoardContent" type="text" class="form-control" placeholder="채용공고 내용을 작성해주세요">
-			<br />
-		</div>
+			<div class="mb-3">
+				<br /> <input id="jobPostingBoardSalary" type="text" class="form-control" placeholder="연봉을 작성해 주세요">
+				 <br /> <input id="jobPostingBoardPlace" type="text"
+					class="form-control" placeholder="근무지를 작성해 주세요"> <br /> <input
+					id="jobPostingBoardDeadline" type="text" class="form-control" placeholder="채용공고 마감일을 작성해 주세요">
+				<br /> <input id="jobPostingBoardContent" type="text" class="form-control"
+					placeholder="채용공고 내용을 작성해주세요"> <br />
+			</div>
 
-		<div class="btn-update">
-			<button id="btnSave" type="button" class="btn btn-primary">작성완료</button>
-		</div>
+			<div class="btn-update">
+				<button id="btnSave" type="button" class="btn btn-primary">작성완료</button>
+			</div>
 
+		</div>
 	</div>
 </div>
-<script>
+	<script>
 // 채용공고 작성
 $("#btnSave").click(()=>{
 	insert();
@@ -69,27 +75,40 @@ $("#btnSave").click(()=>{
 
 
 function insert(){	
+	let salay = $("#jobPostingBoardSalary").val();
 	let data = {
-
-		companyId : $("companyId").val(),
-		personalId: $("#userinfoId").val(),
-		jobPostingBoardTitle : $("jobPostingBoardTitle").val(),
-		
-		resumesTitle: $("#resumesTitle").val(),
-		resumesPicture: $("#resumesPicture").val(),
-		resumesPlace: $("#resumesPlace").val(),
+		jobPostingBoardTitle : $("#jobPostingBoardTitle").val(),
+		companyId : $("#companyId").val(),
 		oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
 		twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
 		threeYearOver: $("input:checkbox[value='threeYearOver']").is(":checked"),
 		fiveYearOver: $("input:checkbox[value='fiveYearOver']").is(":checked"),
-		portfolioSource: $("#portfolioSource").val(),
-		portfolioFile: $("#portfolioFile").val(),
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
-		resumesIntroduce: $("#resumesIntroduce").val()
+		jobPostingBoardSalary: $("#jobPostingBoardSalary").val(),
+		jobPostingBoardPlace:$("#jobPostingBoardPlace").val(),
+		jobPostingBoardDeadline: $("#jobPostingBoardDeadline").val(),
+		jobPostingBoardContent: $("#jobPostingBoardContent").val()
 	};
+	console.log(salay);
+	
+	$.ajax("/company/jobPostingBoard/insert",{
+		type: "POST",
+		dataType: "json", 
+		data: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json; charset=utf-8"
+		}
+	}).done((res)=>{
+		if(res.code == 1){
+			alert("채용공고 등록 성공");
+			location.href="/main";
+		}else{
+			alert("채용공고 등록 실패");
+		}
+	});
 }
 </script>
-</body>
-</html>
+	</body>
+	</html>

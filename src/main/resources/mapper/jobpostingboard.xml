@@ -42,7 +42,7 @@
 		#{jobPostingBoardCategoryId},
 		#{jobPostingBoardCareerId},
 		#{jobPostingBoardTitle},
-		#{jobPostingSalary},
+		#{jobPostingBoardSalary},
 		#{jobPostingBoardPlace},
 		#{jobPostingBoardContent},
 		#{jobPostingBoardDeadline},

@@ -4,8 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.career.Career;
+import site.metacoding.miniproject.domain.career.CareerDao;
+import site.metacoding.miniproject.domain.category.Category;
+import site.metacoding.miniproject.domain.category.CategoryDao;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
@@ -28,8 +33,12 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 public class CompanyService {
 	
 	private final JobPostingBoardDao jobPostingBoardDao;
+	private final CategoryDao categoryDao;
+	private final CareerDao careerDao;
+	
 	private final CompanyDao companyDao;
 	private final UsersDao userDao;
+
 
 	public CompanyAddressDto findByAddress(Integer companyId) {
 		return companyDao.findByAddress(companyId);
@@ -39,7 +48,7 @@ public class CompanyService {
 	}
 
 	
-	// 회사정보변경 (user, companyDetail, company)
+	// 회사정보변경 (user, company)
 	@Transactional(rollbackFor = Exception.class)
 	public void updateCompany(Integer userId,Integer companyId, CompanyUpdateDto companyUpdateDto) {
 		Users companyUserPS = userDao.findById(userId);
@@ -51,19 +60,23 @@ public class CompanyService {
 		companyDao.update(companyPS);
 
 	}
-	
-	@Transactional(rollbackFor = RuntimeException.class)
+	//채용공고 작성 (category,career,jobPostingboard)
+	@Transactional(rollbackFor = Exception.class)
 	public void insertJobPostingBoard(Integer companyId, JobPostingBoardInsertDto insertDto) {
-		JobPostingBoard jobPostingBoard = new JobPostingBoard(insertDto);
-		jobPostingBoardDao.insert(jobPostingBoard);
+		Category category = new Category(insertDto);
+		categoryDao.insert(category);
 		
-		Integer companyId = jobPostingBoard.getCompanyId();
-		Integer jobPostingBoardCategoryId = jobPostingBoard.getJobPostingBoardCategoryId();
-		Integer jobPostingBoardCareerId = jobPostingBoard.getJobPostingBoardCareerId();
-		insertDto.setCompanyId(companyId);
-		insertDto.setJobPostingBoardCategoryId(jobPostingBoardCategoryId);
-		insertDto.setJobPostingBoardCareerId(jobPostingBoardCareerId);
-
+		Career career = new Career(insertDto);
+		careerDao.insert(career);
+		
+		JobPostingBoard jobPostingBoard = new JobPostingBoard(insertDto);
+		jobPostingBoard.setCompanyId(companyId);
+		jobPostingBoard.setJobPostingBoardCategoryId(category.getCategoryId());
+		jobPostingBoard.setJobPostingBoardCareerId(career.getCareerId());
+		jobPostingBoardDao.insert(jobPostingBoard);
+		System.out.println("==========Service=============");
+		System.out.println(jobPostingBoard.getJobPostingBoardSalary());
+		System.out.println("=============Service==========");
 	}
 	
 	//채용공고 리스트 

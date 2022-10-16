@@ -4,16 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -116,27 +117,32 @@ public class UserController {
 
 
 
-	@PostMapping("/join/company")
-	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
+	@PostMapping(value = "/join/company",consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.MULTIPART_FORM_DATA_VALUE})
+	public @ResponseBody ResponseDto<?> joinCompany(@RequestPart CompanyJoinDto joinDto,@RequestPart("file") MultipartFile file) throws Exception {
+		// 파일 업로
+		int pos = file.getOriginalFilename().lastIndexOf(".");
+		String extension = file.getOriginalFilename().substring(pos+1);
+		String filePath = "/Users/ihyeonseong/Desktop/img";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
+		
+		File fileFolder = new File(filePath);
+	    if (!fileFolder.exists()) {
+	      if (!fileFolder.mkdir()) {
+	        throw new Exception("File.mkdir():Fail.");
+	      }
+	    }
+	    File dest = new File(filePath, imgName);
+	    try {
+	      Files.copy(file.getInputStream(), dest.toPath());
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	    joinDto.setCompanyPicture(imgName);
 		userService.joinCompany(joinDto);
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
-	
-//		//파일업로드
-//		String fileName = file.getOriginalFilename();
-//		String filePath = uploadUrl + fileName;
-//		// 파일 경로 담은 객체 생성 
-//		File dest = new File(filePath);
-//		try {
-//			Files.copy(file.getInputStream(), dest.toPath());
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("=========경로 ==============");
-//		System.out.println(dest);
-//		System.out.println("=======================");
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
 

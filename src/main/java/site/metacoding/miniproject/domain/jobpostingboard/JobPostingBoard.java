@@ -15,7 +15,7 @@ public class JobPostingBoard {
 	private Integer jobPostingBoardId;
 	private Integer companyId;
 	private Integer jobPostingBoardCategoryId;
-	private Integer jobPostingSalary;
+	private Integer jobPostingBoardSalary;
 	private Integer jobPostingBoardCareerId;
 	private String jobPostingBoardTitle;
 	private String jobPostingBoardContent;
@@ -24,7 +24,7 @@ public class JobPostingBoard {
 	private Timestamp createdAt;
 
 	public JobPostingBoard(JobPostingBoardInsertDto jobPostingBoardInsertDto) {
-		this.jobPostingSalary = jobPostingBoardInsertDto.getJobPostingSalary();
+		this.jobPostingBoardSalary = jobPostingBoardInsertDto.getJobPostingBoardSalary();
 		this.jobPostingBoardTitle = jobPostingBoardInsertDto.getJobPostingBoardTitle();
 		this.jobPostingBoardContent = jobPostingBoardInsertDto.getJobPostingBoardContent();
 		this.jobPostingBoardPlace = jobPostingBoardInsertDto.getJobPostingBoardPlace();
