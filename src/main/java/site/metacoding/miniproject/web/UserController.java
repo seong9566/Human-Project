@@ -98,9 +98,6 @@ public class UserController {
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
 		SignedDto<?> signedDto = userService.login(loginDto);
-		for (AlarmEnum num : AlarmEnum.values()) {
-			System.out.println(num.key());
-		}
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 

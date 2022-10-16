@@ -9,6 +9,11 @@
 	<delete id="deleteById">
 		DELETE FROM personal_like WHERE resumes_id =#{resumesId} and company_id =#{companyId};
 	</delete>
+
+	<update id="update">
+		UPDATE personal_like SET resumes_id= #{resumesId}, company_id = #{companyId}, alarm_id = #{alarmId} WHERE personal_like_id = #{personalLikeId}	
+	</update>
+
 	<select id="findAll" resultType="site.metacoding.miniproject.web.dto.request.PersonalLikeDto">
 		SELECT p.resumes_id, r.resumes_title as resumesTitle
 		FROM personal_like p

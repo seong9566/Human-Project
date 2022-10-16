@@ -25,26 +25,24 @@ import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
 @Service
 @RequiredArgsConstructor
 public class CompanyService {
-	
+
 	private final JobPostingBoardDao jobPostingBoardDao;
 	private final CategoryDao categoryDao;
 	private final CareerDao careerDao;
-	
 	private final CompanyDao companyDao;
 	private final UsersDao userDao;
-
 
 	public CompanyAddressDto findByAddress(Integer companyId) {
 		return companyDao.findByAddress(companyId);
 	}
+
 	public CompanyInfoDto findCompanyInfo(Integer companyId) {
 		return companyDao.companyInfo(companyId);
 	}
 
-	
 	// 회사정보변경 (user, company)
 	@Transactional(rollbackFor = Exception.class)
-	public void updateCompany(Integer userId,Integer companyId, CompanyUpdateDto companyUpdateDto) {
+	public void updateCompany(Integer userId, Integer companyId, CompanyUpdateDto companyUpdateDto) {
 		Users companyUserPS = userDao.findById(userId);
 		companyUserPS.update(companyUpdateDto);
 		userDao.update(companyUserPS);
@@ -53,23 +51,24 @@ public class CompanyService {
 		companyDao.update(companyPS);
 
 	}
-	//채용공고 작성 (category,career,jobPostingboard)
+
+	// 채용공고 작성 (category,career,jobPostingboard)
 	@Transactional(rollbackFor = Exception.class)
 	public void insertJobPostingBoard(Integer companyId, JobPostingBoardInsertDto insertDto) {
 		Category category = new Category(insertDto);
 		categoryDao.insert(category);
-		
+
 		Career career = new Career(insertDto);
 		careerDao.insert(career);
-		
+
 		JobPostingBoard jobPostingBoard = new JobPostingBoard(insertDto);
 		jobPostingBoard.setCompanyId(companyId);
 		jobPostingBoard.setJobPostingBoardCategoryId(category.getCategoryId());
 		jobPostingBoard.setJobPostingBoardCareerId(career.getCareerId());
 		jobPostingBoardDao.insert(jobPostingBoard);
 	}
-	
-	//채용공고 리스트 
+
+	// 채용공고 리스트
 	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
 		return jobPostingBoardDao.findJobpostingBoard();
 	}
