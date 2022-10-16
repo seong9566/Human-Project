@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,6 +87,13 @@ public class PersonalController {
 //		System.out.println(updateResumesDto.getPortfolioSource());		
 		personalService.updateResumes(resumesId, updateResumesDto);			
 		return new ResponseDto<>(1, "이력서수정성공", null);
+	}
+	
+	// 이력서 삭제 하기
+	@DeleteMapping("/personal/resumes/delete/{resumesId}")
+	public ResponseDto<?> deleteResumes(@PathVariable Integer resumesId){
+		personalService.deleteResumes(resumesId);
+		return new ResponseDto<>(1, "이력서 삭제 성공", null);
 	}
 	
 	// 전체 이력서 목록 보기

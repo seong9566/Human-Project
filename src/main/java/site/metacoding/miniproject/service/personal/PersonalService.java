@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.career.Career;
@@ -66,13 +67,6 @@ public class PersonalService {
 		return resumesDao.resumesById(resumesId);
 	}
 	
-//	// 이력서 수정 하기
-//	public void updatesResumes(Integer resumesId, UpdateResumesDto updateResumesDto) {
-//		Resumes resumesPS = updateResumesDto.toEntity();
-//		resumesPS.setResumesId(resumesId);
-//		resumesDao.update(resumesPS);
-//	}
-	
 	// 이력서 수정 하기
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void updateResumes(Integer resumesId, UpdateResumesDto updateResumesDto) {
@@ -86,9 +80,13 @@ public class PersonalService {
 		Career career = new Career(updateResumesDto);
 		careerDao.update(career);
 		
-		// resumesId값 넣어줘야함 .
 		Resumes resumes = new Resumes(resumesId, updateResumesDto);
 		resumesDao.update(resumes);	
+	}
+	
+	// 이력서 삭제
+	public void deleteResumes(@PathVariable Integer resumesId) {
+		resumesDao.deleteById(resumesId);
 	}
 	
 	// 전체 이력서 목록 보기

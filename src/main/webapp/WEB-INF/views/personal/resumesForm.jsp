@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<input id="userinfoId" type="text" value="${principal.userinfo.personalId}">
+<input id="userinfoId" type="hidden" value="${principal.userinfo.personalId}">
 
 	<div id="main">
 		<br /> <input id="resumesTitle" type="text" class="form-control"
@@ -13,8 +13,15 @@
 				<h3>개인정보</h3>
 				<div class="left_input">
 					<br />
-					<div id="usersName">이름 : </div>
-					<br />					
+					<div id="usersName">${personalInfoPS.personalName}</div>
+					<br />
+					<div id="phoneNumber">${personalInfoPS.personalPhoneNumber}</div>
+					<br />
+					<div id="email">${personalInfoPS.personalEmail}</div>
+					<br />
+					<div id="address">${personalInfoPS.personalAddress}</div>
+					<br />
+					<div id="education">${personalInfoPS.personalEducation}</div>
 				</div>
 			</div>			
 			
@@ -44,7 +51,7 @@
 			
 		<div class="mb-3">◆희망근무지역</div>
 		<input id="resumesPlace" type="text" class="form-control"
-			placeholder="희망근무지역받기"/>	
+			placeholder="희망근무지역을 작성해주세요(ex. 서울, 경기, 부산 등)"/>	
 						
 		<div class="mb-3">◆Github 주소 or Blog 주소</div>
 			<input id="portfolioSource" type="text" class="form-control"

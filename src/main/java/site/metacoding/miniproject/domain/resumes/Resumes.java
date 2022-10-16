@@ -34,7 +34,7 @@ public class Resumes {
 	}
 	
 	// 이력서 수정
-	public Resumes (int resumesId,UpdateResumesDto updateResumesDto) {
+	public Resumes (int resumesId, UpdateResumesDto updateResumesDto) {
 		this.resumesId = resumesId;
 		this.resumesTitle = updateResumesDto.getResumesTitle();
 		this.resumesPicture = updateResumesDto.getResumesPicture();

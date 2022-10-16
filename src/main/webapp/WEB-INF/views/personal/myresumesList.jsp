@@ -4,6 +4,8 @@
 
 <div class="container">
 
+<input id="resumesDeleteId" type="hidden" value="${resumes.resumesId}">
+
 	<h2>나의 이력서 리스트</h2>
 
 	<c:forEach var="resumes" items="${resumesList}">
@@ -11,10 +13,12 @@
 			<a href="/personal/resumes/${resumes.resumesId}">
 				<div class="lineheight">${resumes.resumesTitle}</div>
 			</a>
-			<button type="button" class="btn btn-primary">삭제하기</button>
+			<button id="btnDelete" type="button" class="btn btn-primary">삭제하기</button>
 		</div>
 	</c:forEach>
 
 </div>
+
+<script src="/js/resumes.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>

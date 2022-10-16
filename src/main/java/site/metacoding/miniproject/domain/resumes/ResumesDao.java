@@ -19,8 +19,9 @@ public interface ResumesDao {
 	public Resumes findById(Integer resumesId);
 	public void update(Resumes resumes);
 	
+	// 이력서 삭제
+	public void deleteById(Integer resumesId);	
 	
-	public List<Resumes> findAll();	
-	
-	public void deleteById(Integer resumesId);
+	// 이력서 전체 목록 보기
+	public List<Resumes> findAll();		
 }

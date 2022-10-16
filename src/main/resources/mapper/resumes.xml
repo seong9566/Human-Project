@@ -53,8 +53,12 @@
 		resumes_place = #{resumesPlace}
 		WHERE resumes_id = #{resumesId}
 	</update>
-
-	<select id="findAll"
+	
+	<delete id="deleteById">
+		DELETE FROM resumes WHERE resumes_id=#{resumesId}
+	</delete>
+	
+		<select id="findAll"
 		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
 		SELECT * FROM resumes
 	</select>
