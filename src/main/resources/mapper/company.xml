@@ -51,8 +51,9 @@
 		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
 		detail_address
 		FROM company
-		WHERE company_id = #{companyId};
+		WHERE company_id = #{companyId}
 	</select>
+	
 	
 	<update id="update">
 		UPDATE company
