@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 
 @Getter
 @Setter
@@ -14,4 +15,11 @@ public class Career {
 	  private Boolean threeYearOver;
 	  private Boolean fiveYearOver;
 	  private Timestamp createdAt;
+	  
+	  public Career(JobPostingBoardInsertDto joinDto) {
+		  this.oneYearLess = joinDto.getOneYearLess();
+		  this.twoYearOver = joinDto.getTwoYearOver();
+		  this.threeYearOver = joinDto.getThreeYearOver();
+		  this.fiveYearOver = joinDto.getFiveYearOver();
+	  }
 }

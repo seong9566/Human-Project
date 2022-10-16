@@ -6,12 +6,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.career.Career;
+import site.metacoding.miniproject.domain.career.CareerDao;
+import site.metacoding.miniproject.domain.category.Category;
+import site.metacoding.miniproject.domain.category.CategoryDao;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
+import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
@@ -21,8 +27,12 @@ import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
 public class CompanyService {
 	
 	private final JobPostingBoardDao jobPostingBoardDao;
+	private final CategoryDao categoryDao;
+	private final CareerDao careerDao;
+	
 	private final CompanyDao companyDao;
 	private final UsersDao userDao;
+
 
 	public CompanyAddressDto findByAddress(Integer companyId) {
 		return companyDao.findByAddress(companyId);
@@ -32,7 +42,7 @@ public class CompanyService {
 	}
 
 	
-	// 회사정보변경 (user, companyDetail, company)
+	// 회사정보변경 (user, company)
 	@Transactional(rollbackFor = Exception.class)
 	public void updateCompany(Integer userId,Integer companyId, CompanyUpdateDto companyUpdateDto) {
 		Users companyUserPS = userDao.findById(userId);
@@ -43,6 +53,22 @@ public class CompanyService {
 		companyDao.update(companyPS);
 
 	}
+	//채용공고 작성 (category,career,jobPostingboard)
+	@Transactional(rollbackFor = Exception.class)
+	public void insertJobPostingBoard(Integer companyId, JobPostingBoardInsertDto insertDto) {
+		Category category = new Category(insertDto);
+		categoryDao.insert(category);
+		
+		Career career = new Career(insertDto);
+		careerDao.insert(career);
+		
+		JobPostingBoard jobPostingBoard = new JobPostingBoard(insertDto);
+		jobPostingBoard.setCompanyId(companyId);
+		jobPostingBoard.setJobPostingBoardCategoryId(category.getCategoryId());
+		jobPostingBoard.setJobPostingBoardCareerId(career.getCareerId());
+		jobPostingBoardDao.insert(jobPostingBoard);
+	}
+	
 	//채용공고 리스트 
 	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
 		return jobPostingBoardDao.findJobpostingBoard();
