@@ -30,4 +30,6 @@ public class Personal implements Serializable {
 		this.personalPhoneNumber = joinDto.getPersonalPhoneNumber();
 		this.personalAddress = joinDto.getPersonalAddress();
 	}
+	
+	
 }

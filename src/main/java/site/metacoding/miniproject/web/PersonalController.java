@@ -20,6 +20,7 @@ import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -83,12 +84,13 @@ public class PersonalController {
 	}
 
 	// 내정보 보기
-	@GetMapping("/personal/form")
+	@GetMapping("/personal/info")
 	public String form(Model model) {
 		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 		PersonalFormDto personalformPS = personalService.personalformById(principal.getPersonalId());
+		PersonalAddressDto personalAddressPS = personalService.personalAddress(principal.getPersonalId());
+		model.addAttribute("personalAddress", personalAddressPS);
 		model.addAttribute("personalform", personalformPS);
-		
 		return "personal/info";
 	}
 
@@ -96,6 +98,8 @@ public class PersonalController {
 	public String update(Model model) {
 		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 		PersonalUpdateDto personalUpdateFormPS = personalService.personalUpdateById(principal.getPersonalId());
+		PersonalAddressDto personalAddressPS = personalService.personalAddress(principal.getPersonalId());
+		model.addAttribute("personalAddress", personalAddressPS);
 		model.addAttribute("personalUpdateForm", personalUpdateFormPS);
 		return "personal/update";
 	}

@@ -12,6 +12,7 @@ import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 
 @Service
@@ -54,5 +55,11 @@ public class PersonalService {
 	public PersonalUpdateDto personalUpdateById(Integer personalId) {
 		return personalDao.personalUpdateById(personalId);
 	}
+	
+	
+	public PersonalAddressDto personalAddress(Integer personalId) {
+		return personalDao.personalAddressById(personalId);
+	}
+	
 
 }

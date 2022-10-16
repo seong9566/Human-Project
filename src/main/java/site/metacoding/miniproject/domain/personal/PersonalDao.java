@@ -3,6 +3,7 @@ package site.metacoding.miniproject.domain.personal;
 import java.util.List;
 
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
+import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 
 public interface PersonalDao {
@@ -23,4 +24,9 @@ public interface PersonalDao {
 	// 회원가입수정때 보여줄 개인정보
 	public PersonalUpdateDto personalUpdateById(Integer personalId);
 	
+	// 회원가입 수정
+	public void updateById(PersonalUpdateDto personalUpdateDto);
+	
+	// 주소 
+	public PersonalAddressDto personalAddressById(Integer personalId);
 }

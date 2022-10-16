@@ -1,7 +1,5 @@
 package site.metacoding.miniproject.web.dto.request;
 
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +15,6 @@ public class PersonalUpdateDto {
 	
 	private String loginId;
 	private String loginPassword;
+	
+	
 }

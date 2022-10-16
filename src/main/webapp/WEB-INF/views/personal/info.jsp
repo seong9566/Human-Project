@@ -33,7 +33,7 @@
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox"  disabled value="고등졸업">고등졸업</label>
+				<label><input type="checkbox" disabled value="고등졸업">고등졸업</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
@@ -49,27 +49,35 @@
 		</c:choose>
 		​
 		<c:choose>
-			<c:when test="${personalform.personalEducation eq '대학졸업'}">
-				<label><input type="checkbox" checked disabled value="대학졸업">대학졸업</label>
+			<c:when test="${personalform.personalEducation eq '2년제졸업'}">
+				<label><input type="checkbox" checked disabled value="2년제졸업">2년제졸업</label>
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox" disabled value="대학졸업">대학졸업</label>
+				<label><input type="checkbox" disabled value="2년제졸업">2년제졸업</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
 
 		<c:choose>
-			<c:when test="${personalform.personalEducation eq '대학원'}">
-				<label><input type="checkbox" checked disabled value="대학원">대학원</label>
+			<c:when test="${personalform.personalEducation eq '4년제졸업'}">
+				<label><input type="checkbox" checked disabled value="4년제졸업">4년제졸업</label>
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox" disabled value="대학원">대학원</label>
+				<label><input type="checkbox" disabled value="4년제졸업">4년제졸업</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
-		​
+		<div class="mb-5"></div>
+		<div class="mb-3">◆주소</div>
+		<input id="post" type="text" placeholder="우편번호" readonly
+			value = "${personalAddress.zoneCode}">
+		<button id="detailAddress" type="button" class="btn btn-primary"
+			>우편번호찾기</button>
+		<br> <input id="addr" type="text" value = "${personalAddress.roadJibunAddr}"
+			style="width: 620px;" readonly> <input id="detail_address"
+			type="text" value = "${personalAddress.detailAddress}" style="width: 620px;"> ​
 
 
 	</form>
@@ -82,6 +90,7 @@
 	</div>
 
 </div>
-
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/js/inform.js"></script>
 <%@ include file="../layout/footer.jsp"%>

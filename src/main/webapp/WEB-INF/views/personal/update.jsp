@@ -37,11 +37,11 @@
 		<div class="mb-3" style="margin-top: 30px">◆학력</div>
 		<c:choose>
 			<c:when test="${personalUpdateForm.personalEducation eq '고등졸업'}">
-				<label><input type="checkbox" checked  value="고등졸업">고등졸업</label>
+				<label><input type="checkbox" checked value="고등졸업">고등졸업</label>
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox"   value="고등졸업">고등졸업</label>
+				<label><input type="checkbox" value="고등졸업">고등졸업</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
@@ -51,32 +51,46 @@
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox"  value="대학재학">대학재학</label>
+				<label><input type="checkbox" value="대학재학">대학재학</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
 		​
 		<c:choose>
-			<c:when test="${personalUpdateForm.personalEducation eq '대학졸업'}">
-				<label><input type="checkbox" checked  value="대학졸업">대학졸업</label>
+			<c:when test="${personalUpdateForm.personalEducation eq '2년제졸업'}">
+				<label><input type="checkbox" checked value="대학졸업">2년제졸업</label>
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox"  value="대학졸업">대학졸업</label>
+				<label><input type="checkbox" value="대학졸업">2년제졸업</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
 
 		<c:choose>
-			<c:when test="${personalUpdateForm.personalEducation eq '대학원'}">
-				<label><input type="checkbox" checked  value="대학원">대학원</label>
+			<c:when test="${personalUpdateForm.personalEducation eq '4년제졸업'}">
+				<label><input type="checkbox" checked value="대학원">4년제졸업</label>
 				<br />
 			</c:when>
 			<c:otherwise>
-				<label><input type="checkbox"  value="대학원">대학원</label>
+				<label><input type="checkbox" value="대학원">4년제졸업</label>
 				<br />
 			</c:otherwise>
 		</c:choose>
+
+		<div class="mb-5"></div>
+		<div class="mb-3">◆주소</div>
+		<input id="post" type="text" placeholder="우편번호" onclick="findAddr()"
+			value="${personalAddress.zoneCode}">
+		<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
+		<br> <input id="addr" type="text"
+			value="${personalAddress.roadJibunAddr}" style="width: 620px;"
+			> <input id="detail_address" type="text"
+			value="${personalAddress.detailAddress}" style="width: 620px;">
+		​
+
+
+
 	</form>
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
@@ -86,7 +100,6 @@
 
 </div>
 
-<script src="/js/personaljoin.js">
-	
-</script>
+<script src="/js/personaljoin.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%@ include file="../layout/footer.jsp"%>
