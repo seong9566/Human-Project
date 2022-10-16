@@ -20,7 +20,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
-import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
 
 @Service
 @RequiredArgsConstructor
@@ -70,7 +70,7 @@ public class CompanyService {
 	}
 	
 	//채용공고 리스트 
-	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
-		return jobPostingBoardDao.findJobpostingBoard();
+	public List<JobPostingBoardListDto> jobPostingBoardList() {
+		return jobPostingBoardDao.jobPostingBoardList();
 	}
 }

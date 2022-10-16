@@ -2,6 +2,11 @@ package site.metacoding.miniproject.web.dto.response;
 
 import java.sql.Timestamp;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class JobPostingBoardListDto {
 	//postingBoard 테이블
 	private Integer jobPostingBoardId;
