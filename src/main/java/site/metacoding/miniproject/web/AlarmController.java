@@ -12,10 +12,11 @@ import site.metacoding.miniproject.web.dto.response.ResponseDto;
 @RequiredArgsConstructor
 public class AlarmController {
 
-	@MessageMapping("/Personal")
+	@MessageMapping("/Personal/{userId}")
 	@SendTo("/topic/Personal")
-	public @ResponseBody ResponseDto<?> messageTestPersonal(String test) {
-		return new ResponseDto<>(1, "testconfirm", test);
+	public @ResponseBody ResponseDto<?> messageTestPersonal(Integer userid) {
+		
+		return new ResponseDto<>(1, "통신성공", null);
 	}
 
 	@MessageMapping("/Company")

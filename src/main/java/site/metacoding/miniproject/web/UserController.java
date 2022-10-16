@@ -1,5 +1,7 @@
 package site.metacoding.miniproject.web;
 
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.service.Users.UsersService;
+import site.metacoding.miniproject.utill.AlarmEnum;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
@@ -30,12 +34,11 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-	//@Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
+	// @Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
 	private String uploadUrl;
 	private final UsersService userService;
 	private final HttpSession session;
-	
-	
+
 	@GetMapping({ "/main", "/" })
 	public String mainForm() {
 		return "/company/main";
@@ -43,6 +46,9 @@ public class UserController {
 
 	@GetMapping("/loginForm")
 	public String loginForm() {
+		if (session.getAttribute("principal") != null) {
+			return "redirect:/main";
+		}
 		return "/personal/login";
 	}
 
@@ -65,6 +71,11 @@ public class UserController {
 		return "personal/join";
 	}
 
+	@GetMapping("/company/companyinform")
+	public String companyInform() {
+		return "personal/companyinform";
+	}
+
 	@GetMapping("/checkId/{loginId}")
 	public @ResponseBody ResponseDto<?> userIdSameCheck(@PathVariable String loginId) {
 
@@ -85,8 +96,11 @@ public class UserController {
 
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
-		SignedDto<?> signedDto = userService.login(loginDto);
 
+		SignedDto<?> signedDto = userService.login(loginDto);
+		for (AlarmEnum num : AlarmEnum.values()) {
+			System.out.println(num.key());
+		}
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 
@@ -96,7 +110,6 @@ public class UserController {
 
 		session.setAttribute("principal", signedDto);
 		SessionConfig.login(session.getId(), signedDto.getUsersId());
-
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
@@ -111,10 +124,8 @@ public class UserController {
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
-		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+		return new ResponseDto<>(1, "계정생성완료", null);
 	}
-
-
 
 	@PostMapping("/join/company")
 	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
@@ -122,32 +133,38 @@ public class UserController {
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		session.setAttribute("principal", signedDto);
-	
-//		//파일업로드
-//		String fileName = file.getOriginalFilename();
-//		String filePath = uploadUrl + fileName;
-//		// 파일 경로 담은 객체 생성 
-//		File dest = new File(filePath);
-//		try {
-//			Files.copy(file.getInputStream(), dest.toPath());
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("=========경로 ==============");
-//		System.out.println(dest);
-//		System.out.println("=======================");
-		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+
+		// //파일업로드
+		// String fileName = file.getOriginalFilename();
+		// String filePath = uploadUrl + fileName;
+		// // 파일 경로 담은 객체 생성
+		// File dest = new File(filePath);
+		// try {
+		// Files.copy(file.getInputStream(), dest.toPath());
+		// }
+		// catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// System.out.println("=========경로 ==============");
+		// System.out.println(dest);
+		// System.out.println("=======================");
+		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 
 	@GetMapping("/user/alarm/{usersId}")
-	public @ResponseBody ResponseDto<?> userAlarm(@PathVariable Integer usersId) {
+	public @ResponseBody ResponseDto<?> refreshUserAlarm(@PathVariable Integer usersId) {
 		ResponseDto<?> responseDto = null;
 		List<Alarm> usersAlarm = userService.userAlarm(usersId);
 		if (!usersAlarm.isEmpty())
 			responseDto = new ResponseDto<>(1, "통신 성공", usersAlarm);
 
 		return responseDto;
+	}
+
+	@DeleteMapping("/user/alarm/{alarmId}")
+	public @ResponseBody ResponseDto<?> deleteUserAlarm(@PathVariable Integer alarmId) {
+		userService.deleteAlarm(alarmId);
+		return new ResponseDto<>(1, "삭제 성공", null);
 	}
 
 }

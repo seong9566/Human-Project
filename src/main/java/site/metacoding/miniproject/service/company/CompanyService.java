@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.career.Career;
@@ -15,18 +14,13 @@ import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
-import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
-import site.metacoding.miniproject.web.dto.request.CompanyUserUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
-import site.metacoding.miniproject.web.dto.request.LoginDto;
-import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
-import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @Service
 @RequiredArgsConstructor
@@ -54,7 +48,6 @@ public class CompanyService {
 		Users companyUserPS = userDao.findById(userId);
 		companyUserPS.update(companyUpdateDto);
 		userDao.update(companyUserPS);
-		
 		Company companyPS = companyDao.findById(companyId);
 		companyPS.updateCompany(companyUpdateDto);
 		companyDao.update(companyPS);
