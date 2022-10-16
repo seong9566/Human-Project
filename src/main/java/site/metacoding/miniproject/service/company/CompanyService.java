@@ -29,7 +29,6 @@ public class CompanyService {
 	private final JobPostingBoardDao jobPostingBoardDao;
 	private final CategoryDao categoryDao;
 	private final CareerDao careerDao;
-
 	private final CompanyDao companyDao;
 	private final UsersDao userDao;
 
