@@ -54,6 +54,7 @@ public class PersonalLikeService {
 	public void 좋아요취소(Integer resumesId, Integer companyId) {
 
 		PersonalLike personalLike = new PersonalLike(resumesId, companyId);
+		alarmDao.deleteById(companyId);
 		personalLikesDao.deleteById(personalLike);
 
 	}
