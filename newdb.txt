@@ -49,7 +49,7 @@ CREATE TABLE resumes (
 
 CREATE TABLE portfolio (
   portfolio_id integer auto_increment PRIMARY KEY,
-  portfolid_source LONGTEXT,
+  portfolio_source LONGTEXT,
   portfolio_file longtext,
   created_at timestamp
 );

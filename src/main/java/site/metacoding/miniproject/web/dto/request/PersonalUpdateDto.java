@@ -10,6 +10,7 @@ public class PersonalUpdateDto {
 	private String personalName;
 	private String personalEmail;
 	private String personalEducation;
+	
 	private String personalPhoneNumber;
 	private String personalAddress;
 	

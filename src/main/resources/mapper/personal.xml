@@ -53,6 +53,22 @@
 	</select>
 	
 	
+	<update id="updateById">
+		UPDATE personal AS p
+		left OUTER JOIN users AS u
+		ON
+		p.personal_id = u.personal_id
+		SET login_password = #{loginPassword},
+		personal_name = #{personalName},personal_phone_number=
+		#{personalPhoneNumber},
+		personal_email= #{personalEmail},
+		personal_education = #{personalAddress}
+		WHERE p.personal_id =
+		#{personalId}
+
+</update>
+	
+	
 
 
 

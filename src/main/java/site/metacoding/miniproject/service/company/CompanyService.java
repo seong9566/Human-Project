@@ -12,7 +12,6 @@ import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
-import site.metacoding.miniproject.web.dto.request.CompanyUserUpdateDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
@@ -39,7 +38,6 @@ public class CompanyService {
 		Users companyUserPS = userDao.findById(userId);
 		companyUserPS.update(companyUpdateDto);
 		userDao.update(companyUserPS);
-		
 		Company companyPS = companyDao.findById(companyId);
 		companyPS.updateCompany(companyUpdateDto);
 		companyDao.update(companyPS);

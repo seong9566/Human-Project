@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.personal.PersonalDao;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;

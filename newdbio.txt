@@ -44,6 +44,7 @@ Table "resumes" {
 
 Table "portfolio" {
   "portfolio_id" integer [pk]
+  "portfolio_source" longtext
   "portfolio_file" longtext
   "created_at" timestamp
 }
