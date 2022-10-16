@@ -6,8 +6,8 @@ $("#alarm").click(() => {
 	refreshalarm();
 });
 
-function sendmessageToPersonal(data) {
-	stompClient.send("/app/Personal/" + $("#userId").val(), {}, data);
+function sendmessageToPersonal(resumesId) {
+	stompClient.send("/app/Company/Likeresume/" + resumesId, {}, $("#userId").val());
 }
 
 function sendmessageToCompany(data) {
@@ -19,13 +19,13 @@ function connectpersonal() {
 	stompClient = Stomp.over(socket);
 	stompClient.connect({}, (frame) => {
 		//console.log('Connected: ' + frame);
-		stompClient.subscribe('/topic/Company', function (test) {
+		stompClient.subscribe('/topic/Company', (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();
 			}
 		});
-		stompClient.subscribe('/queue/Company', function (test) {
+		stompClient.subscribe('/queue/Company', (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();
@@ -37,17 +37,19 @@ function connectpersonal() {
 function connectcompany() {
 	var socket = new SockJS('/company_end_point');
 	stompClient = Stomp.over(socket);
-	stompClient.connect({}, function (frame) {
+	let userId = $("#userId").val();
+	stompClient.connect({}, (frame) => {
 		//console.log('Connected: ' + frame);
-		stompClient.subscribe('/topic/Personal', function (test) {
+		stompClient.subscribe('/topic/Personal', (test) => {
 			let confirm = JSON.parse(test.body);
-			console.log(confirm);
+			console.log("바디 테스트 = " + confirm);
+			console.log("테스트 = " + test);
 			if (confirm.code == 1) {
 				iconchange();
 			}
 
 		});
-		stompClient.subscribe('/queue/Personal', function (test) {
+		stompClient.subscribe('/queue/Personal' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();
