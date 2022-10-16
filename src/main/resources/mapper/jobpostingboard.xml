@@ -4,7 +4,17 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao">
-
+	
+		<select id="jobPostingAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
+		SELECT job_posting_board_id,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(job_posting_board_place,',',1),',',-1) AS
+		zonecode,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(job_posting_board_place,',',2),',',-1) AS
+		road_jibunAddr
+		FROM job_posting_board
+		WHERE job_posting_board_id =#{jobPostingBoardId};
+	</select>
+	
 	<select id="findJobpostingBoard"
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto">
 		SELECT jpb.job_posting_board_id,
@@ -19,19 +29,41 @@
 		FROM
 		job_posting_board jpb
 		INNER JOIN company_detail cd
-		ON jpb.company_id =cd.company_id
+		ON jpb.company_id
+		=cd.company_id
 	</select>
 
 	<insert id="insert">
-		INSERT INTO job_posting_board(
+		INSERT INTO 
+		job_posting_board
+		(
+		company_id,
+		job_posting_board_category_id,
+		job_posting_board_career_id,
 		job_posting_board_title,
-		job_posting_board_content, created_at)
-		VALUE(#{jobPostingBoardTitle},#{jobPostingBoardContent},NOW())
+		job_posting_salary,
+		job_posting_board_place,
+		job_posting_board_content,
+		job_posting_board_deadline,
+		created_at
+		)
+		VALUE(
+		#{companyId},
+		#{jobPostingBoardCategoryId},
+		#{jobPostingBoardCareerId},
+		#{jobPostingBoardTitle},
+		#{jobPostingBoardSalary},
+		#{jobPostingBoardPlace},
+		#{jobPostingBoardContent},
+		#{jobPostingBoardDeadline},
+		#{createdAt}
+		)
 	</insert>
 
 	<update id="update">
 		UPDATE job_posting_board
-		SET job_posting_board_title=#{jobPostingBoardTitle},
+		SET
+		job_posting_board_title=#{jobPostingBoardTitle},
 		job_posting_board_content=#{jobPostingBoardContent}
 		WHERE
 		job_posting_board_id = #{jobPostingBoardId}
@@ -55,9 +87,10 @@
 		cd.company_id
 		WHERE job_posting_board_id = #{jobPostingBoardId};
 	</select>
-	
+
 	<delete id="deleteById">
-		DELETE FROM job_posting_board WHERE job_posting_board_id = #{jobPostingBoardId};
-		
+		DELETE FROM job_posting_board WHERE
+		job_posting_board_id = #{jobPostingBoardId};
+
 	</delete>
 </mapper>
