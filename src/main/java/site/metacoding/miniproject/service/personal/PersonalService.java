@@ -3,12 +3,15 @@ package site.metacoding.miniproject.service.personal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.personal.PersonalDao;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;
+import site.metacoding.miniproject.domain.users.Users;
+import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
@@ -22,6 +25,7 @@ public class PersonalService {
 
 	private final ResumesDao resumesDao;
 	private final PersonalDao personalDao;
+	private final UsersDao userDao;
 	// 개인 정보 보기
 
 	// 이력서 작성 하기
@@ -51,16 +55,28 @@ public class PersonalService {
 	public PersonalFormDto personalformById(Integer personalId) {
 		return personalDao.personalformById(personalId);
 	}
-	
-	//내 정보 수정에 데이터 보기
+
+	// 내 정보 수정에 데이터 보기
 	public PersonalUpdateDto personalUpdateById(Integer personalId) {
 		return personalDao.personalUpdateById(personalId);
 	}
-	
-	
+
 	public PersonalAddressDto personalAddress(Integer personalId) {
 		return personalDao.personalAddressById(personalId);
 	}
-	
+
+	// 개 정보 수정
+
+	@Transactional(rollbackFor = Exception.class)
+	public void updatePersonal(Integer userId, Integer personalId, PersonalUpdateDto personalUpdateDto) {
+		Users personaluserPS = userDao.findById(userId);
+		personaluserPS.update(personalUpdateDto);
+		userDao.update(personaluserPS);
+
+		Personal personalPS = personalDao.findById(personalId);
+		personalPS.updatePersonal(personalUpdateDto);
+		personalDao.update(personalPS);
+
+	}
 
 }

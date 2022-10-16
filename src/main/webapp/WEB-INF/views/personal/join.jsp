@@ -43,7 +43,7 @@
 			
 			<div class="mb-5"></div>
 			<div class="d-grid gap-1 col-2 mx-auto">
-				<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check()"
+				<button id="btnSave" type="button" class="btn btn-primary"
 					disabled="disabled">작성완료</button>
 			</div>
 

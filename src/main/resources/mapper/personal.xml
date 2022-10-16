@@ -48,30 +48,24 @@
 		resultType="site.metacoding.miniproject.web.dto.request.PersonalUpdateDto">
 		SELECT * FROM personal
 		left OUTER JOIN users
-		ON personal.personal_id = users.personal_id
-		WHERE personal.personal_id = #{personalId}
-	</select>
-	
-	
-	<update id="updateById">
-		UPDATE personal AS p
-		left OUTER JOIN users AS u
 		ON
-		p.personal_id = u.personal_id
-		SET login_password = #{loginPassword},
-		personal_name = #{personalName},personal_phone_number=
-		#{personalPhoneNumber},
-		personal_email= #{personalEmail},
-		personal_education = #{personalAddress}
-		WHERE p.personal_id =
+		personal.personal_id = users.personal_id
+		WHERE personal.personal_id =
 		#{personalId}
-
-</update>
-	
-	
+	</select>
 
 
+	<update id="update">
+		UPDATE personal
+		SET personal_name = #{personalName},
+		personal_email = #{personalEmail},
+		personal_phone_number = #{personalPhoneNumber},
+		personal_education = #{personalEducation},
+		personal_address = #{personalAddress}
+		WHERE personal_id = #{personalId}
 
-	
+	</update>
+
+
 
 </mapper>

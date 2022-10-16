@@ -79,7 +79,6 @@
 		<div class="mb-3">◆주소</div>
 		<input id="post" type="text" placeholder="우편번호" readonly
 			value="${personalAddress.zoneCode}">
-		<button id="detailAddress" type="button" class="btn btn-primary">우편번호찾기</button>
 		<br> <input id="addr" type="text"
 			value="${personalAddress.roadJibunAddr}" style="width: 620px;"
 			readonly> <input id="detail_address" type="text"

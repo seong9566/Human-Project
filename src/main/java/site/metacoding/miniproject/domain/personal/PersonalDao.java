@@ -13,7 +13,6 @@ public interface PersonalDao {
 
 	public Personal findById(Integer personalId);
 
-	public void update(Personal personal);
 
 	public void deleteById(Integer id);
 	
@@ -25,7 +24,8 @@ public interface PersonalDao {
 	public PersonalUpdateDto personalUpdateById(Integer personalId);
 	
 	// 회원가입 수정
-	public void updateById(PersonalUpdateDto personalUpdateDto);
+	public void update(Personal personal);
+	//public void updateById(PersonalUpdateDto personalUpdateDto);
 	
 	// 주소 
 	public PersonalAddressDto personalAddressById(Integer personalId);

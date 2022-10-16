@@ -103,4 +103,11 @@ public class PersonalController {
 		model.addAttribute("personalUpdateForm", personalUpdateFormPS);
 		return "personal/update";
 	}
+	
+	@PutMapping("/personal/update")
+	public @ResponseBody ResponseDto<?> personalUpdate(@RequestBody PersonalUpdateDto personalUpdateDto){
+		SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+		personalService.updatePersonal(principal.getUsersId(), principal.getPersonalId(), personalUpdateDto);
+		return new ResponseDto<>(1, "수정 성공", null);
+	}
 }

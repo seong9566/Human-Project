@@ -38,7 +38,7 @@ public class Users {
 	}
 	
 	public void update(PersonalUpdateDto personalUpdateDto) {
-		this.loginPassword = personalUpdateDto.getLoginPassword();
+		this.loginPassword=personalUpdateDto.getLoginPassword();
 	}
 	
 	

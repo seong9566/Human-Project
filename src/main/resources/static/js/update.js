@@ -1,26 +1,59 @@
 
-//비밀번호 확인
-$("#passwordConfirm").keyup((event) => {
-	event.preventDefault();
-	if ($("#password").val() != $("#passwordConfirm").val()) {
-		$("#span_valcheck").css("visibility", "visible");
-		$("#btnSave").attr(`disabled`, true);
-	} else {
-		$("#span_valcheck").css("visibility", "hidden");
-		$("#btnSave").removeAttr(`disabled`);
-	}
+	   
+	   
+	   
+
+$("#btnUpdate").click(() => {
+	update();
+		
 });
 
+//업데이트 버튼 클릭시
+function update(){
+	let data ={
+			loginPassword: $("#password").val(),
+			personalName: $("#username").val(),
+			personalEmail: $("#email").val(),
+			personalPhoneNumber: $("#phonenumber").val(),
+			personalEducation:$('input[type=radio][name=contact]:checked').val(),
+			personalAddress:$("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val()
+	};
+	$.ajax("/personal/update", {
+		type: "PUT",
+		dataType: "json",
+		data: JSON.stringify(data),
+		headers: {
+			"Content-Type": "application/json; charset=utf-8"
+		}
+	}).done((res) => {
+		if (res.code == 1) {
+			joinform_check();
+			alert("회원 수정 완료");
+			location.href="/personal/info";
+		} else {
+			alert("업데이트에 실패하였습니다");
+		}
+	});
+	
+	
+	
+}
 
-//유효성겁사
-	   function joinform_check() {
+
+function joinform_check() {
 	        //변수에 담아주기
 	        var userId = document.getElementById("userId");
 	        var password = document.getElementById("password");
 	        var username = document.getElementById("username");
-	        var phonenumber = document.getElementById("phonenumber");
-	        var email = $("#email").val();     
+	        let phonenumber = document.getElementById("phonenumber");
+	        let email = $("#email").val();     
 	     
+	        //아이디 입력하지 않았을때
+	        if ((userId.value) == ""){
+	               alert("아이디를 입력하지 않았습니다.");
+	               userId.focus();
+	               return false;
+	           }
 	        
 	     
 	        //비밀번호
@@ -70,3 +103,16 @@ $("#passwordConfirm").keyup((event) => {
 
 	   
 	   }
+
+
+
+$("#passwordConfirm").keyup((event) => {
+	event.preventDefault();
+	if ($("#password").val() != $("#passwordConfirm").val()) {
+		$("#span_valcheck").css("visibility", "visible");
+		$("#btnSave").attr(`disabled`, true);
+	} else {
+		$("#span_valcheck").css("visibility", "hidden");
+		$("#btnSave").removeAttr(`disabled`);
+	}
+});
