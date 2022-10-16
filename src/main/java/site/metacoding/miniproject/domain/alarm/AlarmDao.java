@@ -11,9 +11,13 @@ public interface AlarmDao {
 
 	public void update(Alarm alarm);
 
+	public void updateAlarmByIdToCheck(List<Integer> alarmsId);
+
 	public void deleteById(Integer alarmId);
 
 	public void deleteByPersonalLike(Integer personalLikeId);
+
+	public Boolean findByUsersIdToAlarmChecked(Integer usersId);
 
 	public List<Alarm> findByusersId(Integer usersId);
 }

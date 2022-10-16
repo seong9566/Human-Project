@@ -93,7 +93,17 @@ public class UsersService {
 		return usersAlarm;
 	}
 
+	public Boolean checkUserAlarm(Integer usersId) {
+		Boolean ischecked = alarmDao.findByUsersIdToAlarmChecked(usersId);
+		return ischecked;
+	}
+
+	public void userAlarmToCheck(List<Integer> alarmsId) {
+		alarmDao.updateAlarmByIdToCheck(alarmsId);
+	}
+
 	public void deleteAlarm(Integer alarmId) {
 		alarmDao.deleteById(alarmId);
 	}
+
 }
