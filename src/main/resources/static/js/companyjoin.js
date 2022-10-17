@@ -45,6 +45,8 @@ function join() {
 		if(res.code == 1){
 			alert(res.message);
 			location.href ="/main";
+		}else if(res.code == -1){
+			alert(res.message);
 		}
 	});
 }

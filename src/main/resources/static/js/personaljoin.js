@@ -5,8 +5,8 @@ function join() {
 		personalName: $("#username").val(),
 		personalEmail: $("#email").val(),
 		personalPhoneNumber: $("#phonenumber").val(),
-		personalEducation:$('input[type=radio][name=contact]:checked').val(),
-		personalAddress:$("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
+		personalEducation: $('input[type=radio][name=contact]:checked').val(),
+		personalAddress: $("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
 	};
 
 	$.ajax("/join/personal", {
@@ -20,6 +20,8 @@ function join() {
 		if (res.code == 1) {
 			alert(res.message);
 			location.href = "/main";
+		}else if(res.code == -1){
+			alert(res.message);
 		}
 	});
 }
