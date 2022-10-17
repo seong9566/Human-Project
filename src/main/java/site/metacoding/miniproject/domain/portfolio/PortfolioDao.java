@@ -11,8 +11,8 @@ public interface PortfolioDao {
 	public DetailResumesDto resumesById(Integer portfolioId);
 	
 	public Portfolio findById(Integer portfolioId);
-	public void update(Portfolio portfolio);
-	
+
+	public void update(Portfolio portfolio);	
 	
 	public List<Portfolio> findAll();	
 	

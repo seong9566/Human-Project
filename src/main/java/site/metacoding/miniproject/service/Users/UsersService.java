@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.domain.alarm.AlarmDao;
+import site.metacoding.miniproject.domain.category.CategoryDao;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.personal.Personal;
@@ -26,6 +27,7 @@ public class UsersService {
 	private final UsersDao usersDao;
 	private final CompanyDao companyDao;
 	private final PersonalDao personalDao;
+	private final CategoryDao categoryDao;
 	private final AlarmDao alarmDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {

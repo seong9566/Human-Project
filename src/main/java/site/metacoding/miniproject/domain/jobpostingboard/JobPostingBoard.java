@@ -14,9 +14,10 @@ import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 public class JobPostingBoard {
 	private Integer jobPostingBoardId;
 	private Integer companyId;
-	private Integer jobPostingBoardCategoryId;
+	private Integer jobPostingSalary;
 	private Integer jobPostingBoardSalary;
 	private Integer jobPostingBoardCareerId;
+	private Integer jobPostingBoardCategoryId;
 	private String jobPostingBoardTitle;
 	private String jobPostingBoardContent;
 	private String jobPostingBoardPlace;
