@@ -26,7 +26,5 @@ public interface ResumesDao {
 	// 이력서 전체 목록 보기
 	public List<Resumes> findAll();		
 
-	// 좋아요 이력서 추가
-	public void insertLike(InsertRecommendDto insertRecommendDto);
-	
+
 }

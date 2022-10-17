@@ -27,8 +27,4 @@
 	}
 	</script>
 
-
-<script src="/js/company.js"></script>
-<script src="/js/recommend.js"></script>
-
 <%@ include file="../layout/footer.jsp"%>
