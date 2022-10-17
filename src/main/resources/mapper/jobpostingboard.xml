@@ -65,7 +65,7 @@
 		#{jobPostingBoardPlace},
 		#{jobPostingBoardContent},
 		#{jobPostingBoardDeadline},
-		#{createdAt}
+		now()
 		)
 	</insert>
 
@@ -73,12 +73,15 @@
 		UPDATE job_posting_board
 		SET
 		job_posting_board_title=#{jobPostingBoardTitle},
-		job_posting_board_content=#{jobPostingBoardContent}
+		job_posting_board_content=#{jobPostingBoardContent},
+		job_posting_salary =#{jobPostingSalary},
+		job_posting_board_place = #{jobPostingBoardPlace},
+		job_posting_board_deadline = #{jobPostingBoardDeadline}
 		WHERE
 		job_posting_board_id = #{jobPostingBoardId}
 	</update>
 
-	<select id="findById"
+	<select id="findByDetail"
 		resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto">
 		SELECT 
 		jpb.job_posting_board_id,
@@ -111,6 +114,21 @@
 		WHERE jpb.job_posting_board_id = #{jobPostingBoardId}
 	</select>
 
+	<select id="findById"
+		resultType="site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard">
+		SELECT 
+		job_posting_board_id,
+		company_id,
+		job_posting_salary,
+		job_posting_board_career_id,
+		job_posting_board_category_id,
+		job_posting_board_title,
+		job_posting_board_content,
+		job_posting_board_place,
+		job_posting_board_deadline
+		FROM job_posting_board 
+		WHERE job_posting_board_id = #{jobPostingBoardId};
+	</select>
 	<delete id="deleteById">
 		DELETE FROM job_posting_board WHERE
 		job_posting_board_id = #{jobPostingBoardId}

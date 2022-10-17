@@ -5,8 +5,9 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
-import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardUpdateDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 
 @Getter
 @Setter
@@ -38,6 +39,13 @@ public class Career {
 		  this.twoYearOver = joinDto.getTwoYearOver();
 		  this.threeYearOver = joinDto.getThreeYearOver();
 		  this.fiveYearOver = joinDto.getFiveYearOver();
-
+	  }
+	  
+	  // 채용 공고 수정
+	  public void  updateJobPosting(JobPostingBoardUpdateDto updateDto) {
+		  this.oneYearLess = updateDto.getOneYearLess();
+		  this.twoYearOver = updateDto.getTwoYearOver();
+		  this.threeYearOver = updateDto.getThreeYearOver();
+		  this.fiveYearOver = updateDto.getFiveYearOver();
 	  }
 }

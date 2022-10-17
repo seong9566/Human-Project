@@ -2,16 +2,13 @@ package site.metacoding.miniproject.domain.category;
 
 import java.sql.Timestamp;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
-import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
-import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
-import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardUpdateDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 
 @Getter
 @Setter
@@ -43,5 +40,11 @@ public class Category {
 		this.categoryFrontend = insertDto.getCategoryFrontend();
 		this.categoryBackend = insertDto.getCategoryBackend();
 		this.categoryDevops = insertDto.getCategoryDevops();
+	}
+	
+	public void updateJobposting(JobPostingBoardUpdateDto updateDto) {
+		this.categoryFrontend = updateDto.getCategoryFrontend();
+		this.categoryBackend = updateDto.getCategoryBackend();
+		this.categoryDevops = updateDto.getCategoryDevops();
 	}
 }

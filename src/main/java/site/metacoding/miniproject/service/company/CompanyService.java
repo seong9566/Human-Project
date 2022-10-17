@@ -21,6 +21,7 @@ import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardUpdateDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
@@ -89,13 +90,29 @@ public class CompanyService {
 		
 		//채용공고 상세 보기 
 		public JobPostingBoardDetailDto jobPostingOne(Integer jobPostingBoardId) {
-			JobPostingBoardDetailDto jobPostingPS =  jobPostingBoardDao.findById(jobPostingBoardId);
+			JobPostingBoardDetailDto jobPostingPS =  jobPostingBoardDao.findByDetail(jobPostingBoardId);
 			Timestamp ts = jobPostingPS.getJobPostingBoardDeadline();
 			Date date = new Date();
 			date.setTime(ts.getTime());
 			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
 			jobPostingPS.setFormatDeadLine(formattedDate);
 			return jobPostingPS;
+		}
+		
+		// 채용공고 수정 (jobpostingboard,career,Category)
+		@Transactional(rollbackFor = Exception.class)
+		public void updateJobPostingBoard(Integer jobPostingBoardId,Integer careerId,Integer categoryId, JobPostingBoardUpdateDto updateDto) {
+			JobPostingBoard jobPostingPS = jobPostingBoardDao.findById(jobPostingBoardId);
+			jobPostingPS.updateJobPosting(updateDto);
+			jobPostingBoardDao.update(jobPostingPS);
+			
+			Career careerPS = careerDao.findById(careerId);
+			careerPS.updateJobPosting(updateDto);
+			careerDao.update(careerPS);
+			
+			Category categoryPS = categoryDao.findById(categoryId);
+			categoryPS.updateJobposting(updateDto);
+			categoryDao.update(categoryPS);
 		}
 	}
 

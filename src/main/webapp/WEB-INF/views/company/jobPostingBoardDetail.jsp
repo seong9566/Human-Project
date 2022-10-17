@@ -117,7 +117,7 @@
 </div>
 <script>
 $("#btnUpdateForm").click(()=>{
-	location.href = "/company/jobpostingBoardDetail/"+jobPostingBoardId;
+	location.href = "/company/jobpostingBoardUpdate/"+jobPostingBoardId;
 });
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
