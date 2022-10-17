@@ -31,14 +31,14 @@ public class PersonalController {
 	private final HttpSession session;
 	private final PersonalService personalService;
 
-//	// 이력서 작성 하기
-//	@GetMapping("/personal/resumesForm")
-//	public String resumesForm(Model model) {				
-//		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
-//		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());			
-//		model.addAttribute("personalInfoPS", personalInfoPS);
-//		return "personal/resumesForm";
-//	}
+	// 이력서 작성 하기
+	@GetMapping("/personal/resumesForm")
+	public String resumesForm(Model model) {				
+		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
+		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());			
+		model.addAttribute("personalInfoPS", personalInfoPS);
+		return "personal/resumesForm";
+	}
 
 	@PostMapping("/personal/resumes")
 	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
@@ -78,13 +78,6 @@ public class PersonalController {
 	
 	@PutMapping("/personal/resumes/update/{resumesId}")
 	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
-//		System.out.println(updateResumesDto.getResumesTitle());
-//		System.out.println(updateResumesDto.getResumesIntroduce());
-//		System.out.println(updateResumesDto.getResumesPicture());
-//		System.out.println(updateResumesDto.getResumesPlace());
-//		System.out.println(updateResumesDto.getOneYearLess());
-//		System.out.println(updateResumesDto.getCategoryFrontend());
-//		System.out.println(updateResumesDto.getPortfolioSource());		
 		personalService.updateResumes(resumesId, updateResumesDto);			
 		return new ResponseDto<>(1, "이력서 수정 성공", null);
 	}

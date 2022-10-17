@@ -19,6 +19,7 @@ import site.metacoding.miniproject.domain.resumes.ResumesDao;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 
 @Service
 @RequiredArgsConstructor

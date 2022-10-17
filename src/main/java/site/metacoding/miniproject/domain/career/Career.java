@@ -33,6 +33,7 @@ public class Career {
 		  this.twoYearOver = updateResumesDto.getTwoYearOver();
 		  this.threeYearOver = updateResumesDto.getThreeYearOver();
 		  this.fiveYearOver = updateResumesDto.getFiveYearOver();
+	  }
 
 	  public Career(JobPostingBoardInsertDto joinDto) {
 		  this.oneYearLess = joinDto.getOneYearLess();
