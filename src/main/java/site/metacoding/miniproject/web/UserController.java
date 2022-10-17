@@ -1,11 +1,12 @@
 package site.metacoding.miniproject.web;
 
-
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.utill.AlarmEnum;
+import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
@@ -90,11 +92,8 @@ public class UserController {
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
-
 		SignedDto<?> signedDto = userService.login(loginDto);
-		for (AlarmEnum num : AlarmEnum.values()) {
-			System.out.println(num.key());
-		}
+		
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 
@@ -114,18 +113,29 @@ public class UserController {
 
 	@PostMapping("/join/personal")
 	public @ResponseBody ResponseDto<?> joinPersonal(@RequestBody PersonalJoinDto joinDto) {
+		
+		ValidationCheckUtil.valCheckToJoinPersonal(joinDto);
+		
 		userService.joinPersonal(joinDto);
+		
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
+		
 		session.setAttribute("principal", signedDto);
+		
 		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 
 	@PostMapping("/join/company")
 	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
+		
+		ValidationCheckUtil.valCheckToJoinCompany(joinDto);
+		
 		userService.joinCompany(joinDto);
+		
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
+		
 		session.setAttribute("principal", signedDto);
 
 		// //파일업로드
@@ -146,9 +156,7 @@ public class UserController {
 	}
 
 	@GetMapping("/user/alarm/{usersId}")
-
 	public @ResponseBody ResponseDto<?> refreshUserAlarm(@PathVariable Integer usersId) {
-
 		ResponseDto<?> responseDto = null;
 		List<Alarm> usersAlarm = userService.userAlarm(usersId);
 		if (!usersAlarm.isEmpty())
@@ -156,7 +164,6 @@ public class UserController {
 
 		return responseDto;
 	}
-
 
 	@DeleteMapping("/user/alarm/{alarmId}")
 	public @ResponseBody ResponseDto<?> deleteUserAlarm(@PathVariable Integer alarmId) {

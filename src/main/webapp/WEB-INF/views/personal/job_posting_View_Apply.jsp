@@ -65,86 +65,83 @@
 						id="job_posting_board_deadline" readonly>
 				</div>
 			</div>
-			<br />
-			<br />
+			<br /> <br />
 			<div class="btn-update">
-				<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
-				<button id="btnapply" type="button" class="btn btn-primary">지원하기</button>
+				<c:choose>
+					<c:when test="${ empty principal }">
+						<button type="button" class="btn btn-primary">로그인</button>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${ empty companyLike}">
+								<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
+							</c:when>
+							<c:otherwise>
+								<button id="btnlike" type="button" class="btn btn-primary">좋아요취소</button>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+				<button id="btnapply" type="button" class="btn btn-primary">연락하기</button>
 			</div>
 		</div>
 	</div>
 </div>
-
-<script>
-			$(function () {
-				$('#btnlike').click(function () {
-					if ($(this).html() == '좋아요') {
-						$(this).html('좋아요취소');
-						insertLike();
-						sendmessageToPersonal($("#resumesId").val());
-						insertTitle();
-					}
-					else {
-						$(this).html('좋아요');
-						deleteLike();
-					}
-				});
-			});
-			function insertTitle() {
-				let data = {
-					name: $("resume_title").val(),
-				}
-				console.log(data)
-				$.ajax("/recommend", {
-					type: "POST",
-					dataType: "json",
-					data: JSON.stringify(data), // http body에 들고갈 요청 데이터
-					headers: { // http header에 들고갈 요청 데이터
-						"Content-Type": "application/json; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) { // 성공
-					} else { // 실패
-						alert("이력서등록에 실패했습니다.");
-					}
-				});
-			}
-			function deleteLike() {
-				let resumesId = $("#resumesId").val();
-				$.ajax("/personalLike/" + resumesId + "/likes", {
-					type: "DELETE",
-					dataType: "json",
-					headers: { // http header에 들고갈 요청 데이터
-						"Content-Type": "application/json; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) {
-					} else {
-						alert("좋아요 추가 실패");
-						return;
-					}
-				});
-			}
-			function insertLike() {
-				let resumesId = $("#resumesId").val();
-				$.ajax("/personalLike/" + resumesId + "/likes", {
-					type: "POST",
-					dataType: "json",
-					headers: { // http header에 들고갈 요청 데이터
-						"Content-Type": "application/json; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) {
-					} else {
-						alert("좋아요 추가 실패");
-						return;
-					}
-				});
-			}
+	<script>
+$(function() {
+    $('#btnlike').click( function() {
+      if( $(this).html() == '좋아요') {
+        
+        $(this).html('좋아요취소');
+        insertLike();
+      }
+      else {
+        
+        $(this).html('좋아요');
+        deleteLike();
+      }
+    });
+  });
+  
+function deleteLike() {
+    let companyid  = $("#company_id").val();
+    $.ajax("/companyLike/" +companyid + "/likes",{
+        type: "DELETE",
+        dataType: "json",
+        headers: { // http header에 들고갈 요청 데이터
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).done((res) => {
+        if (res.code == 1) {
+            
+        } else {
+            alert("좋아요 추가 실패");
+            return;
+        }
+    });
+}
+function insertLike() {
+    let companyid = $("#company_id").val();
+    $.ajax("/companyLike/" +companyid+ "/likes",{
+        type: "POST",
+        dataType: "json",
+        headers: { // http header에 들고갈 요청 데이터
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).done((res) => {
+        if (res.code == 1) {
+            
+        } else {
+            alert("좋아요 추가 실패");
+            return;
+        }
+    });
+}
 		</script>
 
-<script src="/js/writeForm.js">
+
+	<script src="/js/writeForm.js">
 
    </script>
 
-<%@ include file="../layout/footer.jsp"%>
+	<%@ include file="../layout/footer.jsp"%>
