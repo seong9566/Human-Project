@@ -1,16 +1,9 @@
 package site.metacoding.miniproject.web;
 
-import java.util.Enumeration;
-import java.util.List;
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,14 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
-import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.utill.AlarmEnum;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
@@ -100,8 +90,11 @@ public class UserController {
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
-		SignedDto<?> signedDto = userService.login(loginDto);
 
+		SignedDto<?> signedDto = userService.login(loginDto);
+		for (AlarmEnum num : AlarmEnum.values()) {
+			System.out.println(num.key());
+		}
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 
@@ -111,7 +104,6 @@ public class UserController {
 
 		session.setAttribute("principal", signedDto);
 		SessionConfig.login(session.getId(), signedDto.getUsersId());
-
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {

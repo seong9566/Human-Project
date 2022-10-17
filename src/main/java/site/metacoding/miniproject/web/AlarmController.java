@@ -44,8 +44,7 @@ public class AlarmController {
 	@MessageMapping("/Company/Likeresume/{resumesId}")
 	public void messageToResume(@DestinationVariable Integer resumesId, Integer FromUsersId) {
 		Integer usersId = usersService.findUserIdByResumesId(resumesId);
-		simpMessagingTemplate.convertAndSend("/queue/Personal" + usersId,
-				new ResponseDto<>(1, "success", resumesId));
+		simpMessagingTemplate.convertAndSend("/queue/Personal" + usersId, new ResponseDto<>(1, "success", resumesId));
 	}
 
 	@PutMapping("/user/alarm/readed")
