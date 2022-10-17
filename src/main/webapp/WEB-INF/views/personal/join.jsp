@@ -40,10 +40,9 @@
 				</label> <label> <input type="radio" name="contact" value="재학 중" /> <span>대학 재학중</span>
 				</label><br />
 			</div>
-			
 			<div class="mb-5"></div>
 			<div class="d-grid gap-1 col-2 mx-auto">
-				<button id="btnSave" type="button" class="btn btn-primary"
+				<button id="btnSave" type="button" class="btn btn-primary" onclick="joinform_check()"
 					disabled="disabled">작성완료</button>
 			</div>
 

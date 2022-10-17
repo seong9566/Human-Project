@@ -6,7 +6,7 @@ function join() {
 		personalEmail: $("#email").val(),
 		personalPhoneNumber: $("#phonenumber").val(),
 		personalEducation:$('input[type=radio][name=contact]:checked').val(),
-		personalAddress:$("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val()
+		personalAddress:$("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
 	};
 
 	$.ajax("/join/personal", {
@@ -23,8 +23,3 @@ function join() {
 		}
 	});
 }
-
-
-
-
-

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="site.metacoding.miniproject.domain.personal.PersonalDao">
+<mapper namespace="site.metacoding.miniproject.domain.personal.PersonalDao">
 
-	<select id="findAll"
-		resultType="site.metacoding.miniproject.domain.personal.Personal">
+	<select id="findAll" resultType="site.metacoding.miniproject.domain.personal.Personal">
 		SELECT * FROM users
 	</select>
 
-	<select id="findById"
-		resultType="site.metacoding.miniproject.domain.personal.Personal">
-		SELECT *
+	<select id="findById" resultType="site.metacoding.miniproject.domain.personal.Personal">
+	SELECT *
+	FROM personal
+	WHERE personal_id = #{personalId}
+
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="personalId" keyColumn="personal_id">
+		INSERT INTO personal (personal_name, personal_email, personal_education, personal_phone_number, personal_address, created_at)
+		VALUES(#{personalName},#{personalEmail}, #{personalEducation}, #{personalPhoneNumber}, #{personalAddress}, NOW())
+	</insert>
+
+	<select id="personalInfoById" resultType="site.metacoding.miniproject.web.dto.response.PersonalInfoDto">
+		SELECT personal_name, personal_email, personal_education, personal_phone_number, personal_address
 		FROM personal
 		WHERE personal_id = #{personalId}
 	</select>
-	<insert id="insert" useGeneratedKeys="true"
-		keyProperty="personalId" keyColumn="personal_id">
-		INSERT INTO personal
-		(personal_name, personal_email, personal_education,
-		personal_phone_number, personal_address, created_at)
-		VALUES(#{personalName},#{personalEmail}, #{personalEducation},
-		#{personalPhoneNumber}, #{personalAddress}, NOW())
-	</insert>
-
+	
 	<select id="personalformById"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalFormDto">
 		SELECT personal_name, personal_email, personal_phone_number
@@ -65,7 +66,5 @@
 		WHERE personal_id = #{personalId}
 
 	</update>
-
-
 
 </mapper>

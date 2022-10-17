@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.domain.alarm.AlarmDao;
-
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.personal.Personal;
@@ -61,7 +60,7 @@ public class UsersService {
 
 		Users users = new Users(joinDto);
 		usersDao.insert(users);
-		
+
 	}
 
 	@Transactional(rollbackFor = RuntimeException.class)
@@ -78,16 +77,30 @@ public class UsersService {
 
 	}
 
+	public Integer findUserIdByResumesId(Integer resumesId) {
+
+		Users users = usersDao.findByResumesId(resumesId);
+		return users.getUsersId();
+	}
+
 	public Integer checkUserId(String loginId) {
 		Integer checkUser = usersDao.findByLoginId(loginId);
 		return checkUser;
 	}
-	
+
 	public List<Alarm> userAlarm(Integer usersId) {
 		List<Alarm> usersAlarm = alarmDao.findByusersId(usersId);
 		return usersAlarm;
 	}
-	
+	public Boolean checkUserAlarm(Integer usersId) {
+		Boolean ischecked = alarmDao.findByUsersIdToAlarmChecked(usersId);
+		return ischecked;
+	}
+
+	public void userAlarmToCheck(List<Integer> alarmsId) {
+		alarmDao.updateAlarmByIdToCheck(alarmsId);
+	}
+
 	public void deleteAlarm(Integer alarmId) {
 		alarmDao.deleteById(alarmId);
 	}

@@ -13,7 +13,8 @@
 		SELECT *
 		FROM
 		company
-		WHERE company_id = #{companyId}
+		WHERE company_id
+		= #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"
@@ -41,6 +42,7 @@
 		LEFT OUTER JOIN users u
 		ON c.company_id = u.company_id
 		WHERE c.company_id =#{companyId}
+
 	</select>
 	<select id="findByAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
 		SELECT company_id,
@@ -51,8 +53,9 @@
 		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
 		detail_address
 		FROM company
-		WHERE company_id = #{companyId};
+		WHERE company_id = #{companyId}
 	</select>
+	
 	
 	<update id="update">
 		UPDATE company

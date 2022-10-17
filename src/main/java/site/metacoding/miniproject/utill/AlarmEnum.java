@@ -41,7 +41,9 @@ public enum AlarmEnum {
             message = name + " 님이 회원님을 좋아요 하였습니다.";
         }
         if (ALARMPERSONALLIKEID.key.equals(key)) {
-            message = name + " 님이 회원님을 좋아요 하였습니다.";
+
+            message = name + " 님이 회원님의 이력서를 좋아요 하였습니다.";
+
         }
 
         return message;
