@@ -74,12 +74,13 @@ public class LikeController {
 	public @ResponseBody ResponseDto<?> insertCompanyLike(@PathVariable Integer companyId) {
 		// Company company = (Company) session.getAttribute("principal");
 
-		SignedDto<?> signedDto = (SignedDto) session.getAttribute("principal");
+		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
 
-		companyLikeService.좋아요(companyId, signedDto.getPersonalId());
+		companyLikeService.좋아요(signedDto, companyId);
 		return new ResponseDto<>(1, "좋아요성공", null);
 
 	}
+
 	@DeleteMapping("/companyLike/{companyId}/likes")
 	public @ResponseBody ResponseDto<?> deleteCompanyLike(@PathVariable Integer companyId) {
 

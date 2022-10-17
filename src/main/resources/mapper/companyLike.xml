@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.miniproject.domain.like.companylike.CompanyLikesDao">
 
-	<insert id="insert">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="companyLikeId" keyColumn="company_like_id">
 		INSERT INTO company_like(personal_id,company_id,created_at)
 		VALUES(#{personalId},#{companyId},NOW())
 	</insert>
