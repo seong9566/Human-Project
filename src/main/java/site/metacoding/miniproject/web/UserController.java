@@ -26,6 +26,7 @@ import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.utill.AlarmEnum;
+import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
@@ -118,6 +119,7 @@ public class UserController {
 
 	@PostMapping("/join/personal")
 	public @ResponseBody ResponseDto<?> joinPersonal(@RequestBody PersonalJoinDto joinDto) {
+		ValidationCheckUtil.valCheckToJoinPersonal(joinDto);
 		userService.joinPersonal(joinDto);
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);

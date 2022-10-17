@@ -41,10 +41,6 @@
 		LEFT OUTER JOIN users u
 		ON c.company_id = u.company_id
 		WHERE c.company_id =#{companyId}
-<<<<<<< HEAD
-=======
-
->>>>>>> 89f1925e773c2c31662158879f75a1bda2170d10
 	</select>
 	<select id="findByAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
 		SELECT company_id,
