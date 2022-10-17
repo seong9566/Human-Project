@@ -5,9 +5,8 @@ function join() {
 		personalName: $("#username").val(),
 		personalEmail: $("#email").val(),
 		personalPhoneNumber: $("#phonenumber").val(),
-		categoryFrontend: $("input:checkbox[value='frontend']").is(":checked"),
-		categoryBackend: $("input:checkbox[value='backend']").is(":checked"),
-		categoryDevops: $("input:checkbox[value='devops']").is(":checked"),
+		personalEducation:$('input[type=radio][name=contact]:checked').val(),
+		personalAddress:$("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val(),
 	};
 
 	$.ajax("/join/personal", {

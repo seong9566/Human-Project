@@ -4,8 +4,10 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ public class Career {
 	  private Boolean threeYearOver;
 	  private Boolean fiveYearOver;
 	  private Timestamp createdAt;
-	  
+
 	  // 이력서 작성
 	  public Career(InsertResumesDto insertResumesDto) {
 		  this.oneYearLess = insertResumesDto.getOneYearLess();
@@ -31,5 +33,12 @@ public class Career {
 		  this.twoYearOver = updateResumesDto.getTwoYearOver();
 		  this.threeYearOver = updateResumesDto.getThreeYearOver();
 		  this.fiveYearOver = updateResumesDto.getFiveYearOver();
+
+	  public Career(JobPostingBoardInsertDto joinDto) {
+		  this.oneYearLess = joinDto.getOneYearLess();
+		  this.twoYearOver = joinDto.getTwoYearOver();
+		  this.threeYearOver = joinDto.getThreeYearOver();
+		  this.fiveYearOver = joinDto.getFiveYearOver();
+
 	  }
 }

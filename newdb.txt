@@ -49,7 +49,7 @@ CREATE TABLE resumes (
 
 CREATE TABLE portfolio (
   portfolio_id integer auto_increment PRIMARY KEY,
-  portfolid_source LONGTEXT,
+  portfolio_source LONGTEXT,
   portfolio_file longtext,
   created_at timestamp
 );
@@ -132,6 +132,7 @@ CREATE TABLE alarm (
   alarm_company_like_id integer,
   alarm_personal_like_id integer,
   alarm_message longtext,
+  alarm_check tinyint(1),
   created_at timestamp
 );
 

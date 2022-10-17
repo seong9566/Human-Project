@@ -1,6 +1,7 @@
 package site.metacoding.miniproject.domain.personal;
 
 import java.io.Serializable;
+
 import java.sql.Timestamp;
 
 import lombok.Getter;

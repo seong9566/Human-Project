@@ -2,22 +2,17 @@ package site.metacoding.miniproject.web.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.miniproject.domain.company.Company;
 
 @Getter
 @Setter
-public class CompanyInformUpdateDto {
-	
+public class CompanyUpdateDto {
 	// Company업데이트
 	private String companyName;
-	
-	// Detail 업데이트
+	private String companyPicture;
 	private String companyEmail;
 	private String companyPhoneNumber;
-	private String companyPicture;
 	private String companyAddress;
-	
 	//Users 업데이트
-	private String loginId;
 	private String loginPassword;
-	
 }
