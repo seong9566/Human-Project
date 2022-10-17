@@ -86,12 +86,12 @@ public class PersonalController {
 //		System.out.println(updateResumesDto.getCategoryFrontend());
 //		System.out.println(updateResumesDto.getPortfolioSource());		
 		personalService.updateResumes(resumesId, updateResumesDto);			
-		return new ResponseDto<>(1, "이력서수정성공", null);
+		return new ResponseDto<>(1, "이력서 수정 성공", null);
 	}
 	
 	// 이력서 삭제 하기
 	@DeleteMapping("/personal/resumes/delete/{resumesId}")
-	public ResponseDto<?> deleteResumes(@PathVariable Integer resumesId){
+	public @ResponseBody ResponseDto<?> deleteResumes(@PathVariable Integer resumesId){
 		personalService.deleteResumes(resumesId);
 		return new ResponseDto<>(1, "이력서 삭제 성공", null);
 	}

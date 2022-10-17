@@ -90,17 +90,12 @@ function update(){
 }
 		
 // 이력서 삭제
-$("#btnDelete").click(()=>{
-	deleteById();
-});
-
-function deleteById(){			
-	let resumesDeleteId = $("#resumesDeleteId").val();
-	
-	$.ajax("/personal/resumes/delete/"+resumesDeleteId,{
+function deleteById(id){				
+	$.ajax("/personal/resumes/delete/"+id,{
 		type: "delete",
 		dataType: "json"
 	}).done((res)=>{
+		console.log(res);
 		if(res.code == 1){
 			alert("삭제되었습니다.");
 			location.reload();

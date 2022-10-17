@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<input id="resumesId" type="text"
+<input id="resumesId" type="hidden"
 	value="${detailResumesDtoPS.resumesId}">
-<input id="resumesCategoryId" type="text"
+<input id="resumesCategoryId" type="hidden"
 	value="${detailResumesDtoPS.resumesCategoryId}">
-<input id="careerId" type="text"
+<input id="careerId" type="hidden"
 	value="${detailResumesDtoPS.careerId}">
-<input id="portfolioId" type="text"
+<input id="portfolioId" type="hidden"
 	value="${detailResumesDtoPS.portfolioId}">
 
 <div id="main">

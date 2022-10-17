@@ -30,7 +30,7 @@
 			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
 			
 			<input id="resumesPicture" type="text" class="form-control"
-			placeholder="사진 들어가는 자리입니다. " readonly/>
+			placeholder="사진 들어가는 자리입니다." readonly/>
 			
 		<div class="mb-3">◆경력사항</div>
 			<div>
@@ -49,13 +49,13 @@
 			</div>
 			
 		<div class="mb-3">◆희망근무지역</div>
-		<input id="resumesPlace" type="text" class="form-control" readonly/>	
+		<input id="resumesPlace" type="text" class="form-control" placeholder="${detailResumesDtoPS.resumesPlace}" readonly/>	
 						
 		<div class="mb-3">◆Github 주소 or Blog 주소</div>
-			<input id="portfolioSource" type="text" class="form-control" readonly/>	
+			<input id="portfolioSource" type="text" class="form-control" placeholder="${detailResumesDtoPS.portfolioSource}" readonly/>	
 			
 		<div class="mb-3">◆포트폴리오</div>	
-		<input id="portfolioFile" type="text" class="form-control" readonly/>			
+		<input id="portfolioFile" type="text" class="form-control" placeholder="${detailResumesDtoPS.portfolioFile}" readonly/>			
 		</div>
 			
 		<div class="form">

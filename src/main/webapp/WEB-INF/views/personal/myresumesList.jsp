@@ -4,7 +4,6 @@
 
 <div class="container">
 
-<input id="resumesDeleteId" type="hidden" value="${resumes.resumesId}">
 
 	<h2>나의 이력서 리스트</h2>
 
@@ -13,7 +12,7 @@
 			<a href="/personal/resumes/${resumes.resumesId}">
 				<div class="lineheight">${resumes.resumesTitle}</div>
 			</a>
-			<button id="btnDelete" type="button" class="btn btn-primary">삭제하기</button>
+			<button id="btnDelete" onclick="deleteById(${resumes.resumesId});" type="button" class="btn btn-primary">삭제하기</button>
 		</div>
 	</c:forEach>
 
