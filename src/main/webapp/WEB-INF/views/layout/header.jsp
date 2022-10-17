@@ -22,12 +22,10 @@
                -webkit-animation: animatezoom 0.6s;
                animation: animatezoom 0.6s
             }
-
             @-webkit-keyframes animatezoom {
                from {
                   -webkit-transform: scale(0)
                }
-
                to {
                   -webkit-transform: scale(1)
                }
@@ -35,7 +33,6 @@
                from {
                   transform: scale(0)
                }
-
                to {
                   transform: scale(1)
                }
