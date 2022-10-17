@@ -25,8 +25,8 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 public class PersonalLikeService {
 	private final UsersDao usersDao;
 	private final PersonalLikesDao personalLikesDao;
-	private final ResumesDao resumesDao;
 	private final AlarmDao alarmDao;
+	private final ResumesDao resumesDao;
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void 좋아요(Integer resumesId, SignedDto<?> signedDto) {
@@ -69,6 +69,10 @@ public class PersonalLikeService {
 		PersonalLike personalLike = new PersonalLike(companyId, resumesId);
 		PersonalLike companyLike2 = personalLikesDao.findById(personalLike);
 		return companyLike2;
+	}
+	
+	public void 좋아요이력서추가(InsertRecommendDto insertRecommendDto) {
+		resumesDao.insertLike(insertRecommendDto);
 	}
 
 }

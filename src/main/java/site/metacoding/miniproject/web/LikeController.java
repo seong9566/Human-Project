@@ -33,14 +33,13 @@ public class LikeController {
 	@PostMapping("/personalLike/{resumesId}/likes")
 	public @ResponseBody ResponseDto<?> insertLike(@PathVariable Integer resumesId) {
 		// Company company = (Company) session.getAttribute("principal");
-
+		System.out.println(resumesId);
 		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
 
 		personalLikeService.좋아요(resumesId, signedDto);
 		return new ResponseDto<>(1, "좋아요성공", null);
 
 	}
-
 
 	@DeleteMapping("/personalLike/{resumesId}/likes")
 	public @ResponseBody ResponseDto<?> deleteLike(@PathVariable Integer resumesId) {
@@ -64,7 +63,15 @@ public class LikeController {
 		model.addAttribute("personalLikeList", personalLikeDto);
 		return "/company/recommend";
 	}
+	
+	@PostMapping("/recommend")
+	public @ResponseBody ResponseDto<?> insertRecommend(@RequestBody InsertRecommendDto insertRecommendDto){
+		personalLikeService.좋아요이력서추가(insertRecommendDto);
+		return new ResponseDto<>(1, "좋아요이력서추가", null);
+	}
 
+	
+	/////////////////////////////////////////////
 	@PostMapping("/companyLike/{companyId}/likes")
 	public @ResponseBody ResponseDto<?> insertCompanyLike(@PathVariable Integer companyId) {
 		// Company company = (Company) session.getAttribute("principal");
@@ -91,4 +98,6 @@ public class LikeController {
 		model.addAttribute("companyLike", companyLike);
 		return "/personal/job_posting_View_Apply";
 	}
+	
+	
 }
