@@ -2,7 +2,7 @@ package site.metacoding.miniproject.domain.jobpostingboard;
 
 import java.util.List;
 
-import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
 
 public interface JobPostingBoardDao {
 	public void insert(JobPostingBoard jobPostingBoard);
@@ -12,5 +12,5 @@ public interface JobPostingBoardDao {
 	public void deleteById(Integer jobPostingBoardId);
 	
 	//채용공고 목록 보기
-	public List<CompanyJobPostingBoardDto> findJobpostingBoard();
+	public List<JobPostingBoardListDto> jobPostingBoardList(Integer companyId);
 }
