@@ -32,8 +32,6 @@
                   -webkit-transform: scale(1)
                }
 
-            }
-
             @keyframes animatezoom {
                from {
                   transform: scale(0)
@@ -74,10 +72,10 @@
                            <li style="display: none;" id="userId" value="${principal.usersId}"></li>
                         </c:when>
                         <c:otherwise>
-                           <li class="nav-item"><a class="nav-link" href="/personal/info">내정보</a></li>
-                           <li class="nav-item"><a class="nav-link" href="/personal/resumesForm">이력서쓰기</a></li>
-                           <li class="nav-item"><a class="nav-link" href="/personal/myresumes">내이력서보기</a></li>
-                           <li class="nav-item"><a class="nav-link" href="/logout" onclick="disconnect()">로그아웃</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/personal/info">내정보</a></li>
+                 	<li class="nav-item"><a class="nav-link" href="/personal/resumesForm">이력서작성하기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/personal/myresumesList">내이력서목록보기</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
                            <li class="nav-item" style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;">
                               ${principal.userinfo.personalName}님 환영합니다.</li>
                            <li class="nav-item fa-regular fa-bell nav-link"

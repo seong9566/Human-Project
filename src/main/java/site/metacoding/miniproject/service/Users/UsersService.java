@@ -26,6 +26,7 @@ public class UsersService {
 	private final UsersDao usersDao;
 	private final CompanyDao companyDao;
 	private final PersonalDao personalDao;
+	private final CategoryDao categoryDao;
 	private final AlarmDao alarmDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {
