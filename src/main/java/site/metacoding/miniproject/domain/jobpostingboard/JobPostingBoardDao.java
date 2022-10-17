@@ -12,5 +12,5 @@ public interface JobPostingBoardDao {
 	public void deleteById(Integer jobPostingBoardId);
 	
 	//채용공고 목록 보기
-	public List<JobPostingBoardListDto> jobPostingBoardList();
+	public List<JobPostingBoardListDto> jobPostingBoardList(Integer companyId);
 }

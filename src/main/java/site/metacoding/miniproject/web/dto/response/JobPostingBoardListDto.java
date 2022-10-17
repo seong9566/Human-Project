@@ -26,5 +26,6 @@ public class JobPostingBoardListDto {
 	private Boolean threeYearOver;
 	private Boolean fiveYearOver;
 	
+	private String formatDeadLine;
 	
 }

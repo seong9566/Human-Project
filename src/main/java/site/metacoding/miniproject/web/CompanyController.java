@@ -76,10 +76,12 @@ public class CompanyController {
 		companyService.insertJobPostingBoard(principal.getCompanyId(), insertDto);
 		return new ResponseDto<>(1, "등록 성공", null);
 	}
+	
 	//회사의 구인 공고 리스트 보기 
-	@GetMapping("/company/{companyId}/jobpostingboardList")
-	public String jobPostingBoardList(Model model,@PathVariable Integer companyId) {
-	List<JobPostingBoardListDto> jobPostingBoardList =  companyService.jobPostingBoardList();
+	@GetMapping("/company/jobPostingBoardList")
+	public String jobPostingBoardList(Model model, Integer companyId) {
+	SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+	List<JobPostingBoardListDto> jobPostingBoardList =  companyService.jobPostingBoardList(principal.getCompanyId());
 	model.addAttribute("jobPostingBoardList", jobPostingBoardList);
 	System.out.println(companyId);
 	return "company/jobPostingBoardList";
