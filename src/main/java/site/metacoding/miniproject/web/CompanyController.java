@@ -7,11 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
@@ -85,6 +86,15 @@ public class CompanyController {
 	model.addAttribute("jobPostingBoardList", jobPostingBoardList);
 	System.out.println(companyId);
 	return "company/jobPostingBoardList";
+	}
+	
+	
+	//이미지 업로드 테스트
+	@PostMapping("/upload")
+	public @ResponseBody String create(@RequestPart MultipartFile file) {
+		String fileName = file.getOriginalFilename();
+		System.out.println("fileNaMe : " + fileName );
+		return "ok";
 	}
 
 }
