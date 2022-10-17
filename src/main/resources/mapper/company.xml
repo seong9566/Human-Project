@@ -13,7 +13,8 @@
 		SELECT *
 		FROM
 		company
-		WHERE company_id = #{companyId}
+		WHERE company_id
+		= #{companyId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true"

@@ -15,6 +15,7 @@ public class JobPostingBoard {
 	private Integer jobPostingBoardId;
 	private Integer companyId;
 	private Integer jobPostingBoardCategoryId;
+	private Integer jobPostingSalary;
 	private Integer jobPostingBoardSalary;
 	private Integer jobPostingBoardCareerId;
 	private String jobPostingBoardTitle;

@@ -6,14 +6,17 @@
 	SELECT * FROM category
 </select>
 
-	<select id="findById" resultType="site.metacoding.miniproject.domain.category.Category">
-
-</select>
-
-	<insert id="insert" useGeneratedKeys="true" keyProperty="categoryId" keyColumn="category_id">
+<insert id="insert" useGeneratedKeys="true" keyProperty="categoryId" keyColumn="category_id">
 	INSERT INTO category(category_frontend, category_backend, category_devops, created_at)
 	VALUES(#{categoryFrontend}, #{categoryBackend},#{categoryDevops}, NOW())
 </insert>
 
+<update id="update">
+	UPDATE category 
+	SET category_frontend = #{categoryFrontend},
+	 category_Backend =#{categoryBackend},
+	 category_devops = #{categoryDevops}
+	WHERE category_id = #{categoryId}
+</update>
 
 </mapper>

@@ -10,6 +10,9 @@ public interface ResumesDao {
 	// 이력서 작성 하기
 	public void insert(Resumes resumes);
 	
+	// 내가 작성한 이력서 목록 보기
+	public List<Resumes> findMyresumesAll(Integer personalId);	
+	
 	// 이력서 상세 보기	
 	public DetailResumesDto resumesById(Integer personalId);
 	
@@ -17,12 +20,12 @@ public interface ResumesDao {
 	public Resumes findById(Integer resumesId);
 	public void update(Resumes resumes);
 	
+	// 이력서 삭제
+	public void deleteById(Integer resumesId);	
 	
-	public List<Resumes> findAll();	
-	
-	public void deleteById(Integer resumesId);
-	
-	
+	// 이력서 전체 목록 보기
+	public List<Resumes> findAll();		
+
 	// 좋아요 이력서 추가
 	public void insertLike(InsertRecommendDto insertRecommendDto);
 	
