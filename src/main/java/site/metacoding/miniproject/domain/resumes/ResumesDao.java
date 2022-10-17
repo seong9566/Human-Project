@@ -36,5 +36,4 @@ public interface ResumesDao {
 	// 검색 결과 목록 보기
 	public List<CompanyMainDto> findSearch(@Param("startNum") int startNum, @Param("keyword") String keyword);
 
-
 }
