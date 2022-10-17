@@ -91,6 +91,10 @@ public class CompanyController {
 	@GetMapping("/company/jobpostingBoardDetail/{jobPostingBoardId}")
 	public String insertjobPostingBoard(Model model,@PathVariable Integer jobPostingBoardId) {
 		JobPostingBoardDetailDto jobPostingPS = companyService.jobPostingOne(jobPostingBoardId);
+		
+		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
+		model.addAttribute("address", addressPS);
 		model.addAttribute("jobPostingPS", jobPostingPS);
 		return "company/jobPostingBoardDetail";
 	}

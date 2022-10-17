@@ -45,7 +45,7 @@
 				</c:choose>
 			</p>
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button id = "btnUpdateForm" type="button" class="btn btn-primary">수정하기</button>
+				<button id = "btnUpdateForm" type="button" class="btn btn-primary">상세보기</button>
 			</div>
 
 		</div>

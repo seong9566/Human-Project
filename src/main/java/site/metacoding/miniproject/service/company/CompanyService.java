@@ -78,11 +78,10 @@ public class CompanyService {
 			//TimeStamp to String
 			for(JobPostingBoardListDto deadLine : postingList)
 			{
-				System.out.println(deadLine.getJobPostingBoardDeadline());
 				Timestamp ts = deadLine.getJobPostingBoardDeadline();
 				Date date = new Date();
 				date.setTime(ts.getTime());
-				String formattedDate = new SimpleDateFormat("yyyyMMdd").format(date);
+				String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
 				deadLine.setFormatDeadLine(formattedDate);
 			}
 			return postingList;
@@ -91,6 +90,11 @@ public class CompanyService {
 		//채용공고 상세 보기 
 		public JobPostingBoardDetailDto jobPostingOne(Integer jobPostingBoardId) {
 			JobPostingBoardDetailDto jobPostingPS =  jobPostingBoardDao.findById(jobPostingBoardId);
+			Timestamp ts = jobPostingPS.getJobPostingBoardDeadline();
+			Date date = new Date();
+			date.setTime(ts.getTime());
+			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+			jobPostingPS.setFormatDeadLine(formattedDate);
 			return jobPostingPS;
 		}
 	}
