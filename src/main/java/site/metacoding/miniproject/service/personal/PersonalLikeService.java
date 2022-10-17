@@ -2,7 +2,6 @@ package site.metacoding.miniproject.service.personal;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,6 @@ import site.metacoding.miniproject.domain.alarm.AlarmDao;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLikesDao;
-import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
@@ -45,8 +43,10 @@ public class PersonalLikeService {
 		Alarm alarm = new Alarm(users.getUsersId(), personallike, companyinfo.getCompanyName());
 
 		alarmDao.insert(alarm);
+
 		personalLike.setAlarmId(alarm.getAlarmId());
 		personalLikesDao.update(personalLike);
+
 
 	}
 

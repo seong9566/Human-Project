@@ -1,4 +1,3 @@
-
 var stompClient = null;
 
 
@@ -148,15 +147,6 @@ function iconchangToRead() {
 		$("#alarm").addClass("fa-regular");
 		$("#alarm").css("color", "white");
 	}
-}
-function iconchange(message) {
-
-    $("#alarm").removeClass("fa-regular");
-    $("#alarm").addClass("fa-solid");
-    $("#alarm").css("color", "red");
-    $(".modal-body").empty();
-    $(".modal-body").append('<p3>' + message + '</p3>');
-
 }
 const loremIpsum = document.getElementById("lorem-ipsum")
 const modal = document.getElementById("modal")

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>좋좋잡</title>
 <meta charset="utf-8">
@@ -79,24 +78,23 @@
 			</nav>
 		</header>
 	</div>
-    <div class="modalpage">
-        <!-- The Modal -->
-        <div id="container">
-            <div id="lorem-ipsum"></div>
-        </div>
-        <div id="modal" class="modal-overlay">
-            <div class="modal-window">
-                <div class="title">
-                    <h2>내게 온 알람</h2>
-                    <div class="close-area">X</div>
-                </div>
+	<div class="modalpage">
+		<!-- The Modal -->
+		<div id="container">
+			<div id="lorem-ipsum"></div>
+		</div>
+		<div id="modal" class="modal-overlay">
+			<div class="modal-window">
+				<div class="title">
+					<h2>내게 온 알람</h2>
+					<div class="close-area">X</div>
+				</div>
 
-                <div class="content">
-                    내게 온 알림이 없습니다.
-                </div>
-            </div>
-        </div>
-    </div>
+				<div class="content">내게 온 알림이 없습니다.</div>
+
+			</div>
+		</div>
+	</div>
 	<script>
         $(document).ready(() => {
             if ('<%=(Integer) session.getAttribute("companyId")%>' != "null") {

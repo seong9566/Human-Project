@@ -1,24 +1,17 @@
 package site.metacoding.miniproject.web;
 
-import java.util.List;
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
@@ -97,7 +90,11 @@ public class UserController {
 	@PostMapping("/login")
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
+
 		SignedDto<?> signedDto = userService.login(loginDto);
+		for (AlarmEnum num : AlarmEnum.values()) {
+			System.out.println(num.key());
+		}
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 
@@ -149,7 +146,9 @@ public class UserController {
 	}
 
 	@GetMapping("/user/alarm/{usersId}")
+
 	public @ResponseBody ResponseDto<?> refreshUserAlarm(@PathVariable Integer usersId) {
+
 		ResponseDto<?> responseDto = null;
 		List<Alarm> usersAlarm = userService.userAlarm(usersId);
 		if (!usersAlarm.isEmpty())
@@ -157,6 +156,7 @@ public class UserController {
 
 		return responseDto;
 	}
+
 
 	@DeleteMapping("/user/alarm/{alarmId}")
 	public @ResponseBody ResponseDto<?> deleteUserAlarm(@PathVariable Integer alarmId) {

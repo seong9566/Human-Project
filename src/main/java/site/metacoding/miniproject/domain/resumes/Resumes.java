@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,22 +21,24 @@ public class Resumes {
 	private String resumesTitle;
 	private String resumesPicture;
 	private String resumesIntroduce;
-	private String resumesCategoryId;
+	private Integer resumesCategoryId;
 	private String resumesPlace;
 	private Timestamp createdAt;
 	
-	// 이력서 작성
-	public Resumes(Integer personalId, String resumesTitle, String resumesPicture, String resumesIntroduce) {
-		this.personalId = personalId;
-		this.resumesTitle = resumesTitle;
-		this.resumesPicture = resumesPicture;
-		this.resumesIntroduce = resumesIntroduce;
+	// 이력서 작성 
+	public Resumes (InsertResumesDto insertResumesDto) {
+		this.resumesTitle = insertResumesDto.getResumesTitle();
+		this.resumesPicture = insertResumesDto.getResumesPicture();
+		this.resumesIntroduce = insertResumesDto.getResumesIntroduce();
+		this.resumesPlace = insertResumesDto.getResumesPlace();
 	}
 	
 	// 이력서 수정
-	public Resumes(String resumesTitle, String resumesPicture, String resumesIntroduce) {
-		this.resumesTitle = resumesTitle;
-		this.resumesPicture = resumesPicture;
-		this.resumesIntroduce = resumesIntroduce;
+	public Resumes (int resumesId, UpdateResumesDto updateResumesDto) {
+		this.resumesId = resumesId;
+		this.resumesTitle = updateResumesDto.getResumesTitle();
+		this.resumesPicture = updateResumesDto.getResumesPicture();
+		this.resumesIntroduce = updateResumesDto.getResumesIntroduce();
+		this.resumesPlace = updateResumesDto.getResumesPlace();
 	}
 }
