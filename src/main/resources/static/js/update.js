@@ -57,7 +57,7 @@ function joinform_check() {
 	        var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 	        
 	        if (!pwdCheck.test(password.value)) {
-	          alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+	          alert("비밀번호는 대문자+소문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
 	          password.focus();
 	          return false;
 	        };
@@ -82,7 +82,7 @@ function joinform_check() {
 	        
 	        //전화번호 유효성
 	        if (!reg.test(phonenumber.value)) {
-	          alert("전화번호는 숫자만 입력할 수 있습니다.");
+	          alert("전화번호규격에 맞게 입력해주세요 ex) 010-0000-0000;")
 	          phonenumber.focus();
 	          return false;
 	        }

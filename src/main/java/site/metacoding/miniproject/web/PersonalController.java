@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.service.personal.PersonalService;
+import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
@@ -123,8 +124,10 @@ public class PersonalController {
 		
 		@PutMapping("/personal/update")
 		public @ResponseBody ResponseDto<?> personalUpdate(@RequestBody PersonalUpdateDto personalUpdateDto){
+			
+			ValidationCheckUtil.valCheckToUpdatePersonal(personalUpdateDto);
 			SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
 			personalService.updatePersonal(principal.getUsersId(), principal.getPersonalId(), personalUpdateDto);
 			return new ResponseDto<>(1, "수정 성공", null);
-		}
+}
 }
