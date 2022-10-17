@@ -108,13 +108,14 @@
 	</form>
 	<div class="mb-5"></div>
 	<div class="d-grid gap-1 col-2 mx-auto">
-		<button id="btnUpdate" type="button" class="btn btn-primary" onclick="joinform_check()">수정완료</button>
+		<button id="btnUpdate" type="button" class="btn btn-primary" >수정완료</button>
 	</div>
 
 </div>
 
 
 <script src="/js/update.js"></script>
+
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%@ include file="../layout/footer.jsp"%>

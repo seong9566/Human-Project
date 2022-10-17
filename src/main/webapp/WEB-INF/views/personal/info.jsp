@@ -4,9 +4,7 @@
 <div class="container">
 	<form>
 		<h2>나의 정보</h2>
-		<div class="mb-3 mt-3">
-			◆아이디 <input id="userId" type="text" class="form-control" readonly>
-		</div>
+
 
 		<div class="mb-3"></div>
 

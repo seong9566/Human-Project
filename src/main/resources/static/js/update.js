@@ -1,14 +1,8 @@
-
-	   
-	   
-	   
-
+//업데이트 버튼 클릭시
 $("#btnUpdate").click(() => {
 	update();
-		
 });
 
-//업데이트 버튼 클릭시
 function update(){
 	let data ={
 			loginPassword: $("#password").val(),
@@ -18,6 +12,10 @@ function update(){
 			personalEducation:$('input[type=radio][name=contact]:checked').val(),
 			personalAddress:$("#post").val() + "," + $("#addr").val() + "," + $("#detail_address").val()
 	};
+	
+	if(!joinform_check()){ 
+		return;
+	}
 	$.ajax("/personal/update", {
 		type: "PUT",
 		dataType: "json",
@@ -27,9 +25,8 @@ function update(){
 		}
 	}).done((res) => {
 		if (res.code == 1) {
-			joinform_check();
 			alert("회원 수정 완료");
-			location.href="/personal/info";
+			location.href="/personal/update";
 		} else {
 			alert("업데이트에 실패하였습니다");
 		}
@@ -100,8 +97,7 @@ function joinform_check() {
 	             alert("이메일 형식으로 입력해야 합니다.");
 	             return false;
 	           }
-
-	   
+			return true;
 	   }
 
 
