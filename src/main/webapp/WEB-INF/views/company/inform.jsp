@@ -1,46 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<div class="container">
-
-	<input id = "usersId" type="hidden" value="${companyInfo.usersId}"> 
-	<form>
-		<h2>내 정보 - 기업</h2>
-		<div class="mb-3 mt-3">
-			◆아이디
-			<input id="loginId" type="text" value="${companyInfo.loginId}" readonly>
+<div class="mainjoinform">
+	<div class="joinformtitle">
+		<h1>기업정보 확인 페이지</h1>
+	</div>
+	<div class="joindiv">
+		<input id="username" type="text" class="form-control"
+			placeholder="이름을 입력해주세요" readonly>
+	</div>
+	<div class="joindiv">
+		<input id="phonenumber" type="text" class="form-control"
+			placeholder="전화번호를 입력해주세요" readonly>
+	</div>
+	<div class="joindiv">
+		<input id="email" type="email" class="form-control"
+			placeholder="이메일을 입력해주세요" readonly>
+	</div>
+	<div class="background">
+		<div class="window">
+			<div class="popup">
+				<div>
+					<img id="previewImg" />
+				</div>
+				<button id="close">팝업닫기</button>
+			</div>
+			<div></div>
 		</div>
-		
-		<div class="mb-3 mt-3">
-			◆회사명
-			<input id="companyName" type="text" value="${companyInfo.companyName}" readonly >
-		</div>
-		
-		<div class="mb-3 mt-3">
-			◆전화번호
-			<input id="companyPhoneNumber" type="text" value="${companyInfo.companyPhoneNumber}" readonly>
-		</div>
-		
-		<div class="mb-3 mt-3">
-			◆이메일
-			<input id="companyEmail" type="text" value="${companyInfo. companyEmail}" readonly>
-		</div>
-		
-		<div class="mb-3 mt-3">
-			◆회사 사진 
-			<input id="companyPicture" type="text" value="${companyInfo. companyPicture}" readonly>
-		</div>
-
-		<div class="mb-3">◆주소</div>
-		<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
-		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 645px;" readonly>
-		<input type="detailAddress" value="${address.detailAddress }" style="width: 645px;" readonly>
-		<div class="mb-3"></div>
-		</form>
+	</div>
+	<input id="show" type="button" value="이미지 미리보기" /><br /> <input
+		id="post" style="width: 200px;" type="text" placeholder="우편번호"
+		readonly onclick="findAddr()"> <input id="addr" type="text"
+		placeholder="주소" style="width: 300px;" readonly><br> <input
+		id="detail_address" type="text" placeholder="상세주소"
+		style="width: 400px;">
+	<div class="mb-5"></div>
+	<div class="d-grid gap-1 col-2 mx-auto">
+		<button id="btnSave" type="button" class="btn btn-primary"
+			disabled="disabled" onclick = "location.href = '/company/inform/update'">
+			수정하기
+		</button>
+	</div>
 </div>
 
 <div class="mb-5"></div>
 <div class="d-grid gap-1 col-2 mx-auto">
-	<button id=btnUpdateForm type="button" class="btn btn-primary">수정하러 가기 </button>
+	<button id=btnUpdateForm type="button" class="btn btn-primary">수정하러
+		가기</button>
 </div>
 
 <script>
@@ -49,7 +55,8 @@ $("#btnUpdateForm").click(()=>{
    location.href="/company/inform/update";
 });
 </script>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/join.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>

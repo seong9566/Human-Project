@@ -1,0 +1,36 @@
+.BigList {
+    width: 1200px;
+    height: 100%;
+    position: relative;
+    margin: 35px auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border: 1px solid black;
+}
+.BigList h2 {
+    text-align: center;
+}
+
+.ListTitle {
+    text-align: left;
+}
+
+.ListButton {
+    position: relative;
+    float: right;
+    transform: translateX(-30%);
+    margin-top: 10px;
+    width: 20%;
+    height: 40px;
+    background: rgba(0, 195, 98, 255);
+    background-position: left;
+    background-size: 00%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline;
+    margin: 0 20 0 20 auto;
+}

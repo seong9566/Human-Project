@@ -149,3 +149,42 @@ function iconchangToRead() {
 		$("#alarm").css("color", "white");
 	}
 }
+function iconchange(message) {
+
+    $("#alarm").removeClass("fa-regular");
+    $("#alarm").addClass("fa-solid");
+    $("#alarm").css("color", "red");
+    $(".modal-body").empty();
+    $(".modal-body").append('<p3>' + message + '</p3>');
+
+}
+const loremIpsum = document.getElementById("lorem-ipsum")
+const modal = document.getElementById("modal")
+function modalOn() {
+    modal.style.display = "flex"
+}
+function isModalOn() {
+    return modal.style.display === "flex"
+}
+function modalOff() {
+    modal.style.display = "none"
+}
+const btnModal = document.getElementById("alarm")
+btnModal.addEventListener("click", e => {
+    modalOn()
+})
+const closeBtn = modal.querySelector(".close-area")
+closeBtn.addEventListener("click", e => {
+    modalOff()
+})
+modal.addEventListener("click", e => {
+    const evTarget = e.target
+    if (evTarget.classList.contains("modal-overlay")) {
+        modalOff()
+    }
+})
+window.addEventListener("keyup", e => {
+    if (isModalOn() && e.key === "Escape") {
+        modalOff()
+    }
+})

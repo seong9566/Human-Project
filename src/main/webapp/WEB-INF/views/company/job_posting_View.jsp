@@ -65,86 +65,16 @@
 						id="job_posting_board_deadline" readonly>
 				</div>
 			</div>
-			<br />
-			<br />
-			<div class="btn-update">
-				<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
-				<button id="btnapply" type="button" class="btn btn-primary">지원하기</button>
-			</div>
-		</div>
-	</div>
-</div>
 
-<script>
-			$(function () {
-				$('#btnlike').click(function () {
-					if ($(this).html() == '좋아요') {
-						$(this).html('좋아요취소');
-						insertLike();
-						sendmessageToPersonal($("#resumesId").val());
-						insertTitle();
-					}
-					else {
-						$(this).html('좋아요');
-						deleteLike();
-					}
-				});
-			});
-			function insertTitle() {
-				let data = {
-					name: $("resume_title").val(),
-				}
-				console.log(data)
-				$.ajax("/recommend", {
-					type: "POST",
-					dataType: "json",
-					data: JSON.stringify(data), // http body에 들고갈 요청 데이터
-					headers: { // http header에 들고갈 요청 데이터
-						"Content-Type": "application/json; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) { // 성공
-					} else { // 실패
-						alert("이력서등록에 실패했습니다.");
-					}
-				});
-			}
-			function deleteLike() {
-				let resumesId = $("#resumesId").val();
-				$.ajax("/personalLike/" + resumesId + "/likes", {
-					type: "DELETE",
-					dataType: "json",
-					headers: { // http header에 들고갈 요청 데이터
-						"Content-Type": "application/json; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) {
-					} else {
-						alert("좋아요 추가 실패");
-						return;
-					}
-				});
-			}
-			function insertLike() {
-				let resumesId = $("#resumesId").val();
-				$.ajax("/personalLike/" + resumesId + "/likes", {
-					type: "POST",
-					dataType: "json",
-					headers: { // http header에 들고갈 요청 데이터
-						"Content-Type": "application/json; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) {
-					} else {
-						alert("좋아요 추가 실패");
-						return;
-					}
-				});
-			}
+			<div class="btn-update">
+				<button id="btnGoUpdate" type="button" class="btn btn-primary">수정하러하기</button>
+			</div>
+
+		</div>
+
+
+		<script src="/js/writeForm.js">
+			
 		</script>
 
-<script src="/js/writeForm.js">
-
-   </script>
-
-<%@ include file="../layout/footer.jsp"%>
+		<%@ include file="../layout/footer.jsp"%>
