@@ -71,10 +71,11 @@
 			</div>
 
 		</div>
+	</div>
+</div>
 
+<script src="/js/writeForm.js">
+	
+</script>
 
-		<script src="/js/writeForm.js">
-			
-		</script>
-
-		<%@ include file="../layout/footer.jsp"%>
+<%@ include file="../layout/footer.jsp"%>

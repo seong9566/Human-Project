@@ -7,9 +7,9 @@
 
 .mainjoinform {
     width: 700px;
-    height: 800px;
+    height: 1000px;
     position: relative;
-    margin: 35px auto;
+    margin: 20px auto;
     background: #fff;
     padding: 5px;
     overflow: hidden;
@@ -25,9 +25,16 @@
     font-size: 16px;
     height: 35px;
     background: none;
-    margin: 10px 0 20px 0;
+    margin: 10px 0 10px 0;
 }
-
+#detailAddress {
+	    text-align: center;
+    padding: 5px;
+    background: rgba(0, 195, 98, 255);
+    color: white;
+    cursor: pointer;
+    border: none;
+}
 #btnUsernameSameCheck {
 
     text-align: center;

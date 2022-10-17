@@ -21,50 +21,55 @@
 		</div>
 		<div class="right">
 
- <img id="previewImg" />
+			<img id="previewImg" />
 		</div>
 	</div>
 	<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
 	<div class="container mt-3" style="border: 3px solid #000000">
-	<h2>현재 채용중인 공고</h2>
-		<div class="row row-cols-1 row-cols-md-3 g-4">
-			<div id="box1" class="col">
-				<div class="card h-100">
-					<img src="/image/농심.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
+		<div id="companyrank">
+			<h2>현재 구인하고 있는 공고</h2>
+			<ul>
+
+				<li>
+					<div class="company-item">
+						<div class="company-cover"></div>
+						<div class="album-info">
+							<p class="company_title">이름1</p>
+							<p class="likerank">1등</p>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div id="box2" class="col">
-				<div class="card h-100">
-					<img src="/image/농심.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
+				</li>
+				<li>
+					<div class="company-item">
+						<div class="company-cover"></div>
+						<div class="company-info">
+							<p class="company_title">이름2</p>
+							<p class="likerank">2등</p>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div id="box3" class="col">
-				<div class="card h-100">
-					<img src="/image/농심.png" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
+				</li>
+				<li>
+					<div class="company-item">
+						<div class="company-cover"></div>
+						<div class="album-info">
+							<p class="company_title">이름3</p>
+							<p class="likerank">3등</p>
+						</div>
 					</div>
-				</div>
-			</div>
+				</li>
+			</ul>
+		</div>
+		<div class="mb-3"></div>
+
+		<div class="btn-update">
+			<button id="btnSub" type="button" class="btn btn-primary">구독하기</button>
 		</div>
 	</div>
-	<div class="mb-3"></div>
-
-	<div class="btn-update">
-		<button id="btnSub" type="button" class="btn btn-primary">구독하기</button>
-	</div>
--
 </div>
 
 
 <script src="/js/writeForm.js">
-
-   </script>
+	
+</script>
 
 <%@ include file="../layout/footer.jsp"%>

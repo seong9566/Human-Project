@@ -8,7 +8,7 @@
 	</div>
 	<div class="joindiv">
 		<br /> <input id="userId" type="text" class="form-control"
-			placeholder="아이디를 입력해주세요."> <br />
+			placeholder="아이디를 입력해주세요."><br/>
 		<button id="btnUsernameSameCheck" class="btn btn-warning"
 			type="button">아이디 중복체크</button>
 		<br />

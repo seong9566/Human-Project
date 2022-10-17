@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <div id="containermain">
 	<div id="companyrank">
 		<h2>회사 공고 추천 TOP 3</h2>
@@ -38,19 +42,18 @@
 	</div>
 	<div class="mb-3"></div>
 	<div class="dropdown">
-		<select name="category" id="select_category">
-			<option value="#">프론트엔드</option>
-			<option value="#">백엔드</option>
-			<option value="#">데브옵스</option>
-		</select>
-		<div class="d-flex justify-content-end">
-			<div style="width: 300px">
+		<div class="d-flex justify-content-between" style="width:1100px">
+				<select name="category" id="select_category"
+					style="width: 150px; left: 10%">
+					<option value="#">프론트엔드</option>
+					<option value="#">백엔드</option>
+					<option value="#">데브옵스</option>
+				</select>
 				<form class="d-flex" method="get" action="/companymain">
-					<input class="form-control me-2" type="text" placeholder="Search"
+					<input class="searchForm" type="text" placeholder="Search" style="width:400px"
 						name="keyword">
-					<button class="btn btn-primary" type="submit">Search</button>
+					<button class="searchsubmit" type="submit">Search</button>
 				</form>
-			</div>
 		</div>
 		<div class="d-flex justify-content-center">
 			<table class="table table-bordered" style="text-align: center">

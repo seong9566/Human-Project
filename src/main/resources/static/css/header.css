@@ -143,10 +143,6 @@
       margin-left: 10px;
   }
 
-  li a:hover {
-      color: green;
-      font-weight: bold;
-  }
 
   #alarm {
       padding-top: 45px;
