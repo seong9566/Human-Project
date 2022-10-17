@@ -23,6 +23,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
 
 @Service
@@ -85,6 +86,12 @@ public class CompanyService {
 				deadLine.setFormatDeadLine(formattedDate);
 			}
 			return postingList;
+		}
+		
+		//채용공고 상세 보기 
+		public JobPostingBoardDetailDto jobPostingOne(Integer jobPostingBoardId) {
+			JobPostingBoardDetailDto jobPostingPS =  jobPostingBoardDao.findById(jobPostingBoardId);
+			return jobPostingPS;
 		}
 	}
 

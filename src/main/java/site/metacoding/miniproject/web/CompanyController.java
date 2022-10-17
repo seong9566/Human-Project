@@ -19,6 +19,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -77,14 +78,21 @@ public class CompanyController {
 		return new ResponseDto<>(1, "등록 성공", null);
 	}
 	
-	//회사의 구인 공고 리스트 보기 
+	//회사의 채용 공고 리스트 보기 
 	@GetMapping("/company/jobPostingBoardList")
 	public String jobPostingBoardList(Model model, Integer companyId) {
 	SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 	List<JobPostingBoardListDto> jobPostingBoardList =  companyService.jobPostingBoardList(principal.getCompanyId());
 	model.addAttribute("jobPostingBoardList", jobPostingBoardList);
-	System.out.println(companyId);
 	return "company/jobPostingBoardList";
+	}
+	
+	// 채용 공고 상세보기
+	@GetMapping("/company/jobpostingBoardDetail/{jobPostingBoardId}")
+	public String insertjobPostingBoard(Model model,@PathVariable Integer jobPostingBoardId) {
+		JobPostingBoardDetailDto jobPostingPS = companyService.jobPostingOne(jobPostingBoardId);
+		model.addAttribute("jobPostingPS", jobPostingPS);
+		return "company/jobPostingBoardDetail";
 	}
 
 }
