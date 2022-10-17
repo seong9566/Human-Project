@@ -47,14 +47,12 @@ public class PersonalLikeService {
 		personalLike.setAlarmId(alarm.getAlarmId());
 		personalLikesDao.update(personalLike);
 
-
 	}
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void 좋아요취소(Integer resumesId, Integer companyId) {
 
 		PersonalLike personalLike = new PersonalLike(resumesId, companyId);
-
 		alarmDao.deleteById(companyId);
 		personalLikesDao.deleteById(personalLike);
 

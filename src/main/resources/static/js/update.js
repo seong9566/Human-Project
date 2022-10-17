@@ -26,7 +26,7 @@ function update(){
 	}).done((res) => {
 		if (res.code == 1) {
 			alert("회원 수정 완료");
-			location.href="/personal/update";
+			location.href="/personal/info";
 		} else {
 			alert("업데이트에 실패하였습니다");
 		}

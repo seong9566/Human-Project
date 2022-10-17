@@ -48,21 +48,51 @@
 	<update id="update">
 		UPDATE resumes
 		SET resumes_title = #{resumesTitle},
-		resumes_picture =#{resumesPicture}, 
+		resumes_picture =#{resumesPicture},
 		resumes_introduce = #{resumesIntroduce},
 		resumes_place = #{resumesPlace}
-		WHERE resumes_id = #{resumesId}
+		WHERE resumes_id
+		= #{resumesId}
 	</update>
-	
+
 	<delete id="deleteById">
 		DELETE FROM resumes WHERE resumes_id=#{resumesId}
 	</delete>
-	
-		<select id="findAll"
-		resultType="site.metacoding.miniproject.domain.resumes.Resumes">
+
+	<select id="findAll"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
 		SELECT * FROM resumes
+		ORDER BY resumes_id DESC
+		OFFSET
+		#{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 	</select>
 
-
+	<select id="resumesPaging"
+		resultType="site.metacoding.miniproject.web.dto.response.ResumesPagingDto">
+		SELECT totalCount, totalPage, currentPage,
+		if(currentPage=0, 1, 0)
+		FIRST,
+		if(currentPage=totalPage-1, 1, 0) LAST
+		FROM(
+		SELECT count(*)
+		totalCount,
+		ceil(count(*)/5) totalPage,
+		#{page} currentPage,
+		0 first,
+		0 last
+		FROM resumes
+		<if test="keyword != null">
+			WHERE resumes_title like CONCAT('%', #{keyword}, '%')
+		</if>
+		) paging
+	</select>	
+	<select id="findSearch"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
+		SELECT resumes_id, resumes_title, resumes_place
+		FROM resumes
+		WHERE resumes_title like CONCAT('%', #{keyword}, '%')
+		ORDER BY resumes_id DESC
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+	</select>
 
 </mapper>

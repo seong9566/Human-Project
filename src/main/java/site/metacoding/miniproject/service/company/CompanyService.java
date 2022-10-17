@@ -1,5 +1,8 @@
 package site.metacoding.miniproject.service.company;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +23,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
-import site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
 
 @Service
 @RequiredArgsConstructor
@@ -69,8 +72,19 @@ public class CompanyService {
 	}
 
 	// 채용공고 리스트
-	public List<CompanyJobPostingBoardDto> findAllJobpostingBoard() {
-		return jobPostingBoardDao.findJobpostingBoard();
+		public List<JobPostingBoardListDto> jobPostingBoardList(Integer companyId) {
+			List<JobPostingBoardListDto> postingList =  jobPostingBoardDao.jobPostingBoardList(companyId);
+			//TimeStamp to String
+			for(JobPostingBoardListDto deadLine : postingList)
+			{
+				System.out.println(deadLine.getJobPostingBoardDeadline());
+				Timestamp ts = deadLine.getJobPostingBoardDeadline();
+				Date date = new Date();
+				date.setTime(ts.getTime());
+				String formattedDate = new SimpleDateFormat("yyyyMMdd").format(date);
+				deadLine.setFormatDeadLine(formattedDate);
+			}
+			return postingList;
+		}
 	}
-}
 

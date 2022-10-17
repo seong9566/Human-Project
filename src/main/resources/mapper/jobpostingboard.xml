@@ -4,37 +4,46 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao">
-	
-		<select id="jobPostingAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
+
+	<select id="jobPostingAddress"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
 		SELECT job_posting_board_id,
-		SUBSTRING_INDEX(SUBSTRING_INDEX(job_posting_board_place,',',1),',',-1) AS
+		SUBSTRING_INDEX(SUBSTRING_INDEX(job_posting_board_place,',',1),',',-1)
+		AS
 		zonecode,
-		SUBSTRING_INDEX(SUBSTRING_INDEX(job_posting_board_place,',',2),',',-1) AS
+		SUBSTRING_INDEX(SUBSTRING_INDEX(job_posting_board_place,',',2),',',-1)
+		AS
 		road_jibunAddr
 		FROM job_posting_board
-		WHERE job_posting_board_id =#{jobPostingBoardId};
+		WHERE job_posting_board_id
+		=#{jobPostingBoardId}
 	</select>
-	
-	<select id="findJobpostingBoard"
-		resultType="site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto">
-		SELECT jpb.job_posting_board_id,
-		jpb.job_posting_board_title,
-		jpb.job_posting_board_content,
-		cd.company_id,
-		cd.company_detail_id,
-		cd.company_picture,
-		cd.company_address,
-		cd.company_phone_number,
-		cd.company_email
-		FROM
-		job_posting_board jpb
-		INNER JOIN company_detail cd
-		ON jpb.company_id
-		=cd.company_id
+
+	<select id="jobPostingBoardList" resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto">
+		SELECT 
+		jpb.job_posting_board_id,
+		jpb.company_id,
+		jpb.job_posting_board_category_id,
+		jpb.job_posting_board_career_id,
+		jpb.job_posting_board_title ,
+		jpb.job_posting_board_deadline,
+		c.category_frontend,
+		c.category_backend,
+		c.category_devops,
+		cr.one_year_less,
+		cr.two_year_over,
+		cr.three_year_over,
+		cr.five_year_over
+		FROM job_posting_board jpb
+		LEFT OUTER JOIN category c
+		ON jpb.job_posting_board_category_id = c.category_id
+		LEFT OUTER JOIN career cr
+		ON jpb.job_posting_board_career_id = cr.career_id
+		WHERE jpb.company_id = #{companyId}
 	</select>
 
 	<insert id="insert">
-		INSERT INTO 
+		INSERT INTO
 		job_posting_board
 		(
 		company_id,
@@ -85,12 +94,12 @@
 		INNER JOIN company_detail cd
 		ON jpb.company_id =
 		cd.company_id
-		WHERE job_posting_board_id = #{jobPostingBoardId};
+		WHERE job_posting_board_id = #{jobPostingBoardId}
 	</select>
 
 	<delete id="deleteById">
 		DELETE FROM job_posting_board WHERE
-		job_posting_board_id = #{jobPostingBoardId};
+		job_posting_board_id = #{jobPostingBoardId}
 
 	</delete>
 </mapper>
