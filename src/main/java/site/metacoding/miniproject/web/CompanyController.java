@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +19,8 @@ import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardPagingDto;
+import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
@@ -77,7 +78,7 @@ public class CompanyController {
 		return new ResponseDto<>(1, "등록 성공", null);
 	}
 	
-	//회사의 구인 공고 리스트 보기 
+	// 회사가 작성한 구인 공고 리스트 보기 
 	@GetMapping("/company/jobPostingBoardList")
 	public String jobPostingBoardList(Model model, Integer companyId) {
 	SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
@@ -85,6 +86,37 @@ public class CompanyController {
 	model.addAttribute("jobPostingBoardList", jobPostingBoardList);
 	System.out.println(companyId);
 	return "company/jobPostingBoardList";
+	}
+	
+	// 전체 채용공고 리스트 보기
+	@GetMapping({"/", "/main"})
+	public String jobPostingBoardList(Model model, Integer page, String keyword) {
+		if(page==null) page=0;
+		int startNum = page*5;
+		
+		System.out.println("===============");
+		System.out.println("keyword : "+keyword);
+		System.out.println("startNum : "+startNum );
+		System.out.println("===============");
+		
+		if(keyword == null || keyword.isEmpty()) { 
+			List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
+			JobPostingBoardPagingDto paging = companyService.jobPostingBoardPaging(page, null);
+
+			paging.makeBlockInfo(keyword);
+
+			model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
+			model.addAttribute("paging",paging);
+			
+		} else {
+			List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
+			JobPostingBoardPagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
+			paging.makeBlockInfo(keyword);
+			model.addAttribute("jobPostingBoardList", jobPostingBoardList);
+			model.addAttribute("paging",paging);
+		}
+		
+		return "personal/main";
 	}
 
 }
