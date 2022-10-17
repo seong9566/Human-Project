@@ -113,19 +113,29 @@ public class UserController {
 
 	@PostMapping("/join/personal")
 	public @ResponseBody ResponseDto<?> joinPersonal(@RequestBody PersonalJoinDto joinDto) {
+		
 		ValidationCheckUtil.valCheckToJoinPersonal(joinDto);
+		
 		userService.joinPersonal(joinDto);
+		
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
+		
 		session.setAttribute("principal", signedDto);
+		
 		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 
 	@PostMapping("/join/company")
 	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
+		
+		ValidationCheckUtil.valCheckToJoinCompany(joinDto);
+		
 		userService.joinCompany(joinDto);
+		
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
+		
 		session.setAttribute("principal", signedDto);
 
 		// //파일업로드

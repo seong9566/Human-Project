@@ -24,8 +24,8 @@ public class PageExceptionHandler {
 	}
 	
 	@ExceptionHandler(ValCheckException.class)
-	public @ResponseBody String valCheckError(Exception e){
-		return Script.valReturn(e.getMessage());
+	public @ResponseBody ResponseDto<?> valCheckError(Exception e){
+		return new ResponseDto<>(-1, e.getMessage(), null);
 	}
 	
 }
