@@ -35,7 +35,7 @@ public class AlarmController {
 		simpMessagingTemplate.convertAndSend("/topic/Personal", new ResponseDto<>(1, "success", resumesId));
 	}
 
-	@MessageMapping("/Company")
+	@MessageMapping("/Company/")
 	@SendTo("/topic/Company")
 	public @ResponseBody ResponseDto<?> messageToTopicCompany(String test) {
 		return new ResponseDto<>(1, "testconfirm", test);
@@ -44,7 +44,7 @@ public class AlarmController {
 	@MessageMapping("/Company/Likeresume/{resumesId}")
 	public void messageToResume(@DestinationVariable Integer resumesId, Integer FromUsersId) {
 		Integer usersId = usersService.findUserIdByResumesId(resumesId);
-		simpMessagingTemplate.convertAndSend("/queue/Personal" + usersId, new ResponseDto<>(1, "success", resumesId));
+		simpMessagingTemplate.convertAndSend("/queue/Personal/" + usersId, new ResponseDto<>(1, "success", resumesId));
 	}
 
 	@PutMapping("/user/alarm/readed")
