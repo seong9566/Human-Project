@@ -48,8 +48,7 @@
 								<li><a class="nav-link" href="/company/inform">기업정보</a></li>
 								<li><a class="nav-link" href="/logout"
 									onclick="disconnect()">로그아웃</a></li>
-								<li
-									style="position: fixed; color: aliceblue; margin-top: 7px; right: 10%;">
+								<li>
 									${principal.userinfo.companyName}님환영합니다.</li>
 								<li class="nav-item fa-regular fa-bell fa-xl nav-link"
 									data-bs-toggle="modal" data-bs-target="#myModal" id="alarm"

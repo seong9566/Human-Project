@@ -41,7 +41,7 @@
 		<br /> <br /> <br />
 		<div id="underplace">
 			<div>
-				<h2>경력사항</h2>
+				<h2 class="mb-3">경력사항</h2>
 				<label> <input type="radio" name="contact"
 					value="oneYearLess" checked /> 1년 미만
 				</label> <label> <input type="radio" name="contact"
@@ -52,26 +52,26 @@
 					value="fiveYearOver" /> 5년 이상
 				</label>
 				<div>
-					<h2>희망 직종</h2>
+					<h2 class="mb-3">희망 직종</h2>
 					<label><input type="checkbox" value="categoryFrontend">frontend</label>
 					<label><input type="checkbox" value="categoryBackend">backend</label>
 					<label><input type="checkbox" value="categoryDevops">devops</label>
 					<label><input id="etc" type="checkbox" value="etc">etc</label>
 				</div>
-				<h2>희망근무지역</h2>
+				<h2 class="mb-3">희망근무지역</h2>
 				<input id="resumesPlace" type="text" class="form-control"
 					placeholder="희망근무지역을 작성해주세요(ex. 서울, 경기, 부산 등)" />
 				<h2 class="mb-3">Github 주소 or Blog 주소</h2>
 				<input id="portfolioSource" type="text" class="form-control"
 					placeholder="Github 주소 or Blog 주소 작성해주세요." />
-				<h2>포트폴리오</h2>
+				<h2 class="mb-3">포트폴리오</h2>
 				<input id="portfolioFile" type="text" class="form-control"
 					placeholder="포트폴리오 파일 들어가는 자리 - 파일업로드 필요. " />
 			</div>
 		</div>
 		<br />
 		<div class="form">
-			<h2>자기소개서 작성</h2>
+			<h2 class="mb-3">자기소개서 작성</h2>
 			<br /> <input id="resumes_title" type="text" class="resume_title"
 				placeholder="이력서 제목을 입력해주세요." />
 			<div id="resumes_introduce"></div>

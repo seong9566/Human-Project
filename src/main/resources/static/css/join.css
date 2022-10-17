@@ -38,7 +38,23 @@
     border: none;
 
 }
-
+#btnUpdate{
+    position: relative;
+    left: 40%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    width: 80%;
+    height: 40px;
+    background: rgba(0, 195, 98, 255);
+    background-position: left;
+    background-size: 00%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline;
+}
 #btnSave {
     position: relative;
     left: 40%;

@@ -1,78 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<div id="main">
-	<br />
-	<div class="tool">
-
-		<div class="left">
-			<br />
-			<h3>개인정보</h3>
-			<div class="left_input">
+	<div id="main">
+		<br />
+		<div class="tool">
+			<div class="left">
+				<h3>${detailResumesDtoPS.resumesTitle}</h3>
 				<br />
-				<div id="usersName">${principal.userinfo.personalName}</div>
-				<br />
-				<div id="phoneNumber">${personalInfoPS.personalPhoneNumber}</div>
-				<br />
-				<div id="email">${personalInfoPS.personalEmail}</div>
-				<div id="학력">${personalInfoPS.personal_education}</div>
-				<div class="right">
-					<div class="background">
-						<div class="window">
-							<div class="popup">
-								<div>
-									<img id="previewImg" />
-								</div>
-								<button id="close">팝업닫기</button>
-							</div>
-						</div>
-					</div>
-					<input id="show" type="button" value="증명사진 미리보기" /> <input
-						type="file" id="fileUpload" class="Uploadbtn" accept='image/*'
-						style="margin-left: 0;" />
+				<h3>개인정보 </h3>
+				<div class="left_input">
+					<br />
+					<div id="usersName">${detailResumesDtoPS.personalName}</div>
+					<br />
+					<div id="phoneNumber">${detailResumesDtoPS.personalPhoneNumber}</div>
+					<br />
+					<div id="email">${detailResumesDtoPS.personalEmail}</div>
+					<br />
+					<div id="address">${detailResumesDtoPS.personalAddress}</div>
+					<br />
+					<div id="education">${detailResumesDtoPS.personalEducation}</div>
 				</div>
 			</div>
-		</div>
-		<br /> <br /> <br />
-		<div id="underplace">
+
+			<div class="mb-3">◆증명사진</div>
+			<div class="right">
+				<img id="previewImg" />
+			</div>
+			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
+			
+			<input id="resumesPicture" type="text" class="form-control"
+			placeholder="사진 들어가는 자리입니다." readonly/>
+			
+		<div class="mb-3">◆경력사항</div>
 			<div>
-				<h2>보유 경력</h2>
-				<label> <input type="radio" name="contact"
-					value="one_year_less" checked /> 1년 미만
-				</label> <label> <input type="radio" name="contact"
-					value="two_year_over" /> 2년 이상
-				</label> <label> <input type="radio" name="contact"
-					value="three_year_over" /> 3년 이상
-				</label> <label> <input type="radio" name="contact"
-					value="five_year_over" /> 5년 이상
-				</label>
-				<div>
-					<h2>희망 직종</h2>
-					<label><input type="checkbox" value="categoryFrontend">frontend</label>
-					<label><input type="checkbox" value="categoryBackend">backend</label>
-					<label><input type="checkbox" value="categoryDevops">devops</label>
-					<label><input id="etc" type="checkbox" value="etc">etc</label>
-				</div>
-				<h2>희망근무지역</h2>
-				<input id="resumesPlace" type="text" class="form-control"
-					placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
-
-				<h2 class="mb-3">Github 주소 or Blog 주소</h2>
-				<input id="portfolioSource" type="text" class="form-control"
-					placeholder="${detailResumesDtoPS.portfolioSource}" readonly />
+				<label><input type="checkbox" value="oneYearLess" readonly>oneYearLess</label><br />
+				<label><input type="checkbox" value="twoYearOver" readonly>twoYearOver</label><br />
+				<label><input type="checkbox" value="threeYearOver" readonly>threeYearOver</label><br />
+				<label><input type="checkbox" value="fiveYearOver" readonly>fiveYearOver</label>
 			</div>
-			<br />
-			<div class="form">
-				<h2>자기소개서 작성</h2>
-				<input id="resumes_title" type="text" class="resume_title"
-					placeholder="이력서 제목을 입력해주세요." /><br />
-				<div id="resumes_introduce"></div>
-				<div>
-					<h2>포트폴리오 제출</h2>
-					<input type="file" id="attachFile">
-					<button id="fileSubmitBtn" type="button">파일저장하기</button>
-				</div>
+			
+		<div class="mb-3">◆관심분야</div>
+			<div>
+				<label><input type="checkbox" value="categoryFrontend" readonly>frontend</label><br />
+				<label><input type="checkbox" value="categoryBackend" readonly>backend</label><br />
+				<label><input type="checkbox" value="categoryDevops" readonly>devops</label><br />
+				<label><input id="etc" type="checkbox" value="etc" readonly>etc</label>
 			</div>
+			
+		<div class="mb-3">◆희망근무지역</div>
+		<input id="resumesPlace" type="text" class="form-control" placeholder="${detailResumesDtoPS.resumesPlace}" readonly/>	
+						
+		<div class="mb-3">◆Github 주소 or Blog 주소</div>
+			<input id="portfolioSource" type="text" class="form-control" placeholder="${detailResumesDtoPS.portfolioSource}" readonly/>	
+			
+		<div class="mb-3">◆포트폴리오</div>	
+		<input id="portfolioFile" type="text" class="form-control" placeholder="${detailResumesDtoPS.portfolioFile}" readonly/>			
+		</div>
+			
+		<div class="form">
+			<h2>자기소개서 작성</h2>
+			<div>${detailResumesDtoPS.resumesIntroduce}</div>
+		</div>
 			<div class="btn-update">
 				<c:choose>
 					<c:when test="${ empty principal }">
