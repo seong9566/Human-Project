@@ -80,8 +80,6 @@
 				<button id="btnapply" type="button" class="btn btn-primary">연락하기</button>
 			</div>
 		</div>
-	</div>
-</div>
 <script>
 			$(function () {
 				$('#btnlike').click(function () {

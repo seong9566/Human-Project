@@ -22,10 +22,12 @@ import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
+import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
+import site.metacoding.miniproject.web.dto.response.ResumesPagingDto;
 
 @Service
 @RequiredArgsConstructor
@@ -97,8 +99,18 @@ public class PersonalService {
 	}
 
 	// 전체 이력서 목록 보기
-	public List<Resumes> resumesAll() {
-		return resumesDao.findAll();
+	public List<CompanyMainDto> resumesAll(Integer startNum) {
+		return resumesDao.findAll(startNum);
+	}
+	
+	// 페이징
+	public ResumesPagingDto resumesPaging(Integer page, String keyword) {		
+		return resumesDao.resumesPaging(page, keyword);
+	}
+	
+	// 검색 결과 목록 보기
+	public List<CompanyMainDto> findSearch(Integer startNum, String keyword) {
+		return resumesDao.findSearch(startNum, keyword);
 	}
 
 	// 개인 정보에 보기

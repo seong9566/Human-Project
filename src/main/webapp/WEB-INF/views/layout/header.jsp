@@ -44,6 +44,8 @@
 						</c:when>
 						<c:when test="${principal.companyId != null}">
 							<ul>
+								<li class="nav-item"><a class="nav-link"
+									href="/companymain">기업 메인화면</a></li>
 								<li><a class="nav-link" href="/recommend">관심 이력서 보기</a></li>
 								<li><a class="nav-link" href="#"> 공고관리</a></li>
 								<li><a class="nav-link" href="/company/inform">기업정보</a></li>
