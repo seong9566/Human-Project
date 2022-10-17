@@ -111,7 +111,7 @@
 	</select>
 
 	<select id="jobPostingBoardPaging"
-		resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardPagingDto">
+		resultType="site.metacoding.miniproject.web.dto.response.PagingDto">
 		SELECT totalCount, totalPage, currentPage,
 		if(currentPage=0, 1, 0)
 		FIRST,

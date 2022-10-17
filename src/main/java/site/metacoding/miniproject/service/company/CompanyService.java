@@ -24,7 +24,7 @@ import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
-import site.metacoding.miniproject.web.dto.response.JobPostingBoardPagingDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
 @Service
@@ -95,7 +95,7 @@ public class CompanyService {
 	}
 	
 	// 페이징
-	public JobPostingBoardPagingDto jobPostingBoardPaging(Integer page, String keyword) {		
+	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {		
 		return jobPostingBoardDao.jobPostingBoardPaging(page, keyword);
 	}
 	

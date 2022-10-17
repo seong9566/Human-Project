@@ -19,7 +19,7 @@ import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
-import site.metacoding.miniproject.web.dto.response.JobPostingBoardPagingDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -101,7 +101,7 @@ public class CompanyController {
 		
 		if(keyword == null || keyword.isEmpty()) { 
 			List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
-			JobPostingBoardPagingDto paging = companyService.jobPostingBoardPaging(page, null);
+			PagingDto paging = companyService.jobPostingBoardPaging(page, null);
 
 			paging.makeBlockInfo(keyword);
 
@@ -110,7 +110,7 @@ public class CompanyController {
 			
 		} else {
 			List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
-			JobPostingBoardPagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
+			PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
 			paging.makeBlockInfo(keyword);
 			model.addAttribute("jobPostingBoardList", jobPostingBoardList);
 			model.addAttribute("paging",paging);

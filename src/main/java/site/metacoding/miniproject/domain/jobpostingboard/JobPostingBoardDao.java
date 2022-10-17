@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
-import site.metacoding.miniproject.web.dto.response.JobPostingBoardPagingDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
 public interface JobPostingBoardDao {
@@ -22,7 +22,7 @@ public interface JobPostingBoardDao {
 	public List<PersonalMainDto> findAll(int startNum);
 	
 	// 페이징
-	public JobPostingBoardPagingDto jobPostingBoardPaging(@Param("page") Integer page, @Param("keyword") String keyword);
+	public PagingDto jobPostingBoardPaging(@Param("page") Integer page, @Param("keyword") String keyword);
 
 	// 검색 결과 리스트
 	public List<PersonalMainDto> findSearch(@Param("startNum") int startNum, @Param("keyword") String keyword);

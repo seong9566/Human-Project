@@ -22,11 +22,11 @@ import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
-import site.metacoding.miniproject.web.dto.response.ResumesPagingDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @RequiredArgsConstructor
@@ -107,7 +107,7 @@ public class PersonalController {
 		
 		if(keyword == null || keyword.isEmpty()) { 
 			List<CompanyMainDto> resumesList = personalService.resumesAll(startNum);
-			ResumesPagingDto paging = personalService.resumesPaging(page, null);
+			PagingDto paging = personalService.resumesPaging(page, null);
 
 			paging.makeBlockInfo(keyword);
 
@@ -116,7 +116,7 @@ public class PersonalController {
 			
 		} else {
 			List<CompanyMainDto> resumesList = personalService.findSearch(startNum, keyword);
-			ResumesPagingDto paging = personalService.resumesPaging(page, keyword);
+			PagingDto paging = personalService.resumesPaging(page, keyword);
 			paging.makeBlockInfo(keyword);
 			model.addAttribute("resumesList", resumesList);
 			model.addAttribute("paging",paging);
