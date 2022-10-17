@@ -22,11 +22,13 @@ public class JobPostingBoardDetailDto {
 	private Timestamp jobPostingBoardDeadline;
 
 	//Category테이블 
+	private Integer categoryId;
 	private Boolean categoryFrontend;
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	
 	//Career테이블	  
+	private Integer careerId;
 	private Boolean oneYearLess;
 	private Boolean twoYearOver;
 	private Boolean threeYearOver;

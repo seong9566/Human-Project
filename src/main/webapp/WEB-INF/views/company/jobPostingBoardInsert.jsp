@@ -65,25 +65,25 @@
 					<div class="form-check d-flex">
 						<div class="form-check">
 							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id="jobPostingBoardSalary" name="jobPostingBoardSalary" value="2000"> 2000만원 이상 <i
+								id=" jobPostingSalary" name=" jobPostingSalary" value="2000"> 2000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 						<div style="margin: 0 20px 0 0;"></div>
 						<div class="form-check">
 							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id="jobPostingBoardSalary" name="jobPostingBoardSalary" value="3000"> 3000만원 이상 <i
+								id=" jobPostingSalary" name=" jobPostingSalary" value="3000"> 3000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 						<div style="margin: 0 20px 0 0;"></div>
 						<div class="form-check">
 							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id="jobPostingBoardSalary" name="jobPostingBoardSalary" value="4000"> 4000만원 이상 <i
+								id=" jobPostingSalary" name=" jobPostingSalary" value="4000"> 4000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 						<div style="margin: 0 20px 0 0;"></div>
 						<div class="form-check">
 							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id="jobPostingBoardSalary" name="jobPostingBoardSalary" value="5000"> 5000만원 이상 <i
+								id=" jobPostingSalary" name=" jobPostingSalary" value="5000"> 5000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 					</div>
@@ -138,11 +138,11 @@ function findAddr() {
 
 // 채용공고 작성
 $("#btnSave").click(()=>{
-	insert();
+	update();
 });
 
 
-function insert(){	
+function update(){	
     
 	let data = {
 		jobPostingBoardTitle : $("#jobPostingBoardTitle").val(),
@@ -154,7 +154,7 @@ function insert(){
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
-		jobPostingBoardSalary:$('input[type=radio][name=jobPostingBoardSalary]:checked').val(),
+		jobPostingSalary:$('input[type=radio][name= jobPostingSalary]:checked').val(),
 		jobPostingBoardPlace: $("#post").val() + "," + $("#addr").val(),
 		jobPostingBoardDeadline: $("#jobPostingBoardDeadline").val(),
 		jobPostingBoardContent: $("#jobPostingBoardContent").val()

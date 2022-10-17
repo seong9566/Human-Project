@@ -17,6 +17,8 @@ import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
+import site.metacoding.miniproject.domain.portfolio.Portfolio;
+import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
@@ -101,18 +103,18 @@ public class CompanyService {
 		
 		// 채용공고 수정 (jobpostingboard,career,Category)
 		@Transactional(rollbackFor = Exception.class)
-		public void updateJobPostingBoard(Integer jobPostingBoardId,Integer careerId,Integer categoryId, JobPostingBoardUpdateDto updateDto) {
-			JobPostingBoard jobPostingPS = jobPostingBoardDao.findById(jobPostingBoardId);
-			jobPostingPS.updateJobPosting(updateDto);
-			jobPostingBoardDao.update(jobPostingPS);
+		public void updateJobPostingBoard(Integer jobPostingBoardId, JobPostingBoardUpdateDto updateDto) {
+			//Integer categoryId,Integer careerId,
+			Category category = new Category(updateDto);
+			categoryDao.update(category);
+			System.out.println(updateDto.getJobPostingBoardCategoryId());
 			
-			Career careerPS = careerDao.findById(careerId);
-			careerPS.updateJobPosting(updateDto);
-			careerDao.update(careerPS);
-			
-			Category categoryPS = categoryDao.findById(categoryId);
-			categoryPS.updateJobposting(updateDto);
-			categoryDao.update(categoryPS);
+			Career career = new Career(updateDto);
+			careerDao.update(career);
+			System.out.println(updateDto.getJobPostingBoardCareerId());
+
+			JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId,updateDto);
+			jobPostingBoardDao.update(jobPostingBoard);
 		}
 	}
 

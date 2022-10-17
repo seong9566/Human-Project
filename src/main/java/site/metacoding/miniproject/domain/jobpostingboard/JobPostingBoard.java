@@ -25,14 +25,15 @@ public class JobPostingBoard {
 	private Timestamp createdAt;
 
 	public JobPostingBoard(JobPostingBoardInsertDto jobPostingBoardInsertDto) {
-		this.jobPostingSalary = jobPostingBoardInsertDto.getJobPostingBoardSalary();
+		this.jobPostingSalary = jobPostingBoardInsertDto.getJobPostingSalary();
 		this.jobPostingBoardTitle = jobPostingBoardInsertDto.getJobPostingBoardTitle();
 		this.jobPostingBoardContent = jobPostingBoardInsertDto.getJobPostingBoardContent();
 		this.jobPostingBoardPlace = jobPostingBoardInsertDto.getJobPostingBoardPlace();
 		this.jobPostingBoardDeadline = jobPostingBoardInsertDto.getJobPostingBoardDeadline();
 	}
 	
-	public void updateJobPosting(JobPostingBoardUpdateDto updateDto) {
+	public JobPostingBoard(Integer jobPostingBoardId,JobPostingBoardUpdateDto updateDto) {
+		this.jobPostingBoardId = jobPostingBoardId;
 		this.jobPostingSalary = updateDto.getJobPostingSalary();
 		this.jobPostingBoardTitle = updateDto.getJobPostingBoardTitle();
 		this.jobPostingBoardContent = updateDto.getJobPostingBoardContent();

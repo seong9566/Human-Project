@@ -42,7 +42,8 @@ public class Career {
 	  }
 	  
 	  // 채용 공고 수정
-	  public void  updateJobPosting(JobPostingBoardUpdateDto updateDto) {
+	  public Career(JobPostingBoardUpdateDto updateDto) {
+		  //this.careerId = careerId;
 		  this.oneYearLess = updateDto.getOneYearLess();
 		  this.twoYearOver = updateDto.getTwoYearOver();
 		  this.threeYearOver = updateDto.getThreeYearOver();

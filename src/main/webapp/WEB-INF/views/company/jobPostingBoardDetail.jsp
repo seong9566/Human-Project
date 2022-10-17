@@ -2,7 +2,8 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div>
-	<input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}"> <input
+	<input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}">
+	 <input
 		id="companyId" type="hidden" value="${jobPostingPS.companyId}">
 	<h2>구인 공고 상세 보기</h2>
 	<form>
@@ -116,8 +117,9 @@
 	</div>
 </div>
 <script>
+let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnUpdateForm").click(()=>{
-	location.href = "/company/jobpostingBoardUpdate/"+jobPostingBoardId;
+	location.href = "/company/jobPostingBoardUpdate/"+jobPostingBoardId;
 });
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

@@ -3,8 +3,10 @@ package site.metacoding.miniproject.web.dto.request;
 import java.sql.Timestamp;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
 @Setter
 public class JobPostingBoardUpdateDto {
@@ -21,15 +23,18 @@ public class JobPostingBoardUpdateDto {
 	private Timestamp jobPostingBoardDeadline;
 
 	//Category테이블 
+	private Integer categoryId;
 	private Boolean categoryFrontend;
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	
 	//Career테이블	  
+	private Integer careerId;
 	private Boolean oneYearLess;
 	private Boolean twoYearOver;
 	private Boolean threeYearOver;
 	private Boolean fiveYearOver;
+	
 	//company테이블
 	private String companyPicture;
 	private String companyName;

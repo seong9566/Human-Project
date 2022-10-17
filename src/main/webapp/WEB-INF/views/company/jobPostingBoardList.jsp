@@ -9,7 +9,9 @@
 	
 		<div class="container p-5 my-4 border">
 			<br />
-			<p>공고 제목 : ${jobPostingBoard.jobPostingBoardTitle}</p>
+			<p>공고 제목 :<a href = "/company/jobPostingBoardDetail/${jobPostingBoard.jobPostingBoardId}">
+			 ${jobPostingBoard.jobPostingBoardTitle}</a>
+			 </p>
 			<p>채용 마감일 : ${jobPostingBoard.formatDeadLine}</p>
 			<p>
 				<c:choose>
@@ -44,11 +46,9 @@
          </c:when>
 				</c:choose>
 			</p>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button id = "btnUpdateForm" type="button" class="btn btn-primary">상세보기</button>
-			</div>
-
+		
 		</div>
+		<button id="btnDelete" onclick="deleteById(${resumes.resumesId});" type="button" class="btn btn-primary">삭제하기</button>
 	</c:forEach>
 
 
@@ -61,7 +61,7 @@ let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnSaveForm").click(()=>{
 	location.href = "/company/insertForm";
 });
-$("#btnUpdateForm").click(()=>{
+$("#btnDetailForm").click(()=>{
 	location.href = "/company/jobpostingBoardDetail/"+jobPostingBoardId;
 });
 </script>
