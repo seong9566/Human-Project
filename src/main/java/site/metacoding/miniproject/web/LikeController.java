@@ -38,11 +38,6 @@ public class LikeController {
 
 	}
 
-	@PostMapping("/recommend")
-	public @ResponseBody ResponseDto<?> insertRecommend(@RequestBody InsertRecommendDto insertRecommendDto) {
-		personalLikeService.좋아요이력서추가(insertRecommendDto);
-		return new ResponseDto<>(1, "이력서추가", null);
-	}
 
 	@DeleteMapping("/personalLike/{resumesId}/likes")
 	public @ResponseBody ResponseDto<?> deleteLike(@PathVariable Integer resumesId) {

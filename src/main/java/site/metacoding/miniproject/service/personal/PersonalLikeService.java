@@ -33,9 +33,7 @@ public class PersonalLikeService {
 		return PersonalLikeDtoList;
 	}
 
-	public void 좋아요이력서추가(InsertRecommendDto insertRecommendDto) {
-		resumesDao.insertLike(insertRecommendDto);
-	}
+
 	
 	   public PersonalLike 좋아요확인(Integer companyId,Integer resumesId) {
 		   PersonalLike personalLike = new PersonalLike(companyId, resumesId);

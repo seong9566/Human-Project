@@ -68,26 +68,7 @@
 	  });
 	});
 	
-	function insertTitle(){
-		let data = {
-				name: $("resume_title").val(),
-		}
-		console.log(data)
-		$.ajax("/recommend",{
-			type: "POST",
-			dataType: "json",
-			data: JSON.stringify(data), // http body에 들고갈 요청 데이터
-			headers: { // http header에 들고갈 요청 데이터
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res)=>{
-			if(res.code == 1){ // 성공
-				
-			}else{ // 실패
-				alert("이력서등록에 실패했습니다.");
-			}
-		});
-	}
+
 	
 	
 	

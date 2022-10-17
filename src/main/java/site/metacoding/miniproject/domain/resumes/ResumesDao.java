@@ -23,7 +23,5 @@ public interface ResumesDao {
 	public void deleteById(Integer resumesId);
 	
 	
-	// 좋아요 이력서 추가
-	public void insertLike(InsertRecommendDto insertRecommendDto);
-	
+
 }
