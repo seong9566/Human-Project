@@ -8,6 +8,7 @@ import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
+import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 
 @Getter
 @Setter
@@ -35,5 +36,10 @@ public class Users {
 	public void update(CompanyUpdateDto companyUpdateDto) {
 		this.loginPassword=companyUpdateDto.getLoginPassword();
 	}
+	
+	public void update(PersonalUpdateDto personalUpdateDto) {
+		this.loginPassword=personalUpdateDto.getLoginPassword();
+	}
+	
 	
 }

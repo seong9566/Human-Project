@@ -27,7 +27,6 @@ public class UsersService {
 	private final UsersDao usersDao;
 	private final CompanyDao companyDao;
 	private final PersonalDao personalDao;
-	private final CategoryDao categoryDao;
 	private final AlarmDao alarmDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {
@@ -94,7 +93,6 @@ public class UsersService {
 		List<Alarm> usersAlarm = alarmDao.findByusersId(usersId);
 		return usersAlarm;
 	}
-
 	public Boolean checkUserAlarm(Integer usersId) {
 		Boolean ischecked = alarmDao.findByUsersIdToAlarmChecked(usersId);
 		return ischecked;
@@ -107,5 +105,4 @@ public class UsersService {
 	public void deleteAlarm(Integer alarmId) {
 		alarmDao.deleteById(alarmId);
 	}
-
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
+import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 
 @Getter
 @Setter
@@ -30,4 +31,14 @@ public class Personal implements Serializable {
 		this.personalPhoneNumber = joinDto.getPersonalPhoneNumber();
 		this.personalAddress = joinDto.getPersonalAddress();
 	}
+	
+	public void updatePersonal(PersonalUpdateDto personalUpdateDto) {
+		this.personalName = personalUpdateDto.getPersonalName();
+		this.personalPhoneNumber = personalUpdateDto.getPersonalPhoneNumber();
+		this.personalEmail = personalUpdateDto.getPersonalEmail();
+		this.personalEducation = personalUpdateDto.getPersonalEducation();
+		this.personalAddress = personalUpdateDto.getPersonalAddress();	
+	}
+	
+	
 }

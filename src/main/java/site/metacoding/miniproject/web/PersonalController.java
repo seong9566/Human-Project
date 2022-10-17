@@ -18,8 +18,11 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.service.personal.PersonalService;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
+import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
+import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -78,13 +81,6 @@ public class PersonalController {
 	
 	@PutMapping("/personal/resumes/update/{resumesId}")
 	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
-//		System.out.println(updateResumesDto.getResumesTitle());
-//		System.out.println(updateResumesDto.getResumesIntroduce());
-//		System.out.println(updateResumesDto.getResumesPicture());
-//		System.out.println(updateResumesDto.getResumesPlace());
-//		System.out.println(updateResumesDto.getOneYearLess());
-//		System.out.println(updateResumesDto.getCategoryFrontend());
-//		System.out.println(updateResumesDto.getPortfolioSource());		
 		personalService.updateResumes(resumesId, updateResumesDto);			
 		return new ResponseDto<>(1, "이력서 수정 성공", null);
 	}
@@ -103,4 +99,32 @@ public class PersonalController {
 		model.addAttribute("resumesList", resumesList);
 		return "company/main";
 	}
+	
+	// 내정보 보기
+		@GetMapping("/personal/info")
+		public String form(Model model) {
+			SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+			PersonalFormDto personalformPS = personalService.personalformById(principal.getPersonalId());
+			PersonalAddressDto personalAddressPS = personalService.personalAddress(principal.getPersonalId());
+			model.addAttribute("personalAddress", personalAddressPS);
+			model.addAttribute("personalform", personalformPS);
+			return "personal/info";
+		}
+
+		@GetMapping("/personal/update")
+		public String update(Model model) {
+			SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+			PersonalUpdateDto personalUpdateFormPS = personalService.personalUpdateById(principal.getPersonalId());
+			PersonalAddressDto personalAddressPS = personalService.personalAddress(principal.getPersonalId());
+			model.addAttribute("personalAddress", personalAddressPS);
+			model.addAttribute("personalUpdateForm", personalUpdateFormPS);
+			return "personal/update";
+		}
+		
+		@PutMapping("/personal/update")
+		public @ResponseBody ResponseDto<?> personalUpdate(@RequestBody PersonalUpdateDto personalUpdateDto){
+			SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+			personalService.updatePersonal(principal.getUsersId(), principal.getPersonalId(), personalUpdateDto);
+			return new ResponseDto<>(1, "수정 성공", null);
+		}
 }
