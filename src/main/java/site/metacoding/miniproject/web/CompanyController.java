@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +25,7 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 @Controller
 @RequiredArgsConstructor
 public class CompanyController {
+	
 	private final HttpSession session;
 	private final CompanyService companyService;
 
@@ -77,7 +77,7 @@ public class CompanyController {
 		return new ResponseDto<>(1, "등록 성공", null);
 	}
 	
-	//회사의 구인 공고 리스트 보기 
+	// 회사가 작성한 구인 공고 리스트 보기 
 	@GetMapping("/company/jobPostingBoardList")
 	public String jobPostingBoardList(Model model, Integer companyId) {
 	SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
@@ -86,5 +86,7 @@ public class CompanyController {
 	System.out.println(companyId);
 	return "company/jobPostingBoardList";
 	}
-
+	
 }
+	
+
