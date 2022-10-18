@@ -1,28 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<section class="py-5">
 <div class="container">
 	<form>
-		<h2>나의 정보</h2>
-
-
-		<div class="mb-3"></div>
+		<h2>내 정보 - 개인</h2>
 
 		<div class="mb-3">
-			◆이름 <input id="username" type="text" class="form-control"
+			이름 <input id="username" type="text" class="form-control" style="width:300px;"
 				placeholder="${personalform.personalName}" readonly>
 		</div>
 
 		<div class="mb-3">
-			◆전화번호<input id="phonenumber" type="text" class="form-control"
+			전화번호<input id="phonenumber" type="text" class="form-control" style="width:300px;"
 				placeholder="${personalform.personalPhoneNumber}" readonly>
 		</div>
 
 		<div class="mb-3">
-			◆이메일<input id="email" type="email" class="form-control"
+			이메일<input id="email" type="email" class="form-control" style="width:300px;"
 				placeholder="${personalform.personalEmail}" readonly>
 		</div>
-		<div class="mb-3" style="margin-top: 30px">◆학력</div>
+		<div class="mb-3" style="margin-top: 30px">학력</div>
 		<div class="form-check d-flex">
 			<c:choose>
 				<c:when test="${personalform.personalEducation eq '고졸'}">
@@ -74,13 +72,13 @@
 			</c:choose>
 
 		</div>
-		<div class="mb-3">◆주소</div>
+		<div class="mb-3">주소</div>
 		<input id="post" type="text" placeholder="우편번호" readonly
 			value="${personalAddress.zoneCode}">
 		<br> <input id="addr" type="text"
 			value="${personalAddress.roadJibunAddr}" style="width: 620px;"
 			readonly> <input id="detail_address" type="text"
-			value="${personalAddress.detailAddress}" style="width: 620px;">
+			value="${personalAddress.detailAddress}" style="width: 620px;" readonly>
 		​
 
 	</form>
@@ -92,7 +90,7 @@
 			onclick="location.href='update'">정보수정</button>
 	</div>
 </div>
-
+</section>
 
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

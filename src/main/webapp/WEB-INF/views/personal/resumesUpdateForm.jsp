@@ -11,22 +11,26 @@
 <input id="portfolioId" type="hidden"
 	value="${detailResumesDtoPS.portfolioId}">
 
-<div id="main">
-	<br /> <input id="resumesTitle" type="text" class="form-control"
-		value="${detailResumesDtoPS.resumesTitle}">
+<div class="container">
+	<br />
 	<div class="tool">
 		<div class="left">
-			<br /> <br />
+			<br />
 			<h3>개인정보</h3>
 			<div class="left_input">
-				<br />
-				<div id="usersName">${detailResumesDtoPS.personalName}</div>
-				<br />
-				<div id="phoneNumber">${detailResumesDtoPS.personalPhoneNumber}</div>
-				<br />
-				<div id="email">${detailResumesDtoPS.personalEmail}</div>
-				<br />
-				<div id="education">${detailResumesDtoPS.personalEducation}</div>
+				<img src="/image/농심.png" class="img-thumbnail" alt="..."
+					style="float: right;"> <br /> <input id="usersName"
+					type="text" class="form-control" style="width: 300px"
+					placeholder="${detailResumesDtoPS.personalName}" readonly>
+				<br /> <input id="phoneNumber" type="text" class="form-control"
+					style="width: 300px"
+					placeholder="${detailResumesDtoPS.personalPhoneNumber}" readonly>
+				<br /> <input id="email" type="text" class="form-control"
+					style="width: 300px"
+					placeholder="${detailResumesDtoPS.personalEmail}" readonly>
+				<br /> <input id="education" type="text" class="form-control"
+					style="width: 300px"
+					placeholder="${detailResumesDtoPS.personalEducation}" readonly>
 			</div>
 		</div>
 
@@ -80,20 +84,21 @@
 		<input id="portfolioFile" value="${detailResumesDtoPS.portfolioFile}"
 			type="text" class="form-control" />
 	</div>
-
-	<br /> <br />
-	<div class="form">
-		<h2>자기소개서 작성</h2>
-		<input id="resumesIntroduce" type="text" class="form-control"
-			placeholder="수정할 자기소개를 입력해주세요."
-			value="${detailResumesDtoPS.resumesIntroduce}" />
+	<br />
+	<div class="form-group">
+		<label for="exampleFormControlTextarea1">자기소개서 작성</label> <input
+			id="resumesTitle" type="text" class="form-control"
+			placeholder="이력서 제목을 입력해주세요."
+			value="${detailResumesDtoPS.resumesTitle}">
+		<textarea class="form-control" id="resumesIntroduce" rows="8">${detailResumesDtoPS.resumesIntroduce}</textarea>
 	</div>
 
-	<div class="btn-update">
-		<button id="btnUpdate" type="button" class="btn btn-primary">이력서수정완료</button>
+	<div class="btn-update" style="text-align: center">
+		<button id="btnUpdate" type="button" class="btn btn-primary"
+			style="background-color: rgba(0, 195, 98, 255); border: none;">이력서수정완료</button>
 	</div>
-
 </div>
+
 
 <script src="/js/resumes.js"></script>
 

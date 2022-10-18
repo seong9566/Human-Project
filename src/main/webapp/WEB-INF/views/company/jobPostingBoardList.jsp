@@ -48,7 +48,7 @@
 			</p>
 		
 		</div>
-		<button id="btnDelete" onclick="deleteById(${jobPostingBoard.jobPostingBoardId});" type="button" class="btn btn-primary">삭제하기</button>
+		<button id="btnDelete" onclick="deleteById(${jobPostingBoard.jobPostingBoardId});" type="button" class="btn btn-primary" style="background-color: red; border: none;">삭제하기</button>
 	</c:forEach>
 
 

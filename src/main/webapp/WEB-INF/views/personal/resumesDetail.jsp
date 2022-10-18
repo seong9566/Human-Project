@@ -5,41 +5,35 @@
 <input id="resumesId" type="hidden"
 	value="${detailResumesDtoPS.resumesId}">
 
-<div id="main">
+<div class="container">
 	<br />
 	<div class="tool">
 		<div class="left">
-			<h3>${detailResumesDtoPS.resumesTitle}</h3>
+			<h3>이력서 제목 : ${detailResumesDtoPS.resumesTitle}</h3>
 			<br />
 			<h3>개인정보</h3>
-			<div class="left_input">
+			<div class="left_input"  style="font-size: 20px">
 				<br />
-				<div id="usersName">${detailResumesDtoPS.personalName}</div>
+				<div id="usersName">이름 : ${detailResumesDtoPS.personalName}</div>
 				<br />
-				<div id="phoneNumber">${detailResumesDtoPS.personalPhoneNumber}</div>
+				<div id="phoneNumber">연락처 :
+					${detailResumesDtoPS.personalPhoneNumber}</div>
 				<br />
-				<div id="email">${detailResumesDtoPS.personalEmail}</div>
+				<div id="email">이메일 : ${detailResumesDtoPS.personalEmail}</div>
 				<br />
-				<div id="education">${detailResumesDtoPS.personalEducation}</div>
+				<div id="education">학력사항 :
+					${detailResumesDtoPS.personalEducation}</div>
 			</div>
 		</div>
 
-		<div class="mb-3">◆증명사진</div>
-		<div class="right">
-			<img id="previewImg" />
-		</div>
-		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
-
-		<input id="resumesPicture"
-			value="${detailResumesDtoPS.resumesPicture}" type="text"
-			class="form-control" placeholder="사진 자리입니다." readonly />
-
-		<div class="mb-3">◆ 관련 경력 사항</div>
+		<div class="mb-3" style="margin-top: 20px;">관련 경력 사항</div>
 		<div>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
-		            1년 미만
-		        	</c:when>
+					<div class="mb-3">
+						<label for="devops"> - 1년 미만</label>
+					</div>
+				</c:when>
 				<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
 		       		2년 이상
 		         	</c:when>
@@ -56,46 +50,55 @@
 		<div>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
-		            - 프론트엔드
-		        </c:when>
+					<div class="mb-3">
+						<label for="use"> - 프론트엔드</label>
+					</div>
+				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
-		            - 백엔드
-		        </c:when>
+					<div class="mb-3">
+						<label for="use"> - 백엔드</label>
+					</div>
+				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
-		            - 데브옵스
-		        </c:when>
+					<div class="mb-3">
+						<label for="use"> - 데브옵스</label>
+					</div>
+				</c:when>
 			</c:choose>
 		</div>
 
-		<div class="mb-3">◆희망근무지역</div>
+		<h3 style=" margin: 10px 10px;">희망 근무 지역</h3>
 		<input id="resumesPlace" type="text" class="form-control"
 			placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
 
-		<div class="mb-3">◆Github 주소 or Blog 주소</div>
+		<h3 style="margin: 10px 10px;">Github 주소 or Blog 주소</h3>
 
-		<a href="${detailResumesDtoPS.portfolioSource}"> - link :
-			${detailResumesDtoPS.portfolioSource}
+		링크 : <a href="${detailResumesDtoPS.portfolioSource}" style="font-size: 20px">
+			${detailResumesDtoPS.portfolioSource} </a>
+
+		<h3 style="margin: 10px 10px;">포트폴리오</h3>
+		<input id="portfolioFile" type="text" class="form-control"
+			placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
+
+
+		<div class="form">
+			<h3 style="margin: 10px 10px;">자기 소개서</h3>
+			<br />
+			<textarea class="form-control" id="resumesIntroduce" rows="8"
+				readonly>${detailResumesDtoPS.resumesIntroduce}</textarea>
+		</div>
+
+		<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
+			<div class="lineheight"
+				style="text-align: center; margin-bottom: 10px; margin-top: 10px">☝
+				이력서 수정하러가기 ☝</div>
+		</a>
 	</div>
-	</a>
-
-	<div class="mb-3">◆포트폴리오</div>
-	<input id="portfolioFile" type="text" class="form-control"
-		placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
 </div>
-
-<div class="form">
-	<h2>자기소개서 작성</h2>
-	<div>${detailResumesDtoPS.resumesIntroduce}</div>
-</div>
-
-<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
-	<div class="lineheight">수정하러가기</div>
-</a>
-
 <script src="/js/resumes.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>

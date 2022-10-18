@@ -4,7 +4,7 @@
 	<input id="jobPostingBoardCategoryId" type="hidden" value="${jobPostingPS.jobPostingBoardCategoryId}"> 
 	<input id="jobPostingBoardCareerId" type="hidden" value="${jobPostingPS.jobPostingBoardCareerId}"> 
 	<input id="companyId" type="hidden" value="${jobPostingPS.companyId}"> 
-<div>
+<div class="container">
 	<h2>구인 공고 수정 페이지</h2>
 	<div class="tool">
 		<div class="left">

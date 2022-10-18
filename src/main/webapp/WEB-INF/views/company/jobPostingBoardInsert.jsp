@@ -1,61 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<div>
+<div class="container">
 	<input id="companyId" type="hidden" value="${principal.companyId}">
 	<h2>구인 공고 작성 페이지</h2>
-	<br /> <input id="jobPostingBoardTitle" type="text" class="form-control"
-		placeholder="채용공고 제목을 작성해 주세요 ">
+	<br />
 	<div class="tool">
 		<div class="left">
 			<br />
-			<h3>회사정보</h3>
-			<div class="right">
-				<input id="" value="${companyInfo.companyPicture}" placeholder="회사 사진 자리" />
-			</div>
-
-
 			<div class="left_input">
-				<div>
-					<h4>회사 이름</h4>
-					<p>${companyInfo.companyName}</p>
-				</div>
-				<br />
-				<div>
-					<h4>회사 번호</h4>
-					<p>${companyInfo.companyPhoneNumber}</p>
-				</div>
-				<div>
-					<h4>회사 이메일</h4>
-					<p>${companyInfo.companyEmail}</p>
-				</div>
-
-				<div >
-				<h4>회사 주소 </h4>
-				<p>${address.roadJibunAddr}</p>
-				<p>${address.detailAddress }</p>
-				</div>
+			<input id="usersName"
+				type="text" class="form-control" style="width: 300px"
+				placeholder="${companyInfo.companyName}" readonly> <br />
+			<input id="phoneNumber" type="text" class="form-control"
+				style="width: 300px"
+				placeholder="${companyInfo.companyPhoneNumber}" readonly>
+			<br /> <input id="email" type="text" class="form-control"
+				style="width: 300px" placeholder="${companyInfo.companyEmail}"
+				readonly> <br /> <input id="address" type="text"
+				class="form-control" style="width: 600px"
+				placeholder="${address.roadJibunAddr}" readonly> <br />
+			<input id="education" type="text" class="form-control"
+				style="width: 300px"
+				placeholder="${address.detailAddress }" readonly>
 			</div>
 		</div>
-		<h2>모집조건 및 안내사항 작성</h2>
 
 		<div class="left_input">
 			<div class="mb-3">
-				◆최소 경력 사항
-				<div>
-					<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label><input
-						type="checkbox" value="twoYearOver">twoYearOver</label><br /> <label><input
-						type="checkbox" value="threeYearOver">threeYearOver</label><br /> <label><input
-						type="checkbox" value="fiveYearOver">fiveYearOver</label><br />
+				<h3 class="card-title">최소 경력 사항</h3>
+				<div class="form-check d-flex">
+					<div class="form-check">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" id=" jobPostingSalary"
+							name=" jobPostingSalary" value="oneYearLess">oneYearLess
+							<i class="input-helper"></i></label>
+					</div>
+					<div style="margin: 0 20px 0 0;"></div>
+					<div class="form-check">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" id=" jobPostingSalary"
+							name=" jobPostingSalary" value="twoYearOver">twoYearOver
+							<i class="input-helper"></i></label>
+					</div>
+					<div style="margin: 0 20px 0 0;"></div>
+					<div class="form-check">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" id=" jobPostingSalary"
+							name=" jobPostingSalary" value="threeYearOver">threeYearOver<i
+							class="input-helper"></i></label>
+					</div>
+					<div style="margin: 0 20px 0 0;"></div>
+					<div class="form-check">
+						<label class="form-check-label"> <input type="radio"
+							class="form-check-input" id=" jobPostingSalary"
+							name=" jobPostingSalary" value="fiveYearOver">fiveYearOver<i
+							class="input-helper"></i></label>
+					</div>
 				</div>
 			</div>
 
 			<div class="mb-3">
-				◆관심분야
-				<div>
-					<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> <label><input
-						type="checkbox" value="categoryBackend">backend</label><br /> <label><input
-						type="checkbox" value="categoryDevops">devops</label><br />
+				<h3 class="card-title">관심분야</h3>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox"
+						id="inlineCheckbox1" value="categoryFrontend"> <label
+						class="form-check-label" for="inlineCheckbox1">  frontend</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox"
+						id="inlineCheckbox2" value="categoryBackend"> <label
+						class="form-check-label" for="inlineCheckbox2">backend</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox"
+						id="inlineCheckbox3" value="categoryDevops"> <label
+						class="form-check-label" for="inlineCheckbox3">devops
+						</label>
 				</div>
 			</div>
 
@@ -64,45 +86,55 @@
 				<div>
 					<div class="form-check d-flex">
 						<div class="form-check">
-							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id=" jobPostingSalary" name=" jobPostingSalary" value="2000"> 2000만원 이상 <i
+							<label class="form-check-label"> <input type="radio"
+								class="form-check-input" id=" jobPostingSalary"
+								name=" jobPostingSalary" value="2000"> 2000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 						<div style="margin: 0 20px 0 0;"></div>
 						<div class="form-check">
-							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id=" jobPostingSalary" name=" jobPostingSalary" value="3000"> 3000만원 이상 <i
+							<label class="form-check-label"> <input type="radio"
+								class="form-check-input" id=" jobPostingSalary"
+								name=" jobPostingSalary" value="3000"> 3000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 						<div style="margin: 0 20px 0 0;"></div>
 						<div class="form-check">
-							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id=" jobPostingSalary" name=" jobPostingSalary" value="4000"> 4000만원 이상 <i
+							<label class="form-check-label"> <input type="radio"
+								class="form-check-input" id=" jobPostingSalary"
+								name=" jobPostingSalary" value="4000"> 4000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 						<div style="margin: 0 20px 0 0;"></div>
 						<div class="form-check">
-							<label class="form-check-label"> <input type="radio" class="form-check-input"
-								id=" jobPostingSalary" name=" jobPostingSalary" value="5000"> 5000만원 이상 <i
+							<label class="form-check-label"> <input type="radio"
+								class="form-check-input" id=" jobPostingSalary"
+								name=" jobPostingSalary" value="5000"> 5000만원 이상 <i
 								class="input-helper"></i></label>
 						</div>
 					</div>
 
 
 					<br />
-					<div class="mb-3">◆주소</div>
-					<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
-					<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-					<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
+					<div class="mb-3">주소</div>
+					<input id="post" type="text" placeholder="우편번호" readonly
+						onclick="findAddr()">
+					<button id="detailAddress" type="button" class="btn btn-primary"
+						onclick="findAddr()">우편번호찾기</button>
+					<br> <input id="addr" type="text" placeholder="주소"
+						style="width: 620px;" readonly>
 
 
-					<div class="mb-3">◆채용공고 마감일</div>
-					<input id="jobPostingBoardDeadline" type="date" class="form-control"
-						placeholder="채용공고 마감일을 작성해 주세요"> <br />
-
-					<div class="mb-3">◆채용공고 내용</div>
-					<input id="jobPostingBoardContent" type="text" class="form-control"
-						placeholder="채용공고 내용을 작성해주세요"> <br />
+					<div class="mb-3">채용공고 마감일</div>
+					<input id="jobPostingBoardDeadline" type="date"
+						class="form-control" placeholder="채용공고 마감일을 작성해 주세요"> <br />
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">채용공고 내용</label> <input
+							id="jobPostingBoardTitle" type="text" class="form-control"
+							placeholder="구인공고 제목을 입력해주세요.">
+						<textarea class="form-control" id="jobPostingBoardContent"
+							rows="8"></textarea>
+					</div>
 				</div>
 
 				<div class="btn-update">
@@ -177,6 +209,7 @@ function insert(){
 	});
 }
 </script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
