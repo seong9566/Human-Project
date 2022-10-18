@@ -29,6 +29,9 @@
                to {
                   -webkit-transform: scale(1)
                }
+
+            }
+
             @keyframes animatezoom {
                from {
                   transform: scale(0)

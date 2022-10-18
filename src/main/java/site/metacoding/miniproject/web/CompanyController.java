@@ -94,17 +94,10 @@ public class CompanyController {
 		if(page==null) page=0;
 		int startNum = page*5;
 		
-		System.out.println("===============");
-		System.out.println("keyword : "+keyword);
-		System.out.println("startNum : "+startNum );
-		System.out.println("===============");
-		
 		if(keyword == null || keyword.isEmpty()) { 
 			List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
 			PagingDto paging = companyService.jobPostingBoardPaging(page, null);
-
 			paging.makeBlockInfo(keyword);
-
 			model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
 			model.addAttribute("paging",paging);
 			

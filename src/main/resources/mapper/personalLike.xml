@@ -7,7 +7,7 @@
 		VALUES(#{resumesId},#{companyId},NOW())
 	</insert>
 	<delete id="deleteById">
-		DELETE FROM personal_like WHERE resumes_id =#{resumesId} and company_id =#{companyId};
+		DELETE FROM personal_like WHERE resumes_id =#{resumesId} and company_id =#{companyId}
 	</delete>
 
 	<update id="update">

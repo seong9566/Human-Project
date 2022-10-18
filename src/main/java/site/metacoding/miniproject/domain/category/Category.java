@@ -22,7 +22,7 @@ public class Category {
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	private Timestamp createdAt;
-	
+
 
 	// 이력서 작성
 	public Category(InsertResumesDto insertResumesDto) {
@@ -44,5 +44,4 @@ public class Category {
 		this.categoryBackend = insertDto.getCategoryBackend();
 		this.categoryDevops = insertDto.getCategoryDevops();
 	}
-
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.service.personal.PersonalService;
+import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
@@ -71,8 +72,6 @@ public class PersonalController {
 		return "personal/resumesDetail";
 	}
 	
-	
-	//"/personal/resumes/update"+ resumesId
 	// 이력서 수정
 	@GetMapping("/personal/resumes/update/{resumesId}")
 	public String updateForm(@PathVariable Integer resumesId, Model model) {
@@ -100,24 +99,17 @@ public class PersonalController {
 		if(page==null) page=0;
 		int startNum = page*5;
 		
-		System.out.println("===============");
-		System.out.println("keyword : "+keyword);
-		System.out.println("startNum : "+startNum );
-		System.out.println("===============");
-		
 		if(keyword == null || keyword.isEmpty()) { 
 			List<CompanyMainDto> resumesList = personalService.resumesAll(startNum);
 			PagingDto paging = personalService.resumesPaging(page, null);
-
 			paging.makeBlockInfo(keyword);
-
 			model.addAttribute("resumesList", resumesList);	
 			model.addAttribute("paging",paging);
 			
 		} else {
 			List<CompanyMainDto> resumesList = personalService.findSearch(startNum, keyword);
 			PagingDto paging = personalService.resumesPaging(page, keyword);
-			paging.makeBlockInfo(keyword);
+			paging.makeBlockInfo(keyword);			
 			model.addAttribute("resumesList", resumesList);
 			model.addAttribute("paging",paging);
 		}
@@ -148,7 +140,9 @@ public class PersonalController {
 		
 		@PutMapping("/personal/update")
 		public @ResponseBody ResponseDto<?> personalUpdate(@RequestBody PersonalUpdateDto personalUpdateDto){
-			SignedDto<?> principal =  (SignedDto)session.getAttribute("principal");
+			
+			ValidationCheckUtil.valCheckToUpdatePersonal(personalUpdateDto);
+			SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 			personalService.updatePersonal(principal.getUsersId(), principal.getPersonalId(), personalUpdateDto);
 			return new ResponseDto<>(1, "수정 성공", null);
 		}

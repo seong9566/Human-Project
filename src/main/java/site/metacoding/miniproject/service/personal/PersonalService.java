@@ -118,7 +118,7 @@ public class PersonalService {
 		return personalDao.personalformById(personalId);
 	}
 
-	// 내 정보 수정에 데이터 보기
+	// 내 정보 수정에서 데이터 보여주기
 	public PersonalUpdateDto personalUpdateById(Integer personalId) {
 		return personalDao.personalUpdateById(personalId);
 	}
@@ -128,7 +128,6 @@ public class PersonalService {
 	}
 
 	// 개 정보 수정
-
 	@Transactional(rollbackFor = Exception.class)
 	public void updatePersonal(Integer userId, Integer personalId, PersonalUpdateDto personalUpdateDto) {
 		Users personaluserPS = userDao.findById(userId);
