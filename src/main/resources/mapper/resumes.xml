@@ -68,7 +68,7 @@
 	</select>
 
 	<select id="resumesPaging"
-		resultType="site.metacoding.miniproject.web.dto.response.ResumesPagingDto">
+		resultType="site.metacoding.miniproject.web.dto.response.PagingDto">
 		SELECT totalCount, totalPage, currentPage,
 		if(currentPage=0, 1, 0)
 		FIRST,

@@ -24,6 +24,8 @@ import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
+import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
 @Service
 @RequiredArgsConstructor
@@ -86,5 +88,21 @@ public class CompanyService {
 			}
 			return postingList;
 		}
+		
+	// 전체 채용공고 리스트
+	public List<PersonalMainDto> findAll(int startNum) {
+		return jobPostingBoardDao.findAll(startNum);
 	}
+	
+	// 페이징
+	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {		
+		return jobPostingBoardDao.jobPostingBoardPaging(page, keyword);
+	}
+	
+	// 검색 결과 리스트
+	public List<PersonalMainDto> findSearch(Integer startNum, String keyword) {
+		return jobPostingBoardDao.findSearch(startNum, keyword);
+	}
+	
+}
 
