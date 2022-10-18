@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ResumesPagingDto {
+public class PagingDto {
 	private String keyword;
 	
 	private Integer totalCount;

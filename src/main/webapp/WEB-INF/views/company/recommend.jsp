@@ -18,5 +18,7 @@
 		</div>
 	</c:forEach>
 </div>
+
 <script src="/js/recommend.js"></script>
+
 <%@ include file="../layout/footer.jsp"%>

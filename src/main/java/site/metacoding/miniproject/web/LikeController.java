@@ -41,6 +41,7 @@ public class LikeController {
 
 	}
 
+
 	@DeleteMapping("/personalLike/{resumesId}/likes")
 	public @ResponseBody ResponseDto<?> deleteLike(@PathVariable Integer resumesId) {
 		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
