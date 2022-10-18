@@ -45,7 +45,6 @@ public class PersonalLikeService {
 		personalLike.setAlarmId(alarm.getAlarmId());
 		personalLikesDao.update(personalLike);
 
-
 	}
 
 	@Transactional(rollbackFor = RuntimeException.class)
