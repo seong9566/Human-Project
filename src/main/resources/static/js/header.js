@@ -9,8 +9,8 @@ function sendmessageToPersonal(resumesId) {
 	stompClient.send("/app/Company/Likeresume/" + resumesId, {}, $("#userId").val());
 }
 
-function sendmessageToCompany(data) {
-	stompClient.send("/app/Company/", {}, data);
+function sendmessageToCompany(companyId) {
+	stompClient.send("/app/Personal/LikeCompany/" + companyId, {},  $("#userId").val());
 }
 
 function connectpersonal() {

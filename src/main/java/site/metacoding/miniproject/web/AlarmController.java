@@ -46,6 +46,13 @@ public class AlarmController {
 		simpMessagingTemplate.convertAndSend("/queue/Personal/" + usersId,
 				new ResponseDto<>(1, "success", resumesId));
 	}
+	
+	@MessageMapping("/Personal/LikeCompany/{companyId}")
+	public void messageToCompany(@DestinationVariable Integer companyId, Integer FromUsersId) {
+		Integer usersId = usersService.findUserIdByCompanyId(companyId);
+		simpMessagingTemplate.convertAndSend("/queue/Company/" + usersId,
+				new ResponseDto<>(1, "success", FromUsersId));
+	}
 
 	@PutMapping("/user/alarm/readed")
 	public @ResponseBody ResponseDto<?> readedAlarm(@RequestParam(value = "alarmsId[]") List<Integer> alarmsId) {
