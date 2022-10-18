@@ -61,8 +61,10 @@ let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnSaveForm").click(()=>{
 	location.href = "/company/insertForm";
 });
+
 $("#btnDetailForm").click(()=>{
 	location.href = "/company/jobpostingBoardDetail/"+jobPostingBoardId;
+
 }); 
 
 //채용 공고 삭제

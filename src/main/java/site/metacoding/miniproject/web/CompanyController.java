@@ -135,7 +135,7 @@ public class CompanyController {
 		companyService.deleteJobposting(jobPostingBoardId);
 		return new ResponseDto<>(1, "채용공고 삭제 성공", null);
 	}
-	
+
 }
 	
 

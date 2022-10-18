@@ -79,65 +79,63 @@ public class CompanyService {
 	}
 
 	// 채용공고 리스트
-		public List<JobPostingBoardListDto> jobPostingBoardList(Integer companyId) {
-			List<JobPostingBoardListDto> postingList =  jobPostingBoardDao.jobPostingBoardList(companyId);
-			//TimeStamp to String
-			for(JobPostingBoardListDto deadLine : postingList)
-			{
-				Timestamp ts = deadLine.getJobPostingBoardDeadline();
-				Date date = new Date();
-				date.setTime(ts.getTime());
-				String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
-				deadLine.setFormatDeadLine(formattedDate);
-			}
-			return postingList;
-		}
-		
-		//채용공고 상세 보기 
-		public JobPostingBoardDetailDto jobPostingOne(Integer jobPostingBoardId) {
-			JobPostingBoardDetailDto jobPostingPS =  jobPostingBoardDao.findByDetail(jobPostingBoardId);
-			Timestamp ts = jobPostingPS.getJobPostingBoardDeadline();
+	public List<JobPostingBoardListDto> jobPostingBoardList(Integer companyId) {
+		List<JobPostingBoardListDto> postingList = jobPostingBoardDao.jobPostingBoardList(companyId);
+		// TimeStamp to String
+		for (JobPostingBoardListDto deadLine : postingList) {
+			Timestamp ts = deadLine.getJobPostingBoardDeadline();
 			Date date = new Date();
 			date.setTime(ts.getTime());
 			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
-			jobPostingPS.setFormatDeadLine(formattedDate);
-			return jobPostingPS;
+			deadLine.setFormatDeadLine(formattedDate);
 		}
-		
-		// 채용공고 수정 (jobpostingboard,career,Category)
-		@Transactional(rollbackFor = Exception.class)
-		public void updateJobPostingBoard(Integer jobPostingBoardId, JobPostingBoardUpdateDto updateDto) {
-			//Integer categoryId,Integer careerId,
-			Category category = new Category(updateDto);
-			categoryDao.jobPostingUpdate(category);
+		return postingList;
+	}
 
-			
-			Career career = new Career(updateDto);
-			careerDao.jobPostingUpdate(career);
+	// 채용공고 상세 보기
+	public JobPostingBoardDetailDto jobPostingOne(Integer jobPostingBoardId) {
+		JobPostingBoardDetailDto jobPostingPS = jobPostingBoardDao.findByDetail(jobPostingBoardId);
+		Timestamp ts = jobPostingPS.getJobPostingBoardDeadline();
+		Date date = new Date();
+		date.setTime(ts.getTime());
+		String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+		jobPostingPS.setFormatDeadLine(formattedDate);
+		return jobPostingPS;
+	}
 
-			JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId,updateDto);
-			jobPostingBoardDao.update(jobPostingBoard);
-		}
-		
-		// 채용 공고  삭제
-		@Transactional(rollbackFor = Exception.class)
-		public void deleteJobposting(Integer jobPostingBoardId) {
-			jobPostingBoardDao.deleteById(jobPostingBoardId);
-		}
+	// 채용공고 수정 (jobpostingboard,career,Category)
+	@Transactional(rollbackFor = Exception.class)
+	public void updateJobPostingBoard(Integer jobPostingBoardId, JobPostingBoardUpdateDto updateDto) {
+		// Integer categoryId,Integer careerId,
+		Category category = new Category(updateDto);
+		categoryDao.jobPostingUpdate(category);
+
+		Career career = new Career(updateDto);
+		careerDao.jobPostingUpdate(career);
+
+		JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId, updateDto);
+		jobPostingBoardDao.update(jobPostingBoard);
+	}
+
+	// 채용 공고 삭제
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteJobposting(Integer jobPostingBoardId) {
+		jobPostingBoardDao.deleteById(jobPostingBoardId);
+	}
+
 	// 전체 채용공고 리스트
 	public List<PersonalMainDto> findAll(int startNum) {
 		return jobPostingBoardDao.findAll(startNum);
 	}
-	
+
 	// 페이징
-	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {		
+	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {
 		return jobPostingBoardDao.jobPostingBoardPaging(page, keyword);
 	}
-	
+
 	// 검색 결과 리스트
 	public List<PersonalMainDto> findSearch(Integer startNum, String keyword) {
 		return jobPostingBoardDao.findSearch(startNum, keyword);
 	}
-	
-}
 
+}
