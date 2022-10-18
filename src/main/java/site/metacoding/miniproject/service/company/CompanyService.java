@@ -18,8 +18,6 @@ import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
-import site.metacoding.miniproject.domain.portfolio.Portfolio;
-import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;

@@ -20,6 +20,12 @@ public class UpdateResumesDto {
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	
+	private Integer resumesId;
+	private Integer careerId;
+	private Integer portfolioId;
+	private Integer categoryId;
+	private Integer resumesCategoryId;
+	
 //	public Resumes updateResumesEntity() {
 //		Resumes resumes = new Resumes();
 //		resumes.setResumesTitle(this.resumesTitle);

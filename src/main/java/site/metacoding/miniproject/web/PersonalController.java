@@ -12,19 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
 import site.metacoding.miniproject.domain.resumes.Resumes;
-
-import site.metacoding.miniproject.service.personal.PersonalLikeService;
-
 import site.metacoding.miniproject.service.company.CompanyService;
-
+import site.metacoding.miniproject.service.personal.PersonalLikeService;
 import site.metacoding.miniproject.service.personal.PersonalService;
+import site.metacoding.miniproject.utill.ResumesValidationCheck;
 import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
@@ -60,8 +56,9 @@ public class PersonalController {
 		return "personal/resumesForm";
 	}
 
-	@PostMapping(value = "/personal/resumes")
-	public @ResponseBody ResponseDto<?> insertResumes(@RequestPart("file") MultipartFile file, @RequestPart("insertResumesDto") InsertResumesDto insertResumesDto)throws Exception {
+	@PostMapping("/personal/resumes")
+	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
+		ResumesValidationCheck.valCheckToInsertResumes(insertResumesDto);
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
 		personalService.insertResumes(principal.getPersonalId(), insertResumesDto);
 		return new ResponseDto<>(1, "이력서 등록 성공", null);

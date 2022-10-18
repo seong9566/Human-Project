@@ -13,8 +13,7 @@
 
 <div id="main">
 	<br /> 
-	<input id="resumesTitle" type="text" class="form-control"
-		placeholder="수정할 이력서 제목을 입력해주세요." value="${detailResumesDtoPS.resumesTitle}">
+	<input id="resumesTitle" type="text" class="form-control" value="${detailResumesDtoPS.resumesTitle}">
 	<div class="tool">
 		<div class="left">
 			<br /> <br />
@@ -27,8 +26,6 @@
 					<br />
 					<div id="email">${detailResumesDtoPS.personalEmail}</div>
 					<br />
-					<div id="address">${detailResumesDtoPS.personalAddress}</div>
-					<br />
 					<div id="education">${detailResumesDtoPS.personalEducation}</div>
 				</div>
 			</div>
@@ -38,25 +35,32 @@
 				<img id="previewImg" />
 			</div>
 			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
-			
-			<input id="resumesPicture" type="text" class="form-control"
-			placeholder="사진 들어가는 자리입니다. " />
+
+			<input id="resumesPicture" value="${detailResumesDtoPS.resumesPicture}" type="text" class="form-control" placeholder="사진 자리입니다."/>
 	
-	<div class="mb-3">◆경력사항</div>
+		<div class="mb-3">◆경력사항</div>
 			<div>
-				<label><input type="checkbox" value="oneYearLess" >oneYearLess</label><br />
-				<label><input type="checkbox" value="twoYearOver" >twoYearOver</label><br />
-				<label><input type="checkbox" value="threeYearOver" >threeYearOver</label><br />
-				<label><input type="checkbox" value="fiveYearOver" >fiveYearOver</label>
+				<tr>
+					<td>
+						<label for="first"><input type="radio" name="year" value="oneYearLess" onclick="clickCheck(this)">oneYearLess</label><br />			
+						<label for="second"><input type="radio" name="year" value="twoYearOver" onclick="clickCheck(this)">twoYearOver</label><br />
+						<label for="third"><input type="radio" name="year" value="threeYearOver" onclick="clickCheck(this)">threeYearOver</label><br />
+						<label for="fourth"><input type="radio" name="year" value="fiveYearOver" onclick="clickCheck(this)">fiveYearOver</label><br />
+					</td>
+				</tr>
 			</div>
-			
-		<div class="mb-3">◆관심분야</div>
-			<div>
-				<label><input type="checkbox" value="categoryFrontend" >frontend</label><br />
-				<label><input type="checkbox" value="categoryBackend" >backend</label><br />
-				<label><input type="checkbox" value="categoryDevops" >devops</label><br />
-				<label><input id="etc" type="checkbox" value="etc" >etc</label>
-			</div>
+						
+	<div class="mb-3">◆관심분야</div>
+		<div>
+			<tr>
+				<td>
+					<label><input type="checkbox" name="interest" value="categoryFrontend">frontend</label><br />
+					<label><input type="checkbox" name="interest" value="categoryBackend">backend</label><br />
+					<label><input type="checkbox" name="interest" value="categoryDevops">devops</label><br />
+					<label><input id="etc" type="checkbox" name="interest" value="etc">etc</label>
+				</td>
+			</tr>
+		</div>			
 			
 		<div class="mb-3">◆희망근무지역</div>
 		<input id="resumesPlace" value="${detailResumesDtoPS.resumesPlace}" type="text" class="form-control" />	
