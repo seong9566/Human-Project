@@ -43,7 +43,7 @@ function insert(){
 	}).done((res)=>{
 		if(res.code == 1){
 			alert("이력서 등록 성공");
-			location.href="/main";
+			location.href="/personal/myresumesList";
 		}else{
 			alert(res.message);
 		}
