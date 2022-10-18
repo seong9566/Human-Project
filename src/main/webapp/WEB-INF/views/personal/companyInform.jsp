@@ -1,25 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-
+	<input id = "companyId" type="hidden" value="${companyInfo.companyId}"> 
 <div id="main">
 	<br />
 	<div class="tool">
 		<div class="left">
 			<br />
-			<h3>회사정보</h3>
-			<div class="left_input">
-				<div id="userId">sopu5555</div>
-				<br />
-				<div id="copanyName">농심</div>
-				<br />
-				<div id="phonenumber">01024102957</div>
-				<br />
-				<div id="email">sop55544@gmail.com</div>
-				<div id="adress">부산 북구 화명3동 코오롱 하늘채 110동 504호</div>
-			</div>
+		<h2>회사정보 보기 </h2>
+		
+		<div class="mb-3 mt-3">
+			◆회사명
+			<input id="companyName" type="text" value="${companyInfo.companyName}" readonly >
 		</div>
-		<div class="right">
+		
+		<div class="mb-3 mt-3">
+			◆전화번호
+			<input id="companyPhoneNumber" type="text" value="${companyInfo.companyPhoneNumber}" readonly>
+		</div>
+		
+		<div class="mb-3 mt-3">
+			◆이메일
+			<input id="companyEmail" type="text" value="${companyInfo. companyEmail}" readonly>
+		</div>
+		
+		<div class="mb-3 mt-3">
+			◆회사 사진 
+			<input id="companyPicture" type="text" value="${companyInfo. companyPicture}" readonly>
+		</div>
 
  <img id="previewImg" />
 		</div>
@@ -61,10 +69,7 @@
 	</div>
 -
 </div>
-
-
-<script src="/js/writeForm.js">
-
-   </script>
+<script>
+</script>
 
 <%@ include file="../layout/footer.jsp"%>
