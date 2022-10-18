@@ -119,5 +119,5 @@
                   connectcompany();
                }
             });
-         </script>
+</script>
 <script src="/js/header.js"></script>

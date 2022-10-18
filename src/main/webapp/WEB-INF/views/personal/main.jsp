@@ -81,6 +81,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
 		</c:when>
 		<c:otherwise>
 			<table class="table table-bordered" style="text-align: center">

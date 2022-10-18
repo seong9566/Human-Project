@@ -11,7 +11,6 @@ public class DetailResumesDto {
 	private String personalEmail;
 	private String personalEducation;
 	private String personalPhoneNumber;
-	private String personalAddress;
 	
 	// resumes
 	private String resumesTitle;
@@ -40,6 +39,4 @@ public class DetailResumesDto {
 	private Integer portfolioId;
 	private Integer categoryId;
 	private Integer resumesCategoryId;
-	
-
 }
