@@ -27,19 +27,18 @@ public class SubscribeController {
 
 	@GetMapping("/subscribe/{companyId}")
 	public @ResponseBody ResponseDto<?> subscribeToCompany(@PathVariable Integer companyId) {
-		System.out.println(companyId);
 		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
 
 		if (signedDto == null) {
 			throw new ApiException("로그인 후 구독해주세요!");
 		}
 
-		List<Subscribe> subscribe = new ArrayList<>();
+		List<Subscribe> subscribes = new ArrayList<>();
+		Subscribe subscribe = subscribeService.subscribeToCompany(signedDto, companyId);
+		subscribes.add(subscribe);
 
-		subscribe.add(subscribeService.subscribeToCompany(signedDto, companyId));
-
-		session.setAttribute("subscribe", subscribe);
-		return new ResponseDto<>(1, "구독 성공!", null);
+		session.setAttribute("subscribe", subscribes);
+		return new ResponseDto<>(1, "구독 성공!", subscribe.getSubscribeId());
 	}
 
 	@DeleteMapping("/subscribe/{subscribeId}")
@@ -48,7 +47,8 @@ public class SubscribeController {
 		if (signedDto == null) {
 			throw new ApiException("잘못된 접근입니다.");
 		}
-		subscribeService.subscribeToCompany(signedDto, companyId);
-		return new ResponseDto<>(1, "success", null);
+		List<Subscribe> subscribes = subscribeService.subscribeCancelToCompany(subscribeId, signedDto);
+		session.setAttribute("subscribe", subscribes);
+		return new ResponseDto<>(1, "구독 취소 성공!", null);
 	}
 }

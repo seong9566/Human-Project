@@ -19,4 +19,8 @@
 		UPDATE subscribe 
 		SET personal_id = #{personalId}, company_id = #{companyId}, alarm_id = #{alarmId} WHERE subscribe_id = #{subscribeId}
 	</update>
+
+	<delete id="deleteById">
+		DELETE FROM subscribe WHERE subscribe_id = #{subscribeId}
+	</delete>
 </mapper>

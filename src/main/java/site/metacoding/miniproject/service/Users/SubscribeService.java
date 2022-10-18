@@ -49,7 +49,9 @@ public class SubscribeService {
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
-    public void subscribeCancelToCompany(Integer subscribeId) {
-
+    public List<Subscribe> subscribeCancelToCompany(Integer subscribeId, SignedDto<?> signedDto) {
+        subscribeDao.deleteById(subscribeId);
+        List<Subscribe> subscribes = subscribeDao.findByPersonalId(signedDto.getPersonalId());
+        return subscribes;
     }
 }

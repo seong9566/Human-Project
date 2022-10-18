@@ -74,17 +74,18 @@
 						<c:if test="${not loop_flag}">
 							<c:if test="${sub.companyId == companyInfo.companyId}">
 								<div class="btn-update">
-									<button id="btnSubCancel" type="button" class="btn btn-primary">구독취소</button>
+									<button id="btnSubCancel" type="button" class="btn btn-primary"
+										value="${sub.subscribeId}">구독취소</button>
 								</div>
 								<c:set var="loop_flag" value="true" />
 							</c:if>
 						</c:if>
-						<c:if test="${not loop_flag}">
-							<div class="btn-update">
-								<button id="btnSub" type="button" class="btn btn-primary">구독하기</button>
-							</div>
-						</c:if>
 					</c:forEach>
+					<c:if test="${not loop_flag}">
+						<div class="btn-update">
+							<button id="btnSub" type="button" class="btn btn-primary">구독하기</button>
+						</div>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</div>
