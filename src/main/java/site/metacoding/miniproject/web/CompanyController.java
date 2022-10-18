@@ -1,6 +1,10 @@
 package site.metacoding.miniproject.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
@@ -55,8 +61,26 @@ public class CompanyController {
 		return "company/update";
 	}
 
-	@PutMapping("/company/inform/update")
-	public @ResponseBody ResponseDto<?> companyUpdate(@RequestBody CompanyUpdateDto companyUpdateDto) {
+	@PutMapping(value="/company/inform/update")
+	public @ResponseBody ResponseDto<?> companyUpdate(@RequestPart("file") MultipartFile file,@RequestPart ("companyUpdateDto")CompanyUpdateDto companyUpdateDto) throws Exception {
+		int pos = file.getOriginalFilename().lastIndexOf('.');
+		String extension = file.getOriginalFilename().substring(pos + 1);
+		String filePath = "C:\\Temp\\img\\";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
+		File makeFileFolder = new File(filePath);
+		if (!makeFileFolder.exists()) {
+			if (!makeFileFolder.mkdir()) {
+				throw new Exception("File.mkdir():Fail.");
+			}
+		}
+		File dest = new File(filePath, imgName);
+		try {
+			Files.copy(file.getInputStream(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		companyUpdateDto.setCompanyPicture(imgName);
 		SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 		companyService.updateCompany(principal.getUsersId(), principal.getCompanyId(), companyUpdateDto);
 		return new ResponseDto<>(1, "수정 성공", null);

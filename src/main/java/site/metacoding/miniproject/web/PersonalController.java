@@ -242,6 +242,7 @@ public class PersonalController {
 			JobPostingBoardDetailDto jobPostingPS = companyService.jobPostingOne(jobPostingBoardId);
 //			SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
 			CompanyAddressDto addressPS = companyService.findByAddress(jobPostingPS.getCompanyId());
+			System.out.println(jobPostingPS.getCompanyLikeId());
 			model.addAttribute("address", addressPS);
 			model.addAttribute("jobPostingPS", jobPostingPS);
 			return "personal/jobPostingViewApply";

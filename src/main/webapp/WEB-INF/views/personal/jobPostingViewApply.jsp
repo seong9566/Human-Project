@@ -2,6 +2,7 @@
 <%@ include file="../layout/header.jsp"%>
 <input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}">
 <input id="companyId" type="hidden" value="${jobPostingPS.companyId}">
+<input id="companyLikeId" type="hidden" value="${jobPostingPS.companyLikeId}">
 <div id="main">
 	<form>
 		<div class="mb-3">
