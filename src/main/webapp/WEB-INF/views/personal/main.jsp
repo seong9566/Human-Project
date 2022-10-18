@@ -1,77 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<div id="containermain">
+	<div id="companyrank">
+		<h2>회사 공고 추천 TOP 3</h2>
+		<ul>
 
-<div class="container mt-3" style="border: 3px solid #000000">
-	<div class="row row-cols-1 row-cols-md-3 g-4">
-		<div id="box1" class="col">
-			<div class="card h-100">
-				<img src="/image/1.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
+			<li>
+				<div class="company-item">
+					<div class="company-cover"></div>
+					<div class="album-info">
+						<p class="company_title">이름1</p>
+						<p class="likerank">1등</p>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div id="box2" class="col">
-			<div class="card h-100">
-				<img src="/image/1.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
+			</li>
+			<li>
+				<div class="company-item">
+					<div class="company-cover"></div>
+					<div class="company-info">
+						<p class="company_title">이름2</p>
+						<p class="likerank">2등</p>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div id="box3" class="col">
-			<div class="card h-100">
-				<img src="/image/1.jpg" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
+			</li>
+			<li>
+				<div class="company-item">
+					<div class="company-cover"></div>
+					<div class="album-info">
+						<p class="company_title">이름3</p>
+						<p class="likerank">3등</p>
+					</div>
 				</div>
-			</div>
-		</div>
+			</li>
+		</ul>
 	</div>
-</div>
 <div class="mb-3"></div>
-<div class="dropdown"></div>
+<div class="dropdown">
 
-<div class="d-flex justify-content-end">
-	<div style="width: 300px">
-		<form class="d-flex" method="get" action="/main">
-			<input class="form-control me-2" type="text" placeholder="Search"
-				name="keyword">
-			<button class="btn btn-primary" type="submit">Search</button>
-		</form>
-	</div>
-</div>
+<div class="d-flex justify-content-between" style="width:1190px">
+				<select name="category" id="select_category"
+					style="width: 150px; left: 10%">
+					<option value="#">==전체보기==</option>
+					<option value="#">프론트엔드</option>
+					<option value="#">백엔드</option>
+					<option value="#">데브옵스</option>
+				</select>
+				<form class="d-flex" method="get" action="/main">
+					<input class="searchForm" type="text" placeholder="Search"
+						name="keyword">
+					<button class="searchsubmit" type="submit">🔍</button>
+				</form>
+		</div>
 
 <div class="d-flex justify-content-center">
+	<c:set var="userprincipal" value="${empty sessionScope.principal || empty sessionScope.principal.companyId  ?  true : false}"></c:set>
 	<c:choose>
-		<c:when test="${empty principal}">
-			<table class="table table-bordered" style="text-align: center">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>채용공고 제목</th>
-						<th>마감일</th>
-					</tr>
-				</thead>
-				<tbody id="table">
-					<c:forEach var="jobPostingBoardList" items="${jobPostingBoardList}">
-						<tr>
-							<td>${jobPostingBoardList.jobPostingBoardId}</td>
-							<td>
-								<div id="apply" class="container p-4 my-4 border">
-									<a
-										href="/company/jobPostingBoard/${jobPostingBoardList.jobPostingBoardId}">
-										${jobPostingBoardList.jobPostingBoardTitle}</a>
-								</div>
-							</td>
-							<td>${jobPostingBoardList.jobPostingBoardDeadline}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:when>
-		<c:when test="${principal.personalId != null}">
+		<c:when test="${userprincipal}">
 			<table class="table table-bordered" style="text-align: center">
 				<thead>
 					<tr>
@@ -124,7 +109,8 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-
+</div>
+</div>
 <div class="d-flex justify-content-center">
 	<ul class="pagination">
 		<li class='page-item ${paging.first ? "disabled" : " "}'><a
@@ -145,5 +131,4 @@
 		</li>
 	</ul>
 </div>
-
 <%@ include file="../layout/footer.jsp"%>

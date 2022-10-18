@@ -18,7 +18,7 @@ function connectpersonal() {
 	stompClient = Stomp.over(socket);
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
-	stompClient.connect({}, (frame) => {
+	stompClient.connect({}, () => {
 		stompClient.subscribe('/topic/Company/', (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
@@ -39,7 +39,7 @@ function connectcompany() {
 	stompClient = Stomp.over(socket);
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
-	stompClient.connect({}, (frame) => {
+	stompClient.connect({}, () => {
 		stompClient.subscribe('/topic/Personal/', (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
@@ -120,9 +120,6 @@ function readedalarm(alarmId) {
 	$.ajax("/user/alarm/readed", {
 		type: "PUT",
 		data: { alarmsId: alarmId },
-		Headers: {
-			"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-		}
 	}).done((res) => {
 		if (res.code == 1) {
 			refreshalarm();
@@ -145,6 +142,6 @@ function iconchangToRead() {
 	if (alarmState) {
 		$("#alarm").removeClass("fa-solid");
 		$("#alarm").addClass("fa-regular");
-		$("#alarm").css("color", "white");
+		$("#alarm").css("color", "green");
 	}
 }
