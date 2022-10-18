@@ -26,13 +26,10 @@
 
 		<div class="mb-3">◆증명사진</div>
 		<div class="right">
-			<img id="previewImg" />
+			<img src = "/img/${detailResumesDtoPS.resumesPicture }" style = "width:200px">
+			
 		</div>
-		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
-
-		<input id="resumesPicture"
-			value="${detailResumesDtoPS.resumesPicture}" type="text"
-			class="form-control" placeholder="사진 자리입니다." readonly />
+	
 
 		<div class="mb-3">◆ 관련 경력 사항</div>
 		<div>
