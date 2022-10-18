@@ -76,7 +76,9 @@
 										${jobPostingBoardList.jobPostingBoardTitle}</a>
 								</div>
 							</td>
-							<td>${jobPostingBoardList.jobPostingBoardDeadline}</td>
+							<td>${jobPostingBoardList.formatDeadLine} 
+							<p>${jobPostingBoardList.state}</p>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

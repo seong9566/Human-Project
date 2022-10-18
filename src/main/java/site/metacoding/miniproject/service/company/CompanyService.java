@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.career.Career;
@@ -123,7 +122,16 @@ public class CompanyService {
 
 	// 전체 채용공고 리스트
 	public List<PersonalMainDto> findAll(int startNum) {
-		return jobPostingBoardDao.findAll(startNum);
+		List<PersonalMainDto> personalMainPS = jobPostingBoardDao.findAll(startNum);
+		// TimeStamp to String
+		for (PersonalMainDto deadLine : personalMainPS) {
+			Timestamp ts = deadLine.getJobPostingBoardDeadline();
+			Date date = new Date();
+			date.setTime(ts.getTime());
+			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+			deadLine.setFormatDeadLine(formattedDate);
+		}
+		return personalMainPS;
 	}
 
 	// 페이징
