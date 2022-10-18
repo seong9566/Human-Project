@@ -10,7 +10,6 @@
 <div id="main">
 	<br />
 	<div class="tool">
-
 		<div class="left">
 			<br />
 			<h3>기업정보</h3>
@@ -88,10 +87,10 @@
 						<input type="datetime-local" name="starttime"
 							id="job_posting_board_deadline">
 					</div>
-				</div>
-				<div class="btn-update">
-					<button id="btnresumeSave" type="button" class="btn btn-primary">구인공고
-						등록하기</button>
+					<div class="btn-update">
+						<button id="btnresumeSave" type="button" class="btn btn-primary">구인공고
+							등록하기</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -138,7 +137,7 @@ function insert(){
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
-		jobPostingBoardSalary:$('input[type=radio][name=jobPostingBoardSalary]:checked').val(),
+		jobPostingSalary:$('input[type=radio][name= jobPostingSalary]:checked').val(),
 		jobPostingBoardPlace: $("#post").val() + "," + $("#addr").val(),
 		jobPostingBoardDeadline: $("#jobPostingBoardDeadline").val(),
 		jobPostingBoardContent: $("#jobPostingBoardContent").val()

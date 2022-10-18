@@ -25,8 +25,7 @@ import site.metacoding.miniproject.web.dto.response.ResponseDto;
 @RequiredArgsConstructor
 public class AlarmController {
 	// sendTo사용시 destinationValue 적용 받을라면 Spring 4.2부터 가능 - simpleMessagingTemplate을
-	// 사용해서
-	// DestinationValue를 대체한다.
+	// 사용해서 DestinationValue를 대체한다.
 	private final SimpMessagingTemplate simpMessagingTemplate;
 	private final UsersService usersService;
 
@@ -35,7 +34,7 @@ public class AlarmController {
 		simpMessagingTemplate.convertAndSend("/topic/Personal", new ResponseDto<>(1, "success", resumesId));
 	}
 
-	@MessageMapping("/Company")
+	@MessageMapping("/Company/")
 	@SendTo("/topic/Company")
 	public @ResponseBody ResponseDto<?> messageToTopicCompany(String test) {
 		return new ResponseDto<>(1, "testconfirm", test);
@@ -44,7 +43,15 @@ public class AlarmController {
 	@MessageMapping("/Company/Likeresume/{resumesId}")
 	public void messageToResume(@DestinationVariable Integer resumesId, Integer FromUsersId) {
 		Integer usersId = usersService.findUserIdByResumesId(resumesId);
-		simpMessagingTemplate.convertAndSend("/queue/Personal" + usersId, new ResponseDto<>(1, "success", resumesId));
+		simpMessagingTemplate.convertAndSend("/queue/Personal/" + usersId,
+				new ResponseDto<>(1, "success", resumesId));
+	}
+	
+	@MessageMapping("/Personal/LikeCompany/{companyId}")
+	public void messageToCompany(@DestinationVariable Integer companyId, Integer FromUsersId) {
+		Integer usersId = usersService.findUserIdByCompanyId(companyId);
+		simpMessagingTemplate.convertAndSend("/queue/Company/" + usersId,
+				new ResponseDto<>(1, "success", FromUsersId));
 	}
 
 	@PutMapping("/user/alarm/readed")

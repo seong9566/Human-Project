@@ -4,10 +4,14 @@
 <div class="container">
 	<h2>구인 공고 리스트</h2>
 	<c:forEach var="jobPostingBoard" items="${jobPostingBoardList}">
-
+	<input id="jobPostingBoardId" type="hidden"
+	value="${jobPostingBoard.jobPostingBoardId}">
+	
 		<div class="container p-5 my-4 border">
 			<br />
-			<p>공고 제목 : ${jobPostingBoard.jobPostingBoardTitle}</p>
+			<p>공고 제목 :<a href = "/company/jobPostingBoardDetail/${jobPostingBoard.jobPostingBoardId}">
+			 ${jobPostingBoard.jobPostingBoardTitle}</a>
+			 </p>
 			<p>채용 마감일 : ${jobPostingBoard.formatDeadLine}</p>
 			<p>
 				<c:choose>
@@ -42,11 +46,9 @@
          </c:when>
 				</c:choose>
 			</p>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button type="button" class="btn btn-primary">수정하기</button>
-			</div>
-
+		
 		</div>
+		<button id="btnDelete" onclick="deleteById(${resumes.resumesId});" type="button" class="btn btn-primary">삭제하기</button>
 	</c:forEach>
 
 
@@ -55,8 +57,12 @@
 	</div>
 </div>
 <script>
+let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnSaveForm").click(()=>{
 	location.href = "/company/insertForm";
+});
+$("#btnDetailForm").click(()=>{
+	location.href = "/company/jobpostingBoardDetail/"+jobPostingBoardId;
 });
 </script>
 <%@ include file="../layout/footer.jsp"%>

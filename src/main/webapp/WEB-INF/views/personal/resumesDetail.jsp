@@ -66,8 +66,73 @@
 		
 		<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
 			<div class="lineheight">수정하러가기</div></a>
-
+		<input id="resumesId" value="${detailResumesDtoPS.resumesId}" style="display:none"></input>
+		<div class="likes">
+		<c:choose>
+					<c:when test="${ empty principal }">
+						<button type="button" class="btn btn-primary">로그인</button>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${ empty personalLike}">
+								<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
+							</c:when>
+							<c:otherwise>
+								<button id="btnlike" type="button" class="btn btn-primary">좋아요취소</button>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
+		</div>
 	</div>
+	
+	<script>
+	$(function () {
+		$('#btnlike').click(function () {
+			if ($(this).html() == '좋아요') {
+
+				$(this).html('좋아요취소');
+				insertLike();
+				sendmessageToPersonal($("#resumesId").val());
+			}
+			else {
+
+				$(this).html('좋아요');
+				deleteLike();
+			}
+		});
+	});
+	function deleteLike() {
+		let resumesId = $("#resumesId").val();
+		console.log(resumesId);
+		$.ajax("/personalLike/" + resumesId + "/likes", {
+			type: "DELETE",
+			dataType: "json",
+		}).done((res) => {
+			if (res.code == 1) {
+
+			} else {
+				alert("좋아요 추가 실패");
+				return;
+			}
+		});
+	}
+	function insertLike() {
+		let resumesId = $("#resumesId").val();
+		console.log(resumesId);
+		$.ajax("/personalLike/" + resumesId + "/likes", {
+			type: "POST",
+			dataType: "json"
+		}).done((res) => {
+			if (res.code == 1) {
+
+			} else {
+				alert("좋아요 추가 실패");
+				return;
+			}
+		});
+	}
+		</script>
 	
 <script src="/js/resumes.js"></script>	
 

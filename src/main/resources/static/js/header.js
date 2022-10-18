@@ -9,8 +9,8 @@ function sendmessageToPersonal(resumesId) {
 	stompClient.send("/app/Company/Likeresume/" + resumesId, {}, $("#userId").val());
 }
 
-function sendmessageToCompany(data) {
-	stompClient.send("/app/Company/", {}, data);
+function sendmessageToCompany(companyId) {
+	stompClient.send("/app/Personal/LikeCompany/" + companyId, {},  $("#userId").val());
 }
 
 function connectpersonal() {
@@ -19,13 +19,13 @@ function connectpersonal() {
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
 	stompClient.connect({}, (frame) => {
-		stompClient.subscribe('/topic/Company', (test) => {
+		stompClient.subscribe('/topic/Company/', (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();
 			}
 		});
-		stompClient.subscribe('/queue/Company' + userId, (test) => {
+		stompClient.subscribe('/queue/Company/' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();
@@ -40,13 +40,13 @@ function connectcompany() {
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
 	stompClient.connect({}, (frame) => {
-		stompClient.subscribe('/topic/Personal', (test) => {
+		stompClient.subscribe('/topic/Personal/', (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();
 			}
 		});
-		stompClient.subscribe('/queue/Personal' + userId, (test) => {
+		stompClient.subscribe('/queue/Personal/' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
 				iconchange();

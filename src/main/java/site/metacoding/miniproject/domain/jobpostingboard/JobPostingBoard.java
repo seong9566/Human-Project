@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardUpdateDto;
 
 @Getter
 @Setter
@@ -15,7 +16,6 @@ public class JobPostingBoard {
 	private Integer jobPostingBoardId;
 	private Integer companyId;
 	private Integer jobPostingSalary;
-	private Integer jobPostingBoardSalary;
 	private Integer jobPostingBoardCareerId;
 	private Integer jobPostingBoardCategoryId;
 	private String jobPostingBoardTitle;
@@ -25,10 +25,19 @@ public class JobPostingBoard {
 	private Timestamp createdAt;
 
 	public JobPostingBoard(JobPostingBoardInsertDto jobPostingBoardInsertDto) {
-		this.jobPostingBoardSalary = jobPostingBoardInsertDto.getJobPostingBoardSalary();
+		this.jobPostingSalary = jobPostingBoardInsertDto.getJobPostingSalary();
 		this.jobPostingBoardTitle = jobPostingBoardInsertDto.getJobPostingBoardTitle();
 		this.jobPostingBoardContent = jobPostingBoardInsertDto.getJobPostingBoardContent();
 		this.jobPostingBoardPlace = jobPostingBoardInsertDto.getJobPostingBoardPlace();
 		this.jobPostingBoardDeadline = jobPostingBoardInsertDto.getJobPostingBoardDeadline();
+	}
+	
+	public JobPostingBoard(Integer jobPostingBoardId,JobPostingBoardUpdateDto updateDto) {
+		this.jobPostingBoardId = jobPostingBoardId;
+		this.jobPostingSalary = updateDto.getJobPostingSalary();
+		this.jobPostingBoardTitle = updateDto.getJobPostingBoardTitle();
+		this.jobPostingBoardContent = updateDto.getJobPostingBoardContent();
+		this.jobPostingBoardPlace = updateDto.getJobPostingBoardPlace();
+		this.jobPostingBoardDeadline = updateDto.getJobPostingBoardDeadline();
 	}
 }

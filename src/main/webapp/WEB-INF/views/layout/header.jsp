@@ -28,7 +28,6 @@
 <link rel="stylesheet" href="/css/recommend.css">
 <link rel="stylesheet" href="/css/resume.css">
 <link rel="stylesheet" href="/css/info.css">
-</style>
 </head>
 
 <body>

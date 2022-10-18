@@ -8,8 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class InsertRecommendDto {
+	private Integer personalLikeId;
 	private Integer resumesId;
-	private String resumesTitle;
+	private Integer companyId;
 	private Timestamp createdAt;
 
 }

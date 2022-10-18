@@ -83,6 +83,11 @@ public class UsersService {
 		Users users = usersDao.findByResumesId(resumesId);
 		return users.getUsersId();
 	}
+	
+	public Integer findUserIdByCompanyId(Integer companyId) {
+		Users users = usersDao.findByCompanyId(companyId);
+		return users.getUsersId();
+	}
 
 	public Integer checkUserId(String loginId) {
 		Integer checkUser = usersDao.findByLoginId(loginId);

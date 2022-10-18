@@ -17,13 +17,19 @@ import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard;
 import site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoardDao;
+import site.metacoding.miniproject.domain.portfolio.Portfolio;
+import site.metacoding.miniproject.domain.resumes.Resumes;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
+import site.metacoding.miniproject.web.dto.request.JobPostingBoardUpdateDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
+import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
 @Service
 @RequiredArgsConstructor
@@ -77,14 +83,54 @@ public class CompanyService {
 			//TimeStamp to String
 			for(JobPostingBoardListDto deadLine : postingList)
 			{
-				System.out.println(deadLine.getJobPostingBoardDeadline());
 				Timestamp ts = deadLine.getJobPostingBoardDeadline();
 				Date date = new Date();
 				date.setTime(ts.getTime());
-				String formattedDate = new SimpleDateFormat("yyyyMMdd").format(date);
+				String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
 				deadLine.setFormatDeadLine(formattedDate);
 			}
 			return postingList;
 		}
+		
+		//채용공고 상세 보기 
+		public JobPostingBoardDetailDto jobPostingOne(Integer jobPostingBoardId) {
+			JobPostingBoardDetailDto jobPostingPS =  jobPostingBoardDao.findByDetail(jobPostingBoardId);
+			Timestamp ts = jobPostingPS.getJobPostingBoardDeadline();
+			Date date = new Date();
+			date.setTime(ts.getTime());
+			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+			jobPostingPS.setFormatDeadLine(formattedDate);
+			return jobPostingPS;
+		}
+		
+		// 채용공고 수정 (jobpostingboard,career,Category)
+		@Transactional(rollbackFor = Exception.class)
+		public void updateJobPostingBoard(Integer jobPostingBoardId, JobPostingBoardUpdateDto updateDto) {
+			//Integer categoryId,Integer careerId,
+			Category category = new Category(updateDto);
+			categoryDao.jobPostingUpdate(category);
+
+			
+			Career career = new Career(updateDto);
+			careerDao.jobPostingUpdate(career);
+
+			JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId,updateDto);
+			jobPostingBoardDao.update(jobPostingBoard);
+		}
+	// 전체 채용공고 리스트
+	public List<PersonalMainDto> findAll(int startNum) {
+		return jobPostingBoardDao.findAll(startNum);
 	}
+	
+	// 페이징
+	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {		
+		return jobPostingBoardDao.jobPostingBoardPaging(page, keyword);
+	}
+	
+	// 검색 결과 리스트
+	public List<PersonalMainDto> findSearch(Integer startNum, String keyword) {
+		return jobPostingBoardDao.findSearch(startNum, keyword);
+	}
+	
+}
 
