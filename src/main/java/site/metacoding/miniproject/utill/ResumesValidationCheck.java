@@ -29,7 +29,7 @@ public class ResumesValidationCheck {
 	    }	    
 	    if (ObjectUtils.isEmpty(insertResumesDto.getResumesIntroduce())) {
 	        errors.put("introduce", "자기소개 글을 입력해주세요.");
-	    }    
+	    }
 	    
 	    if(!errors.isEmpty()) {
 	    	for(String key : errors.keySet()) {
@@ -52,6 +52,11 @@ public class ResumesValidationCheck {
 	    if (ObjectUtils.isEmpty(updateResumesDto.getResumesIntroduce())) {
 	        errors.put("updatetitle", "수정할 이력서 자기소개 글을 입력해주세요.");
 	    }	
+	    if (ObjectUtils.isEmpty(updateResumesDto.getCategoryFrontend()) && 
+	    		ObjectUtils.isEmpty(updateResumesDto.getCategoryBackend()) &&
+	    		ObjectUtils.isEmpty(updateResumesDto.getCategoryDevops())) {
+	        errors.put("category", "관심분야를 하나 이상 선택해주세요.");
+	    }
 	    
 	    if(!errors.isEmpty()) {
 	    	for(String key : errors.keySet()) {
