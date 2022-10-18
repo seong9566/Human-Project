@@ -42,7 +42,7 @@
 	</div>
 	<div class="mb-3"></div>
 	<div class="dropdown">
-		<div class="d-flex justify-content-between" style="width:1100px">
+		<div class="d-flex justify-content-between" style="width:1190px">
 				<select name="category" id="select_category"
 					style="width: 150px; left: 10%">
 					<option value="#">프론트엔드</option>
@@ -50,9 +50,9 @@
 					<option value="#">데브옵스</option>
 				</select>
 				<form class="d-flex" method="get" action="/companymain">
-					<input class="searchForm" type="text" placeholder="Search" style="width:400px"
+					<input class="searchForm" type="text" placeholder="Search"
 						name="keyword">
-					<button class="searchsubmit" type="submit">Search</button>
+					<button class="searchsubmit" type="submit">🔍</button>
 				</form>
 		</div>
 		<div class="d-flex justify-content-center">
