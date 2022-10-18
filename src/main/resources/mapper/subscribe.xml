@@ -3,7 +3,11 @@
 <mapper namespace="site.metacoding.miniproject.domain.subscribe.SubscribeDao">
 
 	<select id="findById" resultType="site.metacoding.miniproject.domain.subscribe.Subscribe">
-		Select * from subscribe WHERE subscribe_id = #{subscribeId}
+		SELECT * from subscribe WHERE subscribe_id = #{subscribeId}
+	</select>
+
+	<select id="findByPersonalId" resultType="site.metacoding.miniproject.domain.subscribe.Subscribe">
+		SELECT * from subscribe WHERE personal_id = #{personalId}
 	</select>
 
 	<insert id="insert" useGeneratedKeys="true" keyProperty="subscribeId" keyColumn="subscribe_id">

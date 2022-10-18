@@ -1,5 +1,6 @@
 package site.metacoding.miniproject.domain.subscribe;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Subscribe {
+public class Subscribe implements Serializable {
 	private Integer subscribeId;
 	private Integer companyId;
 	private Integer personalId;

@@ -1,6 +1,7 @@
 package site.metacoding.miniproject.service.Users;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class SubscribeService {
     private final UsersDao usersDao;
 
     @Transactional(rollbackFor = RuntimeException.class)
-    public void subscribeToCompany(SignedDto<?> signedDto, Integer companyId) {
+    public Subscribe subscribeToCompany(SignedDto<?> signedDto, Integer companyId) {
 
         HashMap<String, Integer> subscribes = new HashMap<>();
         Personal personalinfo = (Personal) signedDto.getUserinfo();
@@ -43,5 +44,12 @@ public class SubscribeService {
 
         subscribe.setAlarmId(alarm.getAlarmId());
         subscribeDao.update(subscribe);
+
+        return subscribe;
+    }
+
+    @Transactional(rollbackFor = RuntimeException.class)
+    public void subscribeCancelToCompany(Integer subscribeId) {
+
     }
 }
