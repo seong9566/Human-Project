@@ -19,14 +19,13 @@ import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
-import site.metacoding.miniproject.web.dto.response.PagingDto;
-import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @Controller
 @RequiredArgsConstructor
 public class CompanyController {
+	
 	private final HttpSession session;
 	private final CompanyService companyService;
 
@@ -88,28 +87,6 @@ public class CompanyController {
 	return "company/jobPostingBoardList";
 	}
 	
-	// 전체 채용공고 리스트 보기
-	@GetMapping({"/", "/main"})
-	public String jobPostingBoardList(Model model, Integer page, String keyword) {
-		if(page==null) page=0;
-		int startNum = page*5;
-		
-		if(keyword == null || keyword.isEmpty()) { 
-			List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
-			PagingDto paging = companyService.jobPostingBoardPaging(page, null);
-			paging.makeBlockInfo(keyword);
-			model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
-			model.addAttribute("paging",paging);
-			
-		} else {
-			List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
-			PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
-			paging.makeBlockInfo(keyword);
-			model.addAttribute("jobPostingBoardList", jobPostingBoardList);
-			model.addAttribute("paging",paging);
-		}
-		
-		return "personal/main";
-	}
-
 }
+	
+
