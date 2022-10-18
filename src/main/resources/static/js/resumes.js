@@ -1,9 +1,9 @@
 // 이력서 작성
-$("#btnSave").click(()=>{
+$("#btnSave").click(() => {
 	insert();
 });
 
-function insert(){	
+function insert() {
 	let data = {
 		personalId: $("#userinfoId").val(),
 		resumesTitle: $("#resumesTitle").val(),
@@ -19,20 +19,20 @@ function insert(){
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
 		resumesIntroduce: $("#resumesIntroduce").val()
-	};	
-	
-	$.ajax("/personal/resumes",{
+	};
+
+	$.ajax("/personal/resumes", {
 		type: "POST",
-		dataType: "json", 
+		dataType: "json",
 		data: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json; charset=utf-8"
 		}
-	}).done((res)=>{
-		if(res.code == 1){
+	}).done((res) => {
+		if (res.code == 1) {
 			alert("이력서 등록 성공");
-			location.href="/main";
-		}else{
+			location.href = "/main";
+		} else {
 			alert("이력서 등록 실패");
 		}
 	});
@@ -41,16 +41,16 @@ function insert(){
 // 이력서 보기
 let resumesId = $("#resumesCategoryId").val();
 
-$("#btnUpdate").click(()=>{
-	location.href="/personal/resumes/"+ resumesId + "/update";
+$("#btnUpdate").click(() => {
+	location.href = "/personal/resumes/" + resumesId + "/update";
 });
 
 //이력서 수정
-$("#btnUpdate").click(()=>{
-		update();
+$("#btnUpdate").click(() => {
+	update();
 });
-	
-function update(){
+
+function update() {
 	let resumesId = $("#resumesId").val();
 	let data = {
 		categoryId: $("#resumesCategoryId").val(),
@@ -69,38 +69,47 @@ function update(){
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked")
-	};	
-	
+	};
+
 	console.log(data);
-	$.ajax("/personal/resumes/update/"+resumesId,{
+	$.ajax("/personal/resumes/update/" + resumesId, {
 		type: "PUT",
-		dataType: "json", 
+		dataType: "json",
 		data: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json; charset=utf-8"
 		}
-	}).done((res)=>{
-		if(res.code == 1){
+	}).done((res) => {
+		if (res.code == 1) {
 			alert("이력서 수정 성공");
-			location.href="/main"; 
-		}else{
+			location.href = "/main";
+		} else {
 			alert("이력서 수정 실패");
 		}
-	});																							
+	});
 }
-		
+
 // 이력서 삭제
-function deleteById(id){				
-	$.ajax("/personal/resumes/delete/"+id,{
+function deleteById(id) {
+	$.ajax("/personal/resumes/delete/" + id, {
 		type: "delete",
 		dataType: "json"
-	}).done((res)=>{
+	}).done((res) => {
 		console.log(res);
-		if(res.code == 1){
+		if (res.code == 1) {
 			alert("삭제되었습니다.");
 			location.reload();
-		}else{
+		} else {
 			alert("삭제에 실패하였습니다.");
 		}
-	});		
+	});
 }
+$('#etc').change(function() {
+	var checked = $('#etc').is(':checked');
+
+	if (checked)
+		$('input:checkbox').prop('checked', true);
+	else {
+		$('input:checkbox').prop('checked', false);
+	}
+});

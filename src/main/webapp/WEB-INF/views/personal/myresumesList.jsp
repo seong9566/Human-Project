@@ -12,7 +12,7 @@
 			<a href="/personal/resumes/${resumes.resumesId}">
 				<div class="lineheight">${resumes.resumesTitle}</div>
 			</a>
-			<button id="btnDelete" onclick="deleteById(${resumes.resumesId});" type="button" class="btn btn-primary">삭제하기</button>
+			<button id="btnDelete" onclick="deleteById(${resumes.resumesId});" type="button" class="btn btn-primary" style="margin-left:1000px; background-color: red; border: none;">삭제하기</button>
 		</div>
 	</c:forEach>
 

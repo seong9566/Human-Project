@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<div id="main">
+<div class="container">
 	<br /> <input id="resume_title" type="text" class="form-control"
 		placeholder="구인계획서 제목을 입력해주세요." readonly>
 	<div class="tool">
@@ -47,8 +47,8 @@
                             </c:choose>
                         </c:otherwise>
                     </c:choose>
-                    <button id="btnapply" type="button" class="btn btn-primary">연락하기</button>
-		<button id="btnapply" type="button" class="btn btn-primary">지원하기</button>
+                    <button id="btnapply" type="button" class="btn btn-primary" style="background-color: rgba(0, 195, 98, 255); border:none;">연락하기</button>
+		<button id="btnapply" type="button" class="btn btn-primary" style="background-color: rgba(0, 195, 98, 255); border:none;">지원하기</button>
 	</div>
 
 </div>

@@ -111,7 +111,7 @@
 		</div>
 
 		<div class="btn-update">
-			<button id="btnUpdateForm" type="button" class="btn btn-primary">채용 공고 수정</button>
+			<button id="btnUpdateForm" type="button" class="btn btn-primary" style="background-color: rgba(0, 195, 98, 255); border:none;">채용 공고 수정</button>
 		</div>
 
 	</div>
