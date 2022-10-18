@@ -32,6 +32,7 @@
             <img src="/img/${companyInfo.companyPicture}" style="width: 400px; height: 156px;">
             <div id="imageContainer"></div>
          </div>
+         
 		<div class="mb-3">◆주소</div>
 		<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
 		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 645px;" readonly>

@@ -1,6 +1,10 @@
 package site.metacoding.miniproject.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
@@ -51,13 +57,32 @@ public class PersonalController {
 	@GetMapping("/personal/resumesForm")
 	public String resumesForm(Model model) {				
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
-		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());			
+		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());	
 		model.addAttribute("personalInfoPS", personalInfoPS);
 		return "personal/resumesForm";
 	}
 
-	@PostMapping("/personal/resumes")
-	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
+	@PostMapping(value="/personal/resumes")
+	public @ResponseBody ResponseDto<?> insertResumes(@RequestPart("file") MultipartFile file,@RequestPart("insertResumesDto") InsertResumesDto insertResumesDto)throws Exception {
+		int pos = file.getOriginalFilename().lastIndexOf('.');
+		String extension = file.getOriginalFilename().substring(pos + 1);
+		String filePath = "C:\\Temp\\img\\";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
+		File makeFileFolder = new File(filePath);
+		if (!makeFileFolder.exists()) {
+			if (!makeFileFolder.mkdir()) {
+				throw new Exception("File.mkdir():Fail.");
+			}
+		}
+		File dest = new File(filePath, imgName);
+		try {
+			Files.copy(file.getInputStream(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("사진 업로드 됨");
+		}
+		insertResumesDto.setResumesPicture(imgName);
 		ResumesValidationCheck.valCheckToInsertResumes(insertResumesDto);
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
 		personalService.insertResumes(principal.getPersonalId(), insertResumesDto);
