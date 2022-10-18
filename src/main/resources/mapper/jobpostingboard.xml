@@ -136,4 +136,41 @@
 		job_posting_board_id = #{jobPostingBoardId}
 
 	</delete>
+	
+	<select id="findAll"
+		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
+		SELECT * FROM job_posting_board
+		ORDER BY job_posting_board_id DESC
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+	</select>
+
+	<select id="jobPostingBoardPaging"
+		resultType="site.metacoding.miniproject.web.dto.response.PagingDto">
+		SELECT totalCount, totalPage, currentPage,
+		if(currentPage=0, 1, 0)
+		FIRST,
+		if(currentPage=totalPage-1, 1, 0) LAST
+		FROM(
+		SELECT count(*)
+		totalCount,
+		ceil(count(*)/5) totalPage,
+		#{page} currentPage,
+		0 first,
+		0 last
+		FROM job_posting_board
+		<if test="keyword != null">
+			WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		</if>
+		) paging
+	</select>	
+	
+	<select id="findSearch"
+		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
+		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline
+		FROM job_posting_board
+		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		ORDER BY job_posting_board_id DESC
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+	</select>	
+	
 </mapper>

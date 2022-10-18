@@ -133,6 +133,7 @@ CREATE TABLE alarm (
   alarm_company_like_id integer,
   alarm_personal_like_id integer,
   alarm_message longtext,
+  alarm_check tinyint(1),
   created_at timestamp
 );
 

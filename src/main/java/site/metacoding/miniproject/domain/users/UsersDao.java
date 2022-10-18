@@ -15,6 +15,8 @@ public interface UsersDao {
 
 	public Users findByResumesId(Integer resumesId);
 
+	public Users findByCompanyId(Integer companyId);
+
 	public Integer findByLoginId(String loginId);
 
 	public void update(Users users);

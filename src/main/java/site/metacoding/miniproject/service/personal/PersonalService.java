@@ -24,10 +24,10 @@ import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
-import site.metacoding.miniproject.web.dto.response.ResumesPagingDto;
 
 @Service
 @RequiredArgsConstructor
@@ -104,7 +104,7 @@ public class PersonalService {
 	}
 	
 	// 페이징
-	public ResumesPagingDto resumesPaging(Integer page, String keyword) {		
+	public PagingDto resumesPaging(Integer page, String keyword) {		
 		return resumesDao.resumesPaging(page, keyword);
 	}
 	
@@ -118,7 +118,7 @@ public class PersonalService {
 		return personalDao.personalformById(personalId);
 	}
 
-	// 내 정보 수정에 데이터 보기
+	// 내 정보 수정에서 데이터 보여주기
 	public PersonalUpdateDto personalUpdateById(Integer personalId) {
 		return personalDao.personalUpdateById(personalId);
 	}
@@ -128,7 +128,6 @@ public class PersonalService {
 	}
 
 	// 개 정보 수정
-
 	@Transactional(rollbackFor = Exception.class)
 	public void updatePersonal(Integer userId, Integer personalId, PersonalUpdateDto personalUpdateDto) {
 		Users personaluserPS = userDao.findById(userId);

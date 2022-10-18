@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import io.lettuce.core.dynamic.annotation.Param;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.company.CompanyService;
 import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
@@ -29,6 +28,7 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 @Controller
 @RequiredArgsConstructor
 public class CompanyController {
+	
 	private final HttpSession session;
 	private final CompanyService companyService;
 
@@ -79,7 +79,8 @@ public class CompanyController {
 		return new ResponseDto<>(1, "등록 성공", null);
 	}
 	
-	//회사의 채용 공고 리스트 보기 
+
+	// 회사가 작성한 구인 공고 리스트 보기 
 	@GetMapping("/company/jobPostingBoardList")
 	public String jobPostingBoardList(Model model, Integer companyId) {
 	SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
@@ -109,6 +110,7 @@ public class CompanyController {
 		model.addAttribute("jobPostingPS", jobPostingPS);
 		return "company/jobPostingBoardUpdate";
 	}
+	
 	@PutMapping("/company/jobPostingBoardUpdate/{jobPostingBoardId}")
 	public @ResponseBody ResponseDto<?> companyUpdate(@PathVariable Integer jobPostingBoardId,@RequestBody JobPostingBoardUpdateDto jobPostingBoardUdateDto) {
 		//@Param("categoryId") Integer categoryId, @Param("careerId")Integer careerId, 
@@ -126,3 +128,5 @@ public class CompanyController {
 		return new ResponseDto<>(1, "수정 성공", null);
 	}
 }
+	
+
