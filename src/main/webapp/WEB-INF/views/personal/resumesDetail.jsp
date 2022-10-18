@@ -65,6 +65,7 @@
 		
 		<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
 			<div class="lineheight">수정하러가기</div></a>
+		<input id="resumesId" value="${detailResumesDtoPS.resumesId}" style="display:none"></input>
 		<div class="likes">
 		<c:choose>
 					<c:when test="${ empty principal }">
@@ -92,7 +93,6 @@
 				$(this).html('좋아요취소');
 				insertLike();
 				sendmessageToPersonal($("#resumesId").val());
-				insertresume();
 			}
 			else {
 
@@ -101,34 +101,12 @@
 			}
 		});
 	});
-		
-	function insertresume() {
-		let personalLikeId = {
-			name: $("personal_like_id").val(),
-		}
-		$.ajax("/recommend", {
-			type: "POST",
-			dataType: "json",
-			data: JSON.stringify(name), // http body에 들고갈 요청 데이터
-			headers: { // http header에 들고갈 요청 데이터
-				"Content-Type": "application/json; charset=utf-8"
-			}
-		}).done((res) => {
-			if (res.code == 1) { // 성공
-			} else { // 실패
-				alert("이력서등록에 실패했습니다.");
-			}
-		});
-	}
-	
 	function deleteLike() {
 		let resumesId = $("#resumesId").val();
+		console.log(resumesId);
 		$.ajax("/personalLike/" + resumesId + "/likes", {
 			type: "DELETE",
 			dataType: "json",
-			headers: { // http header에 들고갈 요청 데이터
-				"Content-Type": "application/json; charset=utf-8"
-			}
 		}).done((res) => {
 			if (res.code == 1) {
 
@@ -140,12 +118,10 @@
 	}
 	function insertLike() {
 		let resumesId = $("#resumesId").val();
+		console.log(resumesId);
 		$.ajax("/personalLike/" + resumesId + "/likes", {
 			type: "POST",
-			dataType: "json",
-			headers: { // http header에 들고갈 요청 데이터
-				"Content-Type": "application/json; charset=utf-8"
-			}
+			dataType: "json"
 		}).done((res) => {
 			if (res.code == 1) {
 

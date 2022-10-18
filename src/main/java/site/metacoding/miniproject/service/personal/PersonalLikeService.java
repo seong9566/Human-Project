@@ -12,11 +12,9 @@ import site.metacoding.miniproject.domain.alarm.AlarmDao;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLikesDao;
-import site.metacoding.miniproject.domain.resumes.ResumesDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.utill.AlarmEnum;
-import site.metacoding.miniproject.web.dto.request.InsertRecommendDto;
 import site.metacoding.miniproject.web.dto.request.PersonalLikeDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
@@ -26,7 +24,7 @@ public class PersonalLikeService {
 	private final UsersDao usersDao;
 	private final PersonalLikesDao personalLikesDao;
 	private final AlarmDao alarmDao;
-	private final ResumesDao resumesDao;
+
 
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void 좋아요(Integer resumesId, SignedDto<?> signedDto) {
@@ -71,8 +69,5 @@ public class PersonalLikeService {
 		return companyLike2;
 	}
 	
-	public void 좋아요이력서추가(InsertRecommendDto insertRecommendDto) {
-		resumesDao.insertLike(insertRecommendDto);
-	}
 
 }
