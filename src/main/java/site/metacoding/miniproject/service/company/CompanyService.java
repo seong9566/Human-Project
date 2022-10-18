@@ -107,11 +107,10 @@ public class CompanyService {
 			//Integer categoryId,Integer careerId,
 			Category category = new Category(updateDto);
 			categoryDao.update(category);
-			System.out.println(updateDto.getJobPostingBoardCategoryId());
+
 			
 			Career career = new Career(updateDto);
 			careerDao.update(career);
-			System.out.println(updateDto.getJobPostingBoardCareerId());
 
 			JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId,updateDto);
 			jobPostingBoardDao.update(jobPostingBoard);

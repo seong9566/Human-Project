@@ -113,15 +113,15 @@ public class CompanyController {
 	public @ResponseBody ResponseDto<?> companyUpdate(@PathVariable Integer jobPostingBoardId,@RequestBody JobPostingBoardUpdateDto jobPostingBoardUdateDto) {
 		//@Param("categoryId") Integer categoryId, @Param("careerId")Integer careerId, 
 		companyService.updateJobPostingBoard(jobPostingBoardId, jobPostingBoardUdateDto);
-		System.out.println("================================");
-		System.out.println(jobPostingBoardUdateDto.getCategoryBackend());
-		System.out.println(jobPostingBoardUdateDto.getCategoryFrontend());
-		System.out.println(jobPostingBoardUdateDto.getCategoryDevops());
-		System.out.println(jobPostingBoardUdateDto.getOneYearLess());
-		System.out.println(jobPostingBoardUdateDto.getTwoYearOver());
-		System.out.println(jobPostingBoardUdateDto.getThreeYearOver());
-		System.out.println(jobPostingBoardUdateDto.getFiveYearOver());
-		System.out.println("================================");
+//		System.out.println("================================");
+//		System.out.println(jobPostingBoardUdateDto.getCategoryBackend());
+//		System.out.println(jobPostingBoardUdateDto.getCategoryFrontend());
+//		System.out.println(jobPostingBoardUdateDto.getCategoryDevops());
+//		System.out.println(jobPostingBoardUdateDto.getOneYearLess());
+//		System.out.println(jobPostingBoardUdateDto.getTwoYearOver());
+//		System.out.println(jobPostingBoardUdateDto.getThreeYearOver());
+//		System.out.println(jobPostingBoardUdateDto.getFiveYearOver());
+//		System.out.println("================================");
 
 		return new ResponseDto<>(1, "수정 성공", null);
 	}

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 	<input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}" >
-	<input id="categoryId" type="hidden" value="${jobPostingPS.categoryId}"> 
-	<input id="careerId" type="hidden" value="${jobPostingPS.careerId}"> 
+	<input id="jobPostingBoardCategoryId" type="hidden" value="${jobPostingPS.jobPostingBoardCategoryId}"> 
+	<input id="jobPostingBoardCareerId" type="hidden" value="${jobPostingPS.jobPostingBoardCareerId}"> 
 	<input id="companyId" type="hidden" value="${jobPostingPS.companyId}"> 
 <div>
 	<h2>구인 공고 수정 페이지</h2>
@@ -45,19 +45,19 @@
 				<div class="mb-3">
 					◆최소 경력 사항
 					<div>
-						<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label><input
-							type="checkbox" value="twoYearOver">twoYearOver</label><br /> <label><input
-							type="checkbox" value="threeYearOver">threeYearOver</label><br /> <label><input
-							type="checkbox" value="fiveYearOver">fiveYearOver</label><br />
+						<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label>
+						<input type="checkbox" value="twoYearOver">twoYearOver</label><br /> <label>
+						<input type="checkbox" value="threeYearOver">threeYearOver</label><br /> <label>
+						<input type="checkbox" value="fiveYearOver">fiveYearOver</label><br />
 					</div>
 				</div>
 
 				<div class="mb-3">
 					◆관심분야
 					<div>
-						<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> <label><input
-							type="checkbox" value="categoryBackend">backend</label><br /> <label><input
-							type="checkbox" value="categoryDevops">devops</label><br />
+						<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> 
+						<label><input type="checkbox" value="categoryBackend">backend</label><br /> 
+						<label><input type="checkbox" value="categoryDevops">devops</label><br />
 					</div>
 				</div>
 
@@ -142,20 +142,12 @@ $("#btnUpdate").click(() => {
 
 //업데이트 버튼 클릭시 
 function update() {
-	let oneYearLess= $("input:checkbox[value='oneYearLess']").is(":checked");
-	let twoYearOver= $("input:checkbox[value='twoYearOver']").is(":checked");
-	let threeYearOver= $("input:checkbox[value='threeYearOver']").is(":checked");
-	let fiveYearOver= $("input:checkbox[value='fiveYearOver']").is(":checked");
-	let categoryFrontend= $("input:checkbox[value='categoryFrontend']").is(":checked");
-	let categoryBackend= $("input:checkbox[value='categoryBackend']").is(":checked");
-	let categoryDevops= $("input:checkbox[value='categoryDevops']").is(":checked");
-	
+	let jobPostingBoardId =$("#jobPostingBoardId").val();
 	let data = {
-			jobPostingBoardTitle : $("#jobPostingBoardTitle").val(),
-			categoryId : $("#categoryId").val(),
-			careerId : $("#careerId").val(),
-			companyId : $("#companyId").val(),
-			
+			jobPostingBoardCategoryId: $("#jobPostingBoardCategoryId").val(),
+			jobPostingBoardCareerId: $("#jobPostingBoardCareerId").val(),
+
+			jobPostingBoardTitle: $("#jobPostingBoardTitle").val(),
 			oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
 			twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
 			threeYearOver: $("input:checkbox[value='threeYearOver']").is(":checked"),
@@ -163,19 +155,14 @@ function update() {
 			categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 			categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 			categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
-			
-			jobPostingSalary:$('input[type=radio][name=jobPostingSalary]:checked').val(),
+			jobPostingSalary:$('input[type=radio][name= jobPostingSalary]:checked').val(),
 			jobPostingBoardPlace: $("#post").val() + "," + $("#addr").val(),
+			
 			jobPostingBoardDeadline: $("#jobPostingBoardDeadline").val(),
 			jobPostingBoardContent: $("#jobPostingBoardContent").val()
-	};
-	console.log(oneYearLess);
-	console.log(twoYearOver);
-	console.log(threeYearOver);
-	console.log(fiveYearOver);
-	console.log(categoryFrontend);
-	console.log(categoryBackend);
-	console.log(categoryDevops);
+		};	
+	console.log(data);
+	console.log(jobPostingBoardId);
 	
 	$.ajax("/company/jobPostingBoardUpdate/"+jobPostingBoardId, {
 		type: "PUT",

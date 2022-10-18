@@ -6,16 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
 public class JobPostingBoardUpdateDto {
 	
 	//postingBoard 테이블
-	private Integer jobPostingBoardId;
-	private Integer companyId;
-	private Integer jobPostingBoardCategoryId;
-	private Integer jobPostingBoardCareerId;
 	private String jobPostingBoardTitle;
 	private String jobPostingBoardContent;
 	private Integer jobPostingSalary;
@@ -23,13 +18,11 @@ public class JobPostingBoardUpdateDto {
 	private Timestamp jobPostingBoardDeadline;
 
 	//Category테이블 
-	private Integer categoryId;
 	private Boolean categoryFrontend;
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	
 	//Career테이블	  
-	private Integer careerId;
 	private Boolean oneYearLess;
 	private Boolean twoYearOver;
 	private Boolean threeYearOver;
@@ -43,6 +36,7 @@ public class JobPostingBoardUpdateDto {
 	
 	//TimeStamp > String
 	private String formatDeadLine;
+
 }
 
 

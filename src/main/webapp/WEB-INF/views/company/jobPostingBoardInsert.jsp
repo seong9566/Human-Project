@@ -138,11 +138,11 @@ function findAddr() {
 
 // 채용공고 작성
 $("#btnSave").click(()=>{
-	update();
+	insert();
 });
 
 
-function update(){	
+function insert(){	
     
 	let data = {
 		jobPostingBoardTitle : $("#jobPostingBoardTitle").val(),
