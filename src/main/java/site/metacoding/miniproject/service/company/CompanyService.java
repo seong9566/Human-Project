@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.career.Career;
@@ -116,6 +117,12 @@ public class CompanyService {
 
 			JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId,updateDto);
 			jobPostingBoardDao.update(jobPostingBoard);
+		}
+		
+		// 채용 공고  삭제
+		@Transactional(rollbackFor = Exception.class)
+		public void deleteJobposting(Integer jobPostingBoardId) {
+			jobPostingBoardDao.deleteById(jobPostingBoardId);
 		}
 	// 전체 채용공고 리스트
 	public List<PersonalMainDto> findAll(int startNum) {

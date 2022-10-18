@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -127,6 +128,14 @@ public class CompanyController {
 
 		return new ResponseDto<>(1, "수정 성공", null);
 	}
+	
+	//채용 공고 삭제 
+	@DeleteMapping("/company/jobPostingBoard/delete/{jobPostingBoardId}")
+	public @ResponseBody ResponseDto<?> deleteResumes(@PathVariable Integer jobPostingBoardId){
+		companyService.deleteJobposting(jobPostingBoardId);
+		return new ResponseDto<>(1, "채용공고 삭제 성공", null);
+	}
+	
 }
 	
 
