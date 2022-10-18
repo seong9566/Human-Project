@@ -94,5 +94,12 @@
 		ORDER BY resumes_id DESC
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 	</select>
+	
+	<insert id="insertLike">
+		INSERT INTO resumes(personal_like_id,resumes_id,company_id,created_at) 
+		VALUES(#{personalLikeId},#{resumesId},#{companyId},now())
+	</insert>
+	
+
 
 </mapper>

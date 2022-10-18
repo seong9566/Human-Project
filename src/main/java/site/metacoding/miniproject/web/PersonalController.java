@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
 import site.metacoding.miniproject.domain.resumes.Resumes;
+
+import site.metacoding.miniproject.service.personal.PersonalLikeService;
+
 import site.metacoding.miniproject.service.company.CompanyService;
+
 import site.metacoding.miniproject.service.personal.PersonalService;
 import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
@@ -38,7 +43,11 @@ public class PersonalController {
 	
 	private final HttpSession session;
 	private final PersonalService personalService;
+
+	private final PersonalLikeService personalLikeService;
+
 	private final CompanyService companyService;
+
 
 	// 이력서 작성 하기
 	@GetMapping("/personal/resumesForm")
@@ -67,7 +76,10 @@ public class PersonalController {
 	
 	// 이력서 상세 보기
 	@GetMapping("/personal/resumes/{resumesId}")
-	public String resumesById(@PathVariable Integer resumesId, Model model) {			
+	public String resumesById(@PathVariable Integer resumesId, Model model) {	
+		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
+		PersonalLike personalLike = personalLikeService.좋아요확인(resumesId, signedDto.getCompanyId());
+		model.addAttribute("personalLike", personalLike);
 		DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
 		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
 		return "personal/resumesDetail";
