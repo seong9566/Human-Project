@@ -27,6 +27,7 @@
 		<div class="mb-3">◆증명사진</div>
 		<div class="right">
 			<img src = "/img/${detailResumesDtoPS.resumesPicture }" style = "width:200px">
+			
 		</div>
 	
 

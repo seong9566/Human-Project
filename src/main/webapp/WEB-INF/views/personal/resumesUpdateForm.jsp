@@ -31,13 +31,12 @@
 			</div>
 
 			<div class="mb-3">◆증명사진</div>
-			<div class="right">
-				<img id="previewImg" />
-			</div>
-			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
+                        <input type="file" id="file" onchange="setThumbnail(event)" />
+                        <div id="image_container">
+                            <img id="oldImg" src="/img/${detailResumesDtoPS.resumesPicture}" >
+                        </div>
+                    </div>
 
-			<input id="resumesPicture" value="${detailResumesDtoPS.resumesPicture}" type="text" class="form-control" placeholder="사진 자리입니다."/>
-	
 		<div class="mb-3">◆경력사항</div>
 			<div>
 				<tr>

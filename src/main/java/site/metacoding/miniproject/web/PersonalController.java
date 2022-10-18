@@ -117,8 +117,26 @@ public class PersonalController {
 		return "personal/resumesUpdateForm";
 	}
 	
-	@PutMapping("/personal/resumes/update/{resumesId}")
-	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
+	@PutMapping(value="/personal/resumes/update/{resumesId}")
+	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId,@RequestPart("file") MultipartFile file, @RequestPart("updateResumesDto") UpdateResumesDto updateResumesDto) throws Exception {
+		int pos = file.getOriginalFilename().lastIndexOf('.');
+		String extension = file.getOriginalFilename().substring(pos + 1);
+		String filePath = "C:\\Temp\\img\\";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
+		File makeFileFolder = new File(filePath);
+		if (!makeFileFolder.exists()) {
+			if (!makeFileFolder.mkdir()) {
+				throw new Exception("File.mkdir():Fail.");
+			}
+		}
+		File dest = new File(filePath, imgName);
+		try {
+			Files.copy(file.getInputStream(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		updateResumesDto.setResumesPicture(imgName);
 		personalService.updateResumes(resumesId, updateResumesDto);			
 		return new ResponseDto<>(1, "이력서 수정 성공", null);
 	}
