@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
@@ -58,8 +60,8 @@ public class PersonalController {
 		return "personal/resumesForm";
 	}
 
-	@PostMapping("/personal/resumes")
-	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
+	@PostMapping(value = "/personal/resumes")
+	public @ResponseBody ResponseDto<?> insertResumes(@RequestPart("file") MultipartFile file, @RequestPart("insertResumesDto") InsertResumesDto insertResumesDto)throws Exception {
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
 		personalService.insertResumes(principal.getPersonalId(), insertResumesDto);
 		return new ResponseDto<>(1, "이력서 등록 성공", null);
