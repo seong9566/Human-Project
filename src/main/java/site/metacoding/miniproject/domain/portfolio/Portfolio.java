@@ -22,7 +22,8 @@ public class Portfolio {
 	}
 	
 	// 이력서 수정
-	public Portfolio(UpdateResumesDto updateResumesDto) {
+	public Portfolio(Integer portfolioId, UpdateResumesDto updateResumesDto) {
+		this.portfolioId = portfolioId;  
 		this.portfolioSource = updateResumesDto.getPortfolioSource();
 		this.portfolioFile = updateResumesDto.getPortfolioFile();
 	}

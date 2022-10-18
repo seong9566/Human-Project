@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
 import site.metacoding.miniproject.domain.resumes.Resumes;
-
-import site.metacoding.miniproject.service.personal.PersonalLikeService;
 
 import site.metacoding.miniproject.service.company.CompanyService;
 
 import site.metacoding.miniproject.service.personal.PersonalService;
+import site.metacoding.miniproject.utill.ResumesValidationCheck;
 import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
@@ -43,9 +41,6 @@ public class PersonalController {
 	
 	private final HttpSession session;
 	private final PersonalService personalService;
-
-	private final PersonalLikeService personalLikeService;
-
 	private final CompanyService companyService;
 
 
@@ -60,6 +55,7 @@ public class PersonalController {
 
 	@PostMapping("/personal/resumes")
 	public @ResponseBody ResponseDto<?> insertResumes(@RequestBody InsertResumesDto insertResumesDto) {
+		ResumesValidationCheck.valCheckToInsertResumes(insertResumesDto);
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");		
 		personalService.insertResumes(principal.getPersonalId(), insertResumesDto);
 		return new ResponseDto<>(1, "이력서 등록 성공", null);
@@ -77,11 +73,11 @@ public class PersonalController {
 	// 이력서 상세 보기
 	@GetMapping("/personal/resumes/{resumesId}")
 	public String resumesById(@PathVariable Integer resumesId, Model model) {	
-		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
-		PersonalLike personalLike = personalLikeService.좋아요확인(resumesId, signedDto.getCompanyId());
-		model.addAttribute("personalLike", personalLike);
+		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");
+		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());
 		DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
-		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
+		model.addAttribute("personalInfoPS", personalInfoPS);
+		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);		
 		return "personal/resumesDetail";
 	}
 	
@@ -95,6 +91,7 @@ public class PersonalController {
 	
 	@PutMapping("/personal/resumes/update/{resumesId}")
 	public @ResponseBody ResponseDto<?> updateResumes(@PathVariable Integer resumesId, @RequestBody UpdateResumesDto updateResumesDto) {
+		ResumesValidationCheck.valCheckToUpdateResumes(updateResumesDto);
 		personalService.updateResumes(resumesId, updateResumesDto);			
 		return new ResponseDto<>(1, "이력서 수정 성공", null);
 	}
