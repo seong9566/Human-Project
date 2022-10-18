@@ -31,8 +31,11 @@ import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
+import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
+import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
@@ -233,4 +236,27 @@ public class PersonalController {
 			personalService.updatePersonal(principal.getUsersId(), principal.getPersonalId(), personalUpdateDto);
 			return new ResponseDto<>(1, "수정 성공", null);
 		}
+		//채용공고 상세 보기 (개인)
+		@GetMapping("/personal/jobPostingBoard/{jobPostingBoardId}")
+		public String jobPostingDetailForm(Model model,@PathVariable Integer jobPostingBoardId) {
+			JobPostingBoardDetailDto jobPostingPS = companyService.jobPostingOne(jobPostingBoardId);
+//			SignedDto<?> principal = (SignedDto<?>) session.getAttribute("principal");
+			CompanyAddressDto addressPS = companyService.findByAddress(jobPostingPS.getCompanyId());
+			model.addAttribute("address", addressPS);
+			model.addAttribute("jobPostingPS", jobPostingPS);
+			return "personal/jobPostingViewApply";
+		}
+
+		//회사 정보보러 가기(개인)
+		@GetMapping("/personal/companyInform/{companyId}")
+		public String companyDetailform(Model model, @PathVariable Integer companyId) {
+			CompanyInfoDto companyPS = companyService.findCompanyInfo(companyId);
+			CompanyAddressDto addressPS = companyService.findByAddress(companyId);
+			model.addAttribute("address", addressPS);
+			model.addAttribute("companyInfo", companyPS);
+			System.out.println(companyPS.getCompanyId());
+			return "personal/companyInform";
+		}
+		
+		
 }
