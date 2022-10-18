@@ -24,6 +24,7 @@ import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
+import site.metacoding.miniproject.web.dto.response.ListByCategoryDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;

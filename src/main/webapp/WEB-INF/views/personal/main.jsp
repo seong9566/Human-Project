@@ -36,22 +36,32 @@
 		</ul>
 	</div>
 <div class="mb-3"></div>
-<div class="dropdown">
 
+
+<select id="stadiumId" class="form-control">
+            <c:forEach var="stadium" items="${stadiumList}">
+               <option value="${stadium.id}">${stadium.name}</option>
+            </c:forEach>
+         </select>
+
+
+
+
+<div class="dropdown">
 <div class="d-flex justify-content-between" style="width:1190px">
-				<select name="category" id="select_category"
-					style="width: 150px; left: 10%">
-					<option value="#">==전체보기==</option>
-					<option value="#">프론트엔드</option>
-					<option value="#">백엔드</option>
-					<option value="#">데브옵스</option>
-				</select>
-				<form class="d-flex" method="get" action="/main">
-					<input class="searchForm" type="text" placeholder="Search"
-						name="keyword">
-					<button class="searchsubmit" type="submit">🔍</button>
-				</form>
-		</div>
+	<select id="select_category" name="category" style="width: 150px; left: 10%" onchange="select_category(this.value);">
+		<option value="#">==전체보기==</option>
+		<option id="categoryFrontend" value="1">프론트엔드</option>
+		<option id="categoryBackend" value="2">백엔드</option>
+		<option id="categoryDevops" value="3">데브옵스</option>
+	</select>
+	
+	<form class="d-flex" method="get" action="/main">
+		<input class="searchForm" type="text" placeholder="Search"
+			name="keyword">
+		<button class="searchsubmit" type="submit">🔍</button>
+	</form>
+</div>
 
 <div class="d-flex justify-content-center">
 	<c:set var="userprincipal" value="${empty sessionScope.principal || empty sessionScope.principal.companyId  ?  true : false}"></c:set>
@@ -131,4 +141,33 @@
 		</li>
 	</ul>
 </div>
+
+
+<script>
+function select_category(val){
+	groupForCategory(val);
+}
+
+function groupForCategory(id){
+	$.ajax("/main/" + id ,{
+		type:"get"
+	}).done((res)=>{
+		if(res.code == 1){
+			console.log(res.data);
+			categoryFrontend
+			$("#table tr").remove();
+			res.data.forEach((o, i)=>{
+
+				$("#table").append('<tr><td>'+o.row+'</td>'+
+				'<td>'+o.jobPostingBoardTitle+'</td>'+
+				'<td>'+o.jobPostingBoardDeadline+'</td></tr>');
+			});
+		}
+	});
+
+}
+// 만약 처럼 $를 쓸데 $ 앞에 \ 꼭 넣어야한다 !
+</script>
+
+
 <%@ include file="../layout/footer.jsp"%>

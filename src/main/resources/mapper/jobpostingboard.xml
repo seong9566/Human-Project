@@ -173,4 +173,23 @@
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 	</select>	
 	
+	<select id="findCategory"
+		resultType="site.metacoding.miniproject.web.dto.response.ListByCategoryDto">
+		SELECT ROW_NUMBER() OVER (ORDER BY b.job_posting_board_id ASC) AS ROW, c.category_id, c.category_frontend, 
+		c.category_backend, c.category_devops, b.job_posting_board_category_id, b.job_posting_board_id, 
+		b.job_posting_board_title, b.job_posting_board_deadline
+		FROM category c
+		INNER JOIN job_posting_board b
+		ON b.job_posting_board_category_id = c.category_id
+		<if test="id == 1">
+		WHERE category_frontend = 1
+		</if>
+		<if test="id == 2">
+		WHERE category_backend = 1
+		</if>
+		<if test="id == 3">
+		WHERE category_devops = 1
+		</if>
+	</select>	
+	
 </mapper>
