@@ -1,56 +1,85 @@
 // 이력서 작성
-$("#btnSave").click(() => {
+function clickCheck(target) {
+    document.querySelectorAll(`input[type=radio]`)
+        .forEach(el => el.checked = false);
+    target.checked = true;
+}
+
+$('#etc').click(function() {
+	var checked = $('#etc').is(':checked');
+	if (checked)
+		$('input:checkbox').prop('checked', true);
+});
+
+$("#btnSave").click(()=>{
 	insert();
 });
 
-function insert() {
+function insert(){	
+	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
+		if(year_check == 0) {
+		    alert('경력사항을 하나 이상 선택해주세요.')
+		    return false;
+	    }
+    
+	let interest_check = document.querySelectorAll('input[name="interest"]:checked').length;
+		if(interest_check == 0) {
+		    alert('관심분야를 하나 이상 선택해주세요.')
+		    return false;
+	    }
+	   	    
 	let data = {
 		personalId: $("#userinfoId").val(),
 		resumesTitle: $("#resumesTitle").val(),
 		resumesPicture: $("#resumesPicture").val(),
 		resumesPlace: $("#resumesPlace").val(),
-		oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
-		twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
-		threeYearOver: $("input:checkbox[value='threeYearOver']").is(":checked"),
-		fiveYearOver: $("input:checkbox[value='fiveYearOver']").is(":checked"),
+		oneYearLess: $("input:radio[value='oneYearLess']").is(":checked"),
+		twoYearOver: $("input:radio[value='twoYearOver']").is(":checked"),
+		threeYearOver: $("input:radio[value='threeYearOver']").is(":checked"),
+		fiveYearOver: $("input:radio[value='fiveYearOver']").is(":checked"),
 		portfolioSource: $("#portfolioSource").val(),
 		portfolioFile: $("#portfolioFile").val(),
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
 		resumesIntroduce: $("#resumesIntroduce").val()
-	};
-
-	$.ajax("/personal/resumes", {
+	};	
+	
+	$.ajax("/personal/resumes",{
 		type: "POST",
-		dataType: "json",
+		dataType: "json", 
 		data: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json; charset=utf-8"
 		}
-	}).done((res) => {
-		if (res.code == 1) {
+	}).done((res)=>{
+		if(res.code == 1){
 			alert("이력서 등록 성공");
-			location.href = "/main";
-		} else {
-			alert("이력서 등록 실패");
+			location.href="/personal/myresumesList";
+		}else{
+			alert(res.message);
 		}
 	});
 }
 
-// 이력서 보기
-let resumesId = $("#resumesCategoryId").val();
-
-$("#btnUpdate").click(() => {
-	location.href = "/personal/resumes/" + resumesId + "/update";
-});
-
 //이력서 수정
-$("#btnUpdate").click(() => {
-	update();
+$("#btnUpdate").click(()=>{
+		update();
 });
-
-function update() {
+	
+function update(){
+	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
+	if(year_check == 0) {
+	    alert('경력사항을 하나 이상 선택해주세요.')
+	    return false;
+    }
+    
+	let interest_check = document.querySelectorAll('input[name="interest"]:checked').length;
+	if(interest_check == 0) {
+	    alert('관심분야를 하나 이상 선택해주세요.')
+	    return false;
+    }
+	    
 	let resumesId = $("#resumesId").val();
 	let data = {
 		categoryId: $("#resumesCategoryId").val(),
@@ -60,56 +89,47 @@ function update() {
 		resumesPicture: $("#resumesPicture").val(),
 		resumesIntroduce: $("#resumesIntroduce").val(),
 		resumesPlace: $("#resumesPlace").val(),
-		oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
-		twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
-		threeYearOver: $("input:checkbox[value='threeYearOver']").is(":checked"),
-		fiveYearOver: $("input:checkbox[value='fiveYearOver']").is(":checked"),
+		oneYearLess: $("input:radio[value='oneYearLess']").is(":checked"),
+		twoYearOver: $("input:radio[value='twoYearOver']").is(":checked"),
+		threeYearOver: $("input:radio[value='threeYearOver']").is(":checked"),
+		fiveYearOver: $("input:radio[value='fiveYearOver']").is(":checked"),
 		portfolioSource: $("#portfolioSource").val(),
 		portfolioFile: $("#portfolioFile").val(),
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked")
-	};
-
+	};	
+	
 	console.log(data);
-	$.ajax("/personal/resumes/update/" + resumesId, {
+	$.ajax("/personal/resumes/update/"+resumesId,{
 		type: "PUT",
-		dataType: "json",
+		dataType: "json", 
 		data: JSON.stringify(data),
 		headers: {
 			"Content-Type": "application/json; charset=utf-8"
 		}
-	}).done((res) => {
-		if (res.code == 1) {
+	}).done((res)=>{
+		if(res.code == 1){
 			alert("이력서 수정 성공");
-			location.href = "/main";
-		} else {
-			alert("이력서 수정 실패");
+			location.href="/personal/resumes/"+resumesId; 
+		}else{
+			alert(res.message);
 		}
-	});
+	});																							
 }
-
+		
 // 이력서 삭제
-function deleteById(id) {
-	$.ajax("/personal/resumes/delete/" + id, {
+function deleteById(id){				
+	$.ajax("/personal/resumes/delete/"+id,{
 		type: "delete",
 		dataType: "json"
-	}).done((res) => {
+	}).done((res)=>{
 		console.log(res);
-		if (res.code == 1) {
+		if(res.code == 1){
 			alert("삭제되었습니다.");
 			location.reload();
-		} else {
+		}else{
 			alert("삭제에 실패하였습니다.");
 		}
-	});
+	});		
 }
-$('#etc').change(function() {
-	var checked = $('#etc').is(':checked');
-
-	if (checked)
-		$('input:checkbox').prop('checked', true);
-	else {
-		$('input:checkbox').prop('checked', false);
-	}
-});

@@ -55,7 +55,6 @@ public class PersonalService {
 
 		Resumes resumes = new Resumes(insertResumesDto);
 		resumes.setPersonalId(personalId);
-		System.out.println(personalId);
 		resumes.setCareerId(career.getCareerId());
 		resumes.setPortfolioId(portfolio.getPortfolioId());
 		resumes.setResumesCategoryId(category.getCategoryId());
@@ -79,18 +78,19 @@ public class PersonalService {
 	// 이력서 수정 하기
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void updateResumes(Integer resumesId, UpdateResumesDto updateResumesDto) {
-
-		Category category = new Category(updateResumesDto);
-		categoryDao.update(category);
-
-		Portfolio portfolio = new Portfolio(updateResumesDto);
-		portfolioDao.update(portfolio);
-
-		Career career = new Career(updateResumesDto);
-		careerDao.update(career);
-
+		
 		Resumes resumes = new Resumes(resumesId, updateResumesDto);
 		resumesDao.update(resumes);
+		
+		Category category = new Category(updateResumesDto.getCategoryId(), updateResumesDto);
+		categoryDao.update(category);
+
+		Portfolio portfolio = new Portfolio(updateResumesDto.getPortfolioId(), updateResumesDto);
+		portfolioDao.update(portfolio);
+
+		Career career = new Career(updateResumesDto.getCareerId() ,updateResumesDto);
+		careerDao.update(career);		
+
 	}
 
 	// 이력서 삭제

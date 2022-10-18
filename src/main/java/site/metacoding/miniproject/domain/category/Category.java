@@ -29,7 +29,8 @@ public class Category {
 	}
 	
 	// 이력서 수정
-	public Category(UpdateResumesDto updateResumesDto) {
+	public Category(Integer categoryId, UpdateResumesDto updateResumesDto) {
+		this.categoryId = categoryId; 
 		this.categoryFrontend = updateResumesDto.getCategoryFrontend();
 		this.categoryBackend = updateResumesDto.getCategoryBackend();
 		this.categoryDevops = updateResumesDto.getCategoryDevops();

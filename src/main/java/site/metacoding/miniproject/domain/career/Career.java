@@ -28,7 +28,8 @@ public class Career {
 	  }
 	  
 	// 이력서 수정
-	  public Career(UpdateResumesDto updateResumesDto) {
+	  public Career(Integer careerId, UpdateResumesDto updateResumesDto) {
+		  this.careerId = careerId; 
 		  this.oneYearLess = updateResumesDto.getOneYearLess();
 		  this.twoYearOver = updateResumesDto.getTwoYearOver();
 		  this.threeYearOver = updateResumesDto.getThreeYearOver();

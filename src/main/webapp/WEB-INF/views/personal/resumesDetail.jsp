@@ -2,161 +2,99 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<div class="container">
+<input id="resumesId" type="hidden"
+	value="${detailResumesDtoPS.resumesId}">
+
+<div id="main">
 	<br />
 	<div class="tool">
 		<div class="left">
+			<h3>${detailResumesDtoPS.resumesTitle}</h3>
 			<br />
-			<h2>${detailResumesDtoPS.resumesTitle}</h2>
+			<h3>개인정보</h3>
 			<div class="left_input">
-				<br /> <img src="/image/농심.png" class="img-thumbnail" alt="..."
-					style="float: right;"> <br />
+				<br />
 				<div id="usersName">${detailResumesDtoPS.personalName}</div>
 				<br />
 				<div id="phoneNumber">${detailResumesDtoPS.personalPhoneNumber}</div>
 				<br />
 				<div id="email">${detailResumesDtoPS.personalEmail}</div>
 				<br />
-				<div id="address">${detailResumesDtoPS.personalAddress}</div>
-				<br />
 				<div id="education">${detailResumesDtoPS.personalEducation}</div>
 			</div>
 		</div>
-		<h5>경력사항</h5>
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio"
-				name="inlineRadioOptions" id="inlineRadio1" value="oneYearLess">
-			<label class="form-check-label" for="inlineRadio1">oneYearLess</label>
+
+		<div class="mb-3">◆증명사진</div>
+		<div class="right">
+			<img id="previewImg" />
 		</div>
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio"
-				name="inlineRadioOptions" id="inlineRadio2" value="twoYearOver">
-			<label class="form-check-label" for="inlineRadio2">twoYearOver</label>
-		</div>
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio"
-				name="inlineRadioOptions" id="inlineRadio3" value="threeYearOver">
-			<label class="form-check-label" for="inlineRadio3">threeYearOver
-			</label>
-		</div>
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="radio"
-				name="inlineRadioOptions" id="inlineRadio3" value="fiveYearOver">
-			<label class="form-check-label" for="inlineRadio3">fiveYearOver
-			</label>
-		</div>
+		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
+
+		<input id="resumesPicture"
+			value="${detailResumesDtoPS.resumesPicture}" type="text"
+			class="form-control" placeholder="사진 자리입니다." readonly />
+
+		<div class="mb-3">◆ 관련 경력 사항</div>
 		<div>
-			<h5>관심분야</h5>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-					value="categoryFrontend"> <label class="form-check-label"
-					for="inlineCheckbox1">frontend</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-					value="categoryBackend"> <label class="form-check-label"
-					for="inlineCheckbox2">backend</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-					value="categoryDevops"> <label class="form-check-label"
-					for="inlineCheckbox3">devops</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-					value="etc"> <label class="form-check-label"
-					for="inlineCheckbox3">etc</label>
-			</div>
-
-			<h5>희망근무지역</h5>
-			<input id="resumesPlace" type="text" class="form-control"
-				placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
-
-			<h5>Github 주소 or Blog 주소</h5>
-			<input id="portfolioSource" type="text" class="form-control"
-				placeholder="${detailResumesDtoPS.portfolioSource}" readonly />
-
-			<h5>포트폴리오</h5>
-			<input id="portfolioFile" type="text" class="form-control"
-				placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
-		</div>
-
-		<div class="form">
-			<h5>자기 소개서</h5>
-				<br/>
-			<textarea class="form-control" id="resumesIntroduce" rows="8" readonly>${detailResumesDtoPS.resumesIntroduce}</textarea>
-		</div>
-
-		<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}" style="color: black; font-style: normal">
-			<div class="lineheight">☝ 수정하러가기 ☝</div>
-		</a> <input id="resumesId" value="${detailResumesDtoPS.resumesId}"
-			style="display: none"></input>
-		<div class="likes">
 			<c:choose>
-				<c:when test="${ empty principal }">
-					<button type="button" class="btn btn-primary">로그인</button>
-				</c:when>
-				<c:otherwise>
-					<c:choose>
-						<c:when test="${ empty personalLike}">
-							<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
-						</c:when>
-						<c:otherwise>
-							<button id="btnlike" type="button" class="btn btn-primary">좋아요취소</button>
-						</c:otherwise>
-					</c:choose>
-				</c:otherwise>
+				<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
+		            1년 미만
+		        	</c:when>
+				<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
+		       		2년 이상
+		         	</c:when>
+				<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
+		       		3년 이상
+		         	</c:when>
+				<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
+		       		5년 이상
+		         	</c:when>
 			</c:choose>
 		</div>
+
+		<div class="mb-3">◆ 관심 분야</div>
+		<div>
+			<c:choose>
+				<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
+		            - 프론트엔드
+		        </c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
+		            - 백엔드
+		        </c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
+		            - 데브옵스
+		        </c:when>
+			</c:choose>
+		</div>
+
+		<div class="mb-3">◆희망근무지역</div>
+		<input id="resumesPlace" type="text" class="form-control"
+			placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
+
+		<div class="mb-3">◆Github 주소 or Blog 주소</div>
+
+		<a href="${detailResumesDtoPS.portfolioSource}"> - link :
+			${detailResumesDtoPS.portfolioSource}
 	</div>
+	</a>
+
+	<div class="mb-3">◆포트폴리오</div>
+	<input id="portfolioFile" type="text" class="form-control"
+		placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
 </div>
-<script>
-	$(function () {
-		$('#btnlike').click(function () {
-			if ($(this).html() == '좋아요') {
 
-				$(this).html('좋아요취소');
-				insertLike();
-				sendmessageToPersonal($("#resumesId").val());
-			}
-			else {
+<div class="form">
+	<h2>자기소개서 작성</h2>
+	<div>${detailResumesDtoPS.resumesIntroduce}</div>
+</div>
 
-				$(this).html('좋아요');
-				deleteLike();
-			}
-		});
-	});
-	function deleteLike() {
-		let resumesId = $("#resumesId").val();
-		console.log(resumesId);
-		$.ajax("/personalLike/" + resumesId + "/likes", {
-			type: "DELETE",
-			dataType: "json",
-		}).done((res) => {
-			if (res.code == 1) {
-
-			} else {
-				alert("좋아요 추가 실패");
-				return;
-			}
-		});
-	}
-	function insertLike() {
-		let resumesId = $("#resumesId").val();
-		console.log(resumesId);
-		$.ajax("/personalLike/" + resumesId + "/likes", {
-			type: "POST",
-			dataType: "json"
-		}).done((res) => {
-			if (res.code == 1) {
-
-			} else {
-				alert("좋아요 추가 실패");
-				return;
-			}
-		});
-	}
-		</script>
+<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
+	<div class="lineheight">수정하러가기</div>
+</a>
 
 <script src="/js/resumes.js"></script>
 
