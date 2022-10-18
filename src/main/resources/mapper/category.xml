@@ -19,4 +19,12 @@
 	WHERE category_id = #{categoryId}
 </update>
 
+
+<update id="jobPostingUpdate">
+	UPDATE category 
+	SET category_frontend = #{categoryFrontend},
+	 category_Backend =#{categoryBackend},
+	 category_devops = #{categoryDevops}
+	WHERE category_id = #{jobPostingBoardCategoryId}
+</update>
 </mapper>

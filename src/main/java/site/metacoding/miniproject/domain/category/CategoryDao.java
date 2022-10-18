@@ -8,5 +8,7 @@ public interface CategoryDao {
 	public Category findById(Integer categoryId);
 	public void update(Category category);
 	public void deleteById(Integer categoryId);
+	
+	public void jobPostingUpdate(Category category);
 
 }

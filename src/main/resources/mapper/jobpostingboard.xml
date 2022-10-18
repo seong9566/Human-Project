@@ -23,13 +23,13 @@
 		SELECT 
 		jpb.job_posting_board_id,
 		jpb.company_id,
-		jpb.job_posting_board_category_id,
-		jpb.job_posting_board_career_id,
 		jpb.job_posting_board_title ,
 		jpb.job_posting_board_deadline,
+		c.category_id,
 		c.category_frontend,
 		c.category_backend,
 		c.category_devops,
+		cr.career_id,
 		cr.one_year_less,
 		cr.two_year_over,
 		cr.three_year_over,
@@ -61,11 +61,11 @@
 		#{jobPostingBoardCategoryId},
 		#{jobPostingBoardCareerId},
 		#{jobPostingBoardTitle},
-		#{jobPostingBoardSalary},
+		#{jobPostingSalary},
 		#{jobPostingBoardPlace},
 		#{jobPostingBoardContent},
 		#{jobPostingBoardDeadline},
-		#{createdAt}
+		now()
 		)
 	</insert>
 
@@ -73,30 +73,64 @@
 		UPDATE job_posting_board
 		SET
 		job_posting_board_title=#{jobPostingBoardTitle},
-		job_posting_board_content=#{jobPostingBoardContent}
+		job_posting_board_content=#{jobPostingBoardContent},
+		job_posting_salary =#{jobPostingSalary},
+		job_posting_board_place = #{jobPostingBoardPlace},
+		job_posting_board_deadline = #{jobPostingBoardDeadline}
 		WHERE
 		job_posting_board_id = #{jobPostingBoardId}
 	</update>
 
-	<select id="findById"
-		resultType="site.metacoding.miniproject.web.dto.response.CompanyJobPostingBoardDto">
-		SELECT jpb.job_posting_board_id,
-		jpb.job_posting_board_title,
+	<select id="findByDetail"
+		resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto">
+		SELECT 
+		jpb.job_posting_board_id,
+		jpb.company_id,
+		jpb.job_posting_board_category_id,
+		jpb.job_posting_board_career_id,
+		jpb.job_posting_board_title ,
 		jpb.job_posting_board_content,
-		cd.company_id,
-		cd.company_detail_id,
-		cd.company_picture,
-		cd.company_address,
-		cd.company_phone_number,
-		cd.company_email
-		FROM
-		job_posting_board jpb
-		INNER JOIN company_detail cd
-		ON jpb.company_id =
-		cd.company_id
-		WHERE job_posting_board_id = #{jobPostingBoardId}
+		jpb.job_posting_salary,
+		jpb.job_posting_board_place,
+		jpb.job_posting_board_deadline,
+		c.category_id,
+		c.category_frontend,
+		c.category_backend,
+		c.category_devops,
+		cr.one_year_less,
+		cr.two_year_over,
+		cr.three_year_over,
+		cr.five_year_over,
+		cr.career_id,
+		cp.company_picture,
+		cp.company_name,
+		cp.company_email,
+		cp.company_phone_number
+		FROM job_posting_board jpb
+		LEFT OUTER JOIN category c
+		ON jpb.job_posting_board_category_id = c.category_id
+		LEFT OUTER JOIN career cr
+		ON jpb.job_posting_board_career_id = cr.career_id
+		LEFT OUTER JOIN company cp
+		ON jpb.company_id = cp.company_id
+		WHERE jpb.job_posting_board_id = #{jobPostingBoardId}
 	</select>
 
+	<select id="findById"
+		resultType="site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard">
+		SELECT 
+		job_posting_board_id,
+		company_id,
+		job_posting_salary,
+		job_posting_board_career_id,
+		job_posting_board_category_id,
+		job_posting_board_title,
+		job_posting_board_content,
+		job_posting_board_place,
+		job_posting_board_deadline
+		FROM job_posting_board 
+		WHERE job_posting_board_id = #{jobPostingBoardId};
+	</select>
 	<delete id="deleteById">
 		DELETE FROM job_posting_board WHERE
 		job_posting_board_id = #{jobPostingBoardId}

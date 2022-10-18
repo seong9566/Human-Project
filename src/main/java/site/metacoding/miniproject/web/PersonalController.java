@@ -186,7 +186,6 @@ public class PersonalController {
 		
 		@PutMapping("/personal/update")
 		public @ResponseBody ResponseDto<?> personalUpdate(@RequestBody PersonalUpdateDto personalUpdateDto){
-			
 			ValidationCheckUtil.valCheckToUpdatePersonal(personalUpdateDto);
 			SignedDto<?> principal =  (SignedDto<?>)session.getAttribute("principal");
 			personalService.updatePersonal(principal.getUsersId(), principal.getPersonalId(), personalUpdateDto);

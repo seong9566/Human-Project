@@ -16,4 +16,13 @@
 	WHERE career_id = #{careerId}
 </update>
 
+<update id="jobPostingUpdate">
+	UPDATE career 
+	SET one_year_less = #{oneYearLess},
+	 two_year_over =#{twoYearOver},
+	 three_year_over = #{threeYearOver},
+	five_year_over = #{fiveYearOver}
+	WHERE career_id = #{jobPostingBoardCareerId}
+</update>
+
 </mapper>
