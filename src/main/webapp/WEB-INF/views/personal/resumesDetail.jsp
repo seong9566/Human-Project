@@ -12,7 +12,7 @@
 			<h3>이력서 제목 : ${detailResumesDtoPS.resumesTitle}</h3>
 			<br />
 			<h3>개인정보</h3>
-			<div class="left_input"  style="font-size: 20px">
+			<div class="left_input" style="font-size: 20px">
 				<br />
 				<div id="usersName">이름 : ${detailResumesDtoPS.personalName}</div>
 				<br />
@@ -26,59 +26,58 @@
 			</div>
 		</div>
 
-		<div class="mb-3" style="margin-top: 20px;">관련 경력 사항</div>
+		<h3 style="margin: 10px 10px;">관련 경력 사항</h3>
 		<div>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
-					<div class="mb-3">
-						<label for="devops"> - 1년 미만</label>
-					</div>
+					<input id="oneYearLess" type="text" class="form-control"
+						placeholder="1년 미만" readonly />
 				</c:when>
 				<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
-		       		2년 이상
+		       		<input id="twoYearOver" type="text" class="form-control"
+						placeholder="2년 이상" readonly />
 		         	</c:when>
 				<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
-		       		3년 이상
+		       		<input id="threeYearOver" type="text" class="form-control"
+						placeholder="3년 이상" readonly />
 		         	</c:when>
 				<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
-		       		5년 이상
+		       		<input id="fiveYearOver" type="text" class="form-control"
+						placeholder="5년 이상" readonly />
 		         	</c:when>
 			</c:choose>
 		</div>
 
-		<div class="mb-3">◆ 관심 분야</div>
+		<h3 style="margin: 10px 10px;">관심 분야</h3>
 		<div>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
-					<div class="mb-3">
-						<label for="use"> - 프론트엔드</label>
-					</div>
+					<input id="Frontend" type="text" class="form-control"
+						placeholder="프론트엔드" readonly />
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
-					<div class="mb-3">
-						<label for="use"> - 백엔드</label>
-					</div>
+					<input id="Backend" type="text" class="form-control"
+						placeholder="백엔드" readonly />
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
-					<div class="mb-3">
-						<label for="use"> - 데브옵스</label>
-					</div>
+					<input id="devops" type="text" class="form-control"
+						placeholder="데브옵스" readonly />
 				</c:when>
 			</c:choose>
 		</div>
 
-		<h3 style=" margin: 10px 10px;">희망 근무 지역</h3>
+		<h3 style="margin: 10px 10px;">희망 근무 지역</h3>
 		<input id="resumesPlace" type="text" class="form-control"
 			placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
 
 		<h3 style="margin: 10px 10px;">Github 주소 or Blog 주소</h3>
 
-		링크 : <a href="${detailResumesDtoPS.portfolioSource}" style="font-size: 20px">
-			${detailResumesDtoPS.portfolioSource} </a>
+		링크 : <a href="${detailResumesDtoPS.portfolioSource}"
+			style="font-size: 20px"> ${detailResumesDtoPS.portfolioSource} </a>
 
 		<h3 style="margin: 10px 10px;">포트폴리오</h3>
 		<input id="portfolioFile" type="text" class="form-control"
