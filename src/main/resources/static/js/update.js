@@ -57,7 +57,7 @@ function joinform_check() {
 	        var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
 	        
 	        if (!pwdCheck.test(password.value)) {
-	          alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+	          alert("비밀번호는 대문자+소문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
 	          password.focus();
 	          return false;
 	        };
@@ -82,7 +82,7 @@ function joinform_check() {
 	        
 	        //전화번호 유효성
 	        if (!reg.test(phonenumber.value)) {
-	          alert("전화번호는 숫자만 입력할 수 있습니다.");
+	          alert("전화번호규격에 맞게 입력해주세요 ex) 010-0000-0000;")
 	          phonenumber.focus();
 	          return false;
 	        }
@@ -112,3 +112,27 @@ $("#passwordConfirm").keyup((event) => {
 		$("#btnSave").removeAttr(`disabled`);
 	}
 });
+
+
+
+	//주소불러오기
+function findAddr() {
+	new daum.Postcode(
+		{
+			oncomplete: function(data) {
+				console.log(data);
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+				// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var roadAddr = data.roadAddress; // 도로명 주소 변수
+				var jibunAddr = data.jibunAddress; // 지번 주소 변수
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById('post').value = data.zonecode;
+				if (roadAddr !== '') {
+					document.getElementById("addr").value = roadAddr;
+				} else if (jibunAddr !== '') {
+					document.getElementById("addr").value = jibunAddr;
+				}
+			}
+		}).open();
+}
