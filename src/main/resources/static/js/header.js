@@ -16,15 +16,11 @@ function sendmessageToCompany(companyId) {
 function connectpersonal() {
 	var socket = new SockJS('/personal_end_point');
 	stompClient = Stomp.over(socket);
+	
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
+	
 	stompClient.connect({}, () => {
-		stompClient.subscribe('/topic/Company/', (test) => {
-			let confirm = JSON.parse(test.body);
-			if (confirm.code == 1) {
-				iconchange();
-			}
-		});
 		stompClient.subscribe('/queue/Company/' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
@@ -37,15 +33,11 @@ function connectpersonal() {
 function connectcompany() {
 	var socket = new SockJS('/company_end_point');
 	stompClient = Stomp.over(socket);
+	
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
+	
 	stompClient.connect({}, () => {
-		stompClient.subscribe('/topic/Personal/', (test) => {
-			let confirm = JSON.parse(test.body);
-			if (confirm.code == 1) {
-				iconchange();
-			}
-		});
 		stompClient.subscribe('/queue/Personal/' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
 			if (confirm.code == 1) {
