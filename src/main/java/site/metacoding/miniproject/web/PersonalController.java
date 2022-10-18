@@ -258,7 +258,6 @@ public class PersonalController {
 		CompanyAddressDto addressPS = companyService.findByAddress(companyId);
 		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
-		System.out.println(companyPS.getCompanyId());
 		return "personal/companyInform";
 	}
 

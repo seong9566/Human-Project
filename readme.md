@@ -90,7 +90,7 @@ CREATE TABLE apply (
 
 
 CREATE TABLE subscribe (
-  subcirbe_id integer auto_increment PRIMARY KEY,
+  subscribe_id integer auto_increment PRIMARY KEY,
   company_id integer,
   personal_id integer,
   alarm_id integer,
