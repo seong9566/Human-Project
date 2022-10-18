@@ -1,24 +1,27 @@
 package site.metacoding.miniproject.web;
 
-import java.util.List;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
 import site.metacoding.miniproject.service.Users.UsersService;
-import site.metacoding.miniproject.utill.AlarmEnum;
 import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
@@ -29,8 +32,6 @@ import site.metacoding.miniproject.web.dto.response.SignedDto;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-	// @Value ("${pic.path}") // springframwork.bean.factory 어노테이션 가져와야함.
-	private String uploadUrl;
 	private final UsersService userService;
 	private final HttpSession session;
 
@@ -121,32 +122,34 @@ public class UserController {
 		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 
-	@PostMapping("/join/company")
-	public @ResponseBody ResponseDto<?> joinCompany(@RequestBody CompanyJoinDto joinDto) {
-		
+	@PostMapping(value="/join/company")
+	public @ResponseBody ResponseDto<?> joinCompany(@RequestPart("file") MultipartFile file,  @RequestPart ("joinDto")CompanyJoinDto joinDto) throws Exception {
+		int pos = file.getOriginalFilename().lastIndexOf('.');
+		String extension = file.getOriginalFilename().substring(pos + 1);
+		String filePath = "C:\\Temp\\img\\";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
+		File makeFileFolder = new File(filePath);
+		if (!makeFileFolder.exists()) {
+			if (!makeFileFolder.mkdir()) {
+				throw new Exception("File.mkdir():Fail.");
+			}
+		}
+		File dest = new File(filePath, imgName);
+		try {
+			Files.copy(file.getInputStream(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("사진 업로드 됨");
+		}
+		joinDto.setCompanyPicture(imgName);
 		ValidationCheckUtil.valCheckToJoinCompany(joinDto);
-		
 		userService.joinCompany(joinDto);
-		
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
 		
 		session.setAttribute("principal", signedDto);
 
-		// //파일업로드
-		// String fileName = file.getOriginalFilename();
-		// String filePath = uploadUrl + fileName;
-		// // 파일 경로 담은 객체 생성
-		// File dest = new File(filePath);
-		// try {
-		// Files.copy(file.getInputStream(), dest.toPath());
-		// }
-		// catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// System.out.println("=========경로 ==============");
-		// System.out.println(dest);
-		// System.out.println("=======================");
 		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 

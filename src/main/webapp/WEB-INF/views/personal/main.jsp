@@ -72,7 +72,7 @@
 							<td>
 								<div id="apply" class="container p-4 my-4 border">
 									<a
-										href="/company/jobPostingBoard/${jobPostingBoardList.jobPostingBoardId}">
+										href="/personal/jobPostingBoard/${jobPostingBoardList.jobPostingBoardId}">
 										${jobPostingBoardList.jobPostingBoardTitle}</a>
 								</div>
 							</td>
