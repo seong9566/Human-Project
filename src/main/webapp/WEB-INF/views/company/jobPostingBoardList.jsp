@@ -48,7 +48,7 @@
 			</p>
 		
 		</div>
-		<button id="btnDelete" onclick="deleteById(${resumes.resumesId});" type="button" class="btn btn-primary">삭제하기</button>
+		<button id="btnDelete" onclick="deleteById(${jobPostingBoard.jobPostingBoardId});" type="button" class="btn btn-primary">삭제하기</button>
 	</c:forEach>
 
 
@@ -61,8 +61,26 @@ let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnSaveForm").click(()=>{
 	location.href = "/company/insertForm";
 });
+
 $("#btnDetailForm").click(()=>{
 	location.href = "/company/jobpostingBoardDetail/"+jobPostingBoardId;
-});
+
+}); 
+
+//채용 공고 삭제
+function deleteById(id){				
+	$.ajax("/company/jobPostingBoard/delete/"+jobPostingBoardId,{
+		type: "delete",
+		dataType: "json"
+	}).done((res)=>{
+		console.log(res);
+		if(res.code == 1){
+			alert("삭제되었습니다.");
+			location.reload();
+		}else{
+			alert("삭제에 실패하였습니다.");
+		}
+	});		
+}
 </script>
 <%@ include file="../layout/footer.jsp"%>
