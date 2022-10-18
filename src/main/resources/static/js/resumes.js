@@ -38,13 +38,6 @@ function insert(){
 	});
 }
 
-// 이력서 보기
-let resumesId = $("#resumesCategoryId").val();
-
-$("#btnUpdate").click(()=>{
-	location.href="/personal/resumes/"+ resumesId + "/update";
-});
-
 //이력서 수정
 $("#btnUpdate").click(()=>{
 		update();
@@ -82,7 +75,7 @@ function update(){
 	}).done((res)=>{
 		if(res.code == 1){
 			alert("이력서 수정 성공");
-			location.href="/main"; 
+			location.href="/personal/resumes/"+resumesId; 
 		}else{
 			alert("이력서 수정 실패");
 		}

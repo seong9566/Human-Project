@@ -19,8 +19,6 @@
 					<br />
 					<div id="email">${personalInfoPS.personalEmail}</div>
 					<br />
-					<div id="address">${personalInfoPS.personalAddress}</div>
-					<br />
 					<div id="education">${personalInfoPS.personalEducation}</div>
 				</div>
 			</div>			

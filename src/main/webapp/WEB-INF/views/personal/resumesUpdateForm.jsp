@@ -27,8 +27,6 @@
 					<br />
 					<div id="email">${detailResumesDtoPS.personalEmail}</div>
 					<br />
-					<div id="address">${detailResumesDtoPS.personalAddress}</div>
-					<br />
 					<div id="education">${detailResumesDtoPS.personalEducation}</div>
 				</div>
 			</div>
@@ -38,9 +36,8 @@
 				<img id="previewImg" />
 			</div>
 			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
-			
-			<input id="resumesPicture" type="text" class="form-control"
-			placeholder="사진 들어가는 자리입니다. " />
+
+			<input id="resumesPicture" value="${detailResumesDtoPS.resumesPicture}"type="text" class="form-control" placeholder="사진 자리입니다."/>
 	
 	<div class="mb-3">◆경력사항</div>
 			<div>

@@ -77,11 +77,11 @@ public class PersonalController {
 	// 이력서 상세 보기
 	@GetMapping("/personal/resumes/{resumesId}")
 	public String resumesById(@PathVariable Integer resumesId, Model model) {	
-		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
-		PersonalLike personalLike = personalLikeService.좋아요확인(resumesId, signedDto.getCompanyId());
-		model.addAttribute("personalLike", personalLike);
+		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");
+		PersonalInfoDto personalInfoPS = personalService.personalInfoById(principal.getPersonalId());
 		DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
-		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
+		model.addAttribute("personalInfoPS", personalInfoPS);
+		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);		
 		return "personal/resumesDetail";
 	}
 	

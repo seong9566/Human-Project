@@ -17,11 +17,10 @@ public interface ResumesDao {
 	public List<Resumes> findMyresumesAll(Integer personalId);
 
 	// 이력서 상세 보기
-	public DetailResumesDto resumesById(Integer personalId);
+	public DetailResumesDto resumesById(Integer resumesId);
 
 	// 이력서 수정
 	public Resumes findById(Integer resumesId);
-
 	public void update(Resumes resumes);
 
 	// 이력서 삭제
