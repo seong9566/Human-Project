@@ -44,35 +44,9 @@
 </div>
 
 <div class="d-flex justify-content-center">
-	<c:choose>
-		<c:when test="${empty principal}">
-			<table class="table table-bordered" style="text-align: center">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>채용공고 제목</th>
-						<th>마감일</th>
-					</tr>
-				</thead>
-				<tbody id="table">
-					<c:forEach var="jobPostingBoardList" items="${jobPostingBoardList}">
-						<tr>
-							<td>${jobPostingBoardList.jobPostingBoardId}</td>
-							<td>
-								<div id="apply" class="container p-4 my-4 border">
-									<a
-										href="/company/jobPostingBoard/${jobPostingBoardList.jobPostingBoardId}">
-										${jobPostingBoardList.jobPostingBoardTitle}</a>
-								</div>
-							</td>
-							<td>${jobPostingBoardList.jobPostingBoardDeadline}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:when>
+	<c:choose>		
 		<c:when test="${principal.personalId != null}">
-			<table class="table table-bordered" style="text-align: center">
+		<table class="table table-bordered" style="text-align: center">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -95,7 +69,7 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-			</table>
+			</table>						
 		</c:when>
 		<c:otherwise>
 			<table class="table table-bordered" style="text-align: center">

@@ -1,4 +1,16 @@
 // 이력서 작성
+function clickCheck(target) {
+    document.querySelectorAll(`input[type=radio]`)
+        .forEach(el => el.checked = false);
+    target.checked = true;
+}
+
+$('#etc').click(function() {
+	var checked = $('#etc').is(':checked');
+	if (checked)
+		$('input:checkbox').prop('checked', true);
+});
+
 $("#btnSave").click(()=>{
 	insert();
 });
@@ -9,10 +21,10 @@ function insert(){
 		resumesTitle: $("#resumesTitle").val(),
 		resumesPicture: $("#resumesPicture").val(),
 		resumesPlace: $("#resumesPlace").val(),
-		oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
-		twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
-		threeYearOver: $("input:checkbox[value='threeYearOver']").is(":checked"),
-		fiveYearOver: $("input:checkbox[value='fiveYearOver']").is(":checked"),
+		oneYearLess: $("input:radio[value='oneYearLess']").is(":checked"),
+		twoYearOver: $("input:radio[value='twoYearOver']").is(":checked"),
+		threeYearOver: $("input:radio[value='threeYearOver']").is(":checked"),
+		fiveYearOver: $("input:radio[value='fiveYearOver']").is(":checked"),
 		portfolioSource: $("#portfolioSource").val(),
 		portfolioFile: $("#portfolioFile").val(),
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
@@ -33,7 +45,7 @@ function insert(){
 			alert("이력서 등록 성공");
 			location.href="/main";
 		}else{
-			alert("이력서 등록 실패");
+			alert(res.message);
 		}
 	});
 }
@@ -53,10 +65,10 @@ function update(){
 		resumesPicture: $("#resumesPicture").val(),
 		resumesIntroduce: $("#resumesIntroduce").val(),
 		resumesPlace: $("#resumesPlace").val(),
-		oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
-		twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
-		threeYearOver: $("input:checkbox[value='threeYearOver']").is(":checked"),
-		fiveYearOver: $("input:checkbox[value='fiveYearOver']").is(":checked"),
+		oneYearLess: $("input:radio[value='oneYearLess']").is(":checked"),
+		twoYearOver: $("input:radio[value='twoYearOver']").is(":checked"),
+		threeYearOver: $("input:radio[value='threeYearOver']").is(":checked"),
+		fiveYearOver: $("input:radio[value='fiveYearOver']").is(":checked"),
 		portfolioSource: $("#portfolioSource").val(),
 		portfolioFile: $("#portfolioFile").val(),
 		categoryFrontend: $("input:checkbox[value='categoryFrontend']").is(":checked"),
@@ -77,7 +89,7 @@ function update(){
 			alert("이력서 수정 성공");
 			location.href="/personal/resumes/"+resumesId; 
 		}else{
-			alert("이력서 수정 실패");
+			alert(res.message);
 		}
 	});																							
 }

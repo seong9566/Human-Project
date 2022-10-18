@@ -33,10 +33,10 @@
 			
 		<div class="mb-3">◆경력사항</div>
 			<div>
-				<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br />
-				<label><input type="checkbox" value="twoYearOver">twoYearOver</label><br />
-				<label><input type="checkbox" value="threeYearOver">threeYearOver</label><br />
-				<label><input type="checkbox" value="fiveYearOver">fiveYearOver</label>
+				<label for="first"><input type="radio" value="oneYearLess" onclick="clickCheck(this)">oneYearLess</label><br />			
+				<label for="second"><input type="radio" value="twoYearOver" onclick="clickCheck(this)">twoYearOver</label><br />
+				<label for="third"><input type="radio" value="threeYearOver" onclick="clickCheck(this)">threeYearOver</label><br />
+				<label for="fourth"><input type="radio" value="fiveYearOver" onclick="clickCheck(this)">fiveYearOver</label><br />
 			</div>
 			
 		<div class="mb-3">◆관심분야</div>

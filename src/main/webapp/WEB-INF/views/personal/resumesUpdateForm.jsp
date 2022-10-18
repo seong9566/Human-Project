@@ -13,8 +13,7 @@
 
 <div id="main">
 	<br /> 
-	<input id="resumesTitle" type="text" class="form-control"
-		placeholder="수정할 이력서 제목을 입력해주세요." value="${detailResumesDtoPS.resumesTitle}">
+	<input id="resumesTitle" type="text" class="form-control" value="${detailResumesDtoPS.resumesTitle}">
 	<div class="tool">
 		<div class="left">
 			<br /> <br />
@@ -37,16 +36,16 @@
 			</div>
 			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
 
-			<input id="resumesPicture" value="${detailResumesDtoPS.resumesPicture}"type="text" class="form-control" placeholder="사진 자리입니다."/>
+			<input id="resumesPicture" value="${detailResumesDtoPS.resumesPicture}" type="text" class="form-control" placeholder="사진 자리입니다."/>
 	
 	<div class="mb-3">◆경력사항</div>
 			<div>
-				<label><input type="checkbox" value="oneYearLess" >oneYearLess</label><br />
-				<label><input type="checkbox" value="twoYearOver" >twoYearOver</label><br />
-				<label><input type="checkbox" value="threeYearOver" >threeYearOver</label><br />
-				<label><input type="checkbox" value="fiveYearOver" >fiveYearOver</label>
+				<label for="first"><input type="radio" value="oneYearLess" onclick="clickCheck(this)">oneYearLess</label><br />			
+				<label for="second"><input type="radio" value="twoYearOver" onclick="clickCheck(this)">twoYearOver</label><br />
+				<label for="third"><input type="radio" value="threeYearOver" onclick="clickCheck(this)">threeYearOver</label><br />
+				<label for="fourth"><input type="radio" value="fiveYearOver" onclick="clickCheck(this)">fiveYearOver</label>
 			</div>
-			
+						
 		<div class="mb-3">◆관심분야</div>
 			<div>
 				<label><input type="checkbox" value="categoryFrontend" >frontend</label><br />
