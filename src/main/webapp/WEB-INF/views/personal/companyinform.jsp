@@ -20,31 +20,31 @@
 			</div>
 		</div>
 
-			<h2>현재 채용중인 공고</h2>
-				<div id="box1" class="col">
-					<div class="card h-100">
-						<img src="/image/농심.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-						</div>
-					</div>
+		<h2>현재 채용중인 공고</h2>
+		<div id="box1" class="col">
+			<div class="card h-100">
+				<img src="/image/농심.png" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 				</div>
-				<div id="box2" class="col">
-					<div class="card h-100">
-						<img src="/image/농심.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-						</div>
-					</div>
+			</div>
+		</div>
+		<div id="box2" class="col">
+			<div class="card h-100">
+				<img src="/image/농심.png" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 				</div>
-				<div id="box3" class="col">
-					<div class="card h-100">
-						<img src="/image/농심.png" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-						</div>
-					</div>
-					</div>
+			</div>
+		</div>
+		<div id="box3" class="col">
+			<div class="card h-100">
+				<img src="/image/농심.png" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="mb-3"></div>
 

@@ -1,157 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-
-<div class="container" style="text-align: center;">
-	<input id="jobPostingBoardId" type="hidden"
-		value="${jobPostingPS.jobPostingBoardId}"> <input
-		id="companyId" type="hidden" value="${jobPostingPS.companyId}">
-	
+<div class="container mt-3">
+	<h2>채용 공고 제목 : ${jobPostingPS.jobPostingBoardTitle}</h2>
 	<form>
-		<div class="mb-3">
-			<h1>채용 공고 제목 :</h1>
-			<div style="font-size: 20px; border: 1px solid black; padding: 10px">${jobPostingPS.jobPostingBoardTitle}</div>
-		</div>
+		<input id="jobPostingBoardId" type="hidden"
+			value="${jobPostingPS.jobPostingBoardId}">
+		<div class="mb-3 mt-3"></div>
+		<div class="flex">
 
-		<br />
-		<div class="mb-3" style="text-align: center;">
-			<!-- <h5>사진 자리</h5> <input id="companyPicture" type="text" class="form-control" style="width: 300px;"
-				placeholder="${jobPostingPS.companyPicture}" readonly> -->
+			<div class="form-group">
+				<img src="/image/농심.png" style="width: 200px; height: 200px;">
+				<div id="imageContainer"></div>
+			</div>
 
-			<div class="mb-3">
-				<h5 style="font-weight: bold;">회사 이름</h5>
-				<div style="font-size: 20px; border: 1px solid black; padding: 10px">${jobPostingPS.companyName}</div>
-			</div>
-			<div class="mb-3">
-				<h5 style="font-weight: bold;">회사 전화번호</h5>
-				<div style="font-size: 20px; border: 1px solid black; padding: 10px">${jobPostingPS.companyPhoneNumber}</div>
-				<div class="mb-3">
-					<h5 style="font-weight: bold;">회사 이메일</h5>
-					<div
-						style="font-size: 20px; border: 1px solid black; padding: 10px">${jobPostingPS.companyEmail}</div>
-				</div>
-				<div class="mb-3">
-					<h5 style="font-weight: bold;">회사 주소</h5>
-					<div
-						style="font-size: 20px; border: 1px solid black; padding: 10px">${address.roadJibunAddr}
-						${address.detailAddress}</div>
-				</div>
-			</div>
-		</div>
-		<h2>모집조건 및 안내사항</h2>
-		<div class="left_input">
-							<h5 style="font-weight: bold; margin-top: 30px">최소 경력 사항</h5>
-			<p>
+			<div>
+
+				회사 이름 : ${jobPostingPS.companyName}<br /> 이메일 :
+				${jobPostingPS.companyEmail}<br />
 				<c:choose>
 					<c:when test="${true eq jobPostingPS.oneYearLess}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">지원
-							가능 자격 : 1년 이하</div>
-        		 </c:when>
+						지원 가능 자격 : 1년 이하<br />
+					</c:when>
 
 					<c:when test="${true eq jobPostingPS.twoYearOver}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">지원
-							가능 자격 : 2년 이상</div>
+						지원 가능 자격 : 2년 이상<br />
 					</c:when>
 
 					<c:when test="${true eq jobPostingPS.threeYearOver}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">지원
-							가능 자격 : 3년 이상</div>
-
+						지원 가능 자격 : 3년 이상<br />
 					</c:when>
 
 					<c:when test="${true eq jobPostingPS.fiveYearOver}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">지원
-							가능 자격 : 5년 이상</div>
+						지원 가능 자격 : 5년 이상<br />
 					</c:when>
 				</c:choose>
-			</p>
-			<div class="mb-3">
-			<h5 style="font-weight: bold; margin-top: 30px">모집 분야</h5>
-				<p>
-					<c:choose>
-						<c:when test="${true eq jobPostingPS.categoryFrontend}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-							 프론트 엔드 </div>
-            		
-        		 </c:when>
+				연락처 : ${jobPostingPS.companyPhoneNumber}<br />회사 주소 : 
+				${address.roadJibunAddr} ${address.detailAddress}<br /> 모집 분야 : 
+				<c:choose>
+					<c:when test="${true eq jobPostingPS.categoryFrontend}">
+							프론트 엔드<br />
+					</c:when>
 
-						<c:when test="${true eq jobPostingPS.categoryBackend}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-							 백 엔드 </div>
-         </c:when>
+					<c:when test="${true eq jobPostingPS.categoryBackend}">
+							백 엔드<br />
+					</c:when>
 
-						<c:when test="${true eq jobPostingPS.categoryDevops}">
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-							 데브옵스 </div>
-         </c:when>
-					</c:choose>
-				</p>
+					<c:when test="${true eq jobPostingPS.categoryDevops}">
+							데브옵스<br />
+					</c:when>
+				</c:choose>
 
-				<div class="mb-3">
-					<h5 style="font-weight: bold; margin-top: 30px">연봉</h5>
-					<p>
-						<c:choose>
-							<c:when test="${2000 eq jobPostingPS.jobPostingSalary}">
-							<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 연봉 : 2천만원 이상 </div>
-        		 </c:when>
+				<c:choose>
+					<c:when test="${2000 eq jobPostingPS.jobPostingSalary}">
+							최소 연봉 : 2천만원 이상<br />
+					</c:when>
 
-							<c:when test="${3000 eq jobPostingPS.jobPostingSalary}">
-       				<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 연봉 : 3천만원 이상 </div> 
-         </c:when>
-							<c:when test="${4000 eq jobPostingPS.jobPostingSalary}">
-       				<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 연봉 : 4천만원 이상 </div>
-         </c:when>
-							<c:when test="${5000 eq jobPostingPS.jobPostingSalary}">
-       				<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 연봉 : 5천만원 이상 </div>
-         </c:when>
-						</c:choose>
-					</p>
-					<div class="mb-3">
-						<h5 style="font-weight: bold; margin-top: 30px">근무 지역</h5>
-						<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 ${jobPostingPS.jobPostingBoardPlace} </div> 
-					</div>
-
-					<h5 style="font-weight: bold; margin-top: 30px">채용 공고 내용</h5>
-					<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 ${jobPostingPS.jobPostingBoardContent} </div>
-					<br />
-
-					<h5 style="font-weight: bold; margin-top: 30px">채용 공고 마감일</h5>
-					<div
-							style="font-size: 20px; border: 1px solid black; padding: 10px">
-            		 ${jobPostingPS.formatDeadLine} </div>
-					 <br />
-				</div>
-
-				<div class="btn-update" style="text-align: center">
-					<button id="btnUpdateForm" type="button" class="btn btn-primary"
-						style="background-color: rgba(0, 195, 98, 255); border: none;">채용
-						공고 수정</button>
-				</div>
+					<c:when test="${3000 eq jobPostingPS.jobPostingSalary}">
+							최소 연봉 : 3천만원 이상<br />
+					</c:when>
+					<c:when test="${4000 eq jobPostingPS.jobPostingSalary}">
+							최소 연봉 : 4천만원 이상<br />
+					</c:when>
+					<c:when test="${5000 eq jobPostingPS.jobPostingSalary}">
+							최소 연봉 : 5천만원 이상<br />
+					</c:when>
+				</c:choose>
+				<br/> 채용 공고 내용 :
+				<textarea class="form-control" id="resumesIntroduce" rows="8"
+					readonly>${jobPostingPS.jobPostingBoardContent}</textarea>
 
 			</div>
 		</div>
+		<div class="btn-update" style="text-align: center">
+			<button id="btnUpdateForm" type="button" class="btn btn-primary"
+				style="background-color: rgba(0, 195, 98, 255); border: none;">채용
+				공고 수정</button>
+		</div>
 	</form>
 </div>
-
 <script>
 let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnUpdateForm").click(()=>{
