@@ -18,7 +18,7 @@ public class Career {
 	  private Boolean threeYearOver;
 	  private Boolean fiveYearOver;
 	  private Timestamp createdAt;
-
+	  
 	  // 이력서 작성
 	  public Career(InsertResumesDto insertResumesDto) {
 		  this.oneYearLess = insertResumesDto.getOneYearLess();
@@ -41,9 +41,11 @@ public class Career {
 		  this.fiveYearOver = joinDto.getFiveYearOver();
 	  }
 	  
+	  private Integer jobPostingBoardCareerId;
 	  // 채용 공고 수정
 	  public Career(JobPostingBoardUpdateDto updateDto) {
 		  //this.careerId = careerId;
+		  this.jobPostingBoardCareerId = updateDto.getJobPostingBoardCareerId();
 		  this.oneYearLess = updateDto.getOneYearLess();
 		  this.twoYearOver = updateDto.getTwoYearOver();
 		  this.threeYearOver = updateDto.getThreeYearOver();

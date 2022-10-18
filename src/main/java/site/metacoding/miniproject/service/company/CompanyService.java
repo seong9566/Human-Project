@@ -106,11 +106,11 @@ public class CompanyService {
 		public void updateJobPostingBoard(Integer jobPostingBoardId, JobPostingBoardUpdateDto updateDto) {
 			//Integer categoryId,Integer careerId,
 			Category category = new Category(updateDto);
-			categoryDao.update(category);
+			categoryDao.jobPostingUpdate(category);
 
 			
 			Career career = new Career(updateDto);
-			careerDao.update(career);
+			careerDao.jobPostingUpdate(career);
 
 			JobPostingBoard jobPostingBoard = new JobPostingBoard(jobPostingBoardId,updateDto);
 			jobPostingBoardDao.update(jobPostingBoard);

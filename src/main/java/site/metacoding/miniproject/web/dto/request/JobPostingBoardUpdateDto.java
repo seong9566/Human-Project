@@ -37,6 +37,9 @@ public class JobPostingBoardUpdateDto {
 	//TimeStamp > String
 	private String formatDeadLine;
 
+	//
+	private Integer jobPostingBoardCategoryId;
+	private Integer jobPostingBoardCareerId;
 }
 
 

@@ -143,6 +143,8 @@ $("#btnUpdate").click(() => {
 //업데이트 버튼 클릭시 
 function update() {
 	let jobPostingBoardId =$("#jobPostingBoardId").val();
+	jobPostingBoardCategoryId: $("#jobPostingBoardCategoryId").val();
+	jobPostingBoardCareerId: $("#jobPostingBoardCareerId").val();
 	let data = {
 			jobPostingBoardCategoryId: $("#jobPostingBoardCategoryId").val(),
 			jobPostingBoardCareerId: $("#jobPostingBoardCareerId").val(),
@@ -161,8 +163,8 @@ function update() {
 			jobPostingBoardDeadline: $("#jobPostingBoardDeadline").val(),
 			jobPostingBoardContent: $("#jobPostingBoardContent").val()
 		};	
-	console.log(data);
-	console.log(jobPostingBoardId);
+	console.log(jobPostingBoardCategoryId);
+	console.log(jobPostingBoardCareerId);
 	
 	$.ajax("/company/jobPostingBoardUpdate/"+jobPostingBoardId, {
 		type: "PUT",

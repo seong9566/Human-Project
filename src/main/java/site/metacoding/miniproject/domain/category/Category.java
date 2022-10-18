@@ -41,9 +41,12 @@ public class Category {
 		this.categoryBackend = insertDto.getCategoryBackend();
 		this.categoryDevops = insertDto.getCategoryDevops();
 	}
+	
+	private Integer jobPostingBoardCategoryId;
 	//채용 공고 수정 
 	public Category(JobPostingBoardUpdateDto updateDto) {
 		//this.categoryId= categoryId;
+		this.jobPostingBoardCategoryId  = updateDto.getJobPostingBoardCategoryId();
 		this.categoryFrontend = updateDto.getCategoryFrontend();
 		this.categoryBackend = updateDto.getCategoryBackend();
 		this.categoryDevops = updateDto.getCategoryDevops();
