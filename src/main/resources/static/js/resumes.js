@@ -33,10 +33,9 @@ $("#btnSave").click(()=>{
 });
 
 function insert(){	
-<<<<<<< HEAD
-=======
+
 	let formData = new FormData();
->>>>>>> 1b1b15bb711df65e87c103cbcf0ff4efc8b62c70
+
 	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
 		if(year_check == 0) {
 		    alert('경력사항을 하나 이상 선택해주세요.')
@@ -48,12 +47,7 @@ function insert(){
 		    alert('관심분야를 하나 이상 선택해주세요.')
 		    return false;
 	    }
-<<<<<<< HEAD
-	   	    
-=======
 
-	
->>>>>>> 1b1b15bb711df65e87c103cbcf0ff4efc8b62c70
 	let data = {
 		personalId: $("#userinfoId").val(),
 		resumesTitle: $("#resumesTitle").val(),
@@ -93,10 +87,9 @@ $("#btnUpdate").click(()=>{
 });
 	
 function update(){
-<<<<<<< HEAD
-=======
+
 	let formData = new FormData();
->>>>>>> 1b1b15bb711df65e87c103cbcf0ff4efc8b62c70
+
 	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
 	if(year_check == 0) {
 	    alert('경력사항을 하나 이상 선택해주세요.')
