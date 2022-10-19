@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-	<input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}" >
-	<input id="jobPostingBoardCategoryId" type="hidden" value="${jobPostingPS.jobPostingBoardCategoryId}"> 
-	<input id="jobPostingBoardCareerId" type="hidden" value="${jobPostingPS.jobPostingBoardCareerId}"> 
-	<input id="companyId" type="hidden" value="${jobPostingPS.companyId}"> 
+<input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}">
+<input id="jobPostingBoardCategoryId" type="hidden"
+	value="${jobPostingPS.jobPostingBoardCategoryId}">
+<input id="jobPostingBoardCareerId" type="hidden" value="${jobPostingPS.jobPostingBoardCareerId}">
+<input id="companyId" type="hidden" value="${jobPostingPS.companyId}">
 <div>
 	<h2>구인 공고 수정 페이지</h2>
 	<div class="tool">
@@ -17,9 +18,11 @@
 
 				<h3>회사 정보</h3>
 				<div class="mb-3">
-					◆사진 자리 <input id="companyPicture" type="text" class="form-control"
-						placeholder="${jobPostingPS.companyPicture}" readonly>
-
+					◆회사 사진
+					<div class="form-group">
+						<img src="/img/${jobPostingPS.companyPicture}" style="width: 400px; height: 156px;">
+						<div id="imageContainer"></div>
+					</div>
 					<div class="mb-3">
 						◆회사 이름 <input id="companyName" type="text" class="form-control"
 							placeholder="${jobPostingPS.companyName}" readonly>
@@ -46,18 +49,19 @@
 					◆최소 경력 사항
 					<div>
 						<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label>
-						<input type="checkbox" value="twoYearOver">twoYearOver</label><br /> <label>
-						<input type="checkbox" value="threeYearOver">threeYearOver</label><br /> <label>
-						<input type="checkbox" value="fiveYearOver">fiveYearOver</label><br />
+							<input type="checkbox" value="twoYearOver">twoYearOver
+						</label><br /> <label> <input type="checkbox" value="threeYearOver">threeYearOver
+						</label><br /> <label> <input type="checkbox" value="fiveYearOver">fiveYearOver
+						</label><br />
 					</div>
 				</div>
 
 				<div class="mb-3">
 					◆관심분야
 					<div>
-						<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> 
-						<label><input type="checkbox" value="categoryBackend">backend</label><br /> 
-						<label><input type="checkbox" value="categoryDevops">devops</label><br />
+						<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> <label><input
+							type="checkbox" value="categoryBackend">backend</label><br /> <label><input
+							type="checkbox" value="categoryDevops">devops</label><br />
 					</div>
 				</div>
 
@@ -93,9 +97,9 @@
 
 						<br />
 						<div class="mb-3">◆근무지</div>
-					<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
-					<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-					<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
+						<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
+						<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
+						<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
 
 						<div class="mb-3">◆채용공고 마감일</div>
 						<input id="jobPostingBoardDeadline" type="date" class="form-control"> <br />

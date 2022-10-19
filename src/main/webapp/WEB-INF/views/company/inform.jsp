@@ -27,9 +27,12 @@
 		
 		<div class="mb-3 mt-3">
 			◆회사 사진 
-			<input id="companyPicture" type="text" value="${companyInfo. companyPicture}" readonly>
 		</div>
-
+		<div class="form-group">
+            <img src="/img/${companyInfo.companyPicture}" style="width: 400px; height: 156px;">
+            <div id="imageContainer"></div>
+         </div>
+         
 		<div class="mb-3">◆주소</div>
 		<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
 		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 645px;" readonly>
@@ -48,6 +51,7 @@
 $("#btnUpdateForm").click(()=>{
    location.href="/company/inform/update";
 });
+
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

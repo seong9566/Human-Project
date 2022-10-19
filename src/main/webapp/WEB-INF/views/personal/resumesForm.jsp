@@ -23,13 +23,12 @@
 				</div>
 			</div>			
 			
-			<div class="right">
-				<img id="previewImg" />
+		<div style="width: 400px;">
+			<div class="form-group">
+				<input type="file" id="file" accept="image/*" onchange="setThumbnail(event)">
+				<div id="imageContainer"></div>
 			</div>
-			<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
-			
-			<input id="resumesPicture" type="text" class="form-control"
-			placeholder="사진 들어가는 자리입니다. "/>
+		</div>
 			
 		<div class="mb-3">◆경력사항</div>
 			<div>

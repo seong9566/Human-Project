@@ -14,9 +14,12 @@
 
 		<h3>회사 정보</h3>
 		<div class="mb-3">
-			◆사진 자리 <input id="companyPicture" type="text" class="form-control"
-				placeholder="${jobPostingPS.companyPicture}" readonly>
-
+			◆회사 사진 
+		<div class="form-group">
+            <img src="/img/${jobPostingPS.companyPicture}" style="width: 400px; height: 156px;">
+            <div id="imageContainer"></div>
+         </div>
+         
 			<div class="mb-3">
 				◆회사 이름 <input id="companyName" type="text" class="form-control"
 					placeholder="${jobPostingPS.companyName}" readonly>

@@ -24,15 +24,14 @@
 			</div>
 		</div>
 
+
 		<div class="mb-3">◆증명사진</div>
 		<div class="right">
-			<img id="previewImg" />
-		</div>
-		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
+			<img src="/img/${detailResumesDtoPS.resumesPicture }"
+				style="width: 200px">
 
-		<input id="resumesPicture"
-			value="${detailResumesDtoPS.resumesPicture}" type="text"
-			class="form-control" placeholder="사진 자리입니다." readonly />
+		</div>
+
 
 		<div class="mb-3">◆ 관련 경력 사항</div>
 		<div>
@@ -58,43 +57,44 @@
 				<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
 		            - 프론트엔드
 		        </c:when>
-		    </c:choose>
-		    <c:choose>
+			</c:choose>
+			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
 		            - 백엔드
 		        </c:when>
-		    </c:choose>
-		    <c:choose>
+			</c:choose>
+			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
 		            - 데브옵스
 		        </c:when>
-		    </c:choose>
+			</c:choose>
 		</div>
-
 		<div class="mb-3">◆희망근무지역</div>
 		<input id="resumesPlace" type="text" class="form-control"
 			placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
 
 		<div class="mb-3">◆Github 주소 or Blog 주소</div>
-		
-		<a href="${detailResumesDtoPS.portfolioSource}" >
-			- link : ${detailResumesDtoPS.portfolioSource}</div>
-		</a>
 
-		<div class="mb-3">◆포트폴리오</div>
-		<input id="portfolioFile" type="text" class="form-control"
-			placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
+		<a href="${detailResumesDtoPS.portfolioSource}"> - link :
+			${detailResumesDtoPS.portfolioSource}
 	</div>
-
-	<div class="form">
-		<h2>자기소개서 작성</h2>
-		<div>${detailResumesDtoPS.resumesIntroduce}</div>
-	</div>
-
-	<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
-		<div class="lineheight">수정하러가기</div>
 	</a>
 
-	<script src="/js/resumes.js"></script>
+	<div class="mb-3">◆포트폴리오</div>
+	<input id="portfolioFile" type="text" class="form-control"
+		placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
+</div>
 
-	<%@ include file="../layout/footer.jsp"%>
+<div class="form">
+	<h2>자기소개서 작성</h2>
+	<div>${detailResumesDtoPS.resumesIntroduce}</div>
+</div>
+
+<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
+	<div class="lineheight">수정하러가기</div>
+</a>
+
+
+<script src="/js/resumes.js"></script>
+
+<%@ include file="../layout/footer.jsp"%>
