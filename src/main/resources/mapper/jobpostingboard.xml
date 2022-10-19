@@ -140,14 +140,7 @@
 
 	</delete>
 	
-	<select id="findAll"
-		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT *,
-		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state 
-		FROM job_posting_board
-		ORDER BY job_posting_board_id DESC
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
-	</select>
+
 
 	<select id="jobPostingBoardPaging"
 		resultType="site.metacoding.miniproject.web.dto.response.PagingDto">
@@ -169,13 +162,71 @@
 		) paging
 	</select>	
 	
+	<select id="findAll"
+		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
+		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline,
+		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state 
+		FROM job_posting_board
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+	</select>
+	
 	<select id="findSearch"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
 		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline
 		FROM job_posting_board
 		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		ORDER BY job_posting_board_id DESC
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+	</select>	
+	
+	<select id="findCategory"
+		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
+		SELECT b.job_posting_board_id, c.category_id, c.category_frontend, 
+		c.category_backend, c.category_devops, b.job_posting_board_category_id,
+		b.job_posting_board_title, b.job_posting_board_deadline
+		FROM category c
+		INNER JOIN job_posting_board b
+		ON b.job_posting_board_category_id = c.category_id
+		<if test="id == 1">
+		WHERE category_frontend = 1
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 2">
+		WHERE category_backend = 1
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 3">
+		WHERE category_devops = 1
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 4">
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+	</select>	
+	
+	<select id="findCategorySearch"
+		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
+		SELECT b.job_posting_board_id, c.category_id, c.category_frontend, 
+		c.category_backend, c.category_devops, b.job_posting_board_category_id,
+		b.job_posting_board_title, b.job_posting_board_deadline
+		FROM category c
+		INNER JOIN job_posting_board b
+		ON b.job_posting_board_category_id = c.category_id
+		<if test="id == 1">
+		WHERE category_frontend = 1 AND job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 2">
+		WHERE category_backend = 1 AND job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 3">
+		WHERE category_devops = 1 AND job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 4">
+		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
 	</select>	
 	
 </mapper>

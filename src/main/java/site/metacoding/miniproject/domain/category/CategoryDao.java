@@ -9,6 +9,6 @@ public interface CategoryDao {
 	public void update(Category category);
 	public void deleteById(Integer categoryId);
 	
-	public void jobPostingUpdate(Category category);
+	public void jobPostingUpdate(Category category);	
 
 }

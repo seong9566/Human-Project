@@ -37,21 +37,22 @@
 	</div>
 <div class="mb-3"></div>
 <div class="dropdown">
-
 <div class="d-flex justify-content-between" style="width:1190px">
-				<select name="category" id="select_category"
-					style="width: 150px; left: 10%">
-					<option value="#">==전체보기==</option>
-					<option value="#">프론트엔드</option>
-					<option value="#">백엔드</option>
-					<option value="#">데브옵스</option>
-				</select>
-				<form class="d-flex" method="get" action="/main">
-					<input class="searchForm" type="text" placeholder="Search"
-						name="keyword">
-					<button class="searchsubmit" type="submit">🔍</button>
-				</form>
-		</div>
+	<select id="select_category" name="category" style="width: 150px; left: 10%">
+		<option id="categories" value="0">==관심분야==</option>
+		<option id="categoryFrontend" value="1">프론트엔드</option>
+		<option id="categoryBackend" value="2">백엔드</option>
+		<option id="categoryDevops" value="3">데브옵스</option>
+		<option id="categoryAll" value="4">전체보기</option>
+	</select>
+	
+	<form class="d-flex" method="get" action="/main">
+		<input class="searchForm" type="text" placeholder="Search"
+			name="keyword">
+		<button id="keyword" class="searchsubmit" type="submit">🔍</button>
+		
+	</form>
+</div>
 
 <div class="d-flex justify-content-center">
 	<c:set var="userprincipal" value="${empty sessionScope.principal || empty sessionScope.principal.companyId  ?  true : false}"></c:set>
@@ -60,7 +61,6 @@
 			<table class="table table-bordered" style="text-align: center">
 				<thead>
 					<tr>
-						<th>번호</th>
 						<th>채용공고 제목</th>
 						<th>마감일</th>
 					</tr>
@@ -68,7 +68,6 @@
 				<tbody id="table">
 					<c:forEach var="jobPostingBoardList" items="${jobPostingBoardList}">
 						<tr>
-							<td>${jobPostingBoardList.jobPostingBoardId}</td>
 							<td>
 								<div id="apply" class="container p-4 my-4 border">
 									<a
@@ -89,7 +88,6 @@
 			<table class="table table-bordered" style="text-align: center">
 				<thead>
 					<tr>
-						<th>번호</th>
 						<th>이력서 제목</th>
 						<th>희망근무지역</th>
 					</tr>
@@ -97,7 +95,6 @@
 				<tbody id="table">
 					<c:forEach var="resumesList" items="${resumesList}">
 						<tr>
-							<td>${resumesList.resumesId}</td>
 							<td>
 								<div id="apply" class="container p-4 my-4 border">
 									<a href="/personal/resumes/${resumesList.resumesId}">
@@ -134,4 +131,6 @@
 		</li>
 	</ul>
 </div>
+
+<script src="/js/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>

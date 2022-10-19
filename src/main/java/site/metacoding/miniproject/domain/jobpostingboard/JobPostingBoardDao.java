@@ -19,6 +19,7 @@ public interface JobPostingBoardDao {
 	
 	// 회사가 작성한 채용공고 목록 보기
 	public List<JobPostingBoardListDto> jobPostingBoardList(Integer companyId);
+	
 	//채용공고 자세히 보기 
 	public JobPostingBoardDetailDto findByDetail(Integer jobPostingBoardId);
 
@@ -31,4 +32,7 @@ public interface JobPostingBoardDao {
 	// 검색 결과 리스트
 	public List<PersonalMainDto> findSearch(@Param("startNum") int startNum, @Param("keyword") String keyword);
 
+	// 카테고리별 목록보기	
+	public List<PersonalMainDto> findCategory(@Param("startNum") Integer startNum, @Param("id") Integer id);
+	public List<PersonalMainDto> findCategorySearch(@Param("startNum") int startNum, @Param("keyword") String keyword, @Param("id") Integer id);
 }

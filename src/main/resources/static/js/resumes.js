@@ -33,7 +33,9 @@ $("#btnSave").click(()=>{
 });
 
 function insert(){	
+
 	let formData = new FormData();
+
 	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
 		if(year_check == 0) {
 		    alert('경력사항을 하나 이상 선택해주세요.')
@@ -46,7 +48,6 @@ function insert(){
 		    return false;
 	    }
 
-	
 	let data = {
 		personalId: $("#userinfoId").val(),
 		resumesTitle: $("#resumesTitle").val(),
@@ -86,7 +87,9 @@ $("#btnUpdate").click(()=>{
 });
 	
 function update(){
+
 	let formData = new FormData();
+
 	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
 	if(year_check == 0) {
 	    alert('경력사항을 하나 이상 선택해주세요.')

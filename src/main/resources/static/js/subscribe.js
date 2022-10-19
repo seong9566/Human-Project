@@ -1,12 +1,13 @@
-$("#btnSub").click(() => {
-    let companyId = $("#companyId").val();
-    subscribToCompany(companyId);
+$("#btnSub").click((e) => {
+	let text = e.target.textContent;
+	if(text == "구독하기"){
+		let companyId = $("#companyId").val();
+   		subscribToCompany(companyId);
+	}else if(text == "구독취소"){
+		subscribCancelToCompany($("#btnSub").val());
+	}
 
-});
 
-$("#btnSubCancel").click(() => {
-    let subscribeId = $("#btnSubCancel").val();
-    subscribCancelToCompany(subscribeId)
 });
 
 
@@ -17,11 +18,10 @@ function subscribToCompany(companyId) {
     }).done((res) => {
         if (res.code == 1) {
             sendmessageToCompany(companyId);
-//            $("#btnSub").val(res.data);
-//            $("#btnSub").text("구독취소");
-//            $("#btnSub").attr("id", "btnSubCancel");
-//            $(".btn-update").load(location.href+" .btn-update");
-			location.reload();
+            $("#btnSub").val(res.data);
+            $("#btnSub").text("구독취소");
+            //$(".btn-update").load(location.href+" .btn-update");
+			//location.reload();
             alert(res.message);
         } else {
             alert(res.message);
@@ -35,11 +35,9 @@ function subscribCancelToCompany(subscribeId) {
         dataType: "JSON"
     }).done((res) => {
         if (res.code == 1) {
- //           $("#btnSubCancel").val('');
-//        $("#btnSubCancel").text("구독하기");
-//          $("#btnSubCancel").attr("id", "btnSub");
-//            $(".btn-update").load(location.href+" .btn-update");
-			location.reload();
+         $("#btnSub").val($("#companyId").val());
+      	 $("#btnSub").text("구독하기");
+		//	location.reload();
             alert(res.message);
         } else {
             alert(res.message);
