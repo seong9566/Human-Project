@@ -135,22 +135,49 @@ public class CompanyService {
 	}
 
 	// 페이징
-	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {
+	public PagingDto jobPostingBoardPaging(Integer page, String keyword) {		
 		return jobPostingBoardDao.jobPostingBoardPaging(page, keyword);
 	}
 
 	// 검색 결과 리스트
 	public List<PersonalMainDto> findSearch(int startNum, String keyword) {
-		return jobPostingBoardDao.findSearch(startNum, keyword);
+		List<PersonalMainDto> personalMainPS = jobPostingBoardDao.findSearch(startNum, keyword);
+		// TimeStamp to String
+		for (PersonalMainDto deadLine : personalMainPS) {
+			Timestamp ts = deadLine.getJobPostingBoardDeadline();
+			Date date = new Date();
+			date.setTime(ts.getTime());
+			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+			deadLine.setFormatDeadLine(formattedDate);
+		}
+		return personalMainPS;
 	}	
 	
 	// 카테고리 별 리스트 보기
 	public List<PersonalMainDto> findCategory(int startNum, Integer id) {
-		return jobPostingBoardDao.findCategory(startNum, id);
+		List<PersonalMainDto> personalMainPS = jobPostingBoardDao.findCategory(startNum, id);
+		// TimeStamp to String
+		for (PersonalMainDto deadLine : personalMainPS) {
+			Timestamp ts = deadLine.getJobPostingBoardDeadline();
+			Date date = new Date();
+			date.setTime(ts.getTime());
+			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+			deadLine.setFormatDeadLine(formattedDate);
+		}
+		return personalMainPS;
 	}
 	// 카테고리 별 검색 결과 리스트
 	public List<PersonalMainDto> findCategorySearch(int startNum, String keyword, Integer id) {
-		return jobPostingBoardDao.findCategorySearch(startNum, keyword, id);
+		List<PersonalMainDto> personalMainPS = jobPostingBoardDao.findCategorySearch(startNum, keyword, id);
+		// TimeStamp to String
+		for (PersonalMainDto deadLine : personalMainPS) {
+			Timestamp ts = deadLine.getJobPostingBoardDeadline();
+			Date date = new Date();
+			date.setTime(ts.getTime());
+			String formattedDate = new SimpleDateFormat("yyyy년MM월dd일").format(date);
+			deadLine.setFormatDeadLine(formattedDate);
+		}
+		return personalMainPS;
 	}
 	
 }
