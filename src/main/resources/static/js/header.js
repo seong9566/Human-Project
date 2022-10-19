@@ -10,16 +10,18 @@ function sendmessageToPersonal(resumesId) {
 }
 
 function sendmessageToCompany(companyId) {
-	stompClient.send("/app/Personal/LikeCompany/" + companyId, {},  $("#userId").val());
+	stompClient.send("/app/Personal/LikeCompany/" + companyId, {}, $("#userId").val());
+}
+
+function sendmessageToPersonalForTopic(companyId, companyName) {
+	stompClient.send("/app/Personal/subscribe/" + companyId, {}, companyName);
 }
 
 function connectpersonal() {
 	var socket = new SockJS('/personal_end_point');
 	stompClient = Stomp.over(socket);
-	
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
-	
 	stompClient.connect({}, () => {
 		stompClient.subscribe('/queue/Company/' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
@@ -33,10 +35,10 @@ function connectpersonal() {
 function connectcompany() {
 	var socket = new SockJS('/company_end_point');
 	stompClient = Stomp.over(socket);
-	
 	let userId = $("#userId").val();
 	findnotreadalarm(userId);
-	
+
+
 	stompClient.connect({}, () => {
 		stompClient.subscribe('/queue/Personal/' + userId, (test) => {
 			let confirm = JSON.parse(test.body);
@@ -44,6 +46,26 @@ function connectcompany() {
 				iconchange();
 			}
 		});
+		let subscribeinfo = JSON.parse(sessionStorage.getItem("subscribe"));
+		for (let i = 0; i < (subscribeinfo.length); i++) {
+			stompClient.subscribe('/topic/Company/' + subscribeinfo[i], (test) => {
+				let confirm = JSON.parse(test.body);
+				if (confirm.code == 1) {
+					iconchange();
+					alert(confirm?.data);
+				}
+			});
+		}
+	});
+}
+
+
+function subscribeCompany(subscribe) {
+	stompClient.subscribe('/topic/Company/' + subscribe, (test) => {
+		let confirm = JSON.parse(test.body);
+		if (confirm.code == 1) {
+			iconchange();
+		}
 	});
 }
 
@@ -52,6 +74,7 @@ function connectcompany() {
 function disconnect() {
 	if (stompClient !== null) {
 		stompClient.disconnect();
+		sessionStorage.clear();
 	}
 }
 
