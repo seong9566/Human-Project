@@ -2,7 +2,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
-	<h2>구인 공고 리스트</h2>
+	<h2 style="margin-top:10px">구인 공고 리스트</h2>
 	<c:forEach var="jobPostingBoard" items="${jobPostingBoardList}">
 	<input id="jobPostingBoardId" type="hidden"
 	value="${jobPostingBoard.jobPostingBoardId}">
@@ -53,7 +53,7 @@
 
 
 	<div class="d-grid gap-2 col-2 mx-auto">
-		<button id="btnSaveForm" type="button" class="btn btn-primary">공고등록하러가기</button>
+		<button id="btnSaveForm" type="button" class="btn btn-primary" style="background-color: rgba(0, 195, 98, 255); border: none; margin-bottom: 10px; margin-top: 10px; margin-bottom: 20px;">공고등록하러가기</button>
 	</div>
 </div>
 <script>

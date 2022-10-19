@@ -36,6 +36,7 @@ import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
+import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
@@ -256,6 +257,8 @@ public class PersonalController {
 			model.addAttribute("address", addressPS);
 			model.addAttribute("companyInfo", companyPS);
 			System.out.println(companyPS.getCompanyId());
+			List<JobPostingBoardListDto> jobPostingBoardList =  companyService.jobPostingBoardList(companyId);
+			model.addAttribute("jobPostingBoardList", jobPostingBoardList);
 			return "personal/companyInform";
 		}
 		

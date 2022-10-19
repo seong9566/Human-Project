@@ -178,7 +178,7 @@
 								style="margin-bottom: 10px; width: 950px; margin-left: 100px"></textarea>
 						</div>
 						<button id="btnSave" type="button" class="btn btn-primary"
-							style="margin: 20px 20px 30px 950px;">작성완료</button>
+							style="background-color: rgba(0, 195, 98, 255); border: none; margin: 20px 20px 30px 950px; margin-bottom: 20px;">작성완료</button>
 
 					</div>
 				</div>

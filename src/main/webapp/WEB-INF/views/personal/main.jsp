@@ -68,7 +68,7 @@
 				<tbody id="table">
 					<c:forEach var="jobPostingBoardList" items="${jobPostingBoardList}">
 						<tr>
-							<td>${jobPostingBoardList.jobPostingBoardId}</td>
+							<td style="padding-top: 50px">${jobPostingBoardList.jobPostingBoardId}</td>
 							<td>
 								<div id="apply" class="container p-4 my-4 border">
 									<a
@@ -77,7 +77,7 @@
 								</div>
 							</td>
 							<td>
-							<p>${jobPostingBoardList.state}</p>
+							<p style="padding-top: 40px">${jobPostingBoardList.state}</p>
 							</td>
 						</tr>
 					</c:forEach>
