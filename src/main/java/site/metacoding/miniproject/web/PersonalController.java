@@ -262,7 +262,7 @@ public class PersonalController {
 				model.addAttribute("paging",paging);
 			}
 		}
-
+		model.addAttribute("number", id);
 		return "personal/main";
 	}
 	

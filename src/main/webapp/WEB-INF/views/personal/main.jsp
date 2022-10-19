@@ -39,16 +39,17 @@
 <div class="dropdown">
 <div class="d-flex justify-content-between" style="width:1190px">
 	<select id="select_category" name="category" style="width: 150px; left: 10%">
-		<option id="categories" value="0">==관심분야==</option>
+		<option id="categories" value="5">==관심분야==</option>
 		<option id="categoryFrontend" value="1">프론트엔드</option>
 		<option id="categoryBackend" value="2">백엔드</option>
 		<option id="categoryDevops" value="3">데브옵스</option>
 		<option id="categoryAll" value="4">전체보기</option>
 	</select>
 	
-	<form class="d-flex" method="get" action="/main">
+	<form class="d-flex" method="get" action="/main/${number}">
 		<input class="searchForm" type="text" placeholder="Search"
 			name="keyword">
+		
 		<button id="keyword" class="searchsubmit" type="submit">🔍</button>
 		
 	</form>

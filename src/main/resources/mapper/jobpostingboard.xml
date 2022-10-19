@@ -203,6 +203,9 @@
 		<if test="id == 4">
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
+		<if test="id == 5">
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
 	</select>	
 	
 	<select id="findCategorySearch"
@@ -227,6 +230,10 @@
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 4">
+		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 5">
 		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
