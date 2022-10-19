@@ -20,7 +20,7 @@ Table "company" {
 Table "personal" {
   "personal_id" integer [pk]
   "personal_name" varchar(20)
-  "personal_category_id" integer
+  "personal_address" integer
   "personal_email" varchar(50)
   "personal_education" varchar(10)
   "personal_phone_number" varchar(20)
@@ -74,14 +74,14 @@ Table "job_posting_board" {
 
 Table "apply" {
   "apply_id" integer [pk]
-  "company_board_id" integer
+  "job_posting_board_id" integer
   "resumes_id" integer
   "alarm_id" integer
   "created_at" timestamp
 }
 
-Table "subscirbe" {
-  "subcirbe_id" integer [pk]
+Table "subscribe" {
+  "subscribe_id" integer [pk]
   "company_id" integer
   "personal_id" integer
   "alarm_id" integer
@@ -120,6 +120,8 @@ Table "alarm" {
   "alarm_subscribe_id" integer
   "alarm_company_like_id" integer
   "alarm_personal_like_id" integer
+  "alarm_message" varchar(20)
+  "alarm_check" tinyint(1)
   "created_at" timestamp
 }
 
@@ -131,11 +133,9 @@ Ref:"personal"."personal_id" < "resumes"."personal_id"
 
 Ref:"company"."company_id" < "personal_like"."company_id"
 
-Ref:"company"."company_id" < "subscirbe"."company_id"
+Ref:"company"."company_id" < "subscribe"."company_id"
 
-Ref:"personal"."personal_id" < "subscirbe"."personal_id"
-
-Ref:"category"."category_id" < "personal"."personal_category_id"
+Ref:"personal"."personal_id" < "subscribe"."personal_id"
 
 Ref:"resumes"."resumes_id" < "apply"."resumes_id"
 
@@ -151,7 +151,7 @@ Ref:"alarm"."alarm_id" < "company_like"."alarm_id"
 
 Ref:"alarm"."alarm_id" < "personal_like"."alarm_id"
 
-Ref:"alarm"."alarm_id" < "subscirbe"."alarm_id"
+Ref:"alarm"."alarm_id" < "subscribe"."alarm_id"
 
 Ref:"alarm"."alarm_id" < "apply"."alarm_id"
 
@@ -161,7 +161,7 @@ Ref:"personal_like"."personal_like_id" < "alarm"."alarm_personal_like_id"
 
 Ref:"apply"."apply_id" < "alarm"."alarm_apply_id"
 
-Ref:"subscirbe"."subcirbe_id" < "alarm"."alarm_subscribe_id"
+Ref:"subscribe"."subscribe_id" < "alarm"."alarm_subscribe_id"
 
 Ref:"users"."users_id" < "alarm"."users_id"
 
