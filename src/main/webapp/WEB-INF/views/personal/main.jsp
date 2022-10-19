@@ -81,7 +81,8 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-			</table>						
+			</table>
+			
 		</c:when>
 		<c:otherwise>
 			<table class="table table-bordered" style="text-align: center">

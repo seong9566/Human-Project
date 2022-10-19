@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.config.SessionConfig;
 import site.metacoding.miniproject.domain.alarm.Alarm;
+import site.metacoding.miniproject.domain.subscribe.Subscribe;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.utill.ValidationCheckUtil;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
@@ -49,6 +50,7 @@ public class UserController {
 		session.removeAttribute("principal");
 		session.removeAttribute("companyId");
 		session.removeAttribute("personalId");
+		session.removeAttribute("subscribe");
 		return "redirect:/main";
 	}
 
@@ -89,7 +91,7 @@ public class UserController {
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
 		SignedDto<?> signedDto = userService.login(loginDto);
-		
+
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
 
@@ -102,28 +104,32 @@ public class UserController {
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
+			List<Subscribe> subscribes = userService.findSubscribeinfoByPersonalId(signedDto.getPersonalId());
 			session.setAttribute("personalId", signedDto.getPersonalId());
+			session.setAttribute("subscribe", subscribes);
 		}
+
 		return new ResponseDto<>(1, "로그인완료", null);
 	}
 
 	@PostMapping("/join/personal")
 	public @ResponseBody ResponseDto<?> joinPersonal(@RequestBody PersonalJoinDto joinDto) {
-		
+
 		ValidationCheckUtil.valCheckToJoinPersonal(joinDto);
-		
+
 		userService.joinPersonal(joinDto);
-		
+
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
-		
+
 		session.setAttribute("principal", signedDto);
-		
+
 		return new ResponseDto<>(1, "계정생성완료", null);
 	}
 
-	@PostMapping(value="/join/company")
-	public @ResponseBody ResponseDto<?> joinCompany(@RequestPart("file") MultipartFile file,  @RequestPart ("joinDto")CompanyJoinDto joinDto) throws Exception {
+	@PostMapping(value = "/join/company")
+	public @ResponseBody ResponseDto<?> joinCompany(@RequestPart("file") MultipartFile file,
+			@RequestPart("joinDto") CompanyJoinDto joinDto) throws Exception {
 		int pos = file.getOriginalFilename().lastIndexOf('.');
 		String extension = file.getOriginalFilename().substring(pos + 1);
 		String filePath = "C:\\Temp\\img\\";
@@ -147,7 +153,7 @@ public class UserController {
 		userService.joinCompany(joinDto);
 		LoginDto loginDto = new LoginDto(joinDto);
 		SignedDto<?> signedDto = userService.login(loginDto);
-		
+
 		session.setAttribute("principal", signedDto);
 
 		return new ResponseDto<>(1, "계정생성완료", null);
