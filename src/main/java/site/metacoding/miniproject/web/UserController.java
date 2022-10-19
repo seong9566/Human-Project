@@ -107,9 +107,6 @@ public class UserController {
 			List<Subscribe> subscribes = userService.findSubscribeinfoByPersonalId(signedDto.getPersonalId());
 			session.setAttribute("personalId", signedDto.getPersonalId());
 			session.setAttribute("subscribe", subscribes);
-			for (Subscribe subscribe : subscribes) {
-				System.out.println(subscribe.getSubscribeId());
-			}
 		}
 
 		return new ResponseDto<>(1, "로그인완료", null);
