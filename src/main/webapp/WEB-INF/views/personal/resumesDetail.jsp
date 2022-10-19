@@ -83,7 +83,7 @@
 		<input id="portfolioFile" type="text" class="form-control"
 			placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
 	</div>
-
+</div>
 
 <div class="form">
 	<h2>자기소개서 작성</h2>

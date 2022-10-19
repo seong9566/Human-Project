@@ -172,7 +172,8 @@
 	
 	<select id="findSearch"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline
+		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline,
+		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state
 		FROM job_posting_board
 		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
@@ -182,7 +183,8 @@
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
 		SELECT b.job_posting_board_id, c.category_id, c.category_frontend, 
 		c.category_backend, c.category_devops, b.job_posting_board_category_id,
-		b.job_posting_board_title, b.job_posting_board_deadline
+		b.job_posting_board_title, b.job_posting_board_deadline,
+		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state
 		FROM category c
 		INNER JOIN job_posting_board b
 		ON b.job_posting_board_category_id = c.category_id
@@ -201,13 +203,17 @@
 		<if test="id == 4">
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
+		<if test="id == 5">
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
 	</select>	
 	
 	<select id="findCategorySearch"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
 		SELECT b.job_posting_board_id, c.category_id, c.category_frontend, 
 		c.category_backend, c.category_devops, b.job_posting_board_category_id,
-		b.job_posting_board_title, b.job_posting_board_deadline
+		b.job_posting_board_title, b.job_posting_board_deadline,
+		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state
 		FROM category c
 		INNER JOIN job_posting_board b
 		ON b.job_posting_board_category_id = c.category_id
@@ -224,6 +230,10 @@
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 4">
+		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 5">
 		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
