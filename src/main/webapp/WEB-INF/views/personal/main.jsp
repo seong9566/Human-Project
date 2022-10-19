@@ -2,16 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <div id="containermain">
-
+	<h2>회사 공고 추천 TOP 3</h2>
 	<div class="mb-3"></div>
 	<div class="dropdown">
-		<c:forEach var="bestPS" items="${bestPS}">
-			<div>${bestPS.companyName}</div>
-			<div id="image_container">
-				<img id="oldImg" src="/img/${bestPS.companyPicture}">
-			</div>
-		</c:forEach>
 
+		<div id="companyrank">
+			<c:forEach var="bestPS" items="${bestPS}" >
+				<ul>
+					<li>
+						<div class="company-item">
+							<div class="album-info" >
+								<img id="oldImg" src="/img/${bestPS.companyPicture}"
+									style="height: 250px;">
+								<div>${bestPS.companyName}</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</c:forEach>
+
+		</div>
 		<div class="d-flex justify-content-between" style="width: 1190px">
 			<select name="category" id="select_category"
 				style="width: 150px; left: 10%">
@@ -35,7 +45,6 @@
 					<table class="table table-bordered" style="text-align: center">
 						<thead>
 							<tr>
-								<th>번호</th>
 								<th>채용공고 제목</th>
 								<th>모집현황</th>
 							</tr>
@@ -44,17 +53,33 @@
 							<c:forEach var="jobPostingBoardList"
 								items="${jobPostingBoardList}">
 								<tr>
-									<td style="padding-top: 50px">${jobPostingBoardList.jobPostingBoardId}</td>
+
 									<td>
 										<div id="apply" class="container p-4 my-4 border">
+										<img id="Img"
+										src="/img/${jobPostingBoardList.companyPicture}"
+										style=" width:100px">
 											<a
 												href="/personal/jobPostingBoard/${jobPostingBoardList.jobPostingBoardId}">
 												${jobPostingBoardList.jobPostingBoardTitle}</a>
-										</div>
-									</td>
+										<strong>모집 분야</strong> <c:choose>
+											<c:when
+												test="${true eq jobPostingBoardList.categoryFrontend}">
+                                                프론트 엔드
+                                            </c:when>
 
-									<td>${jobPostingBoardList.formatDeadLine}
+											<c:when test="${true eq jobPostingBoardList.categoryBackend}">
+                                                백엔드
+                                            </c:when>
+
+											<c:when test="${true eq jobPostingBoardList.categoryDevops}">
+                                                데브옵스
+                                            </c:when>
+                                            
+										</c:choose> 
+										</div> 
 									<td>
+
 
 										<p style="padding-top: 40px">${jobPostingBoardList.state}</p>
 

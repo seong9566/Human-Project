@@ -15,4 +15,16 @@ public class PersonalMainDto {
 	private String state;
 	//TimeStamp > String
 	private String formatDeadLine;
+	//company
+	private String companyPicture;
+	private String companyName;
+	//Category테이블 
+	private Boolean categoryFrontend;
+	private Boolean categoryBackend;
+	private Boolean categoryDevops;
+	
+	//Career테이블	  
+	private Boolean oneYearLess;
+	private Boolean twoYearOver;
+	private Boolean threeYearOver;
 }

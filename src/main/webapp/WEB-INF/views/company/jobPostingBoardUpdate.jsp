@@ -30,7 +30,7 @@
 										<input id="address" type="text" class="form-control" style="width: 300px"
 											placeholder="${address.roadJibunAddr}" readonly> <br />
 										<p style="font-size: 15px;">상세주소</p>
-										<input id="education" type="text" class="form-control" style="width: 300px;"
+										<input id="detailAddress" type="text" class="form-control" style="width: 300px;"
 											placeholder="${address.detailAddress}" readonly>
 										<div>
 											<input type="file" id="file" onchange="setThumbnail(event)" />

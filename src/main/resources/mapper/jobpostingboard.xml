@@ -142,11 +142,17 @@
 	
 	<select id="findAll"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT *,
+	SELECT *,
 		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state 
 		FROM job_posting_board
+		LEFT OUTER JOIN company
+		ON job_posting_board.company_id = company.company_id
+		LEFT OUTER JOIN category
+		ON job_posting_board.job_posting_board_category_id = category.category_id
+		LEFT OUTER JOIN career
+		ON job_posting_board.job_posting_board_career_id = career.career_id
 		ORDER BY job_posting_board_id DESC
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		OFFSET #{startNum}  ROWS FETCH NEXT 5 ROWS ONLY
 	</select>
 
 	<select id="jobPostingBoardPaging"
