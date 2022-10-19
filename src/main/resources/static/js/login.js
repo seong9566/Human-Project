@@ -28,9 +28,11 @@ function login(login_dto) {
 		}
 	}).done((res) => {
 		if (res.code == 1) {
+			res.data.forEach((o, i)=>{
+				sessionStorage.setItem(i, o.companyId);
+			});
 			location.href = "/main";
 		}else if(res.code == -2){
-			alert(res.message);
 			history.back();
 		}else{
 			alert(res.message);

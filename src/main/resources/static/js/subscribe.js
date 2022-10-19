@@ -6,8 +6,6 @@ $("#btnSub").click((e) => {
 	}else if(text == "구독취소"){
 		subscribCancelToCompany($("#btnSub").val());
 	}
-
-
 });
 
 
@@ -22,6 +20,7 @@ function subscribToCompany(companyId) {
             $("#btnSub").text("구독취소");
             //$(".btn-update").load(location.href+" .btn-update");
 			//location.reload();
+			sessionStorage.setItem(sessionStorage.length, companyId);
             alert(res.message);
         } else {
             alert(res.message);
@@ -38,6 +37,10 @@ function subscribCancelToCompany(subscribeId) {
          $("#btnSub").val($("#companyId").val());
       	 $("#btnSub").text("구독하기");
 		//	location.reload();
+		for(i=0;i<(sessionStorage.length); i++){
+			let companyId = sessionStorage.getItem(i);
+			sessionStorage.setItem(i, sessionStorage.getItem(i)); 
+		}
             alert(res.message);
         } else {
             alert(res.message);
