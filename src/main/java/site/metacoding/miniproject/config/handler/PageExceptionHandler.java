@@ -12,25 +12,25 @@ import site.metacoding.miniproject.web.dto.response.ResponseDto;
 
 @ControllerAdvice
 public class PageExceptionHandler {
-	
+
 	@ExceptionHandler(RuntimeException.class)
-	public @ResponseBody String RuntimeError(Exception e){
+	public @ResponseBody String RuntimeError(Exception e) {
 		return Script.back("잘못된 요청입니다.");
 	}
 
 	@ExceptionHandler(ApiException.class)
-	public @ResponseBody ResponseDto<?> apiError(Exception e){
-		return new ResponseDto<>(-1, "에러 발생", null);
-	}
-	
-	@ExceptionHandler(NormalException.class)
-	public @ResponseBody String Error(Exception e){
-		return Script.back(e.getMessage());
-	}
-	
-	@ExceptionHandler(ValCheckException.class)
-	public @ResponseBody ResponseDto<?> valCheckError(Exception e){
+	public @ResponseBody ResponseDto<?> apiError(Exception e) {
 		return new ResponseDto<>(-1, e.getMessage(), null);
 	}
-	
+
+	@ExceptionHandler(NormalException.class)
+	public @ResponseBody String Error(Exception e) {
+		return Script.back(e.getMessage());
+	}
+
+	@ExceptionHandler(ValCheckException.class)
+	public @ResponseBody ResponseDto<?> valCheckError(Exception e) {
+		return new ResponseDto<>(-1, e.getMessage(), null);
+	}
+
 }

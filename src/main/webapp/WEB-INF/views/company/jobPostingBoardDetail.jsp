@@ -116,7 +116,6 @@
 		<div class="btn-update">
 			<button id="btnUpdateForm" type="button" class="btn btn-primary">채용 공고 수정</button>
 		</div>
-
 	</div>
 </div>
 <script>
@@ -124,6 +123,8 @@ let jobPostingBoardId = $("#jobPostingBoardId").val();
 $("#btnUpdateForm").click(()=>{
 	location.href = "/company/jobPostingBoardUpdate/"+jobPostingBoardId;
 });
+
+
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>

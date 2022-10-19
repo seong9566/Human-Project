@@ -46,7 +46,7 @@ public class AlarmController {
 		simpMessagingTemplate.convertAndSend("/queue/Personal/" + usersId,
 				new ResponseDto<>(1, "success", resumesId));
 	}
-	
+
 	@MessageMapping("/Personal/LikeCompany/{companyId}")
 	public void messageToCompany(@DestinationVariable Integer companyId, Integer FromUsersId) {
 		Integer usersId = usersService.findUserIdByCompanyId(companyId);
