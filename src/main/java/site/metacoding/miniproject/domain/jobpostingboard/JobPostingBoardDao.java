@@ -7,7 +7,6 @@ import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import org.apache.ibatis.annotations.Param;
 
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
-import site.metacoding.miniproject.web.dto.response.ListByCategoryDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
@@ -34,5 +33,6 @@ public interface JobPostingBoardDao {
 	public List<PersonalMainDto> findSearch(@Param("startNum") int startNum, @Param("keyword") String keyword);
 
 	// 카테고리별 목록보기	
-	public List<ListByCategoryDto> findCategory(Integer id);
+	public List<PersonalMainDto> findCategory(@Param("startNum") Integer startNum, @Param("id") Integer id);
+	public List<PersonalMainDto> findCategorySearch(@Param("startNum") int startNum, @Param("keyword") String keyword, @Param("id") Integer id);
 }

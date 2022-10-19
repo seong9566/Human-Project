@@ -15,4 +15,14 @@ public class PersonalMainDto {
 	private String state;
 	//TimeStamp > String
 	private String formatDeadLine;
+	
+	// 드롭다운 리스트
+	private String categoryAll;
+	private Boolean categoryFrontend;
+	private Boolean categoryBackend;
+	private Boolean categoryDevops;
+	
+	private Integer jobPostingBoardCategoryId;
+	private Integer categoryId;
+	private Integer id;
 }

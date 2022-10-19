@@ -34,7 +34,6 @@ import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
-import site.metacoding.miniproject.web.dto.response.ListByCategoryDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
@@ -200,14 +199,13 @@ public class PersonalController {
 				model.addAttribute("resumesList", resumesList);
 				model.addAttribute("paging",paging);
 			}
-		}
-		
+		}		
 		return "personal/main";
 	}
 	
 	// 메인 - 카테고리별 리스트 보기
 	@GetMapping("/main/{id}")
-	public @ResponseBody ResponseDto<List<ListByCategoryDto>> listByCategoryTest(@PathVariable Integer id, Model model, Integer page, String keyword) {
+	public String listByCategoryTest(@PathVariable Integer id, Model model, Integer page, String keyword) {
 	
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");	
 		
@@ -216,15 +214,13 @@ public class PersonalController {
 		
 		if (session.getAttribute("principal") == null) {
 			if(keyword == null || keyword.isEmpty()) {
-				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-				List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findCategory(startNum, id);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
-				paging.makeBlockInfo(keyword);				
+				paging.makeBlockInfo(keyword);	
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
-				model.addAttribute("paging",paging);			
+				model.addAttribute("paging",paging);
 			} else {
-				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-				List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findCategorySearch(startNum, keyword, id);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);
@@ -232,15 +228,13 @@ public class PersonalController {
 			}
 		} else if(principal.getPersonalId() != null) {
 			if(keyword == null || keyword.isEmpty()) {
-				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-				List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findCategory(startNum, id);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
 				model.addAttribute("paging",paging);			
 			} else {
-				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-				List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findCategorySearch(startNum, keyword, id);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);
@@ -249,15 +243,12 @@ public class PersonalController {
 			
 		} else if(principal.getCompanyId() != null) {
 			if(keyword == null || keyword.isEmpty()) { 
-				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
 				List<CompanyMainDto> resumesList = personalService.resumesAll(startNum);
 				PagingDto paging = personalService.resumesPaging(page, null);
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("resumesList", resumesList);	
-				model.addAttribute("paging",paging);
-				
+				model.addAttribute("paging",paging);				
 			} else {
-				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
 				List<CompanyMainDto> resumesList = personalService.findSearch(startNum, keyword);
 				PagingDto paging = personalService.resumesPaging(page, keyword);
 				paging.makeBlockInfo(keyword);			
@@ -265,8 +256,8 @@ public class PersonalController {
 				model.addAttribute("paging",paging);
 			}
 		}
-		
-		return new ResponseDto<List<ListByCategoryDto>>(1, "완료", null);
+
+		return "personal/main";
 	}
 	
 	// 내정보 보기

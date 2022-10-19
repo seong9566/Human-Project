@@ -2,10 +2,8 @@ package site.metacoding.miniproject.service.company;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +26,6 @@ import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
-import site.metacoding.miniproject.web.dto.response.ListByCategoryDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
@@ -124,7 +121,7 @@ public class CompanyService {
 	}
 
 	// 전체 채용공고 리스트
-	public List<PersonalMainDto> findAll(int startNum) {
+	public List<PersonalMainDto> findAll (int startNum) {
 		List<PersonalMainDto> personalMainPS = jobPostingBoardDao.findAll(startNum);
 		// TimeStamp to String
 		for (PersonalMainDto deadLine : personalMainPS) {
@@ -143,14 +140,17 @@ public class CompanyService {
 	}
 
 	// 검색 결과 리스트
-	public List<PersonalMainDto> findSearch(Integer startNum, String keyword) {
+	public List<PersonalMainDto> findSearch(int startNum, String keyword) {
 		return jobPostingBoardDao.findSearch(startNum, keyword);
 	}	
 	
 	// 카테고리 별 리스트 보기
-	public List<ListByCategoryDto> findCategory(Integer id) {
-		System.out.println(id);
-		return jobPostingBoardDao.findCategory(id);
+	public List<PersonalMainDto> findCategory(int startNum, Integer id) {
+		return jobPostingBoardDao.findCategory(startNum, id);
+	}
+	// 카테고리 별 검색 결과 리스트
+	public List<PersonalMainDto> findCategorySearch(int startNum, String keyword, Integer id) {
+		return jobPostingBoardDao.findCategorySearch(startNum, keyword, id);
 	}
 	
 }
