@@ -25,20 +25,19 @@ public class PersonalLikeService {
 	private final PersonalLikesDao personalLikesDao;
 	private final AlarmDao alarmDao;
 
-
 	@Transactional(rollbackFor = RuntimeException.class)
 	public void 좋아요(Integer resumesId, SignedDto<?> signedDto) {
 
-		HashMap<String, Integer> personallike = new HashMap<>();
+		HashMap<String, Integer> personallikes = new HashMap<>();
 		Company companyinfo = (Company) signedDto.getUserinfo();
 
 		PersonalLike personalLike = new PersonalLike(resumesId, signedDto.getCompanyId());
 		personalLikesDao.insert(personalLike);
 
-		personallike.put(AlarmEnum.ALARMPERSONALLIKEID.key(), personalLike.getPersonalLikeId());
+		personallikes.put(AlarmEnum.ALARMPERSONALLIKEID.key(), personalLike.getPersonalLikeId());
 
 		Users users = usersDao.findByResumesId(resumesId);
-		Alarm alarm = new Alarm(users.getUsersId(), personallike, companyinfo.getCompanyName());
+		Alarm alarm = new Alarm(users.getUsersId(), personallikes, companyinfo.getCompanyName());
 
 		alarmDao.insert(alarm);
 
@@ -61,12 +60,10 @@ public class PersonalLikeService {
 		return PersonalLikeDtoList;
 	}
 
-
 	public PersonalLike 좋아요확인(Integer companyId, Integer resumesId) {
 		PersonalLike personalLike = new PersonalLike(companyId, resumesId);
 		PersonalLike companyLike2 = personalLikesDao.findById(personalLike);
 		return companyLike2;
 	}
-	
 
 }

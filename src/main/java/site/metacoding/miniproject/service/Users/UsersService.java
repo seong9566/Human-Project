@@ -13,6 +13,8 @@ import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.personal.Personal;
 import site.metacoding.miniproject.domain.personal.PersonalDao;
+import site.metacoding.miniproject.domain.subscribe.Subscribe;
+import site.metacoding.miniproject.domain.subscribe.SubscribeDao;
 import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.domain.users.UsersDao;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
@@ -28,6 +30,7 @@ public class UsersService {
 	private final CompanyDao companyDao;
 	private final PersonalDao personalDao;
 	private final AlarmDao alarmDao;
+	private final SubscribeDao subscribeDao;
 
 	public SignedDto<?> login(LoginDto loginDto) {
 		String loginId = loginDto.getLoginId();
@@ -83,7 +86,7 @@ public class UsersService {
 		Users users = usersDao.findByResumesId(resumesId);
 		return users.getUsersId();
 	}
-	
+
 	public Integer findUserIdByCompanyId(Integer companyId) {
 		Users users = usersDao.findByCompanyId(companyId);
 		return users.getUsersId();
@@ -98,6 +101,7 @@ public class UsersService {
 		List<Alarm> usersAlarm = alarmDao.findByusersId(usersId);
 		return usersAlarm;
 	}
+
 	public Boolean checkUserAlarm(Integer usersId) {
 		Boolean ischecked = alarmDao.findByUsersIdToAlarmChecked(usersId);
 		return ischecked;
@@ -109,5 +113,9 @@ public class UsersService {
 
 	public void deleteAlarm(Integer alarmId) {
 		alarmDao.deleteById(alarmId);
+	}
+
+	public List<Subscribe> findSubscribeinfoByPersonalId(Integer personalId) {
+		return subscribeDao.findByPersonalId(personalId);
 	}
 }
