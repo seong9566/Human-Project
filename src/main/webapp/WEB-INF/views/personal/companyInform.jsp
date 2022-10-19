@@ -10,7 +10,7 @@
 			<div class="col-lg-4" data-aos="fade-right">
 				
 				<div id="image_container">
-					<img id="oldImg" src="/img/${jobPostingPS.companyPicture}">
+					<img id="oldImg" src="/img/${companyInfo.companyPicture}">
 				</div>
 			</div>
 			<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
@@ -61,9 +61,7 @@
 	</div>
 </div>
 <script src="/js/subscribe.js"></script>
-<script> 
-
-function setThumbnail(event) {
+<script> function setThumbnail(event) {
     let reader = new FileReader();
     reader.onload = function (event) {
         if (document.getElementById("newImg")) {
@@ -77,8 +75,5 @@ function setThumbnail(event) {
         document.querySelector("#image_container").appendChild(img);
     };
     reader.readAsDataURL(event.target.files[0]);
-}
-
-
-</script>
+}</script>
 <%@ include file="../layout/footer.jsp"%>
