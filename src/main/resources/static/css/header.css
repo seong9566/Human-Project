@@ -1,153 +1,155 @@
 @charset "UTF-8";
-  /* Add Zoom Animation */
-  .animate {
-      -webkit-animation: animatezoom 0.6s;
-      animation: animatezoom 0.6s
-  }
+/* Add Zoom Animation */
+.animate {
+	-webkit-animation: animatezoom 0.6s;
+	animation: animatezoom 0.6s
+}
 
-  @-webkit-keyframes animatezoom {
-      from {
-          -webkit-transform: scale(0)
-      }
+@
+-webkit-keyframes animatezoom {from { -webkit-transform:scale(0)
+	
+}
 
-      to {
-          -webkit-transform: scale(1)
-      }
+to {
+	-webkit-transform: scale(1)
+}
 
-  }
+}
+@
+keyframes animatezoom {from { transform:scale(0)
+	
+}
 
-  @keyframes animatezoom {
-      from {
-          transform: scale(0)
-      }
+to {
+	transform: scale(1)
+}
 
-      to {
-          transform: scale(1)
-      }
-  }
+}
+#myModal.modal-overlay {
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(1.5px);
+	-webkit-backdrop-filter: blur(1.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
 
-  #myModal.modal-overlay {
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.25);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(1.5px);
-      -webkit-backdrop-filter: blur(1.5px);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-  }
+#myModal .modal-window {
+	background: black;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(13.5px);
+	-webkit-backdrop-filter: blur(13.5px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	width: 400px;
+	height: 500px;
+	position: relative;
+	top: -100px;
+	padding: 10px;
+}
 
-  #myModal .modal-window {
-      background: black;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(13.5px);
-      -webkit-backdrop-filter: blur(13.5px);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      width: 400px;
-      height: 500px;
-      position: relative;
-      top: -100px;
-      padding: 10px;
-  }
+#modal .title {
+	padding-left: 10px;
+	display: inline;
+	text-shadow: 1px 1px 2px gray;
+	color: black;
+}
 
-  #modal .title {
-      padding-left: 10px;
-      display: inline;
-      text-shadow: 1px 1px 2px gray;
-      color: black;
+#modal .title h2 {
+	display: inline;
+}
 
-  }
+#modal .close-area {
+	display: inline;
+	float: right;
+	padding-right: 10px;
+	cursor: pointer;
+	text-shadow: 1px 1px 2px gray;
+	color: green;
+}
 
-  #modal .title h2 {
-      display: inline;
-  }
+#modal .content {
+	margin-top: 20px;
+	padding: 0px 10px;
+	text-shadow: 1px 1px 2px gray;
+	color: black;
+}
 
-  #modal .close-area {
-      display: inline;
-      float: right;
-      padding-right: 10px;
-      cursor: pointer;
-      text-shadow: 1px 1px 2px gray;
-      color: green;
-  }
+* {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	box-sizing: border-box;
+}
 
-  #modal .content {
-      margin-top: 20px;
-      padding: 0px 10px;
-      text-shadow: 1px 1px 2px gray;
-      color: black;
-  }
+li {
+	list-style: none;
+}
 
+a {
+	text-decoration: none;
+	outline: none;
+}
 
-  * {
-      margin: 0;
-      padding: 0;
-      color: #000;
-      box-sizing: border-box;
-  }
+.container {
+	width: 1200px;
+	margin: 0 auto;
+	border-bottom: solid 1px;
+}
 
+header {
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
-  li {
-      list-style: none;
-  }
+header>h2 {
+	margin-left: 10px;
+}
 
-  a {
-      text-decoration: none;
-      outline: none;
-  }
+header>nav {
+	width: 800px;
+	height: 100%;
+}
 
-  .container {
-      width: 1200px;
-      margin: 0 auto;
-      border-bottom:solid 1px;
-  }
+header ul {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+}
 
-  header {
-      width: 100%;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-  }
+header ul>li {
+	font-size: 17px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	margin-left: 10px;
+}
 
-  header>h2 {
-      margin-left: 10px;
-  }
+#alarm {
+	padding-top: 25px;
+	padding-left: 30px;
+	color: green;
+	cursor: pointer;
+}
 
-  header>nav {
-      width: 800px;
-      height: 100%;
-  }
-
-  header ul {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-  }
-
-  header ul>li {
-      font-size: 17px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-      margin-left: 10px;
-  }
-
-
-  #alarm {
-      padding-top: 25px;
-      padding-left: 30px;
-      color: green;
-      cursor: pointer;
-  }
+img {
+	width: 100%;
+	height: 100%;
+	max-width: 300px;
+	max-height: 300px
+}
