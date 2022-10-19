@@ -243,13 +243,13 @@ public class PersonalController {
 			
 		} else if(principal.getCompanyId() != null) {
 			if(keyword == null || keyword.isEmpty()) { 
-				List<CompanyMainDto> resumesList = personalService.resumesAll(startNum);
+				List<CompanyMainDto> resumesList = personalService.findCategory(startNum, id);
 				PagingDto paging = personalService.resumesPaging(page, null);
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("resumesList", resumesList);	
 				model.addAttribute("paging",paging);				
 			} else {
-				List<CompanyMainDto> resumesList = personalService.findSearch(startNum, keyword);
+				List<CompanyMainDto> resumesList = personalService.findCategorySearch(startNum, keyword, id);
 				PagingDto paging = personalService.resumesPaging(page, keyword);
 				paging.makeBlockInfo(keyword);			
 				model.addAttribute("resumesList", resumesList);

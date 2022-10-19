@@ -6,7 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CompanyMainDto {
-	private Integer row;
 	private Integer resumesId;
 	private String resumesTitle;
 	private String resumesPlace;

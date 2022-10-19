@@ -87,7 +87,6 @@
 			<table class="table table-bordered" style="text-align: center">
 				<thead>
 					<tr>
-						<th>번호</th>
 						<th>이력서 제목</th>
 						<th>희망근무지역</th>
 					</tr>
@@ -95,7 +94,6 @@
 				<tbody id="table">
 					<c:forEach var="resumesList" items="${resumesList}">
 						<tr>
-							<td>${resumesList.resumesId}</td>
 							<td>
 								<div id="apply" class="container p-4 my-4 border">
 									<a href="/personal/resumes/${resumesList.resumesId}">

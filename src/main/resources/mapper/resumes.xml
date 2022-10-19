@@ -88,7 +88,7 @@
 	</select>	
 	<select id="findSearch"
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
-		SELECT ROW_NUMBER() OVER (ORDER BY resumes_id ASC) AS ROW, resumes_id, resumes_title, resumes_place
+		SELECT resumes_id, resumes_title, resumes_place
 		FROM resumes
 		WHERE resumes_title like CONCAT('%', #{keyword}, '%')
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
@@ -99,6 +99,55 @@
 		VALUES(#{personalLikeId},#{resumesId},#{companyId},now())
 	</insert>
 	
-
+		<select id="findCategory"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
+		SELECT r.resumes_id, c.category_id, c.category_frontend, 
+		c.category_backend, c.category_devops, r.resumes_category_id,
+		r.resumes_title, r.resumes_place
+		FROM category c
+		INNER JOIN resumes r
+		ON r.resumes_category_id = c.category_id
+		<if test="id == 1">
+		WHERE category_frontend = 1
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 2">
+		WHERE category_backend = 1
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 3">
+		WHERE category_devops = 1
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 4">
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+	</select>	
+	
+	<select id="findCategorySearch"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
+		SELECT r.resumes_id, c.category_id, c.category_frontend, 
+		c.category_backend, c.category_devops, r.resumes_category_id,
+		r.resumes_title, r.resumes_place
+		FROM category c
+		INNER JOIN resumes r
+		ON r.resumes_category_id = c.category_id
+		<if test="id == 1">
+		WHERE category_frontend = 1 AND resumes_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 2">
+		WHERE category_backend = 1 AND resumes_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 3">
+		WHERE category_devops = 1 AND resumes_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+		<if test="id == 4">
+		WHERE resumes_title like CONCAT('%', #{keyword}, '%')
+		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+		</if>
+	</select>	
 
 </mapper>
