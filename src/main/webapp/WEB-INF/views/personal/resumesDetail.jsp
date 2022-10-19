@@ -1,109 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ include file="../layout/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
 
-		<input id="resumesId" type="hidden" value="${detailResumesDtoPS.resumesId}">
+<input id="resumesId" type="hidden"
+	value="${detailResumesDtoPS.resumesPicture}">
 
-		<div id="main">
-			<br />
-			<div class="tool">
-				<div class="left">
-					<h3>${detailResumesDtoPS.resumesTitle}</h3>
-					<br />
-					<h3>개인정보</h3>
-					<div class="left_input">
-						<br />
-						<div id="usersName">${detailResumesDtoPS.personalName}</div>
-						<br />
-						<div id="phoneNumber">${detailResumesDtoPS.personalPhoneNumber}</div>
-						<br />
-						<div id="email">${detailResumesDtoPS.personalEmail}</div>
-						<br />
-						<div id="education">${detailResumesDtoPS.personalEducation}</div>
+<div class="container">
+	<section id="about" class="about">
+		<div class="row">
+			<div class="col-lg-4" data-aos="fade-right">
+			
+					<img id="oldImg" src="/img/${detailResumesDtoPS.resumesPicture}">
+				
+				<div class="btn-update">
+					<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}"><button
+							id="btnUpdate" type="button" class="btn btn-primary"
+							style="background-color: rgba(0, 195, 98, 255); border: none; margin-top: 20px; margin-left: 90px">이력서
+							수정</button></a>
+				</div>
+			</div>
+
+			<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+				<h2>이력서</h2>
+				<p class="fst-italic">이력서 제목 :
+					${detailResumesDtoPS.resumesTitle}</p>
+				<div class="row">
+					<div class="col-lg-6">
+						<ul>
+							<li><i class="bi bi-chevron-right"></i> <strong>이름
+									:</strong> <span>${detailResumesDtoPS.personalName}</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>이메일
+									:</strong> <span>${detailResumesDtoPS.personalEmail}</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>경력
+									:</strong> <span> <c:choose>
+										<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
+                                            1년 미만
+                                        </c:when>
+										<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
+                                            2년 이상
+                                        </c:when>
+										<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
+                                            3년 이상
+                                        </c:when>
+										<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
+                                            5년 이상"
+                                        </c:when>
+									</c:choose>
+							</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>학력:</strong>
+								<span>${detailResumesDtoPS.personalEducation}</span></li>
+						</ul>
+					</div>
+					<div class="col-lg-6">
+						<ul>
+							<li><i class="bi bi-chevron-right"></i> <strong>연락처
+									:</strong> <span> ${detailResumesDtoPS.personalPhoneNumber}</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>희망
+									근무 지역 :</strong> <span>${detailResumesDtoPS.resumesPlace}</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>관심분야:</strong>
+								<span> <c:choose>
+										<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
+                                            경력 : 프론트엔드<br />
+										</c:when>
+									</c:choose> <c:choose>
+										<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
+                                            백엔드<br />
+										</c:when>
+									</c:choose> <c:choose>
+										<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
+                                            데브옵스<br />
+										</c:when>
+									</c:choose>
+							</span></li>
+							<li><i class="bi bi-chevron-right"></i> <strong>링크</strong>
+								<span><a href="${detailResumesDtoPS.portfolioSource}"
+									style="font-size: 20px">
+										${detailResumesDtoPS.portfolioSource} </a> </span></li>
+						</ul>
 					</div>
 				</div>
-
-
-				<div class="mb-3">◆증명사진</div>
-				<div class="right">
-					<img src="/img/${detailResumesDtoPS.resumesPicture }" style="width: 200px">
-
-				</div>
-
-
-				<div class="mb-3">◆ 관련 경력 사항</div>
-				<div>
-					<c:choose>
-						<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
-							1년 미만
-						</c:when>
-						<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
-							2년 이상
-						</c:when>
-						<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
-							3년 이상
-						</c:when>
-						<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
-							5년 이상
-						</c:when>
-					</c:choose>
-				</div>
-
-				<div class="mb-3">◆ 관심 분야</div>
-				<div>
-					<c:choose>
-						<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
-							- 프론트엔드
-						</c:when>
-					</c:choose>
-					<c:choose>
-						<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
-							- 백엔드
-						</c:when>
-					</c:choose>
-					<c:choose>
-						<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
-							- 데브옵스
-						</c:when>
-					</c:choose>
-				</div>
-				<div class="mb-3">◆희망근무지역</div>
-				<input id="resumesPlace" type="text" class="form-control"
-					placeholder="${detailResumesDtoPS.resumesPlace}" readonly />
-
-				<div class="mb-3">◆Github 주소 or Blog 주소</div>
-
-
-				<a href="${detailResumesDtoPS.portfolioSource}"> - link
-					:${detailResumesDtoPS.portfolioSource} </a>
-
-				<div class="mb-3">◆포트폴리오</div>
-				<input id="portfolioFile" type="text" class="form-control"
-					placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
+				<p>
+					자기소개문 :
+					<textarea class="form-control" id="resumesIntroduce" rows="8"
+						readonly>${detailResumesDtoPS.resumesIntroduce}</textarea>
+				</p>
 			</div>
+		</div>
+	</section>
+</div>
 
-			<div class="form">
-				<h2>자기소개서 작성</h2>
-				<div>${detailResumesDtoPS.resumesIntroduce}</div>
-			</div>
-			<c:if test="${principal.personalId != null}">
-				<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
-					<div class="lineheight">수정하러가기</div>
-				</a>
-			</c:if>
-			<div>
-				<c:if test="${principal.companyId != null}">
-					<c:choose>
-						<c:when test="${empty personalLike}">
-							<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
-						</c:when>
-						<c:otherwise>
-							<button id="btnlike" type="button" class="btn btn-primary">좋아요취소</button>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
-			</div>
+<script src="/js/personallike.js"></script>
+<script src="/js/resumes.js"></script>
 
-			<script src="/js/personallike.js"></script>
-			<script src="/js/resumes.js"></script>
-
-			<%@ include file="../layout/footer.jsp" %>
+<%@ include file="../layout/footer.jsp"%>
