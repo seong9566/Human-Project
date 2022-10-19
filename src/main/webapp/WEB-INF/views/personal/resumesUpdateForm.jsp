@@ -92,7 +92,6 @@
 	<button id="btnUpdate" type="button" class="btn btn-primary">이력서수정완료</button>
 </div>
 
-</div>
 
 <script src="/js/resumes.js"></script>
 

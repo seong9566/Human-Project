@@ -11,6 +11,8 @@ public class PersonalMainDto {
 	private Integer jobPostingBoardId;
 	private String jobPostingBoardTitle;
 	private Timestamp jobPostingBoardDeadline;
+	
+	
 	//모집중, 모집 마감
 	private String state;
 	//TimeStamp > String

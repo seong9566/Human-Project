@@ -15,6 +15,8 @@ function setThumbnail(event) {
     reader.readAsDataURL(event.target.files[0]);
 }
 
+
+
 // 이력서 작성
 function clickCheck(target) {
     document.querySelectorAll(`input[type=radio]`)

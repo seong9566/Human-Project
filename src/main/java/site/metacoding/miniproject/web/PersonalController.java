@@ -107,6 +107,8 @@ public class PersonalController {
 		model.addAttribute("personalLike", personalLike);
 		DetailResumesDto detailResumesDtoPS = personalService.resumesById(resumesId);
 		model.addAttribute("detailResumesDtoPS", detailResumesDtoPS);
+		
+		model.addAttribute("principal",signedDto);
 		return "personal/resumesDetail";
 	}
 
@@ -302,6 +304,7 @@ public class PersonalController {
 		CompanyAddressDto addressPS = companyService.findByAddress(jobPostingPS.getCompanyId());
 		model.addAttribute("address", addressPS);
 		model.addAttribute("jobPostingPS", jobPostingPS);
+		System.out.println(jobPostingPS.getCompanyPicture());
 		return "personal/jobPostingViewApply";
 	}
 
@@ -311,7 +314,7 @@ public class PersonalController {
 		CompanyInfoDto companyPS = companyService.findCompanyInfo(companyId);
 		CompanyAddressDto addressPS = companyService.findByAddress(companyId);
 		model.addAttribute("address", addressPS);
-		model.addAttribute("companyInfo", companyPS);
+		model.addAttribute("companyInfo", companyPS);	
 		return "personal/companyInform";
 	}
 

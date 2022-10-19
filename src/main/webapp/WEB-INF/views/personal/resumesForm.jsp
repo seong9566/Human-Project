@@ -20,9 +20,10 @@
 									<div class="left_input">
 										<p style="font-size: 15px; margin-top: 10px">사진입력</p>
 										<div class="form-group">
-											<div id="imageContainer"></div>
-											<input type="file" id="file" accept="image/*"
-												onchange="setThumbnail(event)">
+											<input type="file" id="file" onchange="setThumbnail(event)" />
+											<div id="image_container">
+												<img id="oldImg" src="/img/${companyInfo.companyPicture}">
+											</div>
 										</div>
 										<p style="font-size: 15px;">이름</p>
 										<input id="usersName" type="text" class="form-control"
@@ -49,7 +50,7 @@
 								<div class="p-5">
 									<div class="row">
 										<div class="mb-3">
-											<p style="font-size: 20px; margin-top: 20px">경력 사항</p>
+											<p style="font-size: 20px; margin-top: 200px">경력 사항</p>
 											<div class="form-check d-flex">
 												<div>
 													<tr>
@@ -73,7 +74,7 @@
 																<div class="form-check">
 																	<label for="fourth"><input type="radio"
 																		name="year" value="fiveYearOver"
-																		onclick="clickCheck(this)"  style="margin-right:15px;">5년이상</label>
+																		onclick="clickCheck(this)" style="margin-right: 15px;">5년이상</label>
 																</div>
 															</div>
 														</td>

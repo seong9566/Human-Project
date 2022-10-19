@@ -28,4 +28,9 @@ public class JobPostingBoardInsertDto {
 	private Boolean categoryDevops;
 	
 	private Timestamp jobPostingBoardDeadline;
+	
+	
+	
+	
+	
 }

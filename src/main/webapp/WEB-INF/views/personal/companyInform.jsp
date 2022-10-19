@@ -2,15 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <input id="companyId" type="hidden" value="${companyInfo.companyId}">
-<input id="companyId" type="hidden" value="${companyInfo.companyId}">
 <input id="jobPostingBoardId" type="hidden"
 	value="${jobPostingPS.jobPostingBoardId}">
 <div class="container">
 	<section id="about" class="about">
 		<div class="row">
 			<div class="col-lg-4" data-aos="fade-right">
+				
 				<div id="image_container">
-					<img id="oldImg" src="/img/${companyInfo.companyPicture}">
+					<img id="oldImg" src="/img/${jobPostingPS.companyPicture}">
 				</div>
 			</div>
 			<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
@@ -39,16 +39,18 @@
 	<div class="container mt-3" style="border: 3px solid #000000">
 		<h2>현재 채용중인 공고</h2>
 		<div class="row row-cols-1 row-cols-md-3 g-4">
-				       <c:forEach var="jobPostingBoard" items="${jobPostingBoardList}">
-                <div class="card" style="width: 18rem;">
-                    <a href="/company/jobPostingBoardDetail/${jobPostingBoard.jobPostingBoardId}"><img
-                            class="card-img-top" src="/img/${jobPostingBoard.jobPostingPicture}"
-                            alt="Card image cap"></a>
-                    <div class="card-body">
-                        <p class="card-text">${jobPostingBoard.jobPostingBoardTitle}</p>
-                    </div>
-                </div>
-            </c:forEach>
+			<c:forEach var="jobPostingBoard" items="${jobPostingBoardList}">
+				<div class="card" style="width: 18rem;">
+					<a
+						href="/company/jobPostingBoardDetail/${jobPostingBoard.jobPostingBoardId}"><img
+						class="card-img-top"
+						src="/img/${jobPostingBoard.jobPostingPicture}"
+						alt="Card image cap"></a>
+					<div class="card-body">
+						<p class="card-text">${jobPostingBoard.jobPostingBoardTitle}</p>
+					</div>
+				</div>
+			</c:forEach>
 
 		</div>
 	</div>
@@ -59,5 +61,24 @@
 	</div>
 </div>
 <script src="/js/subscribe.js"></script>
+<script> 
 
+function setThumbnail(event) {
+    let reader = new FileReader();
+    reader.onload = function (event) {
+        if (document.getElementById("newImg")) {
+            document.getElementById("newImg").remove();
+        }
+        let img = document.createElement("img");
+        let oldImg = $("#oldImg");
+        oldImg.remove();
+        img.setAttribute("src", event.target.result);
+        img.setAttribute("id", "newImg");
+        document.querySelector("#image_container").appendChild(img);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+
+</script>
 <%@ include file="../layout/footer.jsp"%>
