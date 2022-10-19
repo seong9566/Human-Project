@@ -1,4 +1,4 @@
-%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
 <div id="main">
@@ -6,16 +6,16 @@
 		<div class="tool">
 			<div class="left">
 				<br />
-				<h3>회사정보</h3>
+				<h3>íì¬ì ë³´</h3>
 				<div class="left_input">
 					<div id="userId">sopu5555</div>
 					<br />
-					<div id="copanyName">농심</div>
+					<div id="copanyName">ëì¬</div>
 					<br />
 					<div id="phonenumber">01024102957</div>
 					<br />
 					<div id="email">sop55544@gmail.com</div>
-					<div id="adress">부산 북구 화명3동 코오롱 하늘채 110동 504호</div>
+					<div id="adress">ë¶ì° ë¶êµ¬ íëª3ë ì½ì¤ë¡± íëì± 110ë 504í¸</div>
 				</div>
 			</div>
 			<div class="right">
@@ -24,7 +24,7 @@
 		</div>
 		<input type="file" Id="fileUpload" accept='image/*' /> <br /> <br />
 		<div class="form">
-			<h2>모집조건 및 안내사항</h2>
+			<h2>ëª¨ì§ì¡°ê±´ ë° ìë´ì¬í­</h2>
 			<div id="summernote"></div>
 		</div> 
 
