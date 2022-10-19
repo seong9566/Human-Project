@@ -105,7 +105,8 @@
 		cp.company_picture,
 		cp.company_name,
 		cp.company_email,
-		cp.company_phone_number
+		cp.company_phone_number,
+		cl.company_like_id
 		FROM job_posting_board jpb
 		LEFT OUTER JOIN category c
 		ON jpb.job_posting_board_category_id = c.category_id
@@ -113,7 +114,9 @@
 		ON jpb.job_posting_board_career_id = cr.career_id
 		LEFT OUTER JOIN company cp
 		ON jpb.company_id = cp.company_id
-		WHERE jpb.job_posting_board_id = #{jobPostingBoardId}
+		LEFT OUTER JOIN company_like cl
+		ON jpb.company_id = cl.company_id
+		WHERE jpb.job_posting_board_id =  #{jobPostingBoardId}
 	</select>
 
 	<select id="findById"
@@ -139,7 +142,9 @@
 	
 	<select id="findAll"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT * FROM job_posting_board
+		SELECT *,
+		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state 
+		FROM job_posting_board
 		ORDER BY job_posting_board_id DESC
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 	</select>

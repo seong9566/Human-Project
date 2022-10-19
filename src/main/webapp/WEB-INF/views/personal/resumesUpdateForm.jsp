@@ -11,6 +11,7 @@
 <input id="portfolioId" type="hidden"
 	value="${detailResumesDtoPS.portfolioId}">
 
+<<<<<<< HEAD
 <div class="container">
 	<br />
 	<div class="tool">
@@ -18,9 +19,14 @@
 			<br />
 			<h3>개인정보</h3>
 			<div class="left_input">
-				<img src="/image/농심.png" class="img-thumbnail" alt="..."
-					style="float: right;"> <br /> <input id="usersName"
-					type="text" class="form-control" style="width: 300px"
+				<div class="mb-3">◆증명사진</div>
+				<input type="file" id="file" onchange="setThumbnail(event)" />
+				<div id="image_container">
+					<img id="oldImg" class="img-thumbnail"
+						src="/img/${detailResumesDtoPS.resumesPicture}">
+				</div>
+				<br /> <input id="usersName" type="text" class="form-control"
+					style="width: 300px"
 					placeholder="${detailResumesDtoPS.personalName}" readonly>
 				<br /> <input id="phoneNumber" type="text" class="form-control"
 					style="width: 300px"
@@ -98,7 +104,6 @@
 			style="background-color: rgba(0, 195, 98, 255); border: none;">이력서수정완료</button>
 	</div>
 </div>
-
 
 <script src="/js/resumes.js"></script>
 

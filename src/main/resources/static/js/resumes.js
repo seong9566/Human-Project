@@ -1,3 +1,20 @@
+//사진 미리 보기
+function setThumbnail(event) {
+    let reader = new FileReader();
+    reader.onload = function (event) {
+        if (document.getElementById("newImg")) {
+            document.getElementById("newImg").remove();
+        }
+        let img = document.createElement("img");
+        let oldImg = $("#oldImg");
+        oldImg.remove();
+        img.setAttribute("src", event.target.result);
+        img.setAttribute("id", "newImg");
+        document.querySelector("#image_container").appendChild(img);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
 // 이력서 작성
 function clickCheck(target) {
     document.querySelectorAll(`input[type=radio]`)
@@ -16,6 +33,7 @@ $("#btnSave").click(()=>{
 });
 
 function insert(){	
+	let formData = new FormData();
 	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
 		if(year_check == 0) {
 		    alert('경력사항을 하나 이상 선택해주세요.')
@@ -27,11 +45,11 @@ function insert(){
 		    alert('관심분야를 하나 이상 선택해주세요.')
 		    return false;
 	    }
-	   	    
+
+	
 	let data = {
 		personalId: $("#userinfoId").val(),
 		resumesTitle: $("#resumesTitle").val(),
-		resumesPicture: $("#resumesPicture").val(),
 		resumesPlace: $("#resumesPlace").val(),
 		oneYearLess: $("input:radio[value='oneYearLess']").is(":checked"),
 		twoYearOver: $("input:radio[value='twoYearOver']").is(":checked"),
@@ -44,14 +62,14 @@ function insert(){
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked"),
 		resumesIntroduce: $("#resumesIntroduce").val()
 	};	
-	
+	formData.append('file', $("#file")[0].files[0]);
+	formData.append('insertResumesDto', new Blob([JSON.stringify(data)], { type: "application/json" }));
 	$.ajax("/personal/resumes",{
 		type: "POST",
-		dataType: "json", 
-		data: JSON.stringify(data),
-		headers: {
-			"Content-Type": "application/json; charset=utf-8"
-		}
+		data: formData,
+	 	processData: false,    
+   		contentType: false, 
+		enctype : 'multipart/form-data'
 	}).done((res)=>{
 		if(res.code == 1){
 			alert("이력서 등록 성공");
@@ -68,6 +86,7 @@ $("#btnUpdate").click(()=>{
 });
 	
 function update(){
+	let formData = new FormData();
 	let year_check = document.querySelectorAll('input[name="year"]:checked').length;
 	if(year_check == 0) {
 	    alert('경력사항을 하나 이상 선택해주세요.')
@@ -86,7 +105,6 @@ function update(){
 		careerId: $("#careerId").val(),
 		portfolioId: $("#portfolioId").val(),
 		resumesTitle: $("#resumesTitle").val(),
-		resumesPicture: $("#resumesPicture").val(),
 		resumesIntroduce: $("#resumesIntroduce").val(),
 		resumesPlace: $("#resumesPlace").val(),
 		oneYearLess: $("input:radio[value='oneYearLess']").is(":checked"),
@@ -99,15 +117,15 @@ function update(){
 		categoryBackend: $("input:checkbox[value='categoryBackend']").is(":checked"),
 		categoryDevops: $("input:checkbox[value='categoryDevops']").is(":checked")
 	};	
-	
-	console.log(data);
+	formData.append('file', $("#file")[0].files[0]);
+	formData.append('updateResumesDto', new Blob([JSON.stringify(data)], { type: "application/json" }));
+
 	$.ajax("/personal/resumes/update/"+resumesId,{
 		type: "PUT",
-		dataType: "json", 
-		data: JSON.stringify(data),
-		headers: {
-			"Content-Type": "application/json; charset=utf-8"
-		}
+		data: formData,
+		 processData: false,    
+		   		contentType: false, 
+				enctype : 'multipart/form-data'
 	}).done((res)=>{
 		if(res.code == 1){
 			alert("이력서 수정 성공");

@@ -7,46 +7,47 @@
 	<form>
 		<br />
 		<h2>내 정보 - 기업</h2>
-		<div class="mb-3">
-			이름 <input id="username" type="text" class="form-control"
-				style="width: 300px;" placeholder="${companyInfo.loginId}" readonly>
+		<div class="mb-3 mt-3">
+			◆아이디
+			<input id="loginId" type="text" value="${companyInfo.loginId}" readonly>
 		</div>
-
-		<div class="mb-3">
-			회사이름<input id="companyName" type="text" class="form-control"
-				style="width: 300px;" placeholder="${companyInfo.companyName}"
-				readonly>
+		
+		<div class="mb-3 mt-3">
+			◆회사명
+			<input id="companyName" type="text" value="${companyInfo.companyName}" readonly >
 		</div>
-
-		<div class="mb-3">
-			연락처<input id="phonenumber" type="email" class="form-control"
-				style="width: 300px;"
-				placeholder="${companyInfo.companyPhoneNumber}" readonly>
+		
+		<div class="mb-3 mt-3">
+			◆전화번호
+			<input id="companyPhoneNumber" type="text" value="${companyInfo.companyPhoneNumber}" readonly>
 		</div>
-		<div class="mb-3">
-			이메일<input id="companyEmail" type="email" class="form-control"
-				style="width: 300px;" placeholder="${companyInfo.companyEmail}"
-				readonly>
+		
+		<div class="mb-3 mt-3">
+			◆이메일
+			<input id="companyEmail" type="text" value="${companyInfo. companyEmail}" readonly>
 		</div>
-		<div class="mb-3">주소</div>
-		<input id="zoneCode" type="text" placeholder="우편번호" readonly
-			value="${address.zoneCode }"> <br> <input id="roadJibunAddr"
-			type="text" value="${address.roadJibunAddr}" style="width: 620px;"
-			readonly> <input id="detailAddress" type="text"
-			value="${address.detailAddress}" style="width: 620px;"
-			readonly> ​
-	</form>
-	<div class="d-grid gap-1 col-2 mx-auto">
-		<button id=btnUpdateForm type="button" class="btn btn-primary" style="margin: 10px 10px">수정하러
-			가기</button>
-	</div>
-
+		
+		<div class="mb-3 mt-3">
+			◆회사 사진 
+		</div>
+		<div class="form-group">
+            <img src="/img/${companyInfo.companyPicture}" style="width: 400px; height: 156px;">
+            <div id="imageContainer"></div>
+         </div>
+         
+		<div class="mb-3">◆주소</div>
+		<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
+		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 645px;" readonly>
+		<input type="text" value="${address.detailAddress}" id="detailAddress" style="width: 645px;" readonly>
+		<div class="mb-3"></div>
+		</form>
 </div>
 <script>
 //수정 폼 이동 
 $("#btnUpdateForm").click(()=>{
    location.href="/company/inform/update";
 });
+
 </script>
 
 <script

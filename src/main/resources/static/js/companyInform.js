@@ -1,14 +1,19 @@
-//사진업로드
-const fileInput = document.getElementById("fileUpload");
-const handleFiles = (e) => {
-	const selectedFile = [...fileInput.files];
-	const fileReader = new FileReader();
-	fileReader.readAsDataURL(selectedFile[0]);
-	fileReader.onload = function() {
-		document.getElementById("previewImg").src = fileReader.result;
-	};
-};
-
+//사진 미리 보기
+function setThumbnail(event) {
+    let reader = new FileReader();
+    reader.onload = function (event) {
+        if (document.getElementById("newImg")) {
+            document.getElementById("newImg").remove();
+        }
+        let img = document.createElement("img");
+        let oldImg = $("#oldImg");
+        oldImg.remove();
+        img.setAttribute("src", event.target.result);
+        img.setAttribute("id", "newImg");
+        document.querySelector("#image_container").appendChild(img);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 //주소불러오기
 function findAddr() {
 	new daum.Postcode(
@@ -37,6 +42,7 @@ $("#btnUpdate").click(() => {
 
 //업데이트 버튼 클릭시 
 function update() {
+	let formData = new FormData();
 	let data = {
 		loginPassword: $("#password").val(),
 		companyName: $("#companyName").val(),
@@ -45,13 +51,14 @@ function update() {
 		companyPhoneNumber: $("#companyPhoneNumber").val(),
 		companyAddress: $("#zoneCode").val() + "," + $("#roadJibunAddr").val() + "," + $("#detailAddress").val()
 	};
+		formData.append('file', $("#file")[0].files[0]);
+	formData.append('companyUpdateDto', new Blob([JSON.stringify(data)], { type: "application/json" }));
 	$.ajax("/company/inform/update", {
 		type: "PUT",
-		dataType: "json",
-		data: JSON.stringify(data),
-		headers: {
-			"Content-Type": "application/json; charset=utf-8"
-		}
+		data: formData,
+	 	processData: false,    
+   		contentType: false, 
+		enctype : 'multipart/form-data'
 	}).done((res) => {
 		if (res.code == 1) {
 			alert("회원 수정 완료");

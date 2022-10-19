@@ -36,7 +36,8 @@ public class JobPostingBoardDetailDto {
 	private String companyName;
 	private String companyEmail;
 	private String companyPhoneNumber;
-	
+	//company_like 테이블 
+	private Integer companyLikeId;
 	//TimeStamp > String
 	private String formatDeadLine;
 	
