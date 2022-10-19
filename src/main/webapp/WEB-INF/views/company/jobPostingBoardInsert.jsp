@@ -12,32 +12,27 @@
 						<div class="row g-0" style="margin-left: 30px;">
 							<div class="col-lg-6">
 								<div class="p-5">
-									<h3 class="fw-normal mb-5" style="color: #4835d4;">구인 공고
-										작성 페이지</h3>
-									<h3>회사정보</h3>
+									<h3 class="fw-normal mb-5" style="color: #4835d4;">구인구직 작성
+										페이지</h3>
 									<div class="left_input">
 										<p style="font-size: 15px;">이름</p>
 										<input id="usersName" type="text" class="form-control"
-											style="width: 300px" placeholder="${companyInfo.companyName}"
-											readonly> <br />
+											style="width: 300px"
+											placeholder="${personalInfoPS.personalName}" readonly>
+										<br />
 										<p style="font-size: 15px;">번호</p>
 										<input id="phoneNumber" type="text" class="form-control"
 											style="width: 300px"
-											placeholder="${companyInfo.companyPhoneNumber}" readonly>
+											placeholder="${personalInfoPS.personalPhoneNumber}" readonly>
 										<br />
 										<p style="font-size: 15px;">이메일</p>
 										<input id="email" type="text" class="form-control"
 											style="width: 300px"
-											placeholder="${companyInfo.companyEmail}" readonly> <br />
-										<p style="font-size: 15px;">주소</p>
-										<input id="address" type="text" class="form-control"
-											style="width: 300px" placeholder="${address.roadJibunAddr}"
-											readonly> <br />
-										<p style="font-size: 15px;">상세주소</p>
+											placeholder="${personalInfoPS.personalEmail}" readonly>
+										<p style="font-size: 15px;">학력</p>
 										<input id="education" type="text" class="form-control"
-											style="width: 300px;" placeholder="${address.detailAddress }"
-											readonly>
-										<div>
+											style="width: 300px"
+											placeholder="${personalInfoPS.personalEducation}" readonly>
 											<p style="font-size: 15px; margin-top: 10px">사진입력</p>
 											<div class="form-group">
 
@@ -45,145 +40,100 @@
 												<input type="file" id="file" accept="image/*"
 													onchange="setThumbnail(event)">
 											</div>
-										</div>
-
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 bg-indigo text-white">
 								<div class="p-5">
 									<div class="row">
-										<div class="mb-3"
-											style="margin-top: 50px; margine-left: 20px;">
-											<p style="font-size: 20px; margin-top: 80px">최소 경력 사항</p>
+										<div class="mb-3">
+											<p style="font-size: 20px; margin-top: 20px">경력 사항</p>
 											<div class="form-check d-flex">
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														type="radio" class="form-check-input"
-														id=" jobPostingSalary" name=" salary" value="oneYearLess">1년미만<i
-														class="input-helper"></i></label>
-												</div>
-												<div style="margin: 0 10px 0 0;"></div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														type="radio" class="form-check-input"
-														id=" jobPostingSalary" name=" salary" value="twoYearOver">2년이상
-														<i class="input-helper"></i></label>
-												</div>
-												<div style="margin: 0 10px 0 0;"></div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														type="radio" class="form-check-input"
-														id=" jobPostingSalary" name=" salary"
-														value="threeYearOver">3년이상<i class="input-helper"></i></label>
-												</div>
-												<div style="margin: 0 10px 0 0;"></div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														type="radio" class="form-check-input"
-														id=" jobPostingSalary" name=" salary" value="fiveYearOver">5년이상<i
-														class="input-helper"></i></label>
-												</div>
-											</div>
-
-											<div class="mb-3">
-												<p style="font-size: 20px; margin-top: 50px">관심 분야</p>
-												<div class="form-check form-check-inline"
-													style="margin-left: 20px">
-													<input class="form-check-input" type="checkbox"
-														id="inlineCheckbox1" value="categoryFrontend"> <label
-														class="form-check-label" for="inlineCheckbox1">
-														frontend</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="checkbox"
-														id="inlineCheckbox2" value="categoryBackend"> <label
-														class="form-check-label" for="inlineCheckbox2">backend</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="checkbox"
-														id="inlineCheckbox3" value="categoryDevops"> <label
-														class="form-check-label" for="inlineCheckbox3">devops
-													</label>
-												</div>
-											</div>
-
-											<div class="mb-3">
-												<p style="font-size: 20px; margin-top: 50px">연봉</p>
 												<div>
-													<div class="form-check d-flex">
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																type="radio" class="form-check-input"
-																id=" jobPostingSalary" name=" jobPostingSalary"
-																value="2000"> 2000만원 이상 <i class="input-helper"></i></label>
-														</div>
-														<div style="margin: 0 20px 0 0;"></div>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																type="radio" class="form-check-input"
-																id=" jobPostingSalary" name=" jobPostingSalary"
-																value="3000"> 3000만원 이상 <i class="input-helper"></i></label>
-														</div>
-														<div style="margin: 0 20px 0 0;"></div>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																type="radio" class="form-check-input"
-																id=" jobPostingSalary" name=" jobPostingSalary"
-																value="4000"> 4000만원 이상 <i class="input-helper"></i></label>
-														</div>
-														<div style="margin: 0 20px 0 0;"></div>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																type="radio" class="form-check-input"
-																id=" jobPostingSalary" name=" jobPostingSalary"
-																value="5000"> 5000만원 이상 <i class="input-helper"></i></label>
-														</div>
-													</div>
-
-													<br />
-													<p style="font-size: 20px; margin-top: 30px">회사 주소</p>
-													<input id="post" type="text" placeholder="우편번호" readonly
-														onclick="findAddr()">
-													<button id="detailAddress" type="button"
-														class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-													<br> <input id="addr" type="text" placeholder="주소"
-														style="width: 480px;" readonly>
-
-
-													<p style="font-size: 20px; margin-top: 70px">채용공고 마감일</p>
-													<input id="jobPostingBoardDeadline" type="date"
-														class="form-control" placeholder="채용공고 마감일을 작성해 주세요">
-													<br />
-													<div class="form-group"></div>
-
+													<tr>
+														<td>
+															<div class="form-check d-flex">
+																<div class="form-check">
+																	<label for="first"><input type="radio"
+																		name="year" value="oneYearLess"
+																		onclick="clickCheck(this)">1년이하</label>
+																</div>
+																<div class="form-check">
+																	<label for="second"><input type="radio"
+																		name="year" value="twoYearOver"
+																		onclick="clickCheck(this)">2년이상</label>
+																</div>
+																<div class="form-check">
+																	<label for="third"><input type="radio"
+																		name="year" value="threeYearOver"
+																		onclick="clickCheck(this)">3년이상</label>
+																</div>
+																<div class="form-check">
+																	<label for="fourth"><input type="radio"
+																		name="year" value="fiveYearOver"
+																		onclick="clickCheck(this)">5년이상</label>
+																</div>
+															</div>
+														</td>
+													</tr>
 												</div>
 											</div>
+
+											<div class="mb-3">
+												<p style="font-size: 20px; margin-top: 20px">관심 분야</p>
+												<div>
+													<tr>
+														<td><label><input type="checkbox"
+																name="interest" value="categoryFrontend">frontend</label>
+															<label><input type="checkbox" name="interest"
+																value="categoryBackend">backend</label> <label><input
+																type="checkbox" name="interest" value="categoryDevops">devops</label>
+															<label><input id="etc" type="checkbox"
+																name="interest" value="etc">etc</label></td>
+													</tr>
+												</div>
+											</div>
+
+											<div class="mb-3">
+												<br />
+												<p style="font-size: 20px; margin-top: 10px">희망근무지역</p>
+												<input id="resumesPlace" type="text" class="form-control"
+													placeholder="희망근무지역을 작성해주세요(ex. 서울, 경기, 부산 등)" />
+
+
+												<p style="font-size: 20px; margin-top: 10px">Github 주소
+													or Blog 주소</p>
+												<input id="portfolioSource" type="text" class="form-control"
+													placeholder="Github 주소 or Blog 주소 작성해주세요." />
+
+												<p style="font-size: 20px; margin-top: 10px">포트폴리오</p>
+												<input id="portfolioFile" type="text" class="form-control"
+													placeholder="포트폴리오 파일 들어가는 자리 - 파일업로드 필요. " />
+											</div>
+
 										</div>
 									</div>
 								</div>
-
-
 							</div>
+						</div>
 
-						</div>
-						<div class="form-group" style="justify-content: center;">
-							<p style="font-size: 20px; margin-top: 20px; margin-left: 120px">채용공고
-								내용</p>
-							<input id="jobPostingBoardTitle" type="text" class="form-control"
-								placeholder="구인공고 제목을 입력해주세요."
-								style="width: 950px; margin-left: 100px">
-							<textarea class="form-control" id="jobPostingBoardContent"
-								rows="8"
-								style="margin-bottom: 10px; width: 950px; margin-left: 100px"></textarea>
-						</div>
-						<button id="btnSave" type="button" class="btn btn-primary"
-							style="background-color: rgba(0, 195, 98, 255); border: none; margin: 20px 20px 30px 950px; margin-bottom: 20px;">작성완료</button>
 
 					</div>
-				</div>
-			</div>
 
+				</div>
+				<div class="form-group" style="justify-content: center;">
+					<p style="font-size: 20px; margin-top: 20px; margin-left: 120px">채용공고
+						내용</p>
+					<input id="resumesTitle" type="text" class="form-control"
+						placeholder="이력서 제목을 입력해주세요."
+						style="width: 950px; margin-left: 100px">
+					<textarea class="form-control" id="resumesIntroduce" rows="8"
+						style="margin-bottom: 10px; width: 950px; margin-left: 100px"></textarea>
+				</div>
+				<button id="btnSave" type="button" class="btn btn-primary"
+					style="background-color: rgba(0, 195, 98, 255); border: none; margin: 20px 20px 30px 950px; margin-bottom: 20px;">작성완료</button>
+
+			</div>
 		</div>
 	</div>
 </section>

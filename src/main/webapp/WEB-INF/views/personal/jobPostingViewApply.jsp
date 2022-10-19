@@ -11,8 +11,10 @@
 
 		<div class="row">
 			<div class="col-lg-4" data-aos="fade-right">
-				<img style="width: 400px; height: 500px" src="" class="img-fluid"
-					alt="">
+				<img
+					style="width: 100%; height: 100%; max-height: 300px; max-width: 300px; margin-top: 20px; margin-left: 20px"
+					src="/img/${jobPostingPS.jobPostingBoardPicture}" class="img-fluid"
+					alt="#">
 				<div class="btn-update" style="margin-top: 5px;">
 					<c:choose>
 						<c:when test="${ empty companyLike}">

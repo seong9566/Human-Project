@@ -32,6 +32,7 @@ import site.metacoding.miniproject.web.dto.request.InsertResumesDto;
 import site.metacoding.miniproject.web.dto.request.PersonalUpdateDto;
 import site.metacoding.miniproject.web.dto.request.UpdateResumesDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
+import site.metacoding.miniproject.web.dto.response.CompanyBestDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
@@ -157,7 +158,12 @@ public class PersonalController {
 	public String jobPostingBoardList(Model model, Integer page, String keyword) {
 		
 		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");	
-		
+		List<CompanyBestDto> bestPS = companyService.findBest();
+		for(CompanyBestDto c : bestPS) {
+			System.out.println("===================");
+			System.out.println(c.getCompanyName());
+			System.out.println("====================");
+		}
 		if(page==null) page=0;
 		int startNum = page*5;
 		
@@ -206,6 +212,7 @@ public class PersonalController {
 				model.addAttribute("paging",paging);
 			}
 		}		
+		model.addAttribute("bestPS", bestPS);
 		return "personal/main";
 	}
 	

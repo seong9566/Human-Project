@@ -23,6 +23,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyUpdateDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardInsertDto;
 import site.metacoding.miniproject.web.dto.request.JobPostingBoardUpdateDto;
 import site.metacoding.miniproject.web.dto.response.CompanyAddressDto;
+import site.metacoding.miniproject.web.dto.response.CompanyBestDto;
 import site.metacoding.miniproject.web.dto.response.CompanyInfoDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto;
 import site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto;
@@ -132,6 +133,9 @@ public class CompanyService {
 			deadLine.setFormatDeadLine(formattedDate);
 		}
 		return personalMainPS;
+	}
+	public List<CompanyBestDto> findBest(){
+		return companyDao.bestCompany();
 	}
 
 	// 페이징

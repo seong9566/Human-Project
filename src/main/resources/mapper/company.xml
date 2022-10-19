@@ -65,5 +65,17 @@
 		company_address = #{companyAddress}
 		WHERE company_id = #{companyId}
 	</update>
+	
+	<select id ="bestCompany" resultType="site.metacoding.miniproject.web.dto.response.CompanyBestDto">
+		SELECT *
+	FROM(
+	SELECT company.company_name,company.company_picture,company_like.personal_id, COUNT(*) as count, RANK() over (ORDER BY COUNT(*) DESC) ranks
+	FROM company_like
+	LEFT OUTER JOIN company
+	ON company_like.company_id = company.company_id
+	GROUP BY personal_id
+	) d
+	ORDER BY d.ranks ASC;
+	</select>
 
 </mapper>

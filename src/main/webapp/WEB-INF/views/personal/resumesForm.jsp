@@ -18,6 +18,13 @@
 									<h3 class="fw-normal mb-5" style="color: #4835d4;">이력서 작성
 										페이지</h3>
 									<div class="left_input">
+										<p style="font-size: 15px; margin-top: 10px">사진입력</p>
+										<div class="form-group">
+											<div id="imageContainer">
+											</div>
+											<input type="file" id="file" accept="image/*"
+												onchange="setThumbnail(event)">
+										</div>
 										<p style="font-size: 15px;">이름</p>
 										<input id="usersName" type="text" class="form-control"
 											style="width: 300px"
@@ -36,15 +43,6 @@
 										<input id="education" type="text" class="form-control"
 											style="width: 300px"
 											placeholder="${personalInfoPS.personalEducation}" readonly>
-										<div>
-											<p style="font-size: 15px; margin-top: 10px">사진입력</p>
-											<div class="form-group">
-												<div id="imageContainer"></div>
-												<input type="file" id="file" accept="image/*"
-													onchange="setThumbnail(event)">
-											</div>
-										</div>
-
 									</div>
 								</div>
 							</div>
