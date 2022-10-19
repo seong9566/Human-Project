@@ -28,4 +28,5 @@ public class JobPostingBoardListDto {
 	
 	private String formatDeadLine;
 	
+	
 }

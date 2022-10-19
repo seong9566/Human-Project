@@ -2,15 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <div id="containermain">
-	
+
 	<div class="mb-3"></div>
 	<div class="dropdown">
-	<c:forEach var = "bestPS" items="${bestPS}">
-		<div>${bestPS.companyName}</div>
-		<div id="image_container">
-			<img id="oldImg" src="/img/${bestPS.companyPicture}">
+		<c:forEach var="bestPS" items="${bestPS}">
+			<div>${bestPS.companyName}</div>
+			<div id="image_container">
+				<img id="oldImg" src="/img/${bestPS.companyPicture}">
 			</div>
-	</c:forEach>
+		</c:forEach>
 
 		<div class="d-flex justify-content-between" style="width: 1190px">
 			<select name="category" id="select_category"
@@ -52,8 +52,12 @@
 												${jobPostingBoardList.jobPostingBoardTitle}</a>
 										</div>
 									</td>
+
+									<td>${jobPostingBoardList.formatDeadLine}
 									<td>
+
 										<p style="padding-top: 40px">${jobPostingBoardList.state}</p>
+
 									</td>
 								</tr>
 							</c:forEach>

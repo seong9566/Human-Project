@@ -75,7 +75,6 @@
 $("#btnUpdateForm").click(()=>{
    location.href="/company/inform/update";
 });
-
 </script>
 
 <script
