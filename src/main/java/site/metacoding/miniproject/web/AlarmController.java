@@ -3,6 +3,9 @@ package site.metacoding.miniproject.web;
 import java.lang.reflect.Array;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.alarm.Alarm;
+import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.resumes.ResumesDao;
 import site.metacoding.miniproject.service.Users.UsersService;
 import site.metacoding.miniproject.web.dto.response.ResponseDto;
+import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,10 +39,12 @@ public class AlarmController {
 		simpMessagingTemplate.convertAndSend("/topic/Personal", new ResponseDto<>(1, "success", resumesId));
 	}
 
-	@MessageMapping("/Company/")
-	@SendTo("/topic/Company")
-	public @ResponseBody ResponseDto<?> messageToTopicCompany(String test) {
-		return new ResponseDto<>(1, "testconfirm", test);
+	@MessageMapping("/Personal/subscribe/{companyId}")
+	public void messageToSubscribePersonal(@DestinationVariable Integer companyId, String companyName) {
+		System.out.println(companyId);
+		System.out.println(companyName);
+		simpMessagingTemplate.convertAndSend("/topic/Company/" + companyId,
+				new ResponseDto<>(1, "success", companyName + "님이 새로운 채용공고를 등록 했습니다."));
 	}
 
 	@MessageMapping("/Company/Likeresume/{resumesId}")

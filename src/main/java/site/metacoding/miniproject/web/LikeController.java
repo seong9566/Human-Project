@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.like.companylike.CompanyLike;
 import site.metacoding.miniproject.domain.like.personalike.PersonalLike;
+import site.metacoding.miniproject.domain.users.Users;
 import site.metacoding.miniproject.service.company.CompanyLikeService;
 import site.metacoding.miniproject.service.personal.PersonalLikeService;
 import site.metacoding.miniproject.web.dto.request.InsertRecommendDto;
@@ -50,16 +51,17 @@ public class LikeController {
 
 	@GetMapping("/recommend")
 	public String recommend(Model model) {
-		List<PersonalLikeDto> personalLikeDto = personalLikeService.좋아요이력서();
+		Integer companyId = (Integer) session.getAttribute("companyId");
+		List<PersonalLikeDto> personalLikeDto = personalLikeService.좋아요이력서(companyId);
 		model.addAttribute("personalLikeList", personalLikeDto);
 		return "/company/recommend";
 	}
 
 	@PostMapping("/companyLike/{companyId}/likes")
 	public @ResponseBody ResponseDto<?> insertCompanyLike(@PathVariable Integer companyId) {
-		
+
 		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
-		
+
 		companyLikeService.좋아요(signedDto, companyId);
 
 		return new ResponseDto<>(1, "좋아요성공", null);

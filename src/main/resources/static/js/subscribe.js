@@ -20,7 +20,6 @@ function subscribToCompany(companyId) {
             $("#btnSub").text("구독취소");
             //$(".btn-update").load(location.href+" .btn-update");
             //location.reload();
-            sessionStorage.setItem(sessionStorage.length, companyId);
             alert(res.message);
         } else {
             alert(res.message);

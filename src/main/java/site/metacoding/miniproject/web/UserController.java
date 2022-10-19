@@ -102,6 +102,7 @@ public class UserController {
 
 		session.setAttribute("principal", signedDto);
 		SessionConfig.login(session.getId(), signedDto.getUsersId());
+
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
@@ -109,7 +110,7 @@ public class UserController {
 			session.setAttribute("personalId", signedDto.getPersonalId());
 			session.setAttribute("subscribe", subscribes);
 		}
-		
+
 		return new ResponseDto<>(1, "로그인완료", subscribes);
 	}
 
@@ -124,6 +125,12 @@ public class UserController {
 		SignedDto<?> signedDto = userService.login(loginDto);
 
 		session.setAttribute("principal", signedDto);
+
+		if (signedDto.getCompanyId() != null) {
+			session.setAttribute("companyId", signedDto.getCompanyId());
+		} else {
+			session.setAttribute("personalId", signedDto.getPersonalId());
+		}
 
 		return new ResponseDto<>(1, "계정생성완료", null);
 	}

@@ -13,6 +13,10 @@ function sendmessageToCompany(companyId) {
 	stompClient.send("/app/Personal/LikeCompany/" + companyId, {}, $("#userId").val());
 }
 
+function sendmessageToPersonalForTopic(companyId, companyName) {
+	stompClient.send("/app/Personal/subscribe/" + companyId, {}, companyName);
+}
+
 function connectpersonal() {
 	var socket = new SockJS('/personal_end_point');
 	stompClient = Stomp.over(socket);
@@ -42,11 +46,13 @@ function connectcompany() {
 				iconchange();
 			}
 		});
-		for(let i = 0; i < (sessionStorage.length); i++) {
-			stompClient.subscribe('/topic/Company/' + sessionStorage?.getItem(i), (test) => {
+		let subscribeinfo = JSON.parse(sessionStorage.getItem("subscribe"));
+		for (let i = 0; i < (subscribeinfo.length); i++) {
+			stompClient.subscribe('/topic/Company/' + subscribeinfo[i], (test) => {
 				let confirm = JSON.parse(test.body);
 				if (confirm.code == 1) {
 					iconchange();
+					alert(confirm?.data);
 				}
 			});
 		}
@@ -56,11 +62,11 @@ function connectcompany() {
 
 function subscribeCompany(subscribe) {
 	stompClient.subscribe('/topic/Company/' + subscribe, (test) => {
-				let confirm = JSON.parse(test.body);
-				if (confirm.code == 1) {
-					iconchange();
-				}
-			});
+		let confirm = JSON.parse(test.body);
+		if (confirm.code == 1) {
+			iconchange();
+		}
+	});
 }
 
 
@@ -68,6 +74,7 @@ function subscribeCompany(subscribe) {
 function disconnect() {
 	if (stompClient !== null) {
 		stompClient.disconnect();
+		sessionStorage.clear();
 	}
 }
 

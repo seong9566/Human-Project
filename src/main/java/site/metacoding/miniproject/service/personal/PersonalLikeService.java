@@ -55,8 +55,8 @@ public class PersonalLikeService {
 
 	}
 
-	public List<PersonalLikeDto> 좋아요이력서() {
-		List<PersonalLikeDto> PersonalLikeDtoList = personalLikesDao.findAll();
+	public List<PersonalLikeDto> 좋아요이력서(Integer companyId) {
+		List<PersonalLikeDto> PersonalLikeDtoList = personalLikesDao.findAll(companyId);
 		return PersonalLikeDtoList;
 	}
 
