@@ -11,7 +11,7 @@
 <input id="portfolioId" type="hidden"
 	value="${detailResumesDtoPS.portfolioId}">
 
-<<<<<<< HEAD
+
 <div class="container">
 	<br />
 	<div class="tool">
