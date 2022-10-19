@@ -231,7 +231,10 @@ public class PersonalController {
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);
 				model.addAttribute("paging", paging);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 64f5da51772ff1cda0b0b4f9e31c54411cb739a0
 			}
 		} else if(principal.getPersonalId() != null) {
 			if(keyword == null || keyword.isEmpty()) {
@@ -257,12 +260,15 @@ public class PersonalController {
 			} else {
 				List<CompanyMainDto> resumesList = personalService.findCategorySearch(startNum, keyword, id);
 				PagingDto paging = personalService.resumesPaging(page, keyword);
-				paging.makeBlockInfo(keyword);			
+				paging.makeBlockInfo(keyword);
 				model.addAttribute("resumesList", resumesList);
-				model.addAttribute("paging",paging);
+				model.addAttribute("paging", paging);
 			}
 		}
+<<<<<<< HEAD
 		model.addAttribute("number", id);
+=======
+>>>>>>> 64f5da51772ff1cda0b0b4f9e31c54411cb739a0
 		return "personal/main";
 	}
 	

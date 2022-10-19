@@ -91,6 +91,7 @@ public class UserController {
 	public @ResponseBody ResponseDto<?> login(@RequestBody LoginDto loginDto) {
 
 		SignedDto<?> signedDto = userService.login(loginDto);
+		List<Subscribe> subscribes = null;
 
 		if (signedDto == null)
 			return new ResponseDto<>(-1, "비밀번호 또는 아이디를 확인하여 주세요", null);
@@ -104,12 +105,12 @@ public class UserController {
 		if (signedDto.getCompanyId() != null) {
 			session.setAttribute("companyId", signedDto.getCompanyId());
 		} else {
-			List<Subscribe> subscribes = userService.findSubscribeinfoByPersonalId(signedDto.getPersonalId());
+			subscribes = userService.findSubscribeinfoByPersonalId(signedDto.getPersonalId());
 			session.setAttribute("personalId", signedDto.getPersonalId());
 			session.setAttribute("subscribe", subscribes);
 		}
-
-		return new ResponseDto<>(1, "로그인완료", null);
+		
+		return new ResponseDto<>(1, "로그인완료", subscribes);
 	}
 
 	@PostMapping("/join/personal")
@@ -165,7 +166,6 @@ public class UserController {
 		List<Alarm> usersAlarm = userService.userAlarm(usersId);
 		if (!usersAlarm.isEmpty())
 			responseDto = new ResponseDto<>(1, "통신 성공", usersAlarm);
-
 		return responseDto;
 	}
 
