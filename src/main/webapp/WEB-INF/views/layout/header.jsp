@@ -20,6 +20,7 @@
 	rel="stylesheet">
 <link href="/css/header.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/style.css">
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 <style>
@@ -35,9 +36,7 @@
                to {
                   -webkit-transform: scale(1)
                }
-
             }
-
             @keyframes animatezoom {
                from {
                   transform: scale(0)
@@ -51,7 +50,7 @@
 <body>
 <div class="container">
 <header>
-	<a href="/main">로고</a>
+	<a href="/main"><img src="/image/logo.jpg" alt="logo" style="width:200px;"></a>
 	<nav>
 		<ul class="navbar-nav" style="width: 100%">
 			<c:choose>

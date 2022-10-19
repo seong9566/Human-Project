@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<input id="jobPostingBoardId" type="hidden" value="${jobPostingPS.jobPostingBoardId}">
+<input id="jobPostingBoardId" type="hidden"
+	value="${jobPostingPS.jobPostingBoardId}">
 <input id="jobPostingBoardCategoryId" type="hidden"
 	value="${jobPostingPS.jobPostingBoardCategoryId}">
-<input id="jobPostingBoardCareerId" type="hidden" value="${jobPostingPS.jobPostingBoardCareerId}">
+<input id="jobPostingBoardCareerId" type="hidden"
+	value="${jobPostingPS.jobPostingBoardCareerId}">
 <input id="companyId" type="hidden" value="${jobPostingPS.companyId}">
 <div>
 	<h2>구인 공고 수정 페이지</h2>
@@ -12,7 +15,8 @@
 			<br />
 			<form>
 				<div class="mb-3">
-					◆채용 공고 제목 <input id="jobPostingBoardTitle" type="text" class="form-control"
+					◆채용 공고 제목 <input id="jobPostingBoardTitle" type="text"
+						class="form-control"
 						placeholder="${jobPostingPS.jobPostingBoardTitle}">
 				</div>
 
@@ -20,7 +24,8 @@
 				<div class="mb-3">
 					◆회사 사진
 					<div class="form-group">
-						<img src="/img/${jobPostingPS.companyPicture}" style="width: 400px; height: 156px;">
+						<img src="/img/${jobPostingPS.companyPicture}"
+							style="width: 400px; height: 156px;">
 						<div id="imageContainer"></div>
 					</div>
 					<div class="mb-3">
@@ -28,7 +33,8 @@
 							placeholder="${jobPostingPS.companyName}" readonly>
 					</div>
 					<div class="mb-3">
-						◆회사 전화번호 <input id="companyPhoneNumber" type="text" class="form-control"
+						◆회사 전화번호 <input id="companyPhoneNumber" type="text"
+							class="form-control"
 							placeholder="${jobPostingPS.companyPhoneNumber}" readonly>
 					</div>
 					<div class="mb-3">
@@ -37,8 +43,9 @@
 					</div>
 					<div class="mb-3">
 						◆회사 주소 <input id="roadJibunAddr" type="text" class="form-control"
-							placeholder="${address.roadJibunAddr}" readonly> <input id="detailAddress"
-							type="text" class="form-control" placeholder="${address.detailAddress}" readonly>
+							placeholder="${address.roadJibunAddr}" readonly> <input
+							id="detailAddress" type="text" class="form-control"
+							placeholder="${address.detailAddress}" readonly>
 					</div>
 				</div>
 			</form>
@@ -48,10 +55,12 @@
 				<div class="mb-3">
 					◆최소 경력 사항
 					<div>
-						<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br /> <label>
-							<input type="checkbox" value="twoYearOver">twoYearOver
-						</label><br /> <label> <input type="checkbox" value="threeYearOver">threeYearOver
-						</label><br /> <label> <input type="checkbox" value="fiveYearOver">fiveYearOver
+						<label><input type="checkbox" value="oneYearLess">oneYearLess</label><br />
+						<label> <input type="checkbox" value="twoYearOver">twoYearOver
+						</label><br /> <label> <input type="checkbox"
+							value="threeYearOver">threeYearOver
+						</label><br /> <label> <input type="checkbox"
+							value="fiveYearOver">fiveYearOver
 						</label><br />
 					</div>
 				</div>
@@ -59,9 +68,9 @@
 				<div class="mb-3">
 					◆관심분야
 					<div>
-						<label><input type="checkbox" value="categoryFrontend">frontend</label><br /> <label><input
-							type="checkbox" value="categoryBackend">backend</label><br /> <label><input
-							type="checkbox" value="categoryDevops">devops</label><br />
+						<label><input type="checkbox" value="categoryFrontend">frontend</label><br />
+						<label><input type="checkbox" value="categoryBackend">backend</label><br />
+						<label><input type="checkbox" value="categoryDevops">devops</label><br />
 					</div>
 				</div>
 
@@ -70,26 +79,30 @@
 					<div>
 						<div class="form-check d-flex">
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input"
-									id="jobPostingSalary" name="jobPostingSalary" value="2000"> 2000만원 이상 <i
+								<label class="form-check-label"> <input type="radio"
+									class="form-check-input" id="jobPostingSalary"
+									name="jobPostingSalary" value="2000"> 2000만원 이상 <i
 									class="input-helper"></i></label>
 							</div>
 							<div style="margin: 0 20px 0 0;"></div>
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input"
-									id="jobPostingSalary" name="jobPostingSalary" value="3000"> 3000만원 이상 <i
+								<label class="form-check-label"> <input type="radio"
+									class="form-check-input" id="jobPostingSalary"
+									name="jobPostingSalary" value="3000"> 3000만원 이상 <i
 									class="input-helper"></i></label>
 							</div>
 							<div style="margin: 0 20px 0 0;"></div>
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input"
-									id="jobPostingSalary" name="jobPostingSalary" value="4000"> 4000만원 이상 <i
+								<label class="form-check-label"> <input type="radio"
+									class="form-check-input" id="jobPostingSalary"
+									name="jobPostingSalary" value="4000"> 4000만원 이상 <i
 									class="input-helper"></i></label>
 							</div>
 							<div style="margin: 0 20px 0 0;"></div>
 							<div class="form-check">
-								<label class="form-check-label"> <input type="radio" class="form-check-input"
-									id="jobPostingSalary" name="jobPostingSalary" value="5000"> 5000만원 이상 <i
+								<label class="form-check-label"> <input type="radio"
+									class="form-check-input" id="jobPostingSalary"
+									name="jobPostingSalary" value="5000"> 5000만원 이상 <i
 									class="input-helper"></i></label>
 							</div>
 						</div>
@@ -97,15 +110,20 @@
 
 						<br />
 						<div class="mb-3">◆근무지</div>
-						<input id="post" type="text" placeholder="우편번호" readonly onclick="findAddr()">
-						<button id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
-						<br> <input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
+						<input id="post" type="text" placeholder="우편번호" readonly
+							onclick="findAddr()">
+						<button id="detailAddress" type="button" class="btn btn-primary"
+							onclick="findAddr()">우편번호찾기</button>
+						<br> <input id="addr" type="text" placeholder="주소"
+							style="width: 620px;" readonly>
 
 						<div class="mb-3">◆채용공고 마감일</div>
-						<input id="jobPostingBoardDeadline" type="date" class="form-control"> <br />
+						<input id="jobPostingBoardDeadline" type="date"
+							class="form-control"> <br />
 
 						<div class="mb-3">◆채용공고 내용</div>
-						<input id="jobPostingBoardContent" type="text" class="form-control"
+						<input id="jobPostingBoardContent" type="text"
+							class="form-control"
 							placeholder="${jobPostingPS.jobPostingBoardContent} "> <br />
 					</div>
 					<div class="btn-update">
@@ -117,6 +135,7 @@
 		</div>
 	</div>
 </div>
+<script>
 <script>
 //주소불러오기
 function findAddr() {
@@ -139,11 +158,9 @@ function findAddr() {
 			}
 		}).open();
 }
-
 $("#btnUpdate").click(() => {
 	update();	
 });
-
 //업데이트 버튼 클릭시 
 function update() {
 	let jobPostingBoardId =$("#jobPostingBoardId").val();
@@ -152,7 +169,6 @@ function update() {
 	let data = {
 			jobPostingBoardCategoryId: $("#jobPostingBoardCategoryId").val(),
 			jobPostingBoardCareerId: $("#jobPostingBoardCareerId").val(),
-
 			jobPostingBoardTitle: $("#jobPostingBoardTitle").val(),
 			oneYearLess: $("input:checkbox[value='oneYearLess']").is(":checked"),
 			twoYearOver: $("input:checkbox[value='twoYearOver']").is(":checked"),
@@ -186,8 +202,8 @@ function update() {
 		}
 	});
 }
-
 </script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
