@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import site.metacoding.miniproject.web.dto.response.CompanyMainDto;
 import site.metacoding.miniproject.web.dto.response.DetailResumesDto;
 import site.metacoding.miniproject.web.dto.response.PagingDto;
+import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
 public interface ResumesDao {
 
@@ -36,5 +37,8 @@ public interface ResumesDao {
 	// 검색 결과 목록 보기
 	public List<CompanyMainDto> findSearch(@Param("startNum") int startNum, @Param("keyword") String keyword);
 
+	// 카테고리별 목록보기	
+	public List<CompanyMainDto> findCategory(@Param("startNum") Integer startNum, @Param("id") Integer id);
+	public List<CompanyMainDto> findCategorySearch(@Param("startNum") int startNum, @Param("keyword") String keyword, @Param("id") Integer id);
 
 }

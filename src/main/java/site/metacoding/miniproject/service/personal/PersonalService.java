@@ -28,6 +28,7 @@ import site.metacoding.miniproject.web.dto.response.PagingDto;
 import site.metacoding.miniproject.web.dto.response.PersonalAddressDto;
 import site.metacoding.miniproject.web.dto.response.PersonalFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonalInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonalMainDto;
 
 @Service
 @RequiredArgsConstructor
@@ -111,6 +112,15 @@ public class PersonalService {
 	// 검색 결과 목록 보기
 	public List<CompanyMainDto> findSearch(Integer startNum, String keyword) {
 		return resumesDao.findSearch(startNum, keyword);
+	}
+	
+	// 카테고리 별 리스트 보기
+	public List<CompanyMainDto> findCategory(int startNum, Integer id) {
+		return resumesDao.findCategory(startNum, id);
+	}
+	// 카테고리 별 검색 결과 리스트
+	public List<CompanyMainDto> findCategorySearch(int startNum, String keyword, Integer id) {
+		return resumesDao.findCategorySearch(startNum, keyword, id);
 	}
 
 	// 개인 정보에 보기
