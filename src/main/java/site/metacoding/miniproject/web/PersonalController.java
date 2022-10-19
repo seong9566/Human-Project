@@ -105,13 +105,6 @@ public class PersonalController {
 		return new ResponseDto<>(1, "이력서 삭제 성공", null);
 	}
 	
-	// 메인 - 카테고리별 리스트 보기
-	@GetMapping("/main/{id}")
-	public @ResponseBody ResponseDto<List<ListByCategoryDto>> listByCategoryTest(@PathVariable Integer id) {
-		List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-		return new ResponseDto<List<ListByCategoryDto>>(1, "완료", byCategoryList);
-	}
-	
 	// 메인 - 채용공고 or 이력서 리스트 (페이징+검색)
 	@GetMapping({"/", "/main"})
 	public String jobPostingBoardList(Model model, Integer page, String keyword) {
@@ -123,16 +116,12 @@ public class PersonalController {
 		
 		if (session.getAttribute("principal") == null) {
 			if(keyword == null || keyword.isEmpty()) {
-//				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-//				model.addAttribute("byCategoryList", byCategoryList);
 				List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
 				paging.makeBlockInfo(keyword);				
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
 				model.addAttribute("paging",paging);			
 			} else {
-//				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-//				model.addAttribute("byCategoryList", byCategoryList);
 				List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
 				paging.makeBlockInfo(keyword);
@@ -141,16 +130,12 @@ public class PersonalController {
 			}
 		} else if(principal.getPersonalId() != null) {
 			if(keyword == null || keyword.isEmpty()) {
-//				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-//				model.addAttribute("byCategoryList", byCategoryList);
 				List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
 				paging.makeBlockInfo(keyword);
 				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
 				model.addAttribute("paging",paging);			
 			} else {
-//				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-//				model.addAttribute("byCategoryList", byCategoryList);
 				List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
 				paging.makeBlockInfo(keyword);
@@ -160,8 +145,6 @@ public class PersonalController {
 			
 		} else if(principal.getCompanyId() != null) {
 			if(keyword == null || keyword.isEmpty()) { 
-//				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-//				model.addAttribute("byCategoryList", byCategoryList);
 				List<CompanyMainDto> resumesList = personalService.resumesAll(startNum);
 				PagingDto paging = personalService.resumesPaging(page, null);
 				paging.makeBlockInfo(keyword);
@@ -169,8 +152,6 @@ public class PersonalController {
 				model.addAttribute("paging",paging);
 				
 			} else {
-//				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
-//				model.addAttribute("byCategoryList", byCategoryList);
 				List<CompanyMainDto> resumesList = personalService.findSearch(startNum, keyword);
 				PagingDto paging = personalService.resumesPaging(page, keyword);
 				paging.makeBlockInfo(keyword);			
@@ -180,6 +161,70 @@ public class PersonalController {
 		}
 		
 		return "personal/main";
+	}
+	
+	// 메인 - 카테고리별 리스트 보기
+	@GetMapping("/main/{id}")
+	public @ResponseBody ResponseDto<List<ListByCategoryDto>> listByCategoryTest(@PathVariable Integer id, Model model, Integer page, String keyword) {
+	
+		SignedDto<?> principal = (SignedDto<?>)session.getAttribute("principal");	
+		
+		if(page==null) page=0;
+		int startNum = page*5;
+		
+		if (session.getAttribute("principal") == null) {
+			if(keyword == null || keyword.isEmpty()) {
+				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
+				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
+				paging.makeBlockInfo(keyword);				
+				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
+				model.addAttribute("paging",paging);			
+			} else {
+				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
+				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
+				paging.makeBlockInfo(keyword);
+				model.addAttribute("jobPostingBoardList", jobPostingBoardList);
+				model.addAttribute("paging",paging);
+			}
+		} else if(principal.getPersonalId() != null) {
+			if(keyword == null || keyword.isEmpty()) {
+				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findAll(startNum);
+				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
+				paging.makeBlockInfo(keyword);
+				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
+				model.addAttribute("paging",paging);			
+			} else {
+				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
+				List<PersonalMainDto> jobPostingBoardList = companyService.findSearch(startNum, keyword);
+				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
+				paging.makeBlockInfo(keyword);
+				model.addAttribute("jobPostingBoardList", jobPostingBoardList);
+				model.addAttribute("paging",paging);
+			}
+			
+		} else if(principal.getCompanyId() != null) {
+			if(keyword == null || keyword.isEmpty()) { 
+				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
+				List<CompanyMainDto> resumesList = personalService.resumesAll(startNum);
+				PagingDto paging = personalService.resumesPaging(page, null);
+				paging.makeBlockInfo(keyword);
+				model.addAttribute("resumesList", resumesList);	
+				model.addAttribute("paging",paging);
+				
+			} else {
+				List<ListByCategoryDto> byCategoryList = companyService.findCategory(id);
+				List<CompanyMainDto> resumesList = personalService.findSearch(startNum, keyword);
+				PagingDto paging = personalService.resumesPaging(page, keyword);
+				paging.makeBlockInfo(keyword);			
+				model.addAttribute("resumesList", resumesList);
+				model.addAttribute("paging",paging);
+			}
+		}
+		
+		return new ResponseDto<List<ListByCategoryDto>>(1, "완료", null);
 	}
 	
 	// 내정보 보기

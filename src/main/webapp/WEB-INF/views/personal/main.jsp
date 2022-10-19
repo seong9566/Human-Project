@@ -50,7 +50,7 @@
 <div class="dropdown">
 <div class="d-flex justify-content-between" style="width:1190px">
 	<select id="select_category" name="category" style="width: 150px; left: 10%" onchange="select_category(this.value);">
-		<option value="#">==전체보기==</option>
+		<option id="categoryAll" value="0">==전체보기==</option>
 		<option id="categoryFrontend" value="1">프론트엔드</option>
 		<option id="categoryBackend" value="2">백엔드</option>
 		<option id="categoryDevops" value="3">데브옵스</option>
@@ -148,16 +148,18 @@ function select_category(val){
 	groupForCategory(val);
 }
 
-function groupForCategory(id){
-	$.ajax("/main/" + id ,{
+function groupForCategory(id){	
+	if(id != 1 && id != 2 && id != 3){
+		location.href="/main";
+	}
+	
+	$.ajax("/main" + id ,{
 		type:"get"
-	}).done((res)=>{
+	}).done((res)=>{		
 		if(res.code == 1){
-			console.log(res.data);
-			categoryFrontend
+			console.log(res.data);			
 			$("#table tr").remove();
 			res.data.forEach((o, i)=>{
-
 				$("#table").append('<tr><td>'+o.row+'</td>'+
 				'<td>'+o.jobPostingBoardTitle+'</td>'+
 				'<td>'+o.jobPostingBoardDeadline+'</td></tr>');

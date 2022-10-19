@@ -88,10 +88,9 @@
 	</select>	
 	<select id="findSearch"
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyMainDto">
-		SELECT resumes_id, resumes_title, resumes_place
+		SELECT ROW_NUMBER() OVER (ORDER BY resumes_id ASC) AS ROW, resumes_id, resumes_title, resumes_place
 		FROM resumes
 		WHERE resumes_title like CONCAT('%', #{keyword}, '%')
-		ORDER BY resumes_id DESC
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 	</select>
 	
