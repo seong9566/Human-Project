@@ -177,6 +177,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </section>
 <script>
 //주소불러오기
@@ -200,10 +201,13 @@ function findAddr() {
 			}
 		}).open();
 }
+
 // 채용공고 작성
 $("#btnSave").click(()=>{
 	insert();
 });
+
+
 function insert(){	
     
 	let data = {
