@@ -44,9 +44,9 @@
 										<div class="mb-3">
 											회사 이름 <input id="username" type="text" class="form-control"
 												placeholder="이름을 입력해주세요" style="margin-bottom: 20px;"
-												value="${companyInfo.companyName}"> 이메일<input
+												value="${companyInfo. companyName}"> 이메일<input
 												id="email" type="email" class="form-control"
-												placeholder="이메일을 입력해주세요" style="margin-bottom: 20px;">
+												value="${companyInfo. companyEmail}" style="margin-bottom: 20px;">
 											<div class="mb-3">주소</div>
 											<input id="post" type="text" class="form-control"
 												placeholder="우편번호" readonly onclick="findAddr()" value="${address.zoneCode }"><br />
