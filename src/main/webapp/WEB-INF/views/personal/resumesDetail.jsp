@@ -83,9 +83,6 @@
 		<input id="portfolioFile" type="text" class="form-control"
 			placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
 	</div>
-</div>
-
-
 
 
 <div class="form">

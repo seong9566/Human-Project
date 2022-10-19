@@ -32,6 +32,7 @@ function deleteLike() {
 }
 function insertLike() {
     let companyid = $("#companyId").val();
+    console.log(companyid);
     sendmessageToCompany(companyid);
     $.ajax("/companyLike/" + companyid + "/likes", {
         type: "POST",
