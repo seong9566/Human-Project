@@ -47,7 +47,6 @@ function update() {
 		loginPassword: $("#password").val(),
 		companyName: $("#companyName").val(),
 		companyEmail: $("#companyEmail").val(),
-		companyPicture : $("#fileUpload").val(),
 		companyPhoneNumber: $("#companyPhoneNumber").val(),
 		companyAddress: $("#zoneCode").val() + "," + $("#roadJibunAddr").val() + "," + $("#detailAddress").val()
 	};
