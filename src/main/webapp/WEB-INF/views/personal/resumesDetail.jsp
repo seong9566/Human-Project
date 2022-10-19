@@ -85,9 +85,6 @@
 	</div>
 </div>
 
-
-
-
 <div class="form">
 	<h2>자기소개서 작성</h2>
 	<div>${detailResumesDtoPS.resumesIntroduce}</div>

@@ -45,11 +45,10 @@
 		<option id="categoryDevops" value="3">데브옵스</option>
 		<option id="categoryAll" value="4">전체보기</option>
 	</select>
-	
+
 	<form class="d-flex" method="get" action="/main/${number}">
 		<input class="searchForm" type="text" placeholder="Search"
 			name="keyword">
-		
 		<button id="keyword" class="searchsubmit" type="submit">🔍</button>
 		
 	</form>

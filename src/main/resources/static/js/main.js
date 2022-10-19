@@ -3,6 +3,7 @@ $("#select_category").change(()=>{
 })
 
 function groupForCategory(id){
+
 	localStorage.setItem("number", id);
 	location.href="/main/"+id;	
 }
@@ -21,9 +22,6 @@ function onLoad(){
 			el.options[i].selected = true;
 		}
 	}
-
 }
 
 onLoad();
-
-

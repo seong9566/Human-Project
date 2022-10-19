@@ -57,9 +57,9 @@ public class LikeController {
 
 	@PostMapping("/companyLike/{companyId}/likes")
 	public @ResponseBody ResponseDto<?> insertCompanyLike(@PathVariable Integer companyId) {
-
+		
 		SignedDto<?> signedDto = (SignedDto<?>) session.getAttribute("principal");
-
+		
 		companyLikeService.좋아요(signedDto, companyId);
 
 		return new ResponseDto<>(1, "좋아요성공", null);
