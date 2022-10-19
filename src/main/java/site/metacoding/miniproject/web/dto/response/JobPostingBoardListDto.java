@@ -20,6 +20,8 @@ public class JobPostingBoardListDto {
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;
 	
+	private String companyPicture;
+	
 	//Career테이블	  
 	private Boolean oneYearLess;
 	private Boolean twoYearOver;

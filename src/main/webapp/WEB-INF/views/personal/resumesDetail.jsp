@@ -9,47 +9,54 @@
 	<section id="about" class="about">
 		<div class="row">
 			<div class="col-lg-4" data-aos="fade-right">
-			
-					<img id="oldImg" src="/img/${detailResumesDtoPS.resumesPicture}">
-				
-				<div class="btn-update">
-					<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}"><button
-							id="btnUpdate" type="button" class="btn btn-primary"
-							style="background-color: rgba(0, 195, 98, 255); border: none; margin-top: 20px; margin-left: 90px">이력서
-							수정</button></a>
-				</div>
-			</div>
 
-			<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-				<h2>이력서</h2>
-				<p class="fst-italic">이력서 제목 :
-					${detailResumesDtoPS.resumesTitle}</p>
-				<div class="row">
-					<div class="col-lg-6">
-						<ul>
-							<li><i class="bi bi-chevron-right"></i> <strong>이름
-									:</strong> <span>${detailResumesDtoPS.personalName}</span></li>
-							<li><i class="bi bi-chevron-right"></i> <strong>이메일
-									:</strong> <span>${detailResumesDtoPS.personalEmail}</span></li>
-							<li><i class="bi bi-chevron-right"></i> <strong>경력
-									:</strong> <span> <c:choose>
-										<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
+				<img id="oldImg" src="/img/${detailResumesDtoPS.resumesPicture}">
+				<c:choose>
+                    <c:when test="${not null principal.companyId}">
+                        <div class="btn-update">
+                            <a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}"><button id="btnUpdate"
+                                    type="button" class="btn btn-primary"
+                                    style="background-color: rgba(0, 195, 98, 255); border: none; margin-top: 20px; margin-left: 90px">이력서
+                                    수정</button></a>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                            <div>여긴 뭐가 들어가지?</div>
+                    </c:otherwise>
+                </c:choose>
+
+
+				<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+					<h2>이력서</h2>
+					<p class="fst-italic">이력서 제목 :
+						${detailResumesDtoPS.resumesTitle}</p>
+					<div class="row">
+						<div class="col-lg-6">
+							<ul>
+								<li><i class="bi bi-chevron-right"></i> <strong>이름
+										:</strong> <span>${detailResumesDtoPS.personalName}</span></li>
+								<li><i class="bi bi-chevron-right"></i> <strong>이메일
+										:</strong> <span>${detailResumesDtoPS.personalEmail}</span></li>
+								<li><i class="bi bi-chevron-right"></i> <strong>경력
+										:</strong> <span> <c:choose>
+											<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
                                             1년 미만
                                         </c:when>
-										<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
+											<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
                                             2년 이상
                                         </c:when>
-										<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
+											<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
                                             3년 이상
                                         </c:when>
-										<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
+											<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
                                             5년 이상"
                                         </c:when>
-									</c:choose>
-							</span></li>
-							<li><i class="bi bi-chevron-right"></i> <strong>학력:</strong>
-								<span>${detailResumesDtoPS.personalEducation}</span></li>
-						</ul>
+										</c:choose>
+								</span></li>
+								<li><i class="bi bi-chevron-right"></i> <strong>학력:</strong>
+									<span>${detailResumesDtoPS.personalEducation}</span></li>
+							</ul>
+						</div>
 					</div>
 					<div class="col-lg-6">
 						<ul>

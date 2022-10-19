@@ -19,8 +19,9 @@
 		=#{jobPostingBoardId}
 	</select>
 
-	<select id="jobPostingBoardList" resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto">
-		SELECT 
+	<select id="jobPostingBoardList"
+		resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardListDto">
+		SELECT
 		jpb.job_posting_board_id,
 		jpb.company_id,
 		jpb.job_posting_board_title ,
@@ -33,13 +34,17 @@
 		cr.one_year_less,
 		cr.two_year_over,
 		cr.three_year_over,
-		cr.five_year_over
+		cr.five_year_over,
+		cp.company_picture
 		FROM job_posting_board jpb
 		LEFT OUTER JOIN category c
 		ON jpb.job_posting_board_category_id = c.category_id
 		LEFT OUTER JOIN career cr
 		ON jpb.job_posting_board_career_id = cr.career_id
-		WHERE jpb.company_id = #{companyId}
+		LEFT OUTER JOIN company cp
+		ON jpb.company_id = cp.company_id
+		WHERE jpb.company_id =#{companyId}
+
 	</select>
 
 	<insert id="insert">
@@ -75,15 +80,18 @@
 		job_posting_board_title=#{jobPostingBoardTitle},
 		job_posting_board_content=#{jobPostingBoardContent},
 		job_posting_salary =#{jobPostingSalary},
-		job_posting_board_place = #{jobPostingBoardPlace},
-		job_posting_board_deadline = #{jobPostingBoardDeadline}
+		job_posting_board_place =
+		#{jobPostingBoardPlace},
+		job_posting_board_deadline =
+		#{jobPostingBoardDeadline}
 		WHERE
-		job_posting_board_id = #{jobPostingBoardId}
+		job_posting_board_id =
+		#{jobPostingBoardId}
 	</update>
 
 	<select id="findByDetail"
 		resultType="site.metacoding.miniproject.web.dto.response.JobPostingBoardDetailDto">
-		SELECT 
+		SELECT
 		jpb.job_posting_board_id,
 		jpb.company_id,
 		jpb.job_posting_board_category_id,
@@ -110,18 +118,22 @@
 		FROM job_posting_board jpb
 		LEFT OUTER JOIN category c
 		ON jpb.job_posting_board_category_id = c.category_id
-		LEFT OUTER JOIN career cr
+		LEFT OUTER JOIN
+		career cr
 		ON jpb.job_posting_board_career_id = cr.career_id
-		LEFT OUTER JOIN company cp
+		LEFT OUTER
+		JOIN company cp
 		ON jpb.company_id = cp.company_id
-		LEFT OUTER JOIN company_like cl
+		LEFT OUTER JOIN
+		company_like cl
 		ON jpb.company_id = cl.company_id
-		WHERE jpb.job_posting_board_id =  #{jobPostingBoardId}
+		WHERE
+		jpb.job_posting_board_id = #{jobPostingBoardId}
 	</select>
 
 	<select id="findById"
 		resultType="site.metacoding.miniproject.domain.jobpostingboard.JobPostingBoard">
-		SELECT 
+		SELECT
 		job_posting_board_id,
 		company_id,
 		job_posting_salary,
@@ -131,7 +143,7 @@
 		job_posting_board_content,
 		job_posting_board_place,
 		job_posting_board_deadline
-		FROM job_posting_board 
+		FROM job_posting_board
 		WHERE job_posting_board_id = #{jobPostingBoardId};
 	</select>
 	<delete id="deleteById">
@@ -139,7 +151,7 @@
 		job_posting_board_id = #{jobPostingBoardId}
 
 	</delete>
-	
+
 
 
 	<select id="jobPostingBoardPaging"
@@ -154,89 +166,108 @@
 		ceil(count(*)/5) totalPage,
 		#{page} currentPage,
 		0 first,
-		0 last
+		0
+		last
 		FROM job_posting_board
 		<if test="keyword != null">
-			WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+			WHERE job_posting_board_title like CONCAT('%', #{keyword},
+			'%')
 		</if>
 		) paging
-	</select>	
-	
+	</select>
+
 	<select id="findAll"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline,
-		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state 
+		SELECT job_posting_board_id, job_posting_board_title,
+		job_posting_board_deadline,
+		if(job_posting_board_deadline >
+		NOW(),'모집중','모집 마감') state
 		FROM job_posting_board
 		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 	</select>
-	
+
 	<select id="findSearch"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT job_posting_board_id, job_posting_board_title, job_posting_board_deadline,
-		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state
+		SELECT job_posting_board_id, job_posting_board_title,
+		job_posting_board_deadline,
+		if(job_posting_board_deadline >
+		NOW(),'모집중','모집 마감') state
 		FROM job_posting_board
-		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
-	</select>	
-	
+		WHERE
+		job_posting_board_title like CONCAT('%', #{keyword}, '%')
+		OFFSET
+		#{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+	</select>
+
 	<select id="findCategory"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT b.job_posting_board_id, c.category_id, c.category_frontend, 
-		c.category_backend, c.category_devops, b.job_posting_board_category_id,
-		b.job_posting_board_title, b.job_posting_board_deadline,
-		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state
+		SELECT b.job_posting_board_id, c.category_id, c.category_frontend,
+		c.category_backend, c.category_devops,
+		b.job_posting_board_category_id,
+		b.job_posting_board_title,
+		b.job_posting_board_deadline,
+		if(job_posting_board_deadline >
+		NOW(),'모집중','모집 마감') state
 		FROM category c
-		INNER JOIN job_posting_board b
+		INNER JOIN job_posting_board
+		b
 		ON b.job_posting_board_category_id = c.category_id
 		<if test="id == 1">
-		WHERE category_frontend = 1
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE category_frontend = 1
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 2">
-		WHERE category_backend = 1
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE category_backend = 1
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 3">
-		WHERE category_devops = 1
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE category_devops = 1
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 4">
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 5">
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
-	</select>	
-	
+	</select>
+
 	<select id="findCategorySearch"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonalMainDto">
-		SELECT b.job_posting_board_id, c.category_id, c.category_frontend, 
-		c.category_backend, c.category_devops, b.job_posting_board_category_id,
-		b.job_posting_board_title, b.job_posting_board_deadline,
-		if(job_posting_board_deadline > NOW(),'모집중','모집 마감') state
+		SELECT b.job_posting_board_id, c.category_id, c.category_frontend,
+		c.category_backend, c.category_devops,
+		b.job_posting_board_category_id,
+		b.job_posting_board_title,
+		b.job_posting_board_deadline,
+		if(job_posting_board_deadline >
+		NOW(),'모집중','모집 마감') state
 		FROM category c
-		INNER JOIN job_posting_board b
+		INNER JOIN job_posting_board
+		b
 		ON b.job_posting_board_category_id = c.category_id
 		<if test="id == 1">
-		WHERE category_frontend = 1 AND job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE category_frontend = 1 AND job_posting_board_title like CONCAT('%',
+			#{keyword}, '%')
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 2">
-		WHERE category_backend = 1 AND job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE category_backend = 1 AND job_posting_board_title like CONCAT('%',
+			#{keyword}, '%')
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 3">
-		WHERE category_devops = 1 AND job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE category_devops = 1 AND job_posting_board_title like CONCAT('%',
+			#{keyword}, '%')
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 4">
-		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
 		<if test="id == 5">
-		WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
-		OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
+			WHERE job_posting_board_title like CONCAT('%', #{keyword}, '%')
+			OFFSET #{startNum} ROWS FETCH NEXT 5 ROWS ONLY
 		</if>
-	</select>	
-	
+	</select>
+
 </mapper>

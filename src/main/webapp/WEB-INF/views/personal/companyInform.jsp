@@ -1,75 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ include file="../layout/header.jsp" %>
-		<input id="companyId" type="hidden" value="${companyInfo.companyId}">
-		<section class="h-100">
-   <div class="container py-5 h-100">
-      <div
-         class="row d-flex justify-content-center align-items-center h-100">
-         <div class="col-12">
-            <div class="card card-registration card-registration-2"
-               style="border-radius: 15px;">
-               <div class="card-body p-0">
-                  <div class="row g-0">
-                     <div class="col-lg-6">
-                        <div class="p-5">
-                           <h3 class="fw-normal mb-5" style="color: #4835d4;">기업 정보보기</h3>
-                           <div>
-                              <div class="mb-3">◆회사 사진</div>
-                              <input type="file" id="file" onchange="setThumbnail(event)" />
-                              <div id="image_container">
-                                 <img id="oldImg" src="/img/${companyInfo.companyPicture}">
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="mb-3 mt-3">
-                                 아이디 <input id="userId" type="text" class="form-control"
-                                    placeholder="아이디를 입력해주세요." value="${companyInfo.loginId}"
-                                    style="margin-bottom: 20px;" readonly>
-                              </div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
+<input id="companyId" type="hidden" value="${companyInfo.companyId}">
+<input id="companyId" type="hidden" value="${companyInfo.companyId}">
+<input id="jobPostingBoardId" type="hidden"
+	value="${jobPostingPS.jobPostingBoardId}">
+<div class="container">
+	<section id="about" class="about">
+		<div class="row">
+			<div class="col-lg-4" data-aos="fade-right">
+				<div id="image_container">
+					<img id="oldImg" src="/img/${companyInfo.companyPicture}">
+				</div>
+			</div>
+			<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+				<h2 style="margin-left: 80px">회사 정보</h2>
 
-                           </div>
-                           <div class="mb-3">
-                              회사 이름 <input id="username" type="text" class="form-control"
-                                 placeholder="이름을 입력해주세요" style="margin-bottom: 20px;"
-                                 value="${companyInfo.companyName}" readonly>
-                           </div>
-                           <div class="mb-3"></div>
-                        </div>
-                     </div>
-                     <div class="col-lg-6 bg-indigo text-white">
-                        <div class="p-5">
-                           <div class="row">
-                              <div class="mb-3">
-                                 이메일<input id="email" type="email" class="form-control"
-                                    placeholder="이메일을 입력해주세요" style="margin-bottom: 20px;" value="${companyInfo. companyEmail}" readonly>
-                                 <div class="mb-3">주소</div>
-                                 <input id="post" type="text" class="form-control"
-                                    placeholder="우편번호" value="${address.zoneCode }" readonly onclick="findAddr()"><br />
-                                 <br /> <br> <input id="addr" type="text" value="${address.roadJibunAddr}"
-                                    class="form-control" placeholder="주소" readonly><br />
-                                 <input class="form-control" id="detail_address" value="${address.detailAddress }" type="text"
-                                    placeholder="상세주소"><br />
-                                 <div class="mb-3">
-                                    전화번호<input id="phonenumber" type="text" class="form-control" value="${companyInfo.companyPhoneNumber}" readonly
-                                       placeholder="전화번호를 입력해주세요" style="margin-bottom: 20px;">
-                                 </div>
-                              </div>
+				<div class="row">
+					<div class="col-lg-6"></div>
+					<div class="col-lg-6">
+						<ul>
+							<li style="margin-bottom: 10px"><i
+								class="bi bi-chevron-right"></i> <strong>회사 이름 :</strong> <span>${companyInfo.companyName}</span></li>
+							<li style="margin-bottom: 10px"><i
+								class="bi bi-chevron-right"></i> <strong> 전화번호 :</strong> <span>${companyInfo.companyPhoneNumber}</span></li>
+							<li style="margin-bottom: 10px"><i
+								class="bi bi-chevron-right"></i> <strong>회사 이메일 :</strong> <span>
+									${companyInfo.companyEmail}</span></li>
+							<li style="margin-bottom: 10px"><i
+								class="bi bi-chevron-right"></i> <strong>회사 주소:</strong> <span>${address.roadJibunAddr}
+									${address.detailAddress}</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="container mt-3" style="border: 3px solid #000000">
+		<h2>현재 채용중인 공고</h2>
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+				       <c:forEach var="jobPostingBoard" items="${jobPostingBoardList}">
+                <div class="card" style="width: 18rem;">
+                    <a href="/company/jobPostingBoardDetail/${jobPostingBoard.jobPostingBoardId}"><img
+                            class="card-img-top" src="/img/${jobPostingBoard.jobPostingPicture}"
+                            alt="Card image cap"></a>
+                    <div class="card-body">
+                        <p class="card-text">${jobPostingBoard.jobPostingBoardTitle}</p>
+                    </div>
+                </div>
+            </c:forEach>
 
-                           </div>
+		</div>
+	</div>
+	<div class="btn-update" style="text-align: right">
+		<button id="btnSub"
+			style="background-color: rgba(0, 195, 98, 255); border: none; margin-bottom: 10px; margin-top: 10px; margin-bottom: 20px;"
+			type="button" class="btn btn-primary">구독하기</button>
+	</div>
+</div>
+<script src="/js/subscribe.js"></script>
 
-                           <button
-                              style="background-color: rgba(0, 195, 98, 255); border: none; margin-bottom: 10px; margin-top: 10px; margin-bottom: 20px;"
-                              id="btnUpdateForm" type="button" class="btn btn-primary">수정하러가기</button>
-
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-		<script src="/js/subscribe.js"></script>
-
-		<%@ include file="../layout/footer.jsp" %>
+<%@ include file="../layout/footer.jsp"%>

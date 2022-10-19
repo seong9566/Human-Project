@@ -25,4 +25,6 @@ public class PersonalMainDto {
 	private Integer jobPostingBoardCategoryId;
 	private Integer categoryId;
 	private Integer id;
+	
+	
 }
