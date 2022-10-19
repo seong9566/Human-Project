@@ -138,7 +138,7 @@
 				</div>
 
 				<div class="btn-update">
-					<button id="btnSave" type="button" class="btn btn-primary">작성완료</button>
+					<button id="btnSave" type="button" class="btn btn-primary" style="background-color: rgba(0, 195, 98, 255); border: none; margin-bottom: 10px; margin-top: 10px; margin-bottom: 20px;">작성완료</button>
 				</div>
 
 			</div>

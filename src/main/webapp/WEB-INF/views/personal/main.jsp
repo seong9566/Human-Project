@@ -62,7 +62,7 @@
 					<tr>
 						<th>번호</th>
 						<th>채용공고 제목</th>
-						<th>마감일</th>
+						<th>모집현황</th>
 					</tr>
 				</thead>
 				<tbody id="table">
@@ -76,7 +76,7 @@
 										${jobPostingBoardList.jobPostingBoardTitle}</a>
 								</div>
 							</td>
-							<td>${jobPostingBoardList.formatDeadLine} 
+							<td>
 							<p>${jobPostingBoardList.state}</p>
 							</td>
 						</tr>

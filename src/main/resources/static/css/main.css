@@ -37,7 +37,8 @@
 }
 
 .searchForm {
-	width: 400px; border : 1px solid gray;
+	width: 400px;
+	border: 1px solid gray;
 	border-radius: 10px;
 	border: 1px solid gray;
 }

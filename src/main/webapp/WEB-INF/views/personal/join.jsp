@@ -85,7 +85,7 @@
 									</div>
 
 									<button id="btnSave" type="button" class="btn btn-primary"
-										onclick="joinform_check()" style="margin-bottom: 20px;"
+										onclick="joinform_check()" style="background-color: rgba(0, 195, 98, 255); border: none; margin-bottom: 10px; margin-top: 10px; margin-bottom: 20px;"
 										disabled="disabled">작성완료</button>
 
 								</div>
