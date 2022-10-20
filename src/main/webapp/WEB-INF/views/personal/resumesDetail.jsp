@@ -22,6 +22,9 @@
 								수정</button></a>
 					</div>
 				</c:if>
+				<button
+								id="btnUpdateForm" type="button" class="btn btn-primary"
+								style="background-color: rgba(0, 195, 98, 255); border: none; margin-top: 20px; margin-left: 90px">채용하기</button>
 				</div>
 				<div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
 					<h2>이력서</h2>

@@ -47,6 +47,8 @@ public class CompanyController {
 		CompanyAddressDto addressPS = companyService.findByAddress(principal.getCompanyId());
 		model.addAttribute("address", addressPS);
 		model.addAttribute("companyInfo", companyPS);
+		System.out.println(companyPS.getCompanyName());
+		System.out.println(companyPS.getCompanyPhoneNumber());
 		return "company/inform";
 	}
 

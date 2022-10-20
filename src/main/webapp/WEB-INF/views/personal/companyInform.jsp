@@ -28,8 +28,8 @@
 								class="bi bi-chevron-right"></i> <strong>회사 이메일 :</strong> <span>
 									${companyInfo.companyEmail}</span></li>
 							<li style="margin-bottom: 10px"><i
-								class="bi bi-chevron-right"></i> <strong>회사 주소:</strong> <span>${address.roadJibunAddr}
-									${address.detailAddress}</span></li>
+								class="bi bi-chevron-right"></i> <strong>회사 주소:</strong>
+								 <span>${address.roadJibunAddr}${address.detailAddress}</span></li>
 						</ul>
 					</div>
 				</div>

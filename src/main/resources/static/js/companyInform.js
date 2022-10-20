@@ -50,6 +50,7 @@ function update() {
 		companyPhoneNumber: $("#companyPhoneNumber").val(),
 		companyAddress: $("#zoneCode").val() + "," + $("#roadJibunAddr").val() + "," + $("#detailAddress").val()
 	};
+	console.log(data);
 		formData.append('file', $("#file")[0].files[0]);
 	formData.append('companyUpdateDto', new Blob([JSON.stringify(data)], { type: "application/json" }));
 	$.ajax("/company/inform/update", {
