@@ -47,8 +47,8 @@
 												id="detailAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
 											<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
 											<input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}"
-												style="width: 645px;" readonly> 
-												<input type="detailAddress" value="${address.detailAddress }" style="width: 645px;"> <br /> <br>
+												style="width: 500px;" readonly> 
+												<input type="detailAddress" value="${address.detailAddress }" style="width: 500px;"> <br /> <br>
 
 											<div class="mb-3">
 												전화번호<input id="companyPhoneNumber" type="text" class="form-control" placeholder="전화번호를 입력해주세요"

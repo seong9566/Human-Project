@@ -35,15 +35,15 @@
          
 		<div class="mb-3">◆주소</div>
 		<input id="zoneCode" type="text" value="${address.zoneCode }" readonly> <br>
-		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 645px;" readonly>
-		<input type="detailAddress" value="${address.detailAddress }" style="width: 645px;" readonly>
+		 <input id="roadJibunAddr" type="text" value="${address.roadJibunAddr}" style="width: 500px;" readonly>
+		<input type="detailAddress" value="${address.detailAddress }" style="width: 500px;" readonly>
 		<div class="mb-3"></div>
 		</form>
 </div>
 
 <div class="mb-5"></div>
 <div class="d-grid gap-1 col-2 mx-auto">
-	<button id=btnUpdateForm type="button" class="btn btn-primary">수정하러 가기 </button>
+	<button id=btnUpdateForm type="button" class="btn btn-primary" style="background-color: rgba(0, 195, 98, 255); border: none; margin-bottom: 20px;">수정하러 가기 </button>
 </div>
 
 <script>
