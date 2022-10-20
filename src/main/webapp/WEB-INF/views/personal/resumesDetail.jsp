@@ -37,17 +37,17 @@
 		<div>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.oneYearLess}">
-		            1년 미만
-		        	</c:when>
+							1년 미만
+						</c:when>
 				<c:when test="${true eq detailResumesDtoPS.twoYearOver}">
-		       		2년 이상
-		         	</c:when>
+							2년 이상
+						</c:when>
 				<c:when test="${true eq detailResumesDtoPS.threeYearOver}">
-		       		3년 이상
-		         	</c:when>
+							3년 이상
+						</c:when>
 				<c:when test="${true eq detailResumesDtoPS.fiveYearOver}">
-		       		5년 이상
-		         	</c:when>
+							5년 이상
+						</c:when>
 			</c:choose>
 		</div>
 
@@ -55,18 +55,18 @@
 		<div>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryFrontend}">
-		            - 프론트엔드
-		        </c:when>
+							- 프론트엔드
+						</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryBackend}">
-		            - 백엔드
-		        </c:when>
+							- 백엔드
+						</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${true eq detailResumesDtoPS.categoryDevops}">
-		            - 데브옵스
-		        </c:when>
+							- 데브옵스
+						</c:when>
 			</c:choose>
 		</div>
 		<div class="mb-3">◆희망근무지역</div>
@@ -83,31 +83,29 @@
 		<input id="portfolioFile" type="text" class="form-control"
 			placeholder="${detailResumesDtoPS.portfolioFile}" readonly />
 	</div>
-</div>
 
-<div class="form">
-	<h2>자기소개서 작성</h2>
-	<div>${detailResumesDtoPS.resumesIntroduce}</div>
-</div>
-<c:if test="${principal.personalId != null}">
-	<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
-		<div class="lineheight">수정하러가기</div>
-	</a>
-</c:if>
-<div>
-	<c:if test="${principal.companyId != null}">
-		<c:choose>
-			<c:when test="${empty personalLike}">
-				<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
-			</c:when>
-			<c:otherwise>
-				<button id="btnlike" type="button" class="btn btn-primary">좋아요취소</button>
-			</c:otherwise>
-		</c:choose>
+	<div class="form">
+		<h2>자기소개서 작성</h2>
+		<div>${detailResumesDtoPS.resumesIntroduce}</div>
+	</div>
+	<c:if test="${principal.personalId != null}">
+		<a href="/personal/resumes/update/${detailResumesDtoPS.resumesId}">
+			<span class="lineheight">수정하러가기</span>
+		</a>
 	</c:if>
-</div>
+	<div>
+		<c:if test="${principal.companyId != null}">
+			<c:choose>
+				<c:when test="${empty personalLike}">
+					<button id="btnlike" type="button" class="btn btn-primary">좋아요</button>
+				</c:when>
+				<c:otherwise>
+					<button id="btnlike" type="button" class="btn btn-primary">좋아요취소</button>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+	</div>
 
-<script src="/js/personallike.js"></script>
-<script src="/js/resumes.js"></script>
-
+	<script src="/js/personallike.js"></script>
+	<script src="/js/resumes.js"></script>
 <%@ include file="../layout/footer.jsp"%>

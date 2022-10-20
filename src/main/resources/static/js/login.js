@@ -8,11 +8,11 @@ $("#btnLogin").click(() => {
 });
 
 
-$("#btnCompanyJoin").click(()=>{
+$("#btnCompanyJoin").click(() => {
 	location.href = "company/joinForm";
 });
 
-$("#btnPersonalJoin").click(()=>{
+$("#btnPersonalJoin").click(() => {
 	location.href = "personal/joinForm";
 });
 
@@ -28,11 +28,15 @@ function login(login_dto) {
 		}
 	}).done((res) => {
 		if (res.code == 1) {
+			let subscribecompanylist = []
+			res.data?.forEach((o) => {
+				subscribecompanylist.push(o.companyId);
+			});
+			sessionStorage.setItem("subscribe", JSON.stringify(subscribecompanylist));
 			location.href = "/main";
-		}else if(res.code == -2){
-			alert(res.message);
+		} else if (res.code == -2) {
 			history.back();
-		}else{
+		} else {
 			alert(res.message);
 			return;
 		}

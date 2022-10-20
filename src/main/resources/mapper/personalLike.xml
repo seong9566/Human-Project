@@ -20,6 +20,7 @@
 		INNER
 		JOIN resumes r
 		ON p.resumes_id = r.resumes_id
+		WHERE p.company_id = #{companyId}
 	</select>
 
 	<select id="findById" resultType="site.metacoding.miniproject.domain.like.personalike.PersonalLike">
