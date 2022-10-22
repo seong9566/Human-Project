@@ -220,12 +220,12 @@ public class PersonalController {
 		int startNum = page * 5;
 
 		if (session.getAttribute("principal") == null) {
-			if (keyword == null || keyword.isEmpty()) {
+			if(keyword == null || keyword.isEmpty()) {
 				List<PersonalMainDto> jobPostingBoardList = companyService.findCategory(startNum, id);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, null);
-				paging.makeBlockInfo(keyword);
-				model.addAttribute("jobPostingBoardList", jobPostingBoardList);
-				model.addAttribute("paging", paging);
+				paging.makeBlockInfo(keyword);	
+				model.addAttribute("jobPostingBoardList", jobPostingBoardList);	
+				model.addAttribute("paging",paging);
 			} else {
 				List<PersonalMainDto> jobPostingBoardList = companyService.findCategorySearch(startNum, keyword, id);
 				PagingDto paging = companyService.jobPostingBoardPaging(page, keyword);
@@ -257,11 +257,12 @@ public class PersonalController {
 			} else {
 				List<CompanyMainDto> resumesList = personalService.findCategorySearch(startNum, keyword, id);
 				PagingDto paging = personalService.resumesPaging(page, keyword);
-				paging.makeBlockInfo(keyword);
+				paging.makeBlockInfo(keyword);			
 				model.addAttribute("resumesList", resumesList);
-				model.addAttribute("paging", paging);
+				model.addAttribute("paging",paging);
 			}
 		}
+		model.addAttribute("number", id);
 		return "personal/main";
 	}
 
